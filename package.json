@@ -1,0 +1,9 @@
+{
+  "name": "grounded-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GROUNDED — natural soap, balm and lip balm storefront",
+  "dependencies": {
+    "stripe": "^17.0.0"
+  }
+}

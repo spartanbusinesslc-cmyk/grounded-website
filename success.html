@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — GROUNDED</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="style.css">
+<style>
+  .success-section {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .success-section img { width: 64px; margin: 0 auto 28px; }
+  .success-section h1 { font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 16px; }
+  .success-section p { max-width: 420px; margin: 0 auto 32px; opacity: 0.75; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="GROUNDED logo">
+      GROUNDED
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="success-section">
+    <div class="wrap">
+      <img src="assets/logo.png" alt="">
+      <span class="eyebrow">order confirmed</span>
+      <h1>Thank you — it's on its way.</h1>
+      <p>You'll receive an email confirmation from Stripe shortly with your order details and shipping updates.</p>
+      <a href="shop.html" class="btn btn-solid">Continue Shopping</a>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Clear the cart now that checkout has completed
+  localStorage.removeItem("grounded_cart");
+</script>
+</body>
+</html>
