@@ -24,6 +24,21 @@ const PRODUCTS = {
     price: 11.99,
     swatch: "swatch-soap"
   },
+  oliveUnscented: {
+    name: "Olive Oil Soap — Unscented",
+    price: 11.99,
+    swatch: "swatch-soap"
+  },
+  oliveCitrusLavender: {
+    name: "Olive Oil Soap — Citrus & Lavender",
+    price: 11.99,
+    swatch: "swatch-soap"
+  },
+  oliveMintTeaTree: {
+    name: "Olive Oil Soap — Mint & Tea Tree",
+    price: 11.99,
+    swatch: "swatch-soap"
+  },
   bodyBalm: {
     name: "Tallow Body Balm",
     price: 24.99,
