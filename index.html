@@ -163,13 +163,30 @@
   .bundle-banner {
     background: var(--cream);
     color: var(--charcoal);
-    text-align: center;
     padding: clamp(56px, 8vw, 96px) 0;
   }
-  .bundle-banner h2 { color: var(--charcoal); font-size: clamp(2.1rem, 4.5vw, 3.2rem); margin-bottom: 16px; }
-  .bundle-banner p { max-width: 440px; margin: 0 auto 30px; opacity: 0.85; font-size: 0.95rem; }
+  .bundle-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 820px) {
+    .bundle-split { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .bundle-text h2 { color: var(--charcoal); font-size: clamp(2.1rem, 4.5vw, 3.2rem); margin-bottom: 16px; }
+  .bundle-text p { max-width: 440px; margin-bottom: 30px; opacity: 0.85; font-size: 0.95rem; }
   .bundle-banner .btn { border-color: var(--olive); color: var(--olive); }
   .bundle-banner .btn:hover { background: var(--olive); color: var(--cream); }
+  .bundle-image-placeholder {
+    background: var(--beige);
+    aspect-ratio: 4/5;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bundle-image-placeholder img { width: 80px; opacity: 0.4; }
 </style>
 </head>
 <body>
@@ -289,10 +306,15 @@
 
   <!-- BUNDLE BANNER -->
   <section class="bundle-banner">
-    <div class="wrap">
-      <h2>The GROUNDED Essentials Set</h2>
-      <p>A soap to cleanse, tallow to moisturise &amp; a lip balm to finish — everything you need to become grounded.</p>
-      <a href="shop.html#bundles" class="btn">Shop the Set — £39.99</a>
+    <div class="wrap bundle-split">
+      <div class="bundle-text">
+        <h2>The GROUNDED Essentials Set</h2>
+        <p>A soap to cleanse, tallow to moisturise &amp; a lip balm to finish — everything you need to become grounded.</p>
+        <a href="shop.html#bundles" class="btn">Shop the Set — £39.99</a>
+      </div>
+      <div class="bundle-image-placeholder">
+        <img src="assets/logo-icon.svg" alt="Essentials Set">
+      </div>
     </div>
   </section>
 
