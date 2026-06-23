@@ -203,6 +203,7 @@ h1, h2, h3 {
   background: var(--olive);
   color: var(--beige);
   padding: 80px 0 40px;
+  border-top: 1px solid rgba(242,239,230,0.4);
 }
 .footer-grid {
   display: grid;
