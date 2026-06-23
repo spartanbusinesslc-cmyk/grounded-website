@@ -200,7 +200,7 @@ h1, h2, h3 {
 /* ---------- Footer ---------- */
 
 .site-footer {
-  background: var(--charcoal);
+  background: var(--olive);
   color: var(--beige);
   padding: 80px 0 40px;
 }
@@ -214,17 +214,9 @@ h1, h2, h3 {
 @media (max-width: 760px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
-.footer-brand {
-  font-family: var(--display);
-  font-size: 1.8rem;
-  color: var(--cream);
-  margin-bottom: 14px;
-}
-.footer-tagline {
-  font-style: italic;
-  font-family: var(--display);
-  color: var(--sage);
-  font-size: 1rem;
+.footer-logo {
+  width: 160px;
+  filter: brightness(0) invert(1);
 }
 .footer-col h4 {
   font-family: var(--body);
