@@ -230,6 +230,7 @@ h1, h2, h3 {
 }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem; }
 .footer-col a:hover { color: var(--cream); }
+.instagram-link { display: flex; align-items: center; gap: 6px; }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
