@@ -82,10 +82,11 @@
     gap: 28px;
   }
   @media (max-width: 880px) {
-    .product-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .product-card { padding: 20px 12px; }
-    .product-swatch { height: 120px; margin-bottom: 14px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .product-card { padding: 24px 16px; }
+    .product-swatch { height: 140px; margin-bottom: 16px; }
     .product-card h3 { font-size: 1.1rem; }
+    .product-card:last-child { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; width: 100%; }
   }
   .product-card {
     background: var(--cream);
