@@ -76,6 +76,18 @@
   .section-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 10px; }
   .section-subhead { font-family: var(--body); font-size: 1rem; opacity: 0.7; margin: 0; }
 
+  .bundles-head { text-align: center; margin: 72px 0 40px; }
+  .bundles-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 10px; }
+
+  .bundle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 880px) {
+    .bundle-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+
   .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -216,6 +228,43 @@
           <h3>All Natural Lip Balm</h3>
           <p class="product-price">£9.99</p>
           <a href="shop.html#lip" class="btn">View Lip Balm</a>
+        </div>
+
+      </div>
+
+      <!-- BUNDLES -->
+      <div class="bundles-head">
+        <h2>Grounded. Bundles &amp; Sets</h2>
+        <p class="section-subhead">Save &amp; stay grounded. with our bundles &amp; sets</p>
+      </div>
+      <div class="bundle-grid">
+
+        <div class="product-card">
+          <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
+          <h3>Soap 3-Pack</h3>
+          <p class="product-price">£24.99</p>
+          <a href="shop.html#soap" class="btn">View Bundle</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-swatch swatch-balm"><img src="assets/logo-icon.svg" alt=""></div>
+          <h3>Tallow Balm 3-Pack</h3>
+          <p class="product-price">£49.98</p>
+          <a href="shop.html#balm" class="btn">View Bundle</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-swatch swatch-lip"><img src="assets/logo-icon.svg" alt=""></div>
+          <h3>Lip Balm 3-Pack</h3>
+          <p class="product-price">£19.99</p>
+          <a href="shop.html#lip" class="btn">View Bundle</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
+          <h3>Essentials Set</h3>
+          <p class="product-price">£39.99</p>
+          <a href="shop.html#bundles" class="btn">View Set</a>
         </div>
 
       </div>
