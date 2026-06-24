@@ -1,5 +1,5 @@
 /* ============================================
-   GROUNDED — Product Catalog
+   EARTHED — Product Catalog
    ---------------------------------------------
    This is the single source of truth for product
    names, display prices and swatch styling used

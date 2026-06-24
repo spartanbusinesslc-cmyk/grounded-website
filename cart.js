@@ -1,5 +1,5 @@
 /* ============================================
-   GROUNDED — Cart
+   EARTHED — Cart
    ---------------------------------------------
    Cart state lives in localStorage so it persists
    between pages and visits. Checkout sends the cart
@@ -8,7 +8,7 @@
    the whole order server-side.
    ============================================ */
 
-const CART_KEY = "grounded_cart";
+const CART_KEY = "earthed_cart";
 
 function getCart() {
   try {

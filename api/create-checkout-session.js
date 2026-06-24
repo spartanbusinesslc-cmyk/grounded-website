@@ -1,5 +1,5 @@
 /* ============================================
-   GROUNDED — Create Checkout Session
+   EARTHED — Create Checkout Session
    ---------------------------------------------
    Runs as a Vercel serverless function at
    /api/create-checkout-session.
