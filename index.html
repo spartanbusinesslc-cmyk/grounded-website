@@ -91,7 +91,7 @@
 
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 28px;
   }
   @media (max-width: 880px) {
@@ -99,7 +99,6 @@
     .product-card { padding: 24px 16px; }
     .product-swatch { height: 140px; margin-bottom: 16px; }
     .product-card h3 { font-size: 1.1rem; }
-    .product-card:last-child { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; width: 100%; }
   }
   .product-card {
     background: var(--cream);
@@ -229,9 +228,16 @@
 
         <div class="product-card">
           <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>All Natural Soap</h3>
+          <h3>Raw Milk Soap</h3>
           <p class="product-price">From £11.99</p>
           <a href="shop.html#soap" class="btn">View Soap</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
+          <h3>Olive Oil Soap</h3>
+          <p class="product-price">From £11.99</p>
+          <a href="shop.html#olive" class="btn">View Soap</a>
         </div>
 
         <div class="product-card">
