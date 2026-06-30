@@ -6,6 +6,8 @@
 
    Receives the cart from the browser as:
      { items: [{ id: "soapUnscented", quantity: 2 }, ...] }
+   Or for subscriptions:
+     { items: [{ id: "soapBundle", quantity: 1 }], subscription: true }
 
    IMPORTANT — security note:
    We never trust a price sent from the browser.
@@ -17,24 +19,24 @@
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// Map of internal product IDs -> Stripe Price IDs.
-// Set these as environment variables in your Vercel project
-// (Project Settings > Environment Variables), one per product.
-// You create the actual prices in the Stripe Dashboard under
-// Product Catalog, then copy the Price ID (starts "price_...").
 const PRICE_MAP = {
-  soapUnscented: process.env.PRICE_SOAP_UNSCENTED,
-  soapCitrusLavender: process.env.PRICE_SOAP_CITRUS_LAVENDER,
-  soapMintTeaTree: process.env.PRICE_SOAP_MINT_TEA_TREE,
-  oliveUnscented: process.env.PRICE_OLIVE_UNSCENTED,
+  soapUnscented:       process.env.PRICE_SOAP_UNSCENTED,
+  soapCitrusLavender:  process.env.PRICE_SOAP_CITRUS_LAVENDER,
+  soapMintTeaTree:     process.env.PRICE_SOAP_MINT_TEA_TREE,
+  oliveUnscented:      process.env.PRICE_OLIVE_UNSCENTED,
   oliveCitrusLavender: process.env.PRICE_OLIVE_CITRUS_LAVENDER,
-  oliveMintTeaTree: process.env.PRICE_OLIVE_MINT_TEA_TREE,
-  bodyBalm: process.env.PRICE_BODY_BALM,
-  lipBalm: process.env.PRICE_LIP_BALM,
-  soapBundle: process.env.PRICE_SOAP_BUNDLE,
-  balmBundle: process.env.PRICE_BALM_BUNDLE,
-  lipBundle: process.env.PRICE_LIP_BUNDLE,
-  essentialsBundle: process.env.PRICE_ESSENTIALS_BUNDLE
+  oliveMintTeaTree:    process.env.PRICE_OLIVE_MINT_TEA_TREE,
+  bodyBalm:            process.env.PRICE_BODY_BALM,
+  lipBalm:             process.env.PRICE_LIP_BALM,
+  soapBundle:          process.env.PRICE_SOAP_BUNDLE,
+  balmBundle:          process.env.PRICE_BALM_BUNDLE,
+  lipBundle:           process.env.PRICE_LIP_BUNDLE,
+  essentialsBundle:    process.env.PRICE_ESSENTIALS_BUNDLE,
+  // Subscription prices (recurring, 20% off)
+  subSoapBundle:       process.env.PRICE_SUB_SOAP_BUNDLE,
+  subBalmBundle:       process.env.PRICE_SUB_BALM_BUNDLE,
+  subLipBundle:        process.env.PRICE_SUB_LIP_BUNDLE,
+  subEssentialsBundle: process.env.PRICE_SUB_ESSENTIALS_BUNDLE
 };
 
 module.exports = async (req, res) => {
@@ -50,7 +52,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items } = req.body || {};
+    const { items, subscription } = req.body || {};
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Your cart is empty." });
@@ -66,20 +68,26 @@ module.exports = async (req, res) => {
       }
 
       const quantity = Math.min(20, Math.max(1, parseInt(item.quantity, 10) || 1));
-
       return { price: priceId, quantity };
     });
 
     const origin = getOrigin(req);
+    const mode = subscription ? "subscription" : "payment";
 
-    const session = await stripe.checkout.sessions.create({
-      mode: "payment",
+    const sessionParams = {
+      mode,
       line_items,
       success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop.html`,
-      shipping_address_collection: { allowed_countries: ["GB"] },
       allow_promotion_codes: true
-    });
+    };
+
+    // Shipping only applies to one-time payments; subscriptions use billing address
+    if (!subscription) {
+      sessionParams.shipping_address_collection = { allowed_countries: ["GB"] };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return res.status(200).json({ url: session.url });
   } catch (err) {

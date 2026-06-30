@@ -129,6 +129,35 @@
   .product-price { font-family: var(--body); font-size: 1rem; margin-bottom: 22px; color: var(--olive); margin-top: 6px; }
   .product-card .btn { margin-top: auto; }
 
+  /* Subscribe toggle */
+  .sub-toggle {
+    display: flex;
+    gap: 6px;
+    margin: 10px 0 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .sub-btn {
+    font-family: var(--body);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--olive);
+    background: transparent;
+    color: var(--olive);
+    cursor: pointer;
+    border-radius: 1px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .sub-btn.active { background: var(--olive); color: var(--cream); }
+  .sub-save {
+    font-size: 0.72rem;
+    color: var(--earth);
+    font-family: var(--body);
+    margin-bottom: 4px;
+  }
+
   /* Our Story section */
   #story { background: var(--olive); color: var(--cream); }
   #story .story-text h2 { color: var(--cream); }
@@ -266,29 +295,45 @@
         <div class="product-card">
           <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Soap 3-Pack</h3>
-          <p class="product-price">£24.99</p>
-          <a href="shop.html#soap" class="btn">View Bundle</a>
+          <div class="sub-toggle">
+            <button class="sub-btn active" data-mode="one-time">One-time</button>
+            <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+          </div>
+          <p class="product-price" data-one-time="£24.99" data-subscribe="£19.99">£24.99</p>
+          <button class="btn btn-solid" data-add-to-cart="soapBundle" data-sub-id="subSoapBundle" style="margin-top:auto;">Add to Cart</button>
         </div>
 
         <div class="product-card">
           <div class="product-swatch swatch-balm"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Tallow 3-Pack</h3>
-          <p class="product-price">£49.98</p>
-          <a href="shop.html#balm" class="btn">View Bundle</a>
+          <div class="sub-toggle">
+            <button class="sub-btn active" data-mode="one-time">One-time</button>
+            <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+          </div>
+          <p class="product-price" data-one-time="£49.98" data-subscribe="£39.98">£49.98</p>
+          <button class="btn btn-solid" data-add-to-cart="balmBundle" data-sub-id="subBalmBundle" style="margin-top:auto;">Add to Cart</button>
         </div>
 
         <div class="product-card">
           <div class="product-swatch swatch-lip"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Lip Balm 3-Pack</h3>
-          <p class="product-price">£19.99</p>
-          <a href="shop.html#lip" class="btn">View Bundle</a>
+          <div class="sub-toggle">
+            <button class="sub-btn active" data-mode="one-time">One-time</button>
+            <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+          </div>
+          <p class="product-price" data-one-time="£19.99" data-subscribe="£15.99">£19.99</p>
+          <button class="btn btn-solid" data-add-to-cart="lipBundle" data-sub-id="subLipBundle" style="margin-top:auto;">Add to Cart</button>
         </div>
 
         <div class="product-card">
           <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Essentials Set</h3>
-          <p class="product-price">£39.99</p>
-          <a href="shop.html#bundles" class="btn">View Set</a>
+          <div class="sub-toggle">
+            <button class="sub-btn active" data-mode="one-time">One-time</button>
+            <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+          </div>
+          <p class="product-price" data-one-time="£39.99" data-subscribe="£31.99">£39.99</p>
+          <button class="btn btn-solid" data-add-to-cart="essentialsBundle" data-sub-id="subEssentialsBundle" style="margin-top:auto;">Add to Cart</button>
         </div>
 
       </div>
@@ -387,6 +432,54 @@
 
 <script src="products.js"></script>
 <script src="cart.js"></script>
+<script>
+  // Subscribe & Save toggle logic for bundle cards
+  document.querySelectorAll('.sub-toggle').forEach(toggle => {
+    const card = toggle.closest('.product-card');
+    const priceEl = card.querySelector('.product-price');
+    const cartBtn = card.querySelector('[data-add-to-cart]');
+
+    toggle.querySelectorAll('.sub-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggle.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const mode = btn.dataset.mode;
+        if (mode === 'subscribe') {
+          priceEl.textContent = priceEl.dataset.subscribe + '/mo';
+          cartBtn.dataset.subscribeMode = 'true';
+        } else {
+          priceEl.textContent = priceEl.dataset.oneTime;
+          delete cartBtn.dataset.subscribeMode;
+        }
+      });
+    });
+
+    // Override add to cart for subscription mode
+    cartBtn.addEventListener('click', async (e) => {
+      if (!cartBtn.dataset.subscribeMode) return; // let cart.js handle one-time
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      const subId = cartBtn.dataset.subId;
+      cartBtn.textContent = 'Redirecting…';
+      cartBtn.disabled = true;
+      try {
+        const res = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: [{ id: subId, quantity: 1 }], subscription: true })
+        });
+        const data = await res.json();
+        if (data.url) { window.location.href = data.url; }
+        else { alert(data.error || 'Something went wrong.'); }
+      } catch {
+        alert('Something went wrong. Please try again.');
+      } finally {
+        cartBtn.textContent = 'Add to Cart';
+        cartBtn.disabled = false;
+      }
+    }, true);
+  });
+</script>
 <script src="main.js"></script>
 </body>
 </html>
