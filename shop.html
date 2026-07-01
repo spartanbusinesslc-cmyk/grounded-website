@@ -126,7 +126,6 @@
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html" class="active">Shop</a></li>
-        <li><a href="shop.html#bundles">Bundles</a></li>
         <li><a href="index.html#story">Our Story</a></li>
       </ul>
     </nav>
@@ -291,50 +290,101 @@
   </div>
 
   <!-- BUNDLES -->
-  <section id="bundles" class="bundles-section">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="label">Save when you bundle</span>
-        <h2>Sets &amp; Bundles</h2>
-      </div>
-
-      <div class="bundle-grid">
-
-        <div class="bundle-card featured">
-          <span class="bundle-tag">Best Value</span>
-          <h3>The Essentials Set</h3>
-          <p class="desc">1 × Soap, 1 × Body Balm, 1 × Lip Balm — everything you need to start.</p>
-          <span class="price-tag">£39.99</span>
-          <a href="#" class="btn" data-add-to-cart="essentialsBundle">Add to Cart</a>
-        </div>
-
-        <div class="bundle-card">
-          <span class="bundle-tag">Soap × 3</span>
-          <h3>Soap Trio</h3>
-          <p class="desc">Three bars, mix or match any scent.</p>
-          <span class="price-tag">£24.99</span>
-          <a href="#" class="btn" data-add-to-cart="soapBundle">Add to Cart</a>
-        </div>
-
-        <div class="bundle-card">
-          <span class="bundle-tag">Body Balm × 3</span>
-          <h3>Balm Trio</h3>
-          <p class="desc">Stock up on the one you'll reach for daily.</p>
-          <span class="price-tag">£49.98</span>
-          <a href="#" class="btn" data-add-to-cart="balmBundle">Add to Cart</a>
-        </div>
-
-        <div class="bundle-card">
-          <span class="bundle-tag">Lip Balm × 3</span>
-          <h3>Lip Trio</h3>
-          <p class="desc">One for your pocket, one for your bag, one spare.</p>
-          <span class="price-tag">£19.99</span>
-          <a href="#" class="btn" data-add-to-cart="lipBundle">Add to Cart</a>
-        </div>
-
-      </div>
+  <div id="bundles" class="wrap">
+    <div style="text-align:center; padding: var(--section-pad) 0 0; border-top: 1px solid rgba(28,28,28,0.1);">
+      <span class="label">Save when you bundle</span>
+      <h2 style="font-size: clamp(2rem, 4vw, 2.8rem); margin-top: 8px;">Sets &amp; Bundles</h2>
     </div>
-  </section>
+
+    <!-- Essentials Set -->
+    <section class="product-block" style="border-top: none;">
+      <div class="image-col">
+        <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
+          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(0.25); opacity:0.5;">
+        </div>
+      </div>
+      <div class="info-col">
+        <span class="label">Best Value</span>
+        <h2>The Essentials Set</h2>
+        <p class="desc">1 × Raw Milk Soap, 1 × Tallow Body Balm, 1 × Lip Balm — everything you need to become earthed.</p>
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+        </div>
+        <div class="buy-row">
+          <span class="price-tag" data-one-time="£39.99" data-subscribe="£31.99">£39.99</span>
+          <a href="#" class="btn btn-solid" data-add-to-cart="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soap Trio -->
+    <section class="product-block reverse">
+      <div class="image-col">
+        <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
+          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(0.25); opacity:0.5;">
+        </div>
+      </div>
+      <div class="info-col">
+        <span class="label">Soap × 3</span>
+        <h2>Soap Trio</h2>
+        <p class="desc">Three bars, mix or match any scent — raw milk or olive oil.</p>
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+        </div>
+        <div class="buy-row">
+          <span class="price-tag" data-one-time="£24.99" data-subscribe="£19.99">£24.99</span>
+          <a href="#" class="btn btn-solid" data-add-to-cart="soapBundle" data-sub-id="subSoapBundle">Add to Cart</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Balm Trio -->
+    <section class="product-block">
+      <div class="image-col">
+        <div class="swatch" style="background: linear-gradient(160deg, #7A5F44, #5E4732);">
+          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(1); opacity:0.85;">
+        </div>
+      </div>
+      <div class="info-col">
+        <span class="label">Body Balm × 3</span>
+        <h2>Balm Trio</h2>
+        <p class="desc">Stock up on the one you'll reach for daily — deeply nourishing, long-lasting moisture.</p>
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+        </div>
+        <div class="buy-row">
+          <span class="price-tag" data-one-time="£49.98" data-subscribe="£39.98">£49.98</span>
+          <a href="#" class="btn btn-solid" data-add-to-cart="balmBundle" data-sub-id="subBalmBundle">Add to Cart</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lip Trio -->
+    <section class="product-block reverse">
+      <div class="image-col">
+        <div class="swatch" style="background: linear-gradient(160deg, #1C1C1C, #3A3A3A);">
+          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(1); opacity:0.85;">
+        </div>
+      </div>
+      <div class="info-col">
+        <span class="label">Lip Balm × 3</span>
+        <h2>Lip Trio</h2>
+        <p class="desc">One for your pocket, one for your bag, one spare — never be without it.</p>
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+        </div>
+        <div class="buy-row">
+          <span class="price-tag" data-one-time="£19.99" data-subscribe="£15.99">£19.99</span>
+          <a href="#" class="btn btn-solid" data-add-to-cart="lipBundle" data-sub-id="subLipBundle">Add to Cart</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
 </main>
 
