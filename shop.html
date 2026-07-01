@@ -161,13 +161,18 @@
         <p class="desc">Handmade in small batches in the UK using raw Jersey cow's milk, olive & coconut oil & pure essential oils — no nasty chemicals & synthetic fragrances.</p>
 
         <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented">Unscented</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree">Mint &amp; Tea Tree</button>
+          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented">Unscented</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender">Citrus &amp; Lavender</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree">Mint &amp; Tea Tree</button>
+        </div>
+
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 17%</button>
         </div>
 
         <div class="buy-row">
-          <span class="price-tag">£11.99</span>
+          <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span>
           <a href="#" class="btn btn-solid" data-add-to-cart-variant="soapUnscented">Add to Cart</a>
         </div>
 
@@ -194,13 +199,18 @@
         <p class="desc">Handmade in small batches in the UK using pure olive oil, coconut oil & pure essential oils — no nasty chemicals & synthetic fragrances.</p>
 
         <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="oliveUnscented">Unscented</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="oliveCitrusLavender">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="oliveMintTeaTree">Mint &amp; Tea Tree</button>
+          <button class="variant-pill" aria-pressed="true" data-product-id="oliveUnscented" data-sub-id="subOliveUnscented">Unscented</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="oliveCitrusLavender" data-sub-id="subOliveCitrusLavender">Citrus &amp; Lavender</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="oliveMintTeaTree" data-sub-id="subOliveMintTeaTree">Mint &amp; Tea Tree</button>
+        </div>
+
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 17%</button>
         </div>
 
         <div class="buy-row">
-          <span class="price-tag">£11.99</span>
+          <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span>
           <a href="#" class="btn btn-solid" data-add-to-cart-variant="oliveUnscented">Add to Cart</a>
         </div>
 
@@ -226,9 +236,14 @@
         <h2>Deep, lasting moisture.</h2>
         <p class="desc">Handmade with organic grass fed British beef tallow.</p>
 
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 12%</button>
+        </div>
+
         <div class="buy-row">
-          <span class="price-tag">£24.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart="bodyBalm">Add to Cart</a>
+          <span class="price-tag" data-one-time="£24.99" data-subscribe="£21.99">£24.99</span>
+          <a href="#" class="btn btn-solid" data-add-to-cart="bodyBalm" data-sub-id="subBodyBalm">Add to Cart</a>
         </div>
 
         <div class="multi-buy">
@@ -253,9 +268,14 @@
         <h2>Pocket-sized, plastic-free.</h2>
         <p class="desc">Handmade with beeswax, coconut oil & mango butter.</p>
 
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
+        </div>
+
         <div class="buy-row">
-          <span class="price-tag">£9.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart="lipBalm">Add to Cart</a>
+          <span class="price-tag" data-one-time="£9.99" data-subscribe="£7.99">£9.99</span>
+          <a href="#" class="btn btn-solid" data-add-to-cart="lipBalm" data-sub-id="subLipBalm">Add to Cart</a>
         </div>
 
         <div class="multi-buy">
@@ -388,8 +408,66 @@
       pill.addEventListener('click', () => {
         group.querySelectorAll('.variant-pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
         pill.setAttribute('aria-pressed', 'true');
+        // Keep cart button in sync with selected variant
+        const section = group.closest('.product-block');
+        const cartBtn = section && section.querySelector('[data-add-to-cart-variant]');
+        if (cartBtn) cartBtn.dataset.addToCartVariant = pill.dataset.productId;
       });
     });
+  });
+
+  // Subscribe toggle for all product sections
+  document.querySelectorAll('.product-block .sub-toggle').forEach(toggle => {
+    const section = toggle.closest('.product-block');
+    const priceEl = section.querySelector('.buy-row .price-tag');
+    const cartBtn = section.querySelector('.buy-row .btn');
+
+    toggle.querySelectorAll('.sub-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggle.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const mode = btn.dataset.mode;
+        if (mode === 'subscribe') {
+          priceEl.textContent = priceEl.dataset.subscribe + '/mo';
+          cartBtn.dataset.subscribeMode = 'true';
+        } else {
+          priceEl.textContent = priceEl.dataset.oneTime;
+          delete cartBtn.dataset.subscribeMode;
+        }
+      });
+    });
+
+    cartBtn.addEventListener('click', async (e) => {
+      if (!cartBtn.dataset.subscribeMode) return; // let cart.js handle one-time
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      // Resolve sub price ID: variant products use active pill's data-sub-id, others use button's data-sub-id
+      let subId;
+      const activePill = section.querySelector('.variant-pill[aria-pressed="true"]');
+      if (activePill && activePill.dataset.subId) {
+        subId = activePill.dataset.subId;
+      } else {
+        subId = cartBtn.dataset.subId;
+      }
+
+      if (!subId) { alert('Subscription not available for this product.'); return; }
+
+      const orig = cartBtn.textContent;
+      cartBtn.textContent = 'Redirecting…';
+      cartBtn.disabled = true;
+      try {
+        const res = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: [{ id: subId, quantity: 1 }], subscription: true })
+        });
+        const data = await res.json();
+        if (data.url) { window.location.href = data.url; }
+        else { alert(data.error || 'Something went wrong.'); }
+      } catch { alert('Something went wrong. Please try again.'); }
+      finally { cartBtn.textContent = orig; cartBtn.disabled = false; }
+    }, true);
   });
 </script>
 </body>

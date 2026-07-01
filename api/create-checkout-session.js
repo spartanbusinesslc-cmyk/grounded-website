@@ -32,11 +32,20 @@ const PRICE_MAP = {
   balmBundle:          process.env.PRICE_BALM_BUNDLE,
   lipBundle:           process.env.PRICE_LIP_BUNDLE,
   essentialsBundle:    process.env.PRICE_ESSENTIALS_BUNDLE,
-  // Subscription prices (recurring, 20% off)
-  subSoapBundle:       process.env.PRICE_SUB_SOAP_BUNDLE,
-  subBalmBundle:       process.env.PRICE_SUB_BALM_BUNDLE,
-  subLipBundle:        process.env.PRICE_SUB_LIP_BUNDLE,
-  subEssentialsBundle: process.env.PRICE_SUB_ESSENTIALS_BUNDLE
+  // Subscription prices — bundles
+  subSoapBundle:          process.env.PRICE_SUB_SOAP_BUNDLE,
+  subBalmBundle:          process.env.PRICE_SUB_BALM_BUNDLE,
+  subLipBundle:           process.env.PRICE_SUB_LIP_BUNDLE,
+  subEssentialsBundle:    process.env.PRICE_SUB_ESSENTIALS_BUNDLE,
+  // Subscription prices — single items
+  subSoapUnscented:       process.env.PRICE_SUB_SOAP_UNSCENTED,
+  subSoapCitrusLavender:  process.env.PRICE_SUB_SOAP_CITRUS_LAVENDER,
+  subSoapMintTeaTree:     process.env.PRICE_SUB_SOAP_MINT_TEA_TREE,
+  subOliveUnscented:      process.env.PRICE_SUB_OLIVE_UNSCENTED,
+  subOliveCitrusLavender: process.env.PRICE_SUB_OLIVE_CITRUS_LAVENDER,
+  subOliveMintTeaTree:    process.env.PRICE_SUB_OLIVE_MINT_TEA_TREE,
+  subBodyBalm:            process.env.PRICE_SUB_BODY_BALM,
+  subLipBalm:             process.env.PRICE_SUB_LIP_BALM
 };
 
 module.exports = async (req, res) => {
