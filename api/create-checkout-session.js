@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items, subscription } = req.body || {};
+    const { items, subscription, metadata } = req.body || {};
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Your cart is empty." });
@@ -88,7 +88,8 @@ module.exports = async (req, res) => {
       line_items,
       success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop.html`,
-      allow_promotion_codes: true
+      allow_promotion_codes: true,
+      ...(metadata && { metadata })
     };
 
     // Shipping only applies to one-time payments; subscriptions use billing address
