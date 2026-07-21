@@ -20,10 +20,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 64px;
     align-items: center;
-    border-top: 1px solid rgba(28,28,28,0.1);
-    padding-top: var(--section-pad);
+    padding: var(--section-pad) 0;
   }
-  .product-block:first-of-type { border-top: none; }
+  .section-green .product-block { border-top: none; }
   @media (max-width: 820px) { .product-block { grid-template-columns: 1fr; gap: 32px; } }
   .product-block.reverse .image-col { order: 2; }
   @media (max-width: 820px) { .product-block.reverse .image-col { order: 0; } }
@@ -126,8 +125,32 @@
   .picker-btn:disabled { opacity: 0.25; cursor: default; }
   .picker-qty { font-size: 0.9rem; min-width: 16px; text-align: center; font-weight: 500; }
 
+  /* Green product sections */
+  .section-green { background: var(--olive); }
+  .section-green .product-block { border-top-color: rgba(255,255,255,0.15); }
+  .section-green .info-col .label { color: rgba(242,239,230,0.7); }
+  .section-green .info-col h2 { color: var(--cream); }
+  .section-green .info-col .desc { color: var(--cream); }
+  .section-green .price-tag { color: var(--cream); }
+  .section-green .ingredients-label { color: rgba(242,239,230,0.8); }
+  .section-green .ingredients-body { color: var(--cream); }
+  .section-green .variant-pill { border-color: var(--cream); color: var(--cream); }
+  .section-green .variant-pill[aria-pressed="true"] { background: var(--cream); color: var(--olive); }
+  .section-green .btn { border-color: var(--cream); color: var(--cream); }
+  .section-green .btn:hover { background: var(--cream); color: var(--olive); }
+  .section-green .sub-btn { border-color: var(--cream); color: var(--cream); }
+  .section-green .sub-btn.active { background: var(--cream); color: var(--olive); }
+  .section-green .multi-buy-card { border-color: rgba(255,255,255,0.2); }
+  .section-green .multi-buy-card .qty,
+  .section-green .multi-buy-card .p { color: var(--cream); }
+  .section-green .picker-row { border-bottom-color: rgba(255,255,255,0.12); }
+  .section-green .picker-name { color: var(--cream); }
+  .section-green .soap-picker-label { color: rgba(242,239,230,0.8); }
+  .section-green .picker-btn { border-color: rgba(255,255,255,0.3); color: var(--cream); }
+  .section-green .picker-qty { color: var(--cream); }
+
   /* Bundles */
-  .bundles-section { background: var(--beige); margin-top: var(--section-pad); }
+  .bundles-section { background: var(--olive); margin-top: var(--section-pad); }
   .bundle-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -196,7 +219,6 @@
 <main id="main">
 
   <div class="wrap">
-
     <!-- SOAP -->
     <section id="soap" class="product-block">
       <div class="image-col">
@@ -239,7 +261,10 @@
         </div>
       </div>
     </section>
+  </div>
 
+  <div class="section-green">
+    <div class="wrap">
     <!-- OLIVE OIL SOAP -->
     <section id="olive" class="product-block reverse">
       <div class="image-col">
@@ -282,7 +307,10 @@
         </div>
       </div>
     </section>
+    </div>
+  </div>
 
+  <div class="wrap">
     <!-- BODY BALM -->
     <section id="balm" class="product-block reverse">
       <div class="image-col">
@@ -319,7 +347,10 @@
         </div>
       </div>
     </section>
+  </div>
 
+  <div class="section-green">
+    <div class="wrap">
     <!-- LIP BALM -->
     <section id="lip" class="product-block">
       <div class="image-col">
