@@ -19,7 +19,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 64px;
-    align-items: start;
+    align-items: center;
     border-top: 1px solid rgba(28,28,28,0.1);
     padding-top: var(--section-pad);
   }
@@ -39,7 +39,7 @@
   .image-col .swatch img { width: 64px; }
 
   .info-col .label { display: block; margin-bottom: 10px; }
-  .info-col h2 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 14px; }
+  .info-col h2 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 14px; min-height: 6.5rem; display: flex; align-items: flex-start; }
   .info-col .ingredients { font-size: 0.85rem; opacity: 0.65; margin-bottom: 18px; font-style: italic; font-family: var(--display); }
   .info-col .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 26px; max-width: 440px; }
 
