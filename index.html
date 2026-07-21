@@ -168,11 +168,12 @@
   .ingredients-section .section-head { margin-bottom: 12px; }
   .ingredients-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 28px;
   }
-  @media (max-width: 900px) { .ingredients-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 480px) { .ingredients-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1000px) { .ingredients-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .ingredients-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 400px) { .ingredients-grid { grid-template-columns: 1fr; } }
   .ingredient-card { display: flex; flex-direction: column; gap: 16px; }
   .ingredient-img {
     width: 100%;
