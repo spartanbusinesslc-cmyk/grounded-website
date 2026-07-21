@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items, subscription, metadata } = req.body || {};
+    const { items, subscription, metadata, subtotalPence } = req.body || {};
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Your cart is empty." });
@@ -94,7 +94,15 @@ module.exports = async (req, res) => {
 
     // Shipping only applies to one-time payments; subscriptions use billing address
     if (!subscription) {
-      sessionParams.shipping_address_collection = { allowed_countries: ["GB"] };
+      const shippingOptions = [
+        { shipping_rate: process.env.SHIPPING_RATE_STANDARD },
+        { shipping_rate: process.env.SHIPPING_RATE_EXPRESS },
+      ];
+      // Free shipping on orders of £25 or more
+      if (subtotalPence >= 2500) {
+        shippingOptions.unshift({ shipping_rate: process.env.SHIPPING_RATE_FREE });
+      }
+      sessionParams.shipping_options = shippingOptions;
     }
 
     const session = await stripe.checkout.sessions.create(sessionParams);
