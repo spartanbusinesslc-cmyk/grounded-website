@@ -222,9 +222,9 @@
         <p class="desc">Handmade in small batches in the UK using raw Jersey cow's milk, olive & coconut oil & pure essential oils — no nasty chemicals & synthetic fragrances.</p>
 
         <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.">Unscented</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
+          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-heading="Plain &amp; Simple" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.">Unscented</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-heading="Fruity &amp; Vibrant" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-heading="Cleansing &amp; Energising" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
         </div>
 
         <details class="ingredients-accordion">
@@ -265,9 +265,9 @@
         <p class="desc">Handmade in small batches in the UK using pure olive oil, coconut oil & pure essential oils — no nasty chemicals & synthetic fragrances.</p>
 
         <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="oliveUnscented" data-sub-id="subOliveUnscented" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, Glycerin.">Unscented</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="oliveCitrusLavender" data-sub-id="subOliveCitrusLavender" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="oliveMintTeaTree" data-sub-id="subOliveMintTeaTree" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Sea Salt, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
+          <button class="variant-pill" aria-pressed="true" data-product-id="oliveUnscented" data-sub-id="subOliveUnscented" data-heading="Plain &amp; Simple" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, Glycerin.">Unscented</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="oliveCitrusLavender" data-sub-id="subOliveCitrusLavender" data-heading="Fruity &amp; Vibrant" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="oliveMintTeaTree" data-sub-id="subOliveMintTeaTree" data-heading="Cleansing &amp; Energising" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Sea Salt, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
         </div>
 
         <details class="ingredients-accordion">
@@ -598,6 +598,11 @@
         const section = group.closest('.product-block');
         const cartBtn = section && section.querySelector('[data-add-to-cart-variant]');
         if (cartBtn) cartBtn.dataset.addToCartVariant = pill.dataset.productId;
+        // Update heading
+        const headingEl = section && section.querySelector('h2');
+        if (headingEl && pill.dataset.heading) {
+          headingEl.textContent = pill.dataset.heading;
+        }
         // Update ingredients accordion
         const ingredientsEl = section && section.querySelector('.ingredients-body');
         if (ingredientsEl && pill.dataset.ingredients) {
