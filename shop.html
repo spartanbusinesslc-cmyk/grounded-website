@@ -74,34 +74,26 @@
   .multi-buy-card .p { font-family: var(--body); font-weight: 300; font-size: 0.85rem; opacity: 0.7; display: block; margin-bottom: 10px; }
   .multi-buy-card .btn { width: 100%; justify-content: center; padding: 10px 14px; font-size: 0.7rem; }
 
-  /* Ingredients accordion */
-  .ingredients-accordion {
+  /* Ingredients block */
+  .ingredients-block {
     margin: 0 0 24px;
     border-top: 1px solid rgba(28,28,28,0.1);
-    border-bottom: 1px solid rgba(28,28,28,0.1);
+    padding-top: 14px;
   }
-  .ingredients-accordion summary {
-    padding: 14px 0;
+  .ingredients-label {
     font-family: var(--body);
     font-size: 0.78rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--olive);
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    user-select: none;
+    font-weight: 700;
+    margin-bottom: 8px;
   }
-  .ingredients-accordion summary::-webkit-details-marker { display: none; }
-  .ingredients-accordion summary::after { content: '+'; font-size: 1.2rem; font-weight: 300; }
-  .ingredients-accordion[open] summary::after { content: '−'; }
   .ingredients-body {
     font-size: 0.82rem;
     line-height: 1.75;
     opacity: 0.7;
-    padding: 4px 0 16px;
+    padding-bottom: 16px;
     font-family: var(--body);
     font-weight: 300;
   }
@@ -227,10 +219,10 @@
           <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-heading="Cleansing &amp; Energising" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
         </div>
 
-        <details class="ingredients-accordion">
-          <summary>Ingredients</summary>
+        <div class="ingredients-block">
+          <p class="ingredients-label">Ingredients</p>
           <p class="ingredients-body">Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.</p>
-        </details>
+        </div>
 
         <div class="sub-toggle">
           <button class="sub-btn active" data-mode="one-time">One-time</button>
@@ -270,10 +262,10 @@
           <button class="variant-pill" aria-pressed="false" data-product-id="oliveMintTeaTree" data-sub-id="subOliveMintTeaTree" data-heading="Cleansing &amp; Energising" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Sea Salt, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
         </div>
 
-        <details class="ingredients-accordion">
-          <summary>Ingredients</summary>
+        <div class="ingredients-block">
+          <p class="ingredients-label">Ingredients</p>
           <p class="ingredients-body">Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, Glycerin.</p>
-        </details>
+        </div>
 
         <div class="sub-toggle">
           <button class="sub-btn active" data-mode="one-time">One-time</button>
@@ -307,10 +299,10 @@
         <h2>Deep, lasting moisture.</h2>
         <p class="desc">Handmade with organic grass fed British beef tallow.</p>
 
-        <details class="ingredients-accordion">
-          <summary>Ingredients</summary>
+        <div class="ingredients-block">
+          <p class="ingredients-label">Ingredients</p>
           <p class="ingredients-body">Organic Grass Fed British Tallow, Shea Butter, Coconut Oil, Beeswax.</p>
-        </details>
+        </div>
 
         <div class="sub-toggle">
           <button class="sub-btn active" data-mode="one-time">One-time</button>
@@ -344,10 +336,10 @@
         <h2>Pocket-sized, plastic-free.</h2>
         <p class="desc">Handmade with beeswax, coconut oil & mango butter.</p>
 
-        <details class="ingredients-accordion">
-          <summary>Ingredients</summary>
+        <div class="ingredients-block">
+          <p class="ingredients-label">Ingredients</p>
           <p class="ingredients-body">Mango Seed Butter, Beeswax, Castor Oil, Coconut Oil.</p>
-        </details>
+        </div>
 
         <div class="sub-toggle">
           <button class="sub-btn active" data-mode="one-time">One-time</button>
