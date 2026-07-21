@@ -76,8 +76,14 @@
   .section-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 10px; }
   .section-subhead { font-family: var(--body); font-size: 1rem; opacity: 0.7; margin: 0; }
 
-  .bundles-head { text-align: center; margin: 48px 0 36px; }
-  .bundles-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 10px; }
+  .bundles-section { background: var(--olive); padding: clamp(48px, 7vw, 80px) 0; }
+  .bundles-head { text-align: center; margin-bottom: 36px; }
+  .bundles-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 10px; color: var(--cream); }
+  .bundle-card-dark { background: rgba(255,255,255,0.08); color: var(--cream); }
+  .bundle-card-dark h3 { color: var(--cream); }
+  .bundle-card-dark .product-price { color: var(--beige); }
+  .btn-cream { border-color: var(--cream) !important; color: var(--cream) !important; }
+  .btn-cream:hover { background: var(--cream) !important; color: var(--olive) !important; }
 
   .bundle-grid {
     display: grid;
@@ -130,12 +136,12 @@
   .product-card .btn { margin-top: auto; justify-content: center; width: 100%; }
 
   /* Our Story section */
-  #story { background: var(--olive); color: var(--cream); padding: clamp(48px, 7vw, 80px) 0; }
-  #story .story-text h2 { color: var(--cream); }
-  #story .story-text p { color: var(--cream); }
-  #story .btn { border-color: var(--cream); color: var(--cream); }
-  #story .btn:hover { background: var(--cream); color: var(--olive); }
-  #story .story-panel { background: rgba(255,255,255,0.1); }
+  #story { background: var(--cream); color: var(--charcoal); padding: clamp(48px, 7vw, 80px) 0; }
+  #story .story-text h2 { color: var(--olive); }
+  #story .story-text p { color: var(--charcoal); }
+  #story .btn { border-color: var(--olive); color: var(--olive); }
+  #story .btn:hover { background: var(--olive); color: var(--cream); }
+  #story .story-panel { background: var(--beige); }
 
   /* Ingredient story split */
   .story-split {
@@ -163,7 +169,7 @@
   /* Our Ingredients section */
   .ingredients-section {
     padding: clamp(32px, 4vw, 56px) 0 clamp(56px, 8vw, 96px);
-    background: var(--cream);
+    background: var(--olive);
   }
   .ingredients-section .section-head { margin-bottom: 12px; }
   .ingredients-grid {
@@ -195,13 +201,14 @@
     font-family: var(--display);
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--charcoal);
+    color: var(--cream);
   }
   .ingredient-card p {
     font-family: var(--body);
     font-size: 0.88rem;
     font-weight: 300;
-    opacity: 0.7;
+    color: var(--cream);
+    opacity: 0.8;
     line-height: 1.7;
   }
 </style>
@@ -275,39 +282,44 @@
 
       </div>
 
-      <!-- BUNDLES -->
+    </div>
+  </section>
+
+  <!-- BUNDLES & SETS -->
+  <section class="bundles-section">
+    <div class="wrap">
       <div class="bundles-head">
-        <h2 style="color: var(--olive);">BUNDLES &amp; SETS</h2>
-        <p class="section-subhead">Save and stay earthed. Earthed.</p>
+        <h2>BUNDLES &amp; SETS</h2>
+        <p class="section-subhead" style="color:var(--cream);">Save and stay earthed. Earthed.</p>
       </div>
       <div class="bundle-grid">
 
-        <div class="product-card">
+        <div class="product-card bundle-card-dark">
           <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Soap 3-Pack</h3>
           <p class="product-price">£24.99</p>
-          <a href="shop.html#bundles" class="btn" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
+          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
         </div>
 
-        <div class="product-card">
+        <div class="product-card bundle-card-dark">
           <div class="product-swatch swatch-balm"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Tallow 3-Pack</h3>
           <p class="product-price">£49.98</p>
-          <a href="shop.html#bundles" class="btn" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
+          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
         </div>
 
-        <div class="product-card">
+        <div class="product-card bundle-card-dark">
           <div class="product-swatch swatch-lip"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Lip Balm 3-Pack</h3>
           <p class="product-price">£19.99</p>
-          <a href="shop.html#bundles" class="btn" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
+          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
         </div>
 
-        <div class="product-card">
+        <div class="product-card bundle-card-dark">
           <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
           <h3>Essentials Set</h3>
           <p class="product-price">£39.99</p>
-          <a href="shop.html#bundles" class="btn" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
+          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
         </div>
 
       </div>
@@ -334,8 +346,8 @@
   <section class="ingredients-section" id="ingredients">
     <div class="wrap">
       <div class="section-head">
-        <h2 style="color: var(--olive);">OUR INGREDIENTS</h2>
-        <p class="section-subhead">Provided by the earth & chosen with purpose.</p>
+        <h2 style="color: var(--cream);">OUR INGREDIENTS</h2>
+        <p class="section-subhead" style="color: var(--cream);">Provided by the earth & chosen with purpose.</p>
       </div>
       <div class="ingredients-grid">
         <div class="ingredient-card">
