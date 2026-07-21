@@ -160,33 +160,49 @@
   .story-panel img { width: 100px; opacity: 0.9; }
 
   /* Bundle banner */
-  .bundle-banner {
-    background: var(--cream);
-    color: var(--charcoal);
+  /* Our Ingredients section */
+  .ingredients-section {
     padding: clamp(56px, 8vw, 96px) 0;
+    background: var(--cream);
   }
-  .bundle-split {
+  .ingredients-section .section-head { margin-bottom: 48px; }
+  .ingredients-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
   }
-  @media (max-width: 820px) {
-    .bundle-split { grid-template-columns: 1fr; gap: 40px; }
-  }
-  .bundle-text h2 { color: var(--charcoal); font-size: clamp(2.1rem, 4.5vw, 3.2rem); margin-bottom: 16px; }
-  .bundle-text p { max-width: 440px; margin-bottom: 30px; opacity: 0.85; font-size: 0.95rem; }
-  .bundle-banner .btn { border-color: var(--olive); color: var(--olive); }
-  .bundle-banner .btn:hover { background: var(--olive); color: var(--cream); }
-  .bundle-image-placeholder {
+  @media (max-width: 900px) { .ingredients-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .ingredients-grid { grid-template-columns: 1fr; } }
+  .ingredient-card { display: flex; flex-direction: column; gap: 16px; }
+  .ingredient-img {
+    width: 100%;
+    aspect-ratio: 3/4;
     background: var(--beige);
-    aspect-ratio: 4/5;
     border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
-  .bundle-image-placeholder img { width: 80px; opacity: 0.4; }
+  .ingredient-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ingredient-img .placeholder-icon { width: 56px; opacity: 0.3; }
+  .ingredient-card h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+  .ingredient-card p {
+    font-family: var(--body);
+    font-size: 0.88rem;
+    font-weight: 300;
+    opacity: 0.7;
+    line-height: 1.7;
+  }
 </style>
 </head>
 <body>
@@ -312,16 +328,42 @@
     </div>
   </section>
 
-  <!-- BUNDLE BANNER -->
-  <section class="bundle-banner">
-    <div class="wrap bundle-split">
-      <div class="bundle-text">
-        <h2>The EARTHED Essentials Set</h2>
-        <p>A soap to cleanse, tallow to moisturise &amp; a lip balm to finish — everything you need to become earthed.</p>
-        <a href="shop.html#bundles" class="btn">Shop the Set — £39.99</a>
+  <!-- OUR INGREDIENTS -->
+  <section class="ingredients-section">
+    <div class="wrap">
+      <div class="section-head ingredients-section">
+        <h2 style="color: var(--olive);">OUR INGREDIENTS</h2>
+        <p class="section-subhead">Every ingredient chosen with purpose.</p>
       </div>
-      <div class="bundle-image-placeholder">
-        <img src="assets/logo-icon.svg" alt="Essentials Set">
+      <div class="ingredients-grid">
+        <div class="ingredient-card">
+          <div class="ingredient-img">
+            <img src="assets/logo-icon.svg" alt="Raw Cow's Milk" class="placeholder-icon">
+          </div>
+          <h3>Raw Cow's Milk</h3>
+          <p>Description coming soon.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-img">
+            <img src="assets/logo-icon.svg" alt="Olive Oil" class="placeholder-icon">
+          </div>
+          <h3>Olive Oil</h3>
+          <p>Description coming soon.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-img">
+            <img src="assets/logo-icon.svg" alt="Coconut Oil" class="placeholder-icon">
+          </div>
+          <h3>Coconut Oil</h3>
+          <p>Description coming soon.</p>
+        </div>
+        <div class="ingredient-card">
+          <div class="ingredient-img">
+            <img src="assets/logo-icon.svg" alt="Honey" class="placeholder-icon">
+          </div>
+          <h3>Honey</h3>
+          <p>Description coming soon.</p>
+        </div>
       </div>
     </div>
   </section>
