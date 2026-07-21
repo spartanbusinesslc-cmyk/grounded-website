@@ -374,12 +374,35 @@ section { padding: var(--section-pad) 0; }
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 18px;
-  font-family: var(--display);
 }
-.cart-subtotal-row span:first-child { font-size: 0.85rem; font-family: var(--body); text-transform: uppercase; letter-spacing: 0.1em; color: var(--olive); }
-.cart-subtotal-row span:last-child { font-size: 1.4rem; }
+.cart-subtotal-row span:first-child { font-size: 0.85rem; font-family: var(--body); font-weight: 300; text-transform: uppercase; letter-spacing: 0.1em; color: var(--olive); }
+.cart-subtotal-row span:last-child { font-size: 1.4rem; font-family: var(--body); font-weight: 300; }
 .cart-footer .btn { width: 100%; justify-content: center; }
 .cart-note { font-size: 0.74rem; opacity: 0.55; margin-top: 12px; text-align: center; }
+.cart-shipping-nudge {
+  font-size: 0.76rem;
+  text-align: center;
+  padding: 8px 12px;
+  margin-bottom: 14px;
+  background: rgba(89,98,75,0.08);
+  border-radius: 2px;
+  color: var(--olive);
+  font-family: var(--body);
+  font-weight: 300;
+}
+
+/* ---------- Free shipping banner ---------- */
+.free-shipping-bar {
+  background: var(--olive);
+  color: var(--cream);
+  text-align: center;
+  font-family: var(--body);
+  font-size: 0.74rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+}
 
 .cart-badge {
   display: inline-flex;

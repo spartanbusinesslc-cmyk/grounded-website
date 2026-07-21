@@ -101,7 +101,23 @@ function renderCart() {
       .join("");
   }
 
-  if (subtotalEl) subtotalEl.textContent = `£${cartSubtotal(cart).toFixed(2)}`;
+  const subtotal = cartSubtotal(cart);
+  if (subtotalEl) subtotalEl.textContent = `£${subtotal.toFixed(2)}`;
+
+  // Free shipping nudge
+  const nudgeEl = document.getElementById("cart-shipping-nudge");
+  if (nudgeEl) {
+    if (subtotal === 0) {
+      nudgeEl.style.display = "none";
+    } else if (subtotal >= 25) {
+      nudgeEl.textContent = "🎉 You qualify for free delivery!";
+      nudgeEl.style.display = "block";
+    } else {
+      const remaining = (25 - subtotal).toFixed(2);
+      nudgeEl.textContent = `Add £${remaining} more for free delivery`;
+      nudgeEl.style.display = "block";
+    }
+  }
 }
 
 function openCart() {
