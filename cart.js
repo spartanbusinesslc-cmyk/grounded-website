@@ -10,6 +10,20 @@
 
 const CART_KEY = "earthed_cart";
 
+// Affiliate ref tracking — save ?ref= param to cookie for 30 days
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get("ref");
+  if (ref) {
+    document.cookie = `earthed_ref=${encodeURIComponent(ref)}; path=/; max-age=${60 * 60 * 24 * 30}`;
+  }
+})();
+
+function getAffiliateRef() {
+  const match = document.cookie.match(/(?:^|;\s*)earthed_ref=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem(CART_KEY)) || {};
@@ -147,7 +161,7 @@ async function checkout() {
     const res = await fetch("/api/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, subtotalPence: Math.round(cartSubtotal(cart) * 100) })
+      body: JSON.stringify({ items, subtotalPence: Math.round(cartSubtotal(cart) * 100), affiliateRef: getAffiliateRef() })
     });
 
     const data = await res.json();
