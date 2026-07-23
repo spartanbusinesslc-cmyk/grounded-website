@@ -89,7 +89,10 @@ module.exports = async (req, res) => {
       success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop.html`,
       allow_promotion_codes: true,
-      metadata: { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) }
+      metadata: { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) },
+      payment_intent_data: {
+        metadata: { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) }
+      }
     };
 
     // Shipping only applies to one-time payments; subscriptions use billing address
