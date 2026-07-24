@@ -452,11 +452,12 @@ section { padding: var(--section-pad) 0; }
 .sub-btn.active { background: var(--olive); color: var(--cream); }
 
 /* ---------- Bundle nudge ---------- */
+.bundle-nudge-wrap { margin-top: 18px; position: relative; }
 .bundle-nudge {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 18px;
+  width: 100%;
   padding: 14px 18px;
   border: 1px solid rgba(89,98,75,0.25);
   background: rgba(89,98,75,0.05);
@@ -464,11 +465,12 @@ section { padding: var(--section-pad) 0; }
   color: var(--charcoal);
   font-family: var(--body);
   font-weight: 300;
-  text-decoration: none;
+  cursor: pointer;
   border-radius: 2px;
   transition: background 0.2s ease, border-color 0.2s ease;
+  text-align: left;
 }
-.bundle-nudge:hover { background: rgba(89,98,75,0.1); border-color: var(--olive); }
+.bundle-nudge:hover, .bundle-nudge[aria-expanded="true"] { background: rgba(89,98,75,0.1); border-color: var(--olive); }
 .bundle-nudge strong { font-weight: 500; }
 .bundle-nudge-badge {
   background: var(--olive);
@@ -480,8 +482,40 @@ section { padding: var(--section-pad) 0; }
   border-radius: 20px;
   white-space: nowrap;
   font-weight: 500;
+  flex-shrink: 0;
 }
-.bundle-nudge-arrow { margin-left: auto; color: var(--olive); font-size: 1rem; }
+.bundle-nudge-arrow { margin-left: auto; color: var(--olive); font-size: 0.9rem; transition: transform 0.2s ease; }
+.bundle-nudge[aria-expanded="true"] .bundle-nudge-arrow { transform: rotate(180deg); }
+
+.bundle-nudge-dropdown {
+  border: 1px solid rgba(89,98,75,0.25);
+  border-top: none;
+  display: flex;
+  gap: 1px;
+  background: rgba(89,98,75,0.1);
+}
+.bundle-nudge-dropdown[hidden] { display: none; }
+.bundle-option {
+  flex: 1;
+  padding: 14px 16px;
+  background: var(--cream);
+  border: none;
+  cursor: pointer;
+  font-family: var(--body);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+.bundle-option:hover { background: rgba(89,98,75,0.06); }
+.bundle-option-title { font-size: 0.78rem; font-weight: 500; color: var(--charcoal); letter-spacing: 0.04em; }
+.bundle-option-price { font-size: 0.82rem; font-weight: 300; color: var(--olive); }
+.bundle-option-sub .bundle-option-title::after {
+  content: ' ✦';
+  color: var(--olive);
+  font-size: 0.6rem;
+}
 
 /* ---------- Skip link ---------- */
 .skip-link {

@@ -116,11 +116,23 @@
           <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span>
           <a href="#" class="btn btn-solid" data-add-to-cart-variant="soapUnscented">Add to Cart</a>
         </div>
-        <a href="shop.html#soap-trio" class="bundle-nudge">
-          <span class="bundle-nudge-badge">Save 30%</span>
-          Soap Trio Bundle — any 3 bars for <strong>£24.99</strong>
-          <span class="bundle-nudge-arrow">→</span>
-        </a>
+        <div class="bundle-nudge-wrap">
+          <button class="bundle-nudge" id="bundle-nudge-btn" aria-expanded="false">
+            <span class="bundle-nudge-badge">Save 30%</span>
+            Soap Trio Bundle — any 3 bars for <strong>£24.99</strong>
+            <span class="bundle-nudge-arrow">▾</span>
+          </button>
+          <div class="bundle-nudge-dropdown" id="bundle-nudge-dropdown" hidden>
+            <button class="bundle-option" data-add-to-cart="soapBundle">
+              <span class="bundle-option-title">Add Once</span>
+              <span class="bundle-option-price">£24.99</span>
+            </button>
+            <button class="bundle-option bundle-option-sub" data-add-to-cart="subSoapBundle">
+              <span class="bundle-option-title">Subscribe &amp; Save</span>
+              <span class="bundle-option-price">£19.99 / month</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -240,6 +252,30 @@
       if (priceTag) priceTag.textContent = isSubscription ? priceTag.dataset.subscribe : priceTag.dataset.oneTime;
     });
   });
+
+  // Bundle nudge dropdown
+  const nudgeBtn = document.getElementById('bundle-nudge-btn');
+  const nudgeDrop = document.getElementById('bundle-nudge-dropdown');
+  if (nudgeBtn && nudgeDrop) {
+    nudgeBtn.addEventListener('click', () => {
+      const open = nudgeBtn.getAttribute('aria-expanded') === 'true';
+      nudgeBtn.setAttribute('aria-expanded', !open);
+      nudgeDrop.hidden = open;
+    });
+    nudgeDrop.querySelectorAll('.bundle-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        addToCart(btn.dataset.addToCart, 1);
+        nudgeBtn.setAttribute('aria-expanded', 'false');
+        nudgeDrop.hidden = true;
+      });
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.bundle-nudge-wrap')) {
+        nudgeBtn.setAttribute('aria-expanded', 'false');
+        nudgeDrop.hidden = true;
+      }
+    });
+  }
 
 </script>
 </body>
