@@ -451,6 +451,38 @@ section { padding: var(--section-pad) 0; }
 }
 .sub-btn.active { background: var(--olive); color: var(--cream); }
 
+/* ---------- Bundle nudge ---------- */
+.bundle-nudge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(89,98,75,0.25);
+  background: rgba(89,98,75,0.05);
+  font-size: 0.82rem;
+  color: var(--charcoal);
+  font-family: var(--body);
+  font-weight: 300;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.bundle-nudge:hover { background: rgba(89,98,75,0.1); border-color: var(--olive); }
+.bundle-nudge strong { font-weight: 500; }
+.bundle-nudge-badge {
+  background: var(--olive);
+  color: var(--cream);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.bundle-nudge-arrow { margin-left: auto; color: var(--olive); font-size: 1rem; }
+
 /* ---------- Skip link ---------- */
 .skip-link {
   position: absolute;
