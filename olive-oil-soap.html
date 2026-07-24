@@ -123,11 +123,11 @@
             <span class="bundle-nudge-arrow">▾</span>
           </button>
           <div class="bundle-nudge-dropdown" id="bundle-nudge-dropdown" hidden>
-            <button class="bundle-option" data-add-to-cart="soapBundle">
+            <button class="bundle-option" data-bundle-modal="soapBundle">
               <span class="bundle-option-title">Add Once</span>
               <span class="bundle-option-price">£24.99</span>
             </button>
-            <button class="bundle-option bundle-option-sub" data-add-to-cart="subSoapBundle">
+            <button class="bundle-option bundle-option-sub" data-bundle-modal="subSoapBundle">
               <span class="bundle-option-title">Subscribe &amp; Save</span>
               <span class="bundle-option-price">£19.99 / month</span>
             </button>
@@ -228,8 +228,22 @@
   </div>
 </aside>
 
+<!-- Bundle scent picker modal -->
+<div id="bundle-modal-overlay" hidden>
+  <div id="bundle-modal" role="dialog" aria-modal="true" aria-labelledby="bm-title">
+    <div class="bm-header">
+      <h2 class="bm-title" id="bm-title">Build Your Soap Trio</h2>
+      <p class="bm-subtitle">Pick your 3 bars — mix &amp; match any scent.</p>
+    </div>
+    <button class="bm-close" id="bundle-modal-close" aria-label="Close">&times;</button>
+    <div class="bm-body"></div>
+    <button class="btn btn-solid bm-confirm" id="bundle-modal-confirm">Add to Cart — £24.99</button>
+  </div>
+</div>
+
 <script src="products.js"></script>
 <script src="cart.js"></script>
+<script src="bundle-modal.js"></script>
 <script src="main.js"></script>
 <script>
 
