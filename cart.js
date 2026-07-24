@@ -158,10 +158,20 @@ async function checkout() {
   btn.disabled = true;
 
   try {
+    // Build metadata — include bundle scent selections if present
+    const bundleNotes = JSON.parse(localStorage.getItem("earthed_bundle_notes") || "{}");
+    const metadata = {};
+    if (bundleNotes.soapBundle) {
+      bundleNotes.soapBundle.forEach((scent, i) => { metadata[`soap_bundle_bar_${i + 1}`] = scent; });
+    }
+    if (bundleNotes.subSoapBundle) {
+      bundleNotes.subSoapBundle.forEach((scent, i) => { metadata[`soap_bundle_bar_${i + 1}`] = scent; });
+    }
+
     const res = await fetch("/api/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, subtotalPence: Math.round(cartSubtotal(cart) * 100), affiliateRef: getAffiliateRef() })
+      body: JSON.stringify({ items, subtotalPence: Math.round(cartSubtotal(cart) * 100), affiliateRef: getAffiliateRef(), metadata })
     });
 
     const data = await res.json();
@@ -170,6 +180,7 @@ async function checkout() {
       throw new Error(data.error || "Checkout could not be started.");
     }
 
+    localStorage.removeItem("earthed_bundle_notes");
     window.location.href = data.url;
   } catch (err) {
     alert(
