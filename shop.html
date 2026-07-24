@@ -4,172 +4,164 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop — EARTHED</title>
-<meta name="description" content="Shop EARTHED's raw milk soap, tallow body balm and lip balm — handmade in small batches with simple, ancestral ingredients.">
+<meta name="description" content="Shop EARTHED's raw milk soap, olive oil soap, tallow body balm and lip balm — handmade in small batches with simple, ancestral ingredients.">
 <link rel="icon" href="assets/logo-icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 <style>
-  .page-header {
+  .shop-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(32px, 5vw, 56px);
     text-align: center;
-    padding: clamp(56px, 8vw, 90px) 0 40px;
   }
-  .page-header .label { display: block; margin-bottom: 12px; }
-  .page-header h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); }
+  .shop-hero .label { display: block; margin-bottom: 14px; }
+  .shop-hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-bottom: 16px; }
+  .shop-hero p { font-size: 0.95rem; opacity: 0.7; max-width: 480px; margin: 0 auto; line-height: 1.7; }
 
-  .product-block {
+  .product-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-    border-top: 1px solid rgba(28,28,28,0.1);
-    padding-top: var(--section-pad);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 64px;
   }
-  .product-block:first-of-type { border-top: none; }
-  @media (max-width: 820px) { .product-block { grid-template-columns: 1fr; gap: 32px; } }
-  .product-block.reverse .image-col { order: 2; }
-  @media (max-width: 820px) { .product-block.reverse .image-col { order: 0; } }
+  @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .product-grid { grid-template-columns: 1fr; } }
 
-  .image-col .swatch {
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(28,28,28,0.08);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.25s ease;
+  }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(28,28,28,0.1); }
+
+  .product-card-swatch {
     width: 100%;
     aspect-ratio: 1/1;
-    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .image-col .swatch img { width: 64px; }
+  .product-card-swatch img { width: 60px; opacity: 0.35; }
 
-  .info-col .label { display: block; margin-bottom: 18px; font-family: var(--display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.01em; text-transform: none; color: var(--charcoal); }
-  .info-col h2 { display: none; }
-  .info-col .ingredients { font-size: 0.85rem; opacity: 0.65; margin-bottom: 18px; font-style: italic; font-family: var(--display); }
-  .info-col .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 26px; max-width: 440px; }
-
-  .variant-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
-  .variant-pill {
-    border: 1px solid var(--olive);
-    color: var(--olive);
-    font-size: 0.74rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    background: transparent;
-    font-family: var(--body);
-  }
-  .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
-
-  .buy-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-  .price-tag { font-size: 1.3rem; font-family: var(--body); font-weight: 300; color: var(--charcoal); }
-  .price-tag .was { text-decoration: line-through; opacity: 0.4; font-size: 1rem; margin-right: 8px; }
-
-  .multi-buy { display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
-  .multi-buy-card {
-    border: 1px solid rgba(28,28,28,0.15);
-    padding: 14px 18px;
+  .product-card-body {
+    padding: 22px 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     flex: 1;
-    min-width: 150px;
-    text-align: center;
   }
-  .multi-buy-card .qty { font-family: var(--body); font-weight: 300; font-size: 1.1rem; display: block; margin-bottom: 4px;}
-  .multi-buy-card .p { font-family: var(--body); font-weight: 300; font-size: 0.85rem; opacity: 0.7; display: block; margin-bottom: 10px; }
-  .multi-buy-card .btn { width: 100%; justify-content: center; padding: 10px 14px; font-size: 0.7rem; }
-
-  /* Ingredients block */
-  .ingredients-block {
-    margin: 0 0 24px;
-    border-top: 1px solid rgba(28,28,28,0.1);
-    padding-top: 14px;
-  }
-  .ingredients-label {
-    font-family: var(--body);
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
+  .product-card-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--olive);
-    font-weight: 700;
-    margin-bottom: 8px;
+    font-weight: 500;
   }
-  .ingredients-body {
-    font-size: 0.82rem;
-    line-height: 1.75;
-    opacity: 0.7;
-    padding-bottom: 16px;
-    font-family: var(--body);
-    font-weight: 300;
+  .product-card-name {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    line-height: 1.25;
   }
-
-  /* Soap picker */
-  .soap-picker { margin: 16px 0 20px; }
-  .soap-picker-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--olive); margin-bottom: 12px; font-family: var(--body); }
-  .soap-picker-label .picker-count { font-weight: 500; }
-  .picker-row {
+  .product-card-desc {
+    font-size: 0.84rem;
+    opacity: 0.65;
+    line-height: 1.65;
+    flex: 1;
+  }
+  .product-card-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(28,28,28,0.07);
+    margin-top: 14px;
   }
-  .picker-name { font-size: 0.88rem; }
-  .picker-ctrl { display: flex; align-items: center; gap: 12px; }
-  .picker-btn {
-    width: 28px; height: 28px;
-    border: 1px solid rgba(28,28,28,0.2);
-    background: transparent;
-    cursor: pointer;
-    font-size: 1rem;
-    line-height: 1;
-    border-radius: 50%;
+  .product-card-price {
     font-family: var(--body);
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    font-weight: 300;
+    font-size: 1.1rem;
   }
-  .picker-btn:hover:not(:disabled) { background: var(--olive); color: var(--cream); border-color: var(--olive); }
-  .picker-btn:disabled { opacity: 0.25; cursor: default; }
-  .picker-qty { font-size: 0.9rem; min-width: 16px; text-align: center; font-weight: 500; }
+  .product-card-cta {
+    font-family: var(--body);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--olive);
+    border-bottom: 1px solid var(--olive);
+    padding-bottom: 2px;
+  }
 
   /* Bundles */
-  .bundles-section { background: var(--beige); margin-top: var(--section-pad); }
-  .bundle-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+  .bundles-section {
+    background: var(--olive);
+    padding: clamp(56px, 8vw, 96px) 0;
   }
-  @media (max-width: 980px) { .bundle-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .bundle-grid { grid-template-columns: 1fr; } }
+  .bundles-section .section-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .bundles-section .section-head h2 { color: var(--cream); font-size: clamp(2rem, 4vw, 2.8rem); }
+  .bundles-section .section-head p { color: rgba(242,239,230,0.7); font-size: 0.9rem; margin-top: 10px; }
+
+  .bundles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 820px) { .bundles-grid { grid-template-columns: 1fr; } }
 
   .bundle-card {
-    background: var(--cream);
-    padding: 30px 24px;
-    text-align: center;
+    border: 1px solid rgba(242,239,230,0.25);
+    padding: 32px 28px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
   }
-  .bundle-card.featured {
-    background: var(--olive);
+  .bundle-card-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(242,239,230,0.55);
+    font-weight: 500;
+  }
+  .bundle-card h3 {
+    font-family: var(--display);
+    font-size: 1.5rem;
     color: var(--cream);
   }
-  .bundle-card.featured .price-tag, .bundle-card.featured h3 { color: var(--cream); }
-  .bundle-card.featured .desc { color: var(--cream); opacity: 0.85; }
-  .bundle-card.featured .btn { border-color: var(--cream); color: var(--cream); }
-  .bundle-card.featured .btn:hover { background: var(--cream); color: var(--olive); }
-
-  .bundle-tag {
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--earth);
-    margin-bottom: 10px;
+  .bundle-card p {
+    font-size: 0.85rem;
+    color: rgba(242,239,230,0.7);
+    line-height: 1.65;
+    flex: 1;
   }
-  .bundle-card.featured .bundle-tag { color: var(--sage); }
-  .bundle-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
-  .bundle-card .desc { font-size: 0.84rem; opacity: 0.7; margin-bottom: 18px; flex-grow: 1; }
-  .bundle-card .price-tag { margin-bottom: 18px; font-size: 1.2rem; }
+  .bundle-card-price {
+    font-family: var(--body);
+    font-weight: 300;
+    color: var(--cream);
+    font-size: 1.2rem;
+    margin-top: 4px;
+  }
+  .bundle-card .was {
+    text-decoration: line-through;
+    opacity: 0.4;
+    font-size: 0.9rem;
+    margin-left: 6px;
+  }
+  .bundle-card .btn {
+    border-color: rgba(242,239,230,0.5);
+    color: var(--cream);
+    margin-top: 8px;
+    justify-content: center;
+  }
+  .bundle-card .btn:hover { background: var(--cream); color: var(--olive); border-color: var(--cream); }
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
-
 <div class="free-shipping-bar">Free delivery on orders over £25</div>
-
 <header class="nav">
   <div class="wrap">
     <a href="index.html" class="nav-logo">
@@ -194,321 +186,108 @@
 </header>
 
 <main id="main">
-
   <div class="wrap">
+    <div class="shop-hero">
+      <span class="label">The Collection</span>
+      <h1>Simple. Clean. Earthed.</h1>
+      <p>Handmade in small batches using only what your skin needs — nothing more.</p>
+    </div>
 
-    <!-- SOAP -->
-    <section id="soap" class="product-block">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(0.25); opacity:0.5;">
+    <div class="product-grid">
+      <a href="raw-milk-soap.html" class="product-card">
+        <div class="product-card-swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
+          <img src="assets/logo-icon.svg" alt="">
         </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Raw Milk Soap</span>
-        <h2>Plain &amp; Simple</h2>
-        <p class="desc">Handmade in small batches in the UK using raw Jersey cow's milk, olive & coconut oil & pure essential oils — no nasty chemicals & synthetic fragrances.</p>
-
-        <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-heading="Plain &amp; Simple" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.">Unscented</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-heading="Fruity &amp; Vibrant" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-heading="Cleansing &amp; Energising" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
-        </div>
-
-        <div class="ingredients-block">
-          <p class="ingredients-label">Ingredients</p>
-          <p class="ingredients-body">Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.</p>
-        </div>
-
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 17%</button>
-        </div>
-
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart-variant="soapUnscented">Add to Cart</a>
-        </div>
-
-        <div class="multi-buy">
-          <div class="multi-buy-card">
-            <span class="qty">3 Bars</span>
-            <span class="p">£24.99</span>
-            <a href="#soap-trio" class="btn">View Bundle</a>
+        <div class="product-card-body">
+          <span class="product-card-label">Raw Milk Soap</span>
+          <h2 class="product-card-name">Handmade in small batches.</h2>
+          <p class="product-card-desc">Raw Jersey cow's milk, olive & coconut oil & pure essential oils. Unscented, Citrus & Lavender, or Mint & Tea Tree.</p>
+          <div class="product-card-footer">
+            <span class="product-card-price">From £11.99</span>
+            <span class="product-card-cta">Shop Now</span>
           </div>
         </div>
-      </div>
-    </section>
+      </a>
 
-    <!-- OLIVE OIL SOAP -->
-    <section id="olive" class="product-block reverse">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(0.25); opacity:0.5;">
+      <a href="olive-oil-soap.html" class="product-card">
+        <div class="product-card-swatch" style="background: linear-gradient(160deg, #C5C9B5, #A8AD95);">
+          <img src="assets/logo-icon.svg" alt="">
         </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Olive Oil Soap</span>
-        <h2>Plain &amp; Simple</h2>
-        <p class="desc">Handmade in small batches in the UK using pure olive oil, coconut oil & pure essential oils — no nasty chemicals & synthetic fragrances.</p>
-
-        <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="oliveUnscented" data-sub-id="subOliveUnscented" data-heading="Plain &amp; Simple" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, Glycerin.">Unscented</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="oliveCitrusLavender" data-sub-id="subOliveCitrusLavender" data-heading="Fruity &amp; Vibrant" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="oliveMintTeaTree" data-sub-id="subOliveMintTeaTree" data-heading="Cleansing &amp; Energising" data-ingredients="Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Sea Salt, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
-        </div>
-
-        <div class="ingredients-block">
-          <p class="ingredients-label">Ingredients</p>
-          <p class="ingredients-body">Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, Glycerin.</p>
-        </div>
-
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 17%</button>
-        </div>
-
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart-variant="oliveUnscented">Add to Cart</a>
-        </div>
-
-        <div class="multi-buy">
-          <div class="multi-buy-card">
-            <span class="qty">3 Bars</span>
-            <span class="p">£24.99</span>
-            <a href="#soap-trio" class="btn">View Bundle</a>
+        <div class="product-card-body">
+          <span class="product-card-label">Olive Oil Soap</span>
+          <h2 class="product-card-name">Gentle &amp; nourishing.</h2>
+          <p class="product-card-desc">Pure olive oil, coconut oil & pure essential oils. Unscented, Citrus & Lavender, or Mint & Tea Tree.</p>
+          <div class="product-card-footer">
+            <span class="product-card-price">From £11.99</span>
+            <span class="product-card-cta">Shop Now</span>
           </div>
         </div>
-      </div>
-    </section>
+      </a>
 
-    <!-- BODY BALM -->
-    <section id="balm" class="product-block reverse">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #7A5F44, #5E4732);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(1); opacity:0.85;">
+      <a href="tallow-balm.html" class="product-card">
+        <div class="product-card-swatch" style="background: linear-gradient(160deg, #7A5F44, #5E4732);">
+          <img src="assets/logo-icon.svg" alt="" style="filter:invert(1);">
         </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Tallow Body Balm</span>
-        <h2>Deep, lasting moisture.</h2>
-        <p class="desc">Handmade with organic grass fed British beef tallow.</p>
-
-        <div class="ingredients-block">
-          <p class="ingredients-label">Ingredients</p>
-          <p class="ingredients-body">Organic Grass Fed British Tallow, Shea Butter, Coconut Oil, Beeswax.</p>
-        </div>
-
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 12%</button>
-        </div>
-
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£24.99" data-subscribe="£21.99">£24.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart="bodyBalm" data-sub-id="subBodyBalm">Add to Cart</a>
-        </div>
-
-        <div class="multi-buy">
-          <div class="multi-buy-card">
-            <span class="qty">3 Jars</span>
-            <span class="p">£49.98</span>
-            <a href="#bundles" class="btn">View Bundle</a>
+        <div class="product-card-body">
+          <span class="product-card-label">Tallow Body Balm</span>
+          <h2 class="product-card-name">Deep, lasting moisture.</h2>
+          <p class="product-card-desc">Organic grass fed British beef tallow with naturally occurring vitamins A, D, E & K.</p>
+          <div class="product-card-footer">
+            <span class="product-card-price">£24.99</span>
+            <span class="product-card-cta">Shop Now</span>
           </div>
         </div>
-      </div>
-    </section>
+      </a>
 
-    <!-- LIP BALM -->
-    <section id="lip" class="product-block">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #1C1C1C, #3A3A3A);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(1); opacity:0.85;">
+      <a href="lip-balm.html" class="product-card">
+        <div class="product-card-swatch" style="background: linear-gradient(160deg, #1C1C1C, #3A3A3A);">
+          <img src="assets/logo-icon.svg" alt="" style="filter:invert(1);">
         </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Lip Balm</span>
-        <h2>Pocket-sized, plastic-free.</h2>
-        <p class="desc">Handmade with beeswax, coconut oil & mango butter.</p>
-
-        <div class="ingredients-block">
-          <p class="ingredients-label">Ingredients</p>
-          <p class="ingredients-body">Mango Seed Butter, Beeswax, Castor Oil, Coconut Oil.</p>
-        </div>
-
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
-        </div>
-
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£9.99" data-subscribe="£7.99">£9.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart="lipBalm" data-sub-id="subLipBalm">Add to Cart</a>
-        </div>
-
-        <div class="multi-buy">
-          <div class="multi-buy-card">
-            <span class="qty">3 Tins</span>
-            <span class="p">£19.99</span>
-            <a href="#bundles" class="btn">View Bundle</a>
+        <div class="product-card-body">
+          <span class="product-card-label">Natural Lip Balm</span>
+          <h2 class="product-card-name">Pocket-sized, plastic-free.</h2>
+          <p class="product-card-desc">Beeswax, coconut oil & mango butter. No synthetic waxes, no petroleum, no compromise.</p>
+          <div class="product-card-footer">
+            <span class="product-card-price">£9.99</span>
+            <span class="product-card-cta">Shop Now</span>
           </div>
         </div>
-      </div>
-    </section>
-
+      </a>
+    </div>
   </div>
 
   <!-- BUNDLES -->
-  <div id="bundles" class="wrap">
-    <div style="text-align:center; padding: var(--section-pad) 0 0; border-top: 1px solid rgba(28,28,28,0.1);">
-      <span class="label">Save when you bundle</span>
-      <h2 style="font-size: clamp(2rem, 4vw, 2.8rem); margin-top: 8px;">Sets &amp; Bundles</h2>
+  <section class="bundles-section" id="bundles">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Bundles &amp; Sets</h2>
+        <p>Save and stay earthed.</p>
+      </div>
+      <div class="bundles-grid">
+        <div class="bundle-card" id="soap-trio">
+          <span class="bundle-card-label">Best Value</span>
+          <h3>Soap Trio</h3>
+          <p>Pick any 3 bars — mix or match any scent. Raw Milk or Olive Oil. Perfect for gifting or stocking up.</p>
+          <div class="bundle-card-price">£24.99 <span class="was">£35.97</span></div>
+          <a href="#" class="btn" data-add-to-cart="soapBundle">Add to Cart</a>
+        </div>
+        <div class="bundle-card">
+          <span class="bundle-card-label">Lip Balm</span>
+          <h3>Lip Balm 3-Pack</h3>
+          <p>One for your pocket, one for your bag, one spare. Never be without it.</p>
+          <div class="bundle-card-price">£19.99 <span class="was">£29.97</span></div>
+          <a href="#" class="btn" data-add-to-cart="lipBundle">Add to Cart</a>
+        </div>
+        <div class="bundle-card">
+          <span class="bundle-card-label">The Full Set</span>
+          <h3>EARTHED Essentials</h3>
+          <p>One soap bar, one tallow balm, one lip balm. Everything you need, nothing you don't.</p>
+          <div class="bundle-card-price">£39.99 <span class="was">£46.97</span></div>
+          <a href="#" class="btn" data-add-to-cart="essentialsBundle">Add to Cart</a>
+        </div>
+      </div>
     </div>
-
-    <!-- Essentials Set -->
-    <section class="product-block" style="border-top: none;">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(0.25); opacity:0.5;">
-        </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Best Value</span>
-        <h2>The Essentials Set</h2>
-        <p class="desc">1 × Raw Milk Soap, 1 × Tallow Body Balm, 1 × Lip Balm — everything you need to become earthed.</p>
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
-        </div>
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£39.99" data-subscribe="£31.99">£39.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Soap Trio -->
-    <section class="product-block reverse" id="soap-trio">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(0.25); opacity:0.5;">
-        </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Soap × 3</span>
-        <h2>Soap Trio</h2>
-        <p class="desc">Three bars, mix or match any scent — raw milk or olive oil.</p>
-
-        <div class="soap-picker">
-          <p class="soap-picker-label">Choose your 3 soaps &nbsp;<span class="picker-count">0/3 selected</span></p>
-          <div class="picker-row" data-soap="Raw Milk — Unscented">
-            <span class="picker-name">Raw Milk — Unscented</span>
-            <div class="picker-ctrl">
-              <button class="picker-btn" data-dir="-1" disabled>−</button>
-              <span class="picker-qty">0</span>
-              <button class="picker-btn" data-dir="1">+</button>
-            </div>
-          </div>
-          <div class="picker-row" data-soap="Raw Milk — Citrus &amp; Lavender">
-            <span class="picker-name">Raw Milk — Citrus &amp; Lavender</span>
-            <div class="picker-ctrl">
-              <button class="picker-btn" data-dir="-1" disabled>−</button>
-              <span class="picker-qty">0</span>
-              <button class="picker-btn" data-dir="1">+</button>
-            </div>
-          </div>
-          <div class="picker-row" data-soap="Raw Milk — Mint &amp; Tea Tree">
-            <span class="picker-name">Raw Milk — Mint &amp; Tea Tree</span>
-            <div class="picker-ctrl">
-              <button class="picker-btn" data-dir="-1" disabled>−</button>
-              <span class="picker-qty">0</span>
-              <button class="picker-btn" data-dir="1">+</button>
-            </div>
-          </div>
-          <div class="picker-row" data-soap="Olive Oil — Unscented">
-            <span class="picker-name">Olive Oil — Unscented</span>
-            <div class="picker-ctrl">
-              <button class="picker-btn" data-dir="-1" disabled>−</button>
-              <span class="picker-qty">0</span>
-              <button class="picker-btn" data-dir="1">+</button>
-            </div>
-          </div>
-          <div class="picker-row" data-soap="Olive Oil — Citrus &amp; Lavender">
-            <span class="picker-name">Olive Oil — Citrus &amp; Lavender</span>
-            <div class="picker-ctrl">
-              <button class="picker-btn" data-dir="-1" disabled>−</button>
-              <span class="picker-qty">0</span>
-              <button class="picker-btn" data-dir="1">+</button>
-            </div>
-          </div>
-          <div class="picker-row" data-soap="Olive Oil — Mint &amp; Tea Tree">
-            <span class="picker-name">Olive Oil — Mint &amp; Tea Tree</span>
-            <div class="picker-ctrl">
-              <button class="picker-btn" data-dir="-1" disabled>−</button>
-              <span class="picker-qty">0</span>
-              <button class="picker-btn" data-dir="1">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
-        </div>
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£24.99" data-subscribe="£19.99">£24.99</span>
-          <button class="btn btn-solid" id="soap-trio-btn" disabled style="opacity:0.45;cursor:default;">Select 3 Soaps</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Balm Trio -->
-    <section class="product-block">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #7A5F44, #5E4732);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(1); opacity:0.85;">
-        </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Body Balm × 3</span>
-        <h2>Balm Trio</h2>
-        <p class="desc">Stock up on the one you'll reach for daily — deeply nourishing, long-lasting moisture.</p>
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
-        </div>
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£49.98" data-subscribe="£39.98">£49.98</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart="balmBundle" data-sub-id="subBalmBundle">Add to Cart</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Lip Trio -->
-    <section class="product-block reverse">
-      <div class="image-col">
-        <div class="swatch" style="background: linear-gradient(160deg, #1C1C1C, #3A3A3A);">
-          <img src="assets/logo-icon.svg" alt="" style="filter:brightness(0) invert(1); opacity:0.85;">
-        </div>
-      </div>
-      <div class="info-col">
-        <span class="label">Lip Balm × 3</span>
-        <h2>Lip Trio</h2>
-        <p class="desc">One for your pocket, one for your bag, one spare — never be without it.</p>
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 20%</button>
-        </div>
-        <div class="buy-row">
-          <span class="price-tag" data-one-time="£19.99" data-subscribe="£15.99">£19.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart="lipBundle" data-sub-id="subLipBundle">Add to Cart</a>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -520,18 +299,18 @@
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
-          <li><a href="shop.html#soap">Raw Milk Soap</a></li>
-                  <li><a href="shop.html#olive">Olive Oil Soap</a></li>
-          <li><a href="shop.html#balm">Body Balm</a></li>
-          <li><a href="shop.html#lip">Lip Balm</a></li>
-          <li><a href="shop.html#bundles">Bundles</a></li>
+          <li><a href="raw-milk-soap.html">Raw Milk Soap</a></li>
+          <li><a href="olive-oil-soap.html">Olive Oil Soap</a></li>
+          <li><a href="tallow-balm.html">Tallow Body Balm</a></li>
+          <li><a href="lip-balm.html">Lip Balm</a></li>
+          <li><a href="#bundles">Bundles</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Brand</h4>
         <ul>
           <li><a href="index.html#story">Our Story</a></li>
-        <li><a href="index.html#ingredients">Our Ingredients</a></li>
+          <li><a href="index.html#ingredients">Our Ingredients</a></li>
           <li><a href="https://instagram.com/shopearthed" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </div>
@@ -575,171 +354,5 @@
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="main.js"></script>
-<script>
-  // Variant pill toggle
-  document.querySelectorAll('.variant-pills').forEach(group => {
-    group.querySelectorAll('.variant-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        group.querySelectorAll('.variant-pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
-        pill.setAttribute('aria-pressed', 'true');
-        // Keep cart button in sync
-        const section = group.closest('.product-block');
-        const cartBtn = section && section.querySelector('[data-add-to-cart-variant]');
-        if (cartBtn) cartBtn.dataset.addToCartVariant = pill.dataset.productId;
-        // Update heading
-        const headingEl = section && section.querySelector('h2');
-        if (headingEl && pill.dataset.heading) {
-          headingEl.textContent = pill.dataset.heading;
-        }
-        // Update ingredients accordion
-        const ingredientsEl = section && section.querySelector('.ingredients-body');
-        if (ingredientsEl && pill.dataset.ingredients) {
-          ingredientsEl.textContent = pill.dataset.ingredients;
-        }
-      });
-    });
-  });
-
-  // Soap Trio picker
-  (function() {
-    const section = document.getElementById('soap-trio');
-    const btn = document.getElementById('soap-trio-btn');
-    const countEl = section.querySelector('.picker-count');
-    const rows = section.querySelectorAll('.picker-row');
-    const TOTAL = 3;
-    let mode = 'one-time';
-
-    section.querySelector('.sub-toggle').querySelectorAll('.sub-btn').forEach(b => {
-      b.addEventListener('click', () => { mode = b.dataset.mode; });
-    });
-
-    function getTotal() {
-      let t = 0;
-      rows.forEach(r => { t += parseInt(r.querySelector('.picker-qty').textContent); });
-      return t;
-    }
-
-    function getSelections() {
-      const parts = [];
-      rows.forEach(r => {
-        const qty = parseInt(r.querySelector('.picker-qty').textContent);
-        if (qty > 0) parts.push(qty > 1 ? `${r.dataset.soap} ×${qty}` : r.dataset.soap);
-      });
-      return parts.join(', ');
-    }
-
-    function refresh() {
-      const total = getTotal();
-      countEl.textContent = `${total}/3 selected`;
-      const ready = total === TOTAL;
-      btn.disabled = !ready;
-      btn.style.opacity = ready ? '1' : '0.45';
-      btn.style.cursor = ready ? 'pointer' : 'default';
-      btn.textContent = ready ? 'Add to Cart' : 'Select 3 Soaps';
-
-      rows.forEach(r => {
-        const qty = parseInt(r.querySelector('.picker-qty').textContent);
-        const minusBtn = r.querySelectorAll('.picker-btn')[0];
-        const plusBtn = r.querySelectorAll('.picker-btn')[1];
-        minusBtn.disabled = qty === 0;
-        plusBtn.disabled = total === TOTAL && qty === 0;
-      });
-    }
-
-    rows.forEach(r => {
-      r.querySelectorAll('.picker-btn').forEach(b => {
-        b.addEventListener('click', () => {
-          const qtyEl = r.querySelector('.picker-qty');
-          const current = parseInt(qtyEl.textContent);
-          const dir = parseInt(b.dataset.dir);
-          const next = current + dir;
-          if (next < 0 || next > TOTAL) return;
-          if (dir === 1 && getTotal() >= TOTAL) return;
-          qtyEl.textContent = next;
-          refresh();
-        });
-      });
-    });
-
-    btn.addEventListener('click', async () => {
-      if (btn.disabled) return;
-      const selections = getSelections();
-      const priceId = mode === 'subscribe' ? 'subSoapBundle' : 'soapBundle';
-      const isSubscription = mode === 'subscribe';
-      const orig = btn.textContent;
-      btn.textContent = 'Redirecting…';
-      btn.disabled = true;
-      try {
-        const res = await fetch('/api/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            items: [{ id: priceId, quantity: 1 }],
-            subscription: isSubscription,
-            metadata: { soap_selection: selections }
-          })
-        });
-        const data = await res.json();
-        if (data.url) { window.location.href = data.url; }
-        else { alert(data.error || 'Something went wrong.'); }
-      } catch { alert('Something went wrong. Please try again.'); }
-      finally { btn.textContent = orig; btn.disabled = false; refresh(); }
-    });
-  })();
-
-  // Subscribe toggle for all product sections
-  document.querySelectorAll('.product-block .sub-toggle').forEach(toggle => {
-    const section = toggle.closest('.product-block');
-    const priceEl = section.querySelector('.buy-row .price-tag');
-    const cartBtn = section.querySelector('.buy-row .btn');
-
-    toggle.querySelectorAll('.sub-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        toggle.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const mode = btn.dataset.mode;
-        if (mode === 'subscribe') {
-          priceEl.textContent = priceEl.dataset.subscribe + '/mo';
-          cartBtn.dataset.subscribeMode = 'true';
-        } else {
-          priceEl.textContent = priceEl.dataset.oneTime;
-          delete cartBtn.dataset.subscribeMode;
-        }
-      });
-    });
-
-    cartBtn.addEventListener('click', async (e) => {
-      if (!cartBtn.dataset.subscribeMode) return; // let cart.js handle one-time
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      // Resolve sub price ID: variant products use active pill's data-sub-id, others use button's data-sub-id
-      let subId;
-      const activePill = section.querySelector('.variant-pill[aria-pressed="true"]');
-      if (activePill && activePill.dataset.subId) {
-        subId = activePill.dataset.subId;
-      } else {
-        subId = cartBtn.dataset.subId;
-      }
-
-      if (!subId) { alert('Subscription not available for this product.'); return; }
-
-      const orig = cartBtn.textContent;
-      cartBtn.textContent = 'Redirecting…';
-      cartBtn.disabled = true;
-      try {
-        const res = await fetch('/api/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: [{ id: subId, quantity: 1 }], subscription: true })
-        });
-        const data = await res.json();
-        if (data.url) { window.location.href = data.url; }
-        else { alert(data.error || 'Something went wrong.'); }
-      } catch { alert('Something went wrong. Please try again.'); }
-      finally { cartBtn.textContent = orig; cartBtn.disabled = false; }
-    }, true);
-  });
-</script>
 </body>
 </html>

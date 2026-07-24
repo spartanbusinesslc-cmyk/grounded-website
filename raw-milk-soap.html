@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raw Milk Soap — EARTHED</title>
+<meta name="description" content="Handmade raw milk soap in small batches in the UK. Choose from Unscented, Citrus & Lavender, or Mint & Tea Tree.">
+<link rel="icon" href="assets/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<style>
+  .product-page { padding: clamp(48px, 7vw, 80px) 0; }
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 820px) { .product-layout { grid-template-columns: 1fr; gap: 32px; } }
+  .product-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-image img.placeholder { width: 80px; opacity: 0.4; }
+  .product-image img.real { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
+  .product-info .product-label { display: block; font-family: var(--body); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); font-weight: 500; margin-bottom: 14px; }
+  .product-info h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 500; color: var(--charcoal); margin-bottom: 18px; }
+  .product-info .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 26px; line-height: 1.7; max-width: 440px; }
+  .variant-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+  .variant-pill {
+    border: 1px solid var(--olive); color: var(--olive); font-size: 0.74rem;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 16px;
+    border-radius: 20px; cursor: pointer; background: transparent; font-family: var(--body);
+  }
+  .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
+  .ingredients-block { margin: 0 0 24px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 14px; }
+  .ingredients-label { font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
+  .ingredients-body { font-size: 0.82rem; line-height: 1.75; opacity: 0.7; padding-bottom: 16px; font-family: var(--body); font-weight: 300; }
+  .buy-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 8px; }
+  .price-tag { font-size: 1.3rem; font-family: var(--body); font-weight: 300; color: var(--charcoal); }
+  .sub-toggle { display: flex; gap: 6px; margin: 10px 0 8px; flex-wrap: wrap; }
+  /* You may also like */
+  .also-like { padding: clamp(48px, 6vw, 80px) 0; border-top: 1px solid rgba(28,28,28,0.08); }
+  .also-like h2 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--olive); margin-bottom: 32px; }
+  .also-like-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 700px) { .also-like-grid { grid-template-columns: 1fr; } }
+  .also-like-card { border: 1px solid rgba(28,28,28,0.1); padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .also-like-card .swatch { width: 100%; aspect-ratio: 4/3; border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .also-like-card h3 { font-family: var(--display); font-size: 1.3rem; }
+  .also-like-card p { font-size: 0.85rem; opacity: 0.7; flex-grow: 1; }
+  .also-like-card .price { font-family: var(--body); font-weight: 300; color: var(--olive); font-size: 1rem; }
+  .also-like-card .btn { justify-content: center; width: 100%; margin-top: auto; }
+  /* Bundle teaser */
+  .bundle-teaser { background: var(--beige); padding: clamp(40px, 5vw, 64px) 0; }
+  .bundle-teaser-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+  .bundle-teaser h2 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--charcoal); }
+  .bundle-teaser p { font-size: 0.9rem; opacity: 0.75; margin-top: 6px; max-width: 440px; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="free-shipping-bar">Free delivery on orders over £25</div>
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo-icon.svg" alt="EARTHED logo">
+      EARTHED
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html#story">Our Story</a></li>
+        <li><a href="index.html#ingredients">Our Ingredients</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <button id="cart-toggle" class="nav-cart-btn" aria-label="Open cart">Cart<span class="cart-badge" data-cart-count>0</span></button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="14" viewBox="0 0 22 14" fill="none"><path d="M0 1H22" stroke="#1C1C1C" stroke-width="1.5"/><path d="M0 13H22" stroke="#1C1C1C" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap product-page">
+    <div class="product-layout">
+      <div class="product-image" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);">
+        <img src="assets/logo-icon.svg" alt="Raw Milk Soap" class="placeholder">
+      </div>
+      <div class="product-info">
+        <span class="product-label">Raw Milk Soap</span>
+        <h1>Handmade in small batches.</h1>
+        <p class="desc">Using raw Jersey cow's milk, olive & coconut oil & pure essential oils — no nasty chemicals & synthetic fragrances.</p>
+
+        <div class="variant-pills" role="group" aria-label="Choose a scent">
+          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.">Unscented</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
+        </div>
+
+        <div class="ingredients-block">
+          <p class="ingredients-label">Ingredients</p>
+          <p class="ingredients-body">Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.</p>
+        </div>
+
+        <div class="sub-toggle">
+          <button class="sub-btn active" data-mode="one-time">One-time</button>
+          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 17%</button>
+        </div>
+        <div class="buy-row">
+          <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span>
+          <a href="#" class="btn btn-solid" data-add-to-cart-variant="soapUnscented">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bundle-teaser">
+    <div class="wrap bundle-teaser-inner">
+      <div>
+        <h2>Soap Trio Bundle</h2>
+        <p>Pick any 3 bars — mix or match any scent. Raw Milk or Olive Oil.</p>
+      </div>
+      <a href="shop.html#soap-trio" class="btn">View Bundle — £24.99</a>
+    </div>
+  </div>
+
+  <div class="also-like wrap">
+    <h2>You May Also Like</h2>
+    <div class="also-like-grid">
+      <div class="also-like-card">
+        <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);"><img src="assets/logo-icon.svg" style="width:40px;opacity:0.4;"></div>
+        <h3>Olive Oil Soap</h3>
+        <p>Gentle & nourishing — handmade with pure olive oil & coconut oil.</p>
+        <span class="price">From £11.99</span>
+        <a href="olive-oil-soap.html" class="btn">Shop Now</a>
+      </div>
+      <div class="also-like-card">
+        <div class="swatch" style="background: linear-gradient(160deg, #7A5F44, #5E4732);"><img src="assets/logo-icon.svg" style="width:40px;opacity:0.4;filter:invert(1);"></div>
+        <h3>Tallow Body Balm</h3>
+        <p>Deep, lasting moisture from organic grass fed British beef tallow.</p>
+        <span class="price">£24.99</span>
+        <a href="tallow-balm.html" class="btn">Shop Now</a>
+      </div>
+      <div class="also-like-card">
+        <div class="swatch" style="background: linear-gradient(160deg, #1C1C1C, #3A3A3A);"><img src="assets/logo-icon.svg" style="width:40px;opacity:0.4;filter:invert(1);"></div>
+        <h3>Natural Lip Balm</h3>
+        <p>Pocket-sized & plastic-free. Beeswax, coconut oil & mango butter.</p>
+        <span class="price">£9.99</span>
+        <a href="lip-balm.html" class="btn">Shop Now</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/logo-full.svg" alt="EARTHED" class="footer-logo">
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="raw-milk-soap.html">Raw Milk Soap</a></li>
+          <li><a href="olive-oil-soap.html">Olive Oil Soap</a></li>
+          <li><a href="tallow-balm.html">Tallow Body Balm</a></li>
+          <li><a href="lip-balm.html">Lip Balm</a></li>
+          <li><a href="shop.html#bundles">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Brand</h4>
+        <ul>
+          <li><a href="index.html#story">Our Story</a></li>
+          <li><a href="index.html#ingredients">Our Ingredients</a></li>
+          <li><a href="https://instagram.com/shopearthed" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stay in touch</h4>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Your email" aria-label="Email address" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EARTHED. All rights reserved.</span>
+      <span>shopearthed.co</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div id="cart-overlay" class="cart-overlay"></div>
+<aside id="cart-drawer" class="cart-drawer" aria-label="Shopping cart">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button id="cart-close" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-body">
+    <p id="cart-empty">Your cart is quietly empty.</p>
+    <div id="cart-items"></div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span id="cart-subtotal">£0.00</span>
+    </div>
+    <div id="cart-shipping-nudge" class="cart-shipping-nudge" style="display:none;"></div>
+    <button id="cart-checkout-btn" class="btn btn-solid">Checkout</button>
+    <p class="cart-note">Shipping &amp; taxes calculated at checkout</p>
+  </div>
+</aside>
+
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="main.js"></script>
+<script>
+
+  document.querySelectorAll('.variant-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.variant-pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
+      pill.setAttribute('aria-pressed', 'true');
+      const cartBtn = document.querySelector('[data-add-to-cart-variant]');
+      if (cartBtn) cartBtn.dataset.addToCartVariant = pill.dataset.productId;
+      const ingredientsEl = document.querySelector('.ingredients-body');
+      if (ingredientsEl && pill.dataset.ingredients) ingredientsEl.textContent = pill.dataset.ingredients;
+    });
+  });
+  document.querySelectorAll('.sub-toggle .sub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sub-toggle .sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const isSubscription = btn.dataset.mode === 'subscribe';
+      const priceTag = document.querySelector('.price-tag');
+      if (priceTag) priceTag.textContent = isSubscription ? priceTag.dataset.subscribe : priceTag.dataset.oneTime;
+    });
+  });
+
+</script>
+</body>
+</html>

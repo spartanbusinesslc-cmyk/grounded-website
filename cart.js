@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-add-to-cart-variant]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const group = btn.closest(".info-col")?.querySelector(".variant-pills");
+      const group = (btn.closest(".info-col") || btn.closest(".product-info"))?.querySelector(".variant-pills");
       const activePill = group?.querySelector('[aria-pressed="true"]');
       const id = activePill?.getAttribute("data-product-id") || btn.getAttribute("data-add-to-cart-variant");
       addToCart(id, 1);
