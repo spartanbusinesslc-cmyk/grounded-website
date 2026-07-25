@@ -289,7 +289,7 @@
           <h3>EARTHED Essentials</h3>
           <p>One soap bar, one tallow balm, one lip balm. Everything you need, nothing you don't.</p>
           <div class="bundle-card-price">£39.99 <span class="was">£46.97</span></div>
-          <a href="#" class="btn" data-add-to-cart="essentialsBundle">Add to Cart</a>
+          <button class="btn" id="essentials-shop-btn">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -357,8 +357,26 @@
   </div>
 </aside>
 
+<div id="bundle-modal-overlay" hidden>
+  <div id="bundle-modal" role="dialog" aria-modal="true" aria-labelledby="bm-title">
+    <div class="bm-header">
+      <h2 class="bm-title" id="bm-title">Build Your Soap Trio</h2>
+      <p class="bm-subtitle">Pick your 3 bars — mix &amp; match any scent.</p>
+    </div>
+    <button class="bm-close" id="bundle-modal-close" aria-label="Close">&times;</button>
+    <div class="bm-body"></div>
+    <button class="btn btn-solid bm-confirm" id="bundle-modal-confirm">Add to Cart — £24.99</button>
+  </div>
+</div>
+
 <script src="products.js"></script>
 <script src="cart.js"></script>
+<script src="bundle-modal.js"></script>
 <script src="main.js"></script>
+<script>
+  document.getElementById('essentials-shop-btn').addEventListener('click', () => {
+    openBundleModal('EssentialsSet');
+  });
+</script>
 </body>
 </html>
