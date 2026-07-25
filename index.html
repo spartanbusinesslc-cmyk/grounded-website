@@ -317,7 +317,7 @@
             <span>✓ Natural Lip Balm</span>
           </div>
           <div class="essentials-price">£39.99 <span class="essentials-was">£46.97</span></div>
-          <a href="shop.html#bundles" class="btn btn-cream">Shop the Set</a>
+          <button class="btn btn-cream" id="essentials-home-btn">Add to Cart</button>
         </div>
         <div class="product-swatch swatch-balm essentials-swatch"><img src="assets/logo-icon.svg" alt="" style="filter:invert(1);opacity:0.8;width:80px;"></div>
       </div>
@@ -457,8 +457,26 @@
   </div>
 </aside>
 
+<div id="bundle-modal-overlay" hidden>
+  <div id="bundle-modal" role="dialog" aria-modal="true" aria-labelledby="bm-title">
+    <div class="bm-header">
+      <h2 class="bm-title" id="bm-title">Build Your Soap Trio</h2>
+      <p class="bm-subtitle">Pick your 3 bars — mix &amp; match any scent.</p>
+    </div>
+    <button class="bm-close" id="bundle-modal-close" aria-label="Close">&times;</button>
+    <div class="bm-body"></div>
+    <button class="btn btn-solid bm-confirm" id="bundle-modal-confirm">Add to Cart — £24.99</button>
+  </div>
+</div>
+
 <script src="products.js"></script>
 <script src="cart.js"></script>
+<script src="bundle-modal.js"></script>
 <script src="main.js"></script>
+<script>
+  document.getElementById('essentials-home-btn').addEventListener('click', () => {
+    openBundleModal('EssentialsSet');
+  });
+</script>
 </body>
 </html>
