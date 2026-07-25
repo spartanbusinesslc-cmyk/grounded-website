@@ -453,7 +453,8 @@ section { padding: var(--section-pad) 0; }
 
 /* ---------- Scent pills mobile ---------- */
 @media (max-width: 600px) {
-  .variant-pill { font-size: 0.65rem; padding: 6px 11px; }
+  .variant-pills { gap: 6px; }
+  .variant-pill { font-size: 0.6rem; padding: 5px 10px; letter-spacing: 0.05em; }
 }
 
 /* ---------- Buy row (sub toggle + add to cart inline) ---------- */
