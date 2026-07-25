@@ -451,6 +451,11 @@ section { padding: var(--section-pad) 0; }
 }
 .sub-btn.active { background: var(--olive); color: var(--cream); }
 
+/* ---------- Scent pills mobile ---------- */
+@media (max-width: 600px) {
+  .variant-pill { font-size: 0.65rem; padding: 6px 11px; }
+}
+
 /* ---------- Buy row (sub toggle + add to cart inline) ---------- */
 .buy-row {
   display: flex;
