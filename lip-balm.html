@@ -41,7 +41,9 @@
   }
   .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
   .ingredients-block { margin: 0 0 24px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 14px; }
-  .ingredients-label { font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
+  .ingredients-toggle { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 0; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
+  .ingredients-arrow { transition: transform 0.2s; display: inline-block; }
+  .ingredients-toggle[aria-expanded="true"] .ingredients-arrow { transform: rotate(180deg); }
   .ingredients-body { font-size: 0.82rem; line-height: 1.75; opacity: 0.7; padding-bottom: 16px; font-family: var(--body); font-weight: 300; }
   .buy-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 8px; }
   .price-tag { font-size: 1.3rem; font-family: var(--body); font-weight: 300; color: var(--charcoal); }
@@ -101,8 +103,10 @@
         <h1>Natural Lip Balm</h1>
 
         <div class="ingredients-block">
-          <p class="ingredients-label">Ingredients</p>
-          <p class="ingredients-body">Mango Seed Butter, Beeswax, Castor Oil, Coconut Oil.</p>
+          <button class="ingredients-label ingredients-toggle" aria-expanded="false">
+            Ingredients <span class="ingredients-arrow">▾</span>
+          </button>
+          <p class="ingredients-body" hidden>Mango Seed Butter, Beeswax, Castor Oil, Coconut Oil.</p>
         </div>
 
         <div class="buy-row">
@@ -284,6 +288,17 @@
         essentialsBtn.setAttribute('aria-expanded', 'false');
         essentialsDrop.hidden = true;
       }
+    });
+  }
+
+  // Ingredients toggle
+  const ingredientsToggle = document.querySelector('.ingredients-toggle');
+  const ingredientsBody = document.querySelector('.ingredients-body');
+  if (ingredientsToggle && ingredientsBody) {
+    ingredientsToggle.addEventListener('click', () => {
+      const open = ingredientsToggle.getAttribute('aria-expanded') === 'true';
+      ingredientsToggle.setAttribute('aria-expanded', String(!open));
+      ingredientsBody.hidden = open;
     });
   }
 
