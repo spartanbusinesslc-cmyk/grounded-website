@@ -79,20 +79,32 @@
   .bundles-section { background: var(--olive); padding: clamp(48px, 7vw, 80px) 0; }
   .bundles-head { text-align: center; margin-bottom: 36px; }
   .bundles-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 10px; color: var(--cream); }
-  .bundle-card-dark { background: rgba(255,255,255,0.1) !important; color: var(--cream); }
-  .bundle-card-dark h3 { color: var(--cream) !important; }
-  .bundle-card-dark .product-price { color: var(--beige) !important; }
   .btn-cream { border-color: var(--cream) !important; color: var(--cream) !important; }
   .btn-cream:hover { background: var(--cream) !important; color: var(--olive) !important; }
 
-  .bundle-grid {
+  .essentials-feature {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+    grid-template-columns: 1fr 380px;
+    gap: 64px;
+    align-items: center;
   }
-  @media (max-width: 880px) {
-    .bundle-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 820px) { .essentials-feature { grid-template-columns: 1fr; } .essentials-swatch { display: none; } }
+  .essentials-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(242,239,230,0.6);
+    font-weight: 500;
+    margin-bottom: 16px;
   }
+  .essentials-feature-text h2 { color: var(--cream); font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 16px; }
+  .essentials-feature-text p { color: rgba(242,239,230,0.75); font-size: 0.95rem; line-height: 1.7; max-width: 480px; margin-bottom: 20px; }
+  .essentials-includes { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .essentials-includes span { font-size: 0.85rem; color: rgba(242,239,230,0.8); font-family: var(--body); font-weight: 300; }
+  .essentials-price { font-size: 1.4rem; font-family: var(--body); font-weight: 300; color: var(--cream); margin-bottom: 24px; }
+  .essentials-was { font-size: 1rem; opacity: 0.4; text-decoration: line-through; margin-left: 8px; }
+  .essentials-swatch { aspect-ratio: 1/1; border-radius: 2px; }
 
   .product-grid {
     display: grid;
@@ -287,43 +299,26 @@
     </div>
   </section>
 
-  <!-- BUNDLES & SETS -->
+  <!-- ESSENTIALS SET -->
   <section class="bundles-section">
     <div class="wrap">
       <div class="bundles-head">
-        <h2>BUNDLES &amp; SETS</h2>
-        <p class="section-subhead" style="color:var(--cream);">Save and stay earthed.</p>
+        <h2>THE COMPLETE COLLECTION</h2>
+        <p class="section-subhead" style="color:var(--cream);">Everything you need, nothing you don't.</p>
       </div>
-      <div class="bundle-grid">
-
-        <div class="product-card bundle-card-dark">
-          <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Soap 3-Pack</h3>
-          <p class="product-price">£24.99</p>
-          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
+      <div class="essentials-feature">
+        <div class="essentials-feature-text">
+          <span class="essentials-label">EARTHED Essentials Set</span>
+          <p>One soap bar, one tallow body balm &amp; one lip balm — the full EARTHED routine in one box. Pick your soap scent and save.</p>
+          <div class="essentials-includes">
+            <span>✓ Raw Milk or Olive Oil Soap (your choice of scent)</span>
+            <span>✓ Tallow Body Balm</span>
+            <span>✓ Natural Lip Balm</span>
+          </div>
+          <div class="essentials-price">£39.99 <span class="essentials-was">£46.97</span></div>
+          <a href="shop.html#bundles" class="btn btn-cream">Shop the Set</a>
         </div>
-
-        <div class="product-card bundle-card-dark">
-          <div class="product-swatch swatch-balm"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Tallow 3-Pack</h3>
-          <p class="product-price">£49.98</p>
-          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
-        </div>
-
-        <div class="product-card bundle-card-dark">
-          <div class="product-swatch swatch-lip"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Lip Balm 3-Pack</h3>
-          <p class="product-price">£19.99</p>
-          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
-        </div>
-
-        <div class="product-card bundle-card-dark">
-          <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Essentials Set</h3>
-          <p class="product-price">£39.99</p>
-          <a href="shop.html#bundles" class="btn btn-cream" style="margin-top:auto;justify-content:center;width:100%;">Shop Now</a>
-        </div>
-
+        <div class="product-swatch swatch-balm essentials-swatch"><img src="assets/logo-icon.svg" alt="" style="filter:invert(1);opacity:0.8;width:80px;"></div>
       </div>
     </div>
   </section>

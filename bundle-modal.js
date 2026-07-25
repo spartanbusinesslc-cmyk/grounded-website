@@ -29,32 +29,36 @@ function buildScentSelect(label) {
 }
 
 function openBundleModal(bundleId) {
-  // bundleId is either "soapBundle" or "subSoapBundle"
   const overlay = document.getElementById("bundle-modal-overlay");
   const modal   = document.getElementById("bundle-modal");
   if (!overlay || !modal) return;
 
-  // Store which bundle to add
   modal.dataset.bundleId = bundleId;
   const isSub = bundleId.startsWith("sub");
-  const price  = isSub ? "£19.99/mo" : "£24.99";
-
-  modal.querySelector(".bm-title").textContent = "Build Your Soap Trio";
-  modal.querySelector(".bm-subtitle").textContent =
-    "Pick your 3 bars — mix & match any scent.";
-  modal.querySelector(".bm-confirm").textContent =
-    `Add to Cart — ${price}`;
-
+  const isEssentials = bundleId.includes("ssentials");
   const body = modal.querySelector(".bm-body");
-  body.innerHTML =
-    buildScentSelect("Bar 1") +
-    buildScentSelect("Bar 2") +
-    buildScentSelect("Bar 3");
 
-  // Default bar 2 & 3 to different scents so it looks intentional
-  const selects = body.querySelectorAll(".bm-select");
-  if (selects[1]) selects[1].value = "soapCitrusLavender";
-  if (selects[2]) selects[2].value = "soapMintTeaTree";
+  if (isEssentials) {
+    const price = isSub ? "£33.99/mo" : "£39.99";
+    modal.querySelector(".bm-title").textContent = "EARTHED Essentials Set";
+    modal.querySelector(".bm-subtitle").textContent =
+      "Choose your soap scent — balm & lip balm are included.";
+    modal.querySelector(".bm-confirm").textContent = `Add to Cart — ${price}`;
+    body.innerHTML = buildScentSelect("Your Soap");
+  } else {
+    const price = isSub ? "£19.99/mo" : "£24.99";
+    modal.querySelector(".bm-title").textContent = "Build Your Soap Trio";
+    modal.querySelector(".bm-subtitle").textContent =
+      "Pick your 3 bars — mix & match any scent.";
+    modal.querySelector(".bm-confirm").textContent = `Add to Cart — ${price}`;
+    body.innerHTML =
+      buildScentSelect("Bar 1") +
+      buildScentSelect("Bar 2") +
+      buildScentSelect("Bar 3");
+    const selects = body.querySelectorAll(".bm-select");
+    if (selects[1]) selects[1].value = "soapCitrusLavender";
+    if (selects[2]) selects[2].value = "soapMintTeaTree";
+  }
 
   overlay.hidden = false;
   document.body.style.overflow = "hidden";
@@ -75,9 +79,14 @@ function confirmBundleModal() {
   // Add the bundle price ID to cart (what Stripe charges)
   addToCart(bundleId, 1);
 
-  // Store selections in localStorage so cart can display them
+  // Store selections in localStorage so cart/checkout can pass to Stripe
   const notes = JSON.parse(localStorage.getItem("earthed_bundle_notes") || "{}");
-  notes[bundleId] = selections.map(id => PRODUCTS[id]?.name || id);
+  const isEssentials = bundleId.includes("ssentials");
+  if (isEssentials) {
+    notes[bundleId] = [PRODUCTS[selections[0]]?.name || selections[0]];
+  } else {
+    notes[bundleId] = selections.map(id => PRODUCTS[id]?.name || id);
+  }
   localStorage.setItem("earthed_bundle_notes", JSON.stringify(notes));
 
   closeBundleModal();

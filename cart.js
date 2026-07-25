@@ -167,6 +167,12 @@ async function checkout() {
     if (bundleNotes.subSoapBundle) {
       bundleNotes.subSoapBundle.forEach((scent, i) => { metadata[`soap_bundle_bar_${i + 1}`] = scent; });
     }
+    if (bundleNotes.essentialsBundle) {
+      metadata["essentials_soap"] = bundleNotes.essentialsBundle[0];
+    }
+    if (bundleNotes.subEssentialsBundle) {
+      metadata["essentials_soap"] = bundleNotes.subEssentialsBundle[0];
+    }
 
     const res = await fetch("/api/create-checkout-session", {
       method: "POST",

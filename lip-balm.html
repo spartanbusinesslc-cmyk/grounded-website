@@ -127,10 +127,26 @@
             </button>
           </div>
         </div>
+        <div class="bundle-nudge-wrap">
+          <button class="bundle-nudge" id="essentials-nudge-btn" aria-expanded="false">
+            <span class="bundle-nudge-badge">Complete Set</span>
+            EARTHED Essentials — Soap, Balm &amp; Lip Balm for <strong>£39.99</strong>
+            <span class="bundle-nudge-arrow">▾</span>
+          </button>
+          <div class="bundle-nudge-dropdown" id="essentials-nudge-dropdown" hidden>
+            <button class="bundle-option" data-bundle-modal="essentialsBundle">
+              <span class="bundle-option-title">Add Once</span>
+              <span class="bundle-option-price">£39.99</span>
+            </button>
+            <button class="bundle-option bundle-option-sub" data-bundle-modal="subEssentialsBundle">
+              <span class="bundle-option-title">Subscribe &amp; Save</span>
+              <span class="bundle-option-price">£33.99 / month</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 
   <div class="also-like wrap">
     <h2>You May Also Like</h2>
@@ -222,8 +238,22 @@
   </div>
 </aside>
 
+<!-- Bundle scent picker modal -->
+<div id="bundle-modal-overlay" hidden>
+  <div id="bundle-modal" role="dialog" aria-modal="true" aria-labelledby="bm-title">
+    <div class="bm-header">
+      <h2 class="bm-title" id="bm-title"></h2>
+      <p class="bm-subtitle"></p>
+    </div>
+    <button class="bm-close" id="bundle-modal-close" aria-label="Close">&times;</button>
+    <div class="bm-body"></div>
+    <button class="btn btn-solid bm-confirm" id="bundle-modal-confirm"></button>
+  </div>
+</div>
+
 <script src="products.js"></script>
 <script src="cart.js"></script>
+<script src="bundle-modal.js"></script>
 <script src="main.js"></script>
 <script>
 
@@ -236,6 +266,23 @@
       if (priceTag) priceTag.textContent = isSubscription ? priceTag.dataset.subscribe : priceTag.dataset.oneTime;
     });
   });
+
+  // Essentials nudge dropdown
+  const essentialsBtn  = document.getElementById('essentials-nudge-btn');
+  const essentialsDrop = document.getElementById('essentials-nudge-dropdown');
+  if (essentialsBtn && essentialsDrop) {
+    essentialsBtn.addEventListener('click', () => {
+      const open = essentialsBtn.getAttribute('aria-expanded') === 'true';
+      essentialsBtn.setAttribute('aria-expanded', !open);
+      essentialsDrop.hidden = open;
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#essentials-nudge-btn') && !e.target.closest('#essentials-nudge-dropdown')) {
+        essentialsBtn.setAttribute('aria-expanded', 'false');
+        essentialsDrop.hidden = true;
+      }
+    });
+  }
 
   // Bundle nudge dropdown
   const nudgeBtn = document.getElementById('bundle-nudge-btn');
