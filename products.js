@@ -50,17 +50,17 @@ const PRODUCTS = {
     swatch: "swatch-lip"
   },
   soapBundle: {
-    name: "Soap Trio (3 Bars)",
+    name: "Soap 3-Pack (3 Bars)",
     price: 24.99,
     swatch: "swatch-soap"
   },
   balmBundle: {
-    name: "Body Balm Trio (3 Jars)",
+    name: "Body Balm 3-Pack (3 Jars)",
     price: 49.98,
     swatch: "swatch-balm"
   },
   lipBundle: {
-    name: "Lip Balm Trio (3 Tins)",
+    name: "Lip Balm 3-Pack (3 Tins)",
     price: 19.99,
     swatch: "swatch-lip"
   },

@@ -47,7 +47,7 @@ function openBundleModal(bundleId) {
     body.innerHTML = buildScentSelect("Your Soap");
   } else {
     const price = isSub ? "£19.99/mo" : "£24.99";
-    modal.querySelector(".bm-title").textContent = "Build Your Soap Trio";
+    modal.querySelector(".bm-title").textContent = "Build Your Soap 3-Pack";
     modal.querySelector(".bm-subtitle").textContent =
       "Pick your 3 bars — mix & match any scent.";
     modal.querySelector(".bm-confirm").textContent = `Add to Cart — ${price}`;
