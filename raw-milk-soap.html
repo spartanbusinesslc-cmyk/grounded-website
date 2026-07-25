@@ -111,13 +111,12 @@
           <p class="ingredients-body">Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.</p>
         </div>
 
-        <div class="sub-toggle">
-          <button class="sub-btn active" data-mode="one-time">One-time</button>
-          <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 17%</button>
-        </div>
         <div class="buy-row">
-          <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span>
-          <a href="#" class="btn btn-solid" data-add-to-cart-variant="soapUnscented">Add to Cart</a>
+          <div class="sub-toggle">
+            <button class="sub-btn active" data-mode="one-time">One-time</button>
+            <button class="sub-btn" data-mode="subscribe">Subscribe &amp; Save 17%</button>
+          </div>
+          <a href="#" class="btn btn-solid buy-btn" data-add-to-cart-variant="soapUnscented">Add to Cart — <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span></a>
         </div>
         <div class="bundle-nudge-wrap">
           <button class="bundle-nudge" id="bundle-nudge-btn" aria-expanded="false">
@@ -282,8 +281,9 @@
       document.querySelectorAll('.sub-toggle .sub-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const isSubscription = btn.dataset.mode === 'subscribe';
-      const priceTag = document.querySelector('.price-tag');
-      if (priceTag) priceTag.textContent = isSubscription ? priceTag.dataset.subscribe : priceTag.dataset.oneTime;
+      document.querySelectorAll('.price-tag').forEach(tag => {
+        tag.textContent = isSubscription ? tag.dataset.subscribe : tag.dataset.oneTime;
+      });
     });
   });
 

@@ -451,6 +451,28 @@ section { padding: var(--section-pad) 0; }
 }
 .sub-btn.active { background: var(--olive); color: var(--cream); }
 
+/* ---------- Buy row (sub toggle + add to cart inline) ---------- */
+.buy-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.buy-btn {
+  padding: 18px 28px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+.buy-btn .price-tag {
+  font-size: inherit;
+  font-weight: 400;
+  color: inherit;
+}
+@media (max-width: 500px) {
+  .buy-btn { width: 100%; justify-content: center; }
+}
+
 /* ---------- Bundle nudge ---------- */
 .bundle-nudge-wrap { margin-top: 18px; position: relative; }
 .bundle-nudge {
