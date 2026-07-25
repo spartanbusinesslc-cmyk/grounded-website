@@ -40,6 +40,10 @@
     border-radius: 20px; cursor: pointer; background: transparent; font-family: var(--body);
   }
   .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
+  @media (max-width: 600px) {
+    .variant-pills { gap: 6px; flex-wrap: nowrap; }
+    .variant-pill { font-size: 0.58rem; padding: 6px 9px; letter-spacing: 0.04em; }
+  }
   .ingredients-block { margin: 0 0 24px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 14px; }
   .ingredients-label { font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
   .ingredients-body { font-size: 0.82rem; line-height: 1.75; opacity: 0.7; padding-bottom: 16px; font-family: var(--body); font-weight: 300; }
