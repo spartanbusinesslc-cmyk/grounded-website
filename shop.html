@@ -38,12 +38,13 @@
   .product-card-swatch {
     width: 100%;
     aspect-ratio: 1/1;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .product-card-swatch img { width: 60px; opacity: 0.35; }
-  @media (max-width: 900px) { .product-card-swatch { height: 160px; aspect-ratio: unset; } }
+  @media (max-width: 900px) { .product-card-swatch { aspect-ratio: 1/1; height: auto; flex-shrink: 0; } }
 
   .product-card-body {
     padding: 22px 20px 28px;
