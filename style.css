@@ -501,6 +501,7 @@ section { padding: var(--section-pad) 0; }
   text-align: left;
 }
 .bundle-nudge:hover, .bundle-nudge[aria-expanded="true"] { background: #4a5340; border-color: #4a5340; }
+@media (max-width: 600px) { .bundle-nudge { font-size: 0.78rem; padding: 12px 14px; gap: 8px; } }
 .bundle-nudge strong { font-weight: 600; color: var(--cream); }
 .bundle-nudge-badge--green { background: #7A5F44 !important; color: #fff !important; }
 .bundle-nudge-arrow { margin-left: auto; color: var(--cream); font-size: 0.9rem; transition: transform 0.2s ease; }
