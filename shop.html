@@ -145,12 +145,25 @@
     color: var(--cream);
     font-size: 1.2rem;
     margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   .bundle-card .was {
     text-decoration: line-through;
     opacity: 0.4;
     font-size: 0.9rem;
-    margin-left: 6px;
+  }
+  .bundle-save-badge {
+    background: #B94040;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
   }
   .bundle-card .btn {
     border-color: rgba(242,239,230,0.5);
@@ -264,28 +277,28 @@
           <span class="bundle-card-label">Best Value</span>
           <h3>Soap 3-Pack</h3>
           <p>Pick any 3 bars — mix or match any scent. Raw Milk or Olive Oil. Perfect for gifting or stocking up.</p>
-          <div class="bundle-card-price">£24.99 <span class="was">£35.97</span></div>
+          <div class="bundle-card-price">£24.99 <span class="was">£35.97</span><span class="bundle-save-badge">Save 30%</span></div>
           <button class="btn" id="soap-bundle-shop-btn">Add to Cart</button>
         </div>
         <div class="bundle-card">
           <span class="bundle-card-label">Body Balm</span>
           <h3>Tallow 3-Pack</h3>
           <p>Stock up and save — three jars of our organic grass fed tallow body balm.</p>
-          <div class="bundle-card-price">£49.98 <span class="was">£74.97</span></div>
+          <div class="bundle-card-price">£49.98 <span class="was">£74.97</span><span class="bundle-save-badge">Save 33%</span></div>
           <a href="#" class="btn" data-add-to-cart="balmBundle">Add to Cart</a>
         </div>
         <div class="bundle-card">
           <span class="bundle-card-label">Lip Balm</span>
           <h3>Lip Balm 3-Pack</h3>
           <p>One for your pocket, one for your bag, one spare. Never be without it.</p>
-          <div class="bundle-card-price">£19.99 <span class="was">£29.97</span></div>
+          <div class="bundle-card-price">£19.99 <span class="was">£29.97</span><span class="bundle-save-badge">Save 33%</span></div>
           <a href="#" class="btn" data-add-to-cart="lipBundle">Add to Cart</a>
         </div>
         <div class="bundle-card">
           <span class="bundle-card-label">The Full Set</span>
           <h3 style="white-space: nowrap;">The Essentials Set</h3>
           <p>One soap bar, one tallow balm, one lip balm. Everything you need, nothing you don't.</p>
-          <div class="bundle-card-price">£39.99 <span class="was">£46.97</span></div>
+          <div class="bundle-card-price">£39.99 <span class="was">£46.97</span><span class="bundle-save-badge">Save 15%</span></div>
           <button class="btn" id="essentials-shop-btn">Add to Cart</button>
         </div>
       </div>
