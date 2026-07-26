@@ -83,16 +83,20 @@ module.exports = async (req, res) => {
     const origin = getOrigin(req);
     const mode = subscription ? "subscription" : "payment";
 
+    const combinedMetadata = { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) };
+
     const sessionParams = {
       mode,
       line_items,
       success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop.html`,
       allow_promotion_codes: true,
-      metadata: { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) },
-      payment_intent_data: {
-        metadata: { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) }
-      }
+      metadata: combinedMetadata,
+      ...(subscription ? {
+        subscription_data: { metadata: combinedMetadata }
+      } : {
+        payment_intent_data: { metadata: combinedMetadata }
+      })
     };
 
     // Shipping only applies to one-time payments; subscriptions use billing address
