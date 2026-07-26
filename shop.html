@@ -23,7 +23,6 @@
     margin-bottom: 64px;
   }
   @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 500px) { .product-grid { grid-template-columns: 1fr; } }
   .product-card {
     display: flex;
     flex-direction: column;
@@ -67,6 +66,7 @@
     color: var(--charcoal);
     line-height: 1.25;
   }
+  @media (max-width: 900px) { .product-card-name { font-size: 1.05rem; } }
   .product-card-desc {
     font-size: 0.84rem;
     opacity: 0.65;
