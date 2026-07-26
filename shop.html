@@ -264,7 +264,7 @@
           <h3>Soap 3-Pack</h3>
           <p>Pick any 3 bars — mix or match any scent. Raw Milk or Olive Oil. Perfect for gifting or stocking up.</p>
           <div class="bundle-card-price">£24.99 <span class="was">£35.97</span></div>
-          <a href="#" class="btn" data-add-to-cart="soapBundle">Add to Cart</a>
+          <button class="btn" id="soap-bundle-shop-btn">Add to Cart</button>
         </div>
         <div class="bundle-card">
           <span class="bundle-card-label">Body Balm</span>
@@ -372,6 +372,9 @@
 <script>
   document.getElementById('essentials-shop-btn').addEventListener('click', () => {
     openBundleModal('EssentialsSet');
+  });
+  document.getElementById('soap-bundle-shop-btn').addEventListener('click', () => {
+    openBundleModal('soapBundle');
   });
 </script>
 </body>
