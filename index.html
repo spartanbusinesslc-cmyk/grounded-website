@@ -114,14 +114,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 28px;
   }
-  @media (max-width: 880px) {
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .product-card { padding: 0; border-radius: 4px; overflow: hidden; }
-    .product-swatch { width: 100%; height: auto; aspect-ratio: 1/1; flex-shrink: 0; margin-bottom: 0; border-radius: 0; }
-    .product-card-text { padding: 14px 14px 18px; }
-    .product-card h3 { font-size: 1rem; margin-bottom: 10px; }
-    .product-card .btn { font-size: 0.65rem; padding: 8px 12px; }
-  }
   .product-card {
     text-decoration: none;
     color: inherit;
@@ -148,6 +140,14 @@
   .product-swatch img { width: 38px; opacity: 0.85; filter: brightness(0) saturate(100%); }
   .swatch-soap img { filter: brightness(0) saturate(100%) invert(0.25); opacity: 0.5; }
   .swatch-balm img, .swatch-lip img { filter: brightness(0) saturate(100%) invert(1); opacity: 0.85; }
+  @media (max-width: 880px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .product-card { padding: 0; border-radius: 4px; overflow: hidden; }
+    .product-swatch { width: 100%; height: auto; aspect-ratio: 1/1; flex-shrink: 0; margin-bottom: 0; border-radius: 0; }
+    .product-card-text { padding: 14px 14px 18px; }
+    .product-card h3 { font-size: 1rem; margin-bottom: 10px; }
+    .product-card .btn { font-size: 0.65rem; padding: 8px 12px; }
+  }
 
   .product-card h3 { font-size: 1.6rem; margin-bottom: 6px; flex-grow: 1; }
   .product-card .desc { font-size: 0.88rem; opacity: 0.7; margin-bottom: 18px; flex-grow: 1; }
