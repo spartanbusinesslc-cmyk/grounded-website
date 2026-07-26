@@ -450,6 +450,8 @@ section { padding: var(--section-pad) 0; }
   transition: background 0.2s, color 0.2s;
 }
 .sub-btn.active { background: var(--olive); color: var(--cream); }
+.sub-btn .save-pct { color: #B94040; }
+.sub-btn.active .save-pct { color: var(--cream); }
 
 /* ---------- Scent pills mobile ---------- */
 @media (max-width: 600px) {
