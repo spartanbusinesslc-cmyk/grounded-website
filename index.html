@@ -116,9 +116,10 @@
   }
   @media (max-width: 880px) {
     .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .product-card { padding: 16px 14px; }
-    .product-swatch { height: auto; aspect-ratio: 1/1; flex-shrink: 0; margin-bottom: 12px; }
-    .product-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .product-card { padding: 0; border-radius: 4px; overflow: hidden; }
+    .product-swatch { width: 100%; aspect-ratio: 1/1; flex-shrink: 0; margin-bottom: 0; border-radius: 0; }
+    .product-card-text { padding: 14px 14px 18px; }
+    .product-card h3 { font-size: 1rem; margin-bottom: 10px; }
     .product-card .btn { font-size: 0.65rem; padding: 8px 12px; }
   }
   .product-card {
@@ -275,26 +276,22 @@
 
         <a href="raw-milk-soap.html" class="product-card">
           <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Raw Milk Soap</h3>
-          <span class="btn">Shop Now</span>
+          <div class="product-card-text"><h3>Raw Milk Soap</h3><span class="btn">Shop Now</span></div>
         </a>
 
         <a href="olive-oil-soap.html" class="product-card">
           <div class="product-swatch swatch-soap"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Olive Oil Soap</h3>
-          <span class="btn">Shop Now</span>
+          <div class="product-card-text"><h3>Olive Oil Soap</h3><span class="btn">Shop Now</span></div>
         </a>
 
         <a href="tallow-balm.html" class="product-card">
           <div class="product-swatch swatch-balm"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Tallow Body Balm</h3>
-          <span class="btn">Shop Now</span>
+          <div class="product-card-text"><h3>Tallow Body Balm</h3><span class="btn">Shop Now</span></div>
         </a>
 
         <a href="lip-balm.html" class="product-card">
           <div class="product-swatch swatch-lip"><img src="assets/logo-icon.svg" alt=""></div>
-          <h3>Natural Lip Balm</h3>
-          <span class="btn">Shop Now</span>
+          <div class="product-card-text"><h3>Natural Lip Balm</h3><span class="btn">Shop Now</span></div>
         </a>
 
       </div>
