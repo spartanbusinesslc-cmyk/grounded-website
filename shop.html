@@ -172,6 +172,30 @@
     justify-content: center;
   }
   .bundle-card .btn:hover { background: var(--cream); color: var(--olive); border-color: var(--cream); }
+
+  .bundle-sub-toggle {
+    display: flex;
+    gap: 6px;
+    margin: 8px 0 4px;
+  }
+  .bundle-sub-btn {
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(242,239,230,0.35);
+    background: transparent;
+    color: rgba(242,239,230,0.55);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .bundle-sub-btn.active {
+    background: rgba(242,239,230,0.15);
+    border-color: rgba(242,239,230,0.7);
+    color: var(--cream);
+  }
 </style>
 </head>
 <body>
@@ -277,29 +301,45 @@
           <span class="bundle-card-label">Best Value</span>
           <h3>Soap 3-Pack</h3>
           <p>Pick any 3 bars — mix or match any scent. Raw Milk or Olive Oil. Perfect for gifting or stocking up.</p>
-          <div class="bundle-card-price">£24.99 <span class="was">£35.97</span><span class="bundle-save-badge">Save 30%</span></div>
-          <button class="btn" id="soap-bundle-shop-btn">Add to Cart</button>
+          <div class="bundle-sub-toggle">
+            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
+            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          </div>
+          <div class="bundle-card-price"><span class="bc-price">£24.99</span> <span class="was">£35.97</span><span class="bundle-save-badge">Save 30%</span></div>
+          <button class="btn bundle-modal-btn" data-one-time-id="soapBundle" data-sub-id="subSoapBundle">Add to Cart</button>
         </div>
         <div class="bundle-card">
           <span class="bundle-card-label">Body Balm</span>
           <h3>Tallow 3-Pack</h3>
           <p>Stock up and save — three jars of our organic grass fed tallow body balm.</p>
-          <div class="bundle-card-price">£49.98 <span class="was">£74.97</span><span class="bundle-save-badge">Save 33%</span></div>
+          <div class="bundle-sub-toggle">
+            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
+            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          </div>
+          <div class="bundle-card-price"><span class="bc-price">£49.98</span> <span class="was">£74.97</span><span class="bundle-save-badge">Save 33%</span></div>
           <a href="#" class="btn" data-add-to-cart="balmBundle">Add to Cart</a>
         </div>
         <div class="bundle-card">
           <span class="bundle-card-label">Lip Balm</span>
           <h3>Lip Balm 3-Pack</h3>
           <p>One for your pocket, one for your bag, one spare. Never be without it.</p>
-          <div class="bundle-card-price">£19.99 <span class="was">£29.97</span><span class="bundle-save-badge">Save 33%</span></div>
+          <div class="bundle-sub-toggle">
+            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
+            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          </div>
+          <div class="bundle-card-price"><span class="bc-price">£19.99</span> <span class="was">£29.97</span><span class="bundle-save-badge">Save 33%</span></div>
           <a href="#" class="btn" data-add-to-cart="lipBundle">Add to Cart</a>
         </div>
         <div class="bundle-card">
           <span class="bundle-card-label">The Full Set</span>
           <h3 style="white-space: nowrap;">The Essentials Set</h3>
           <p>One soap bar, one tallow balm, one lip balm. Everything you need, nothing you don't.</p>
-          <div class="bundle-card-price">£39.99 <span class="was">£46.97</span><span class="bundle-save-badge">Save 15%</span></div>
-          <button class="btn" id="essentials-shop-btn">Add to Cart</button>
+          <div class="bundle-sub-toggle">
+            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
+            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          </div>
+          <div class="bundle-card-price"><span class="bc-price">£39.99</span> <span class="was">£46.97</span><span class="bundle-save-badge">Save 15%</span></div>
+          <button class="btn bundle-modal-btn" data-one-time-id="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -384,11 +424,45 @@
 <script src="bundle-modal.js"></script>
 <script src="main.js"></script>
 <script>
-  document.getElementById('essentials-shop-btn').addEventListener('click', () => {
-    openBundleModal('essentialsBundle');
-  });
-  document.getElementById('soap-bundle-shop-btn').addEventListener('click', () => {
-    openBundleModal('soapBundle');
+  const SUB_PRICES = {
+    soapBundle:       { one: '£24.99', sub: '£19.99/mo' },
+    balmBundle:       { one: '£49.98', sub: '£41.99/mo' },
+    lipBundle:        { one: '£19.99', sub: '£16.99/mo' },
+    essentialsBundle: { one: '£39.99', sub: '£32.99/mo' },
+  };
+
+  document.querySelectorAll('.bundle-card').forEach(card => {
+    const btns = card.querySelectorAll('.bundle-sub-btn');
+    const priceEl = card.querySelector('.bc-price');
+    const cartBtn = card.querySelector('.bundle-modal-btn, [data-add-to-cart]');
+    const directBtn = card.querySelector('[data-add-to-cart]');
+    const modalBtn = card.querySelector('.bundle-modal-btn');
+
+    // Determine which price key to use
+    const baseId = modalBtn
+      ? modalBtn.dataset.oneTimeId
+      : directBtn?.dataset.addToCart;
+    const prices = SUB_PRICES[baseId];
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const isSub = btn.dataset.mode === 'subscribe';
+
+        if (prices && priceEl) priceEl.textContent = isSub ? prices.sub : prices.one;
+        if (directBtn) directBtn.dataset.subscribe = isSub ? 'true' : 'false';
+      });
+    });
+
+    // Wire modal buttons
+    if (modalBtn) {
+      modalBtn.addEventListener('click', () => {
+        const isSub = card.querySelector('.bundle-sub-btn[data-mode="subscribe"]').classList.contains('active');
+        const id = isSub ? modalBtn.dataset.subId : modalBtn.dataset.oneTimeId;
+        openBundleModal(id);
+      });
+    }
   });
 </script>
 </body>

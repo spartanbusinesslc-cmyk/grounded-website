@@ -79,5 +79,7 @@ const PRODUCTS = {
   subBodyBalm:            { name: "Tallow Body Balm (Monthly)", price: 21.99, swatch: "swatch-balm" },
   subLipBalm:             { name: "Lip Balm (Monthly)", price: 7.99, swatch: "swatch-lip" },
   subSoapBundle:          { name: "Soap 3-Pack (Monthly)", price: 19.99, swatch: "swatch-soap" },
+  subBalmBundle:          { name: "Tallow 3-Pack (Monthly)", price: 41.99, swatch: "swatch-balm" },
+  subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)", price: 16.99, swatch: "swatch-lip" },
   subEssentialsBundle:    { name: "The Essentials Set (Monthly)", price: 32.99, swatch: "swatch-balm" }
 };
