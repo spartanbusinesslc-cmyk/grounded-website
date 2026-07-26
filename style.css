@@ -433,7 +433,7 @@ section { padding: var(--section-pad) 0; }
 .sub-toggle {
   display: flex;
   gap: 6px;
-  margin: 10px 0 8px;
+  margin: 22px 0 8px;
   flex-wrap: wrap;
 }
 .sub-btn {
