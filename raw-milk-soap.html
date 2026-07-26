@@ -166,7 +166,7 @@
 
 
   <div class="also-like wrap">
-    <h2>Complete Your Routine</h2>
+    <h2>More From EARTHED</h2>
     <div class="also-like-grid">
       <div class="also-like-card">
         <div class="swatch" style="background: linear-gradient(160deg, #D8D1C2, #C7BFA9);"><img src="assets/logo-icon.svg" style="width:40px;opacity:0.4;"></div>
@@ -289,6 +289,8 @@
       document.querySelectorAll('.sub-toggle .sub-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const isSubscription = btn.dataset.mode === 'subscribe';
+      const buyBtn = document.querySelector('[data-add-to-cart-variant], [data-add-to-cart]');
+      if (buyBtn) buyBtn.dataset.subscribe = isSubscription ? "true" : "false";
       document.querySelectorAll('.price-tag').forEach(tag => {
         tag.textContent = isSubscription ? tag.dataset.subscribe : tag.dataset.oneTime;
       });

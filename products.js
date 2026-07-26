@@ -68,5 +68,16 @@ const PRODUCTS = {
     name: "The Essentials Set",
     price: 39.99,
     swatch: "swatch-balm"
-  }
+  },
+  // Subscription variants
+  subSoapUnscented:       { name: "Raw Milk Soap — Unscented (Monthly)", price: 9.99, swatch: "swatch-soap" },
+  subSoapCitrusLavender:  { name: "Raw Milk Soap — Citrus & Lavender (Monthly)", price: 9.99, swatch: "swatch-soap" },
+  subSoapMintTeaTree:     { name: "Raw Milk Soap — Mint & Tea Tree (Monthly)", price: 9.99, swatch: "swatch-soap" },
+  subOliveUnscented:      { name: "Olive Oil Soap — Unscented (Monthly)", price: 9.99, swatch: "swatch-soap" },
+  subOliveCitrusLavender: { name: "Olive Oil Soap — Citrus & Lavender (Monthly)", price: 9.99, swatch: "swatch-soap" },
+  subOliveMintTeaTree:    { name: "Olive Oil Soap — Mint & Tea Tree (Monthly)", price: 9.99, swatch: "swatch-soap" },
+  subBodyBalm:            { name: "Tallow Body Balm (Monthly)", price: 21.99, swatch: "swatch-balm" },
+  subLipBalm:             { name: "Lip Balm (Monthly)", price: 7.99, swatch: "swatch-lip" },
+  subSoapBundle:          { name: "Soap 3-Pack (Monthly)", price: 19.99, swatch: "swatch-soap" },
+  subEssentialsBundle:    { name: "The Essentials Set (Monthly)", price: 32.99, swatch: "swatch-balm" }
 };

@@ -174,10 +174,12 @@ async function checkout() {
       metadata["essentials_soap"] = bundleNotes.subEssentialsBundle[0];
     }
 
+    const hasSubscription = items.some(item => item.id.startsWith("sub"));
+
     const res = await fetch("/api/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, subtotalPence: Math.round(cartSubtotal(cart) * 100), affiliateRef: getAffiliateRef(), metadata })
+      body: JSON.stringify({ items, subscription: hasSubscription, subtotalPence: Math.round(cartSubtotal(cart) * 100), affiliateRef: getAffiliateRef(), metadata })
     });
 
     const data = await res.json();
@@ -207,7 +209,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-add-to-cart]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      addToCart(btn.getAttribute("data-add-to-cart"), 1);
+      let id = btn.getAttribute("data-add-to-cart");
+      if (btn.dataset.subscribe === "true") {
+        id = "sub" + id.charAt(0).toUpperCase() + id.slice(1);
+      }
+      addToCart(id, 1);
     });
   });
 
@@ -217,7 +223,10 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const group = (btn.closest(".info-col") || btn.closest(".product-info"))?.querySelector(".variant-pills");
       const activePill = group?.querySelector('[aria-pressed="true"]');
-      const id = activePill?.getAttribute("data-product-id") || btn.getAttribute("data-add-to-cart-variant");
+      let id = activePill?.getAttribute("data-product-id") || btn.getAttribute("data-add-to-cart-variant");
+      if (btn.dataset.subscribe === "true") {
+        id = "sub" + id.charAt(0).toUpperCase() + id.slice(1);
+      }
       addToCart(id, 1);
     });
   });
