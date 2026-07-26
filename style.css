@@ -489,10 +489,10 @@ section { padding: var(--section-pad) 0; }
   padding: 14px 18px;
   border: 1px solid var(--olive);
   background: var(--olive);
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   color: var(--cream);
   font-family: var(--body);
-  font-weight: 300;
+  font-weight: 400;
   cursor: pointer;
   border-radius: 2px;
   transition: background 0.2s ease, border-color 0.2s ease;
@@ -528,7 +528,7 @@ section { padding: var(--section-pad) 0; }
 .bundle-option {
   flex: 1;
   padding: 14px 16px;
-  background: var(--cream);
+  background: var(--olive);
   border: none;
   cursor: pointer;
   font-family: var(--body);
@@ -536,16 +536,14 @@ section { padding: var(--section-pad) 0; }
   flex-direction: column;
   gap: 4px;
   text-align: left;
-  transition: background 0.2s ease;
+  transition: opacity 0.2s ease;
 }
-.bundle-option:hover { background: rgba(89,98,75,0.06); }
-.bundle-option-title { font-size: 0.78rem; font-weight: 500; color: var(--charcoal); letter-spacing: 0.04em; }
-.bundle-option-price { font-size: 0.82rem; font-weight: 300; color: var(--olive); }
-.bundle-option-sub .bundle-option-title::after {
-  content: ' ✦';
-  color: var(--olive);
-  font-size: 0.6rem;
-}
+.bundle-option:hover { opacity: 0.88; }
+.bundle-option-title { font-size: 0.78rem; font-weight: 600; color: #fff; letter-spacing: 0.06em; text-transform: uppercase; }
+.bundle-option-price { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.85); }
+.bundle-option-sub { background: #B94040; }
+.bundle-option-sub .bundle-option-title { color: #fff; }
+.bundle-option-sub .bundle-option-price { color: rgba(255,255,255,0.85); }
 
 /* ---------- Bundle scent picker modal ---------- */
 #bundle-modal-overlay {
