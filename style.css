@@ -501,15 +501,15 @@ section { padding: var(--section-pad) 0; }
 .bundle-nudge:hover, .bundle-nudge[aria-expanded="true"] { background: rgba(89,98,75,0.1); border-color: var(--olive); }
 .bundle-nudge strong { font-weight: 500; }
 .bundle-nudge-badge {
-  background: var(--olive);
-  color: var(--cream);
-  font-size: 0.65rem;
+  background: #B94040;
+  color: #fff;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 3px 8px;
+  padding: 5px 12px;
   border-radius: 20px;
   white-space: nowrap;
-  font-weight: 500;
+  font-weight: 700;
   flex-shrink: 0;
 }
 .bundle-nudge-arrow { margin-left: auto; color: var(--olive); font-size: 0.9rem; transition: transform 0.2s ease; }
