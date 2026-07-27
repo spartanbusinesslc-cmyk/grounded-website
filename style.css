@@ -435,7 +435,6 @@ section { padding: var(--section-pad) 0; }
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin: 18px 0 14px;
-  align-items: start;
 }
 .purchase-option {
   border: 1px solid rgba(28,28,28,0.15);
