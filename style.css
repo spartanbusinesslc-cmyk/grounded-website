@@ -430,6 +430,15 @@ section { padding: var(--section-pad) 0; }
 }
 
 /* ---------- Purchase option cards ---------- */
+.variant-label {
+  font-family: var(--body);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--olive);
+  font-weight: 600;
+  margin: 0 0 10px;
+}
 .purchase-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
