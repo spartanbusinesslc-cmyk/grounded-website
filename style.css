@@ -529,6 +529,7 @@ section { padding: var(--section-pad) 0; }
   flex-wrap: wrap;
   margin-top: 8px;
 }
+.buy-row .btn { flex: 1; justify-content: center; }
 .buy-btn {
   padding: 18px 28px;
   font-size: 0.82rem;
