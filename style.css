@@ -464,9 +464,9 @@ section { padding: var(--section-pad) 0; }
 }
 .purchase-option.active .po-label { color: rgba(242,239,230,0.7); }
 .po-price {
-  font-family: var(--display);
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-family: var(--body);
+  font-size: 1.1rem;
+  font-weight: 300;
   color: var(--charcoal);
   margin-top: 2px;
 }
