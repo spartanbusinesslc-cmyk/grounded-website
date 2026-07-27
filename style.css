@@ -429,29 +429,80 @@ section { padding: var(--section-pad) 0; }
   color: var(--charcoal);
 }
 
-/* ---------- Subscribe toggle ---------- */
-.sub-toggle {
-  display: flex;
-  gap: 6px;
-  margin: 22px 0 8px;
-  flex-wrap: wrap;
+/* ---------- Purchase option cards ---------- */
+.purchase-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 22px 0 16px;
 }
-.sub-btn {
+.purchase-option {
+  border: 1px solid rgba(28,28,28,0.15);
+  border-radius: 4px;
+  padding: 16px 14px;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+.purchase-option.active {
+  border-color: var(--olive);
+  background: var(--olive);
+}
+.po-label {
   font-family: var(--body);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(28,28,28,0.5);
+}
+.purchase-option.active .po-label { color: rgba(242,239,230,0.7); }
+.po-price {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-top: 2px;
+}
+.purchase-option.active .po-price { color: var(--cream); }
+.po-freq {
+  font-family: var(--body);
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+.po-perks {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.po-perks li {
+  font-family: var(--body);
+  font-size: 0.73rem;
+  color: rgba(242,239,230,0.8);
+  font-weight: 300;
+}
+.po-perks li::before { content: "✓  "; font-weight: 600; }
+.po-popular {
+  font-family: var(--body);
+  font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 6px 12px;
-  border: 1px solid var(--olive);
-  background: transparent;
-  color: var(--olive);
-  cursor: pointer;
-  border-radius: 1px;
-  transition: background 0.2s, color 0.2s;
+  font-weight: 700;
+  background: rgba(255,255,255,0.18);
+  color: var(--cream);
+  padding: 2px 9px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 6px;
 }
-.sub-btn.active { background: var(--olive); color: var(--cream); }
-.sub-btn .save-pct { color: #B94040; font-weight: 700; }
-.sub-btn.active .save-pct { color: var(--cream); }
 
 /* ---------- Scent pills mobile ---------- */
 @media (max-width: 600px) {

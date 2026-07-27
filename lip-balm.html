@@ -109,11 +109,23 @@
           <p class="ingredients-body" hidden>Mango Seed Butter, Beeswax, Castor Oil, Coconut Oil.</p>
         </div>
 
+        <div class="purchase-options">
+          <button class="purchase-option active" data-mode="one-time">
+            <span class="po-label">One-Time</span>
+            <span class="po-price">£9.99</span>
+          </button>
+          <button class="purchase-option" data-mode="subscribe">
+            <span class="po-popular">Popular</span>
+            <span class="po-label">Monthly</span>
+            <span class="po-price">£7.99<span class="po-freq">/mo</span></span>
+            <ul class="po-perks">
+              <li>Save 20% every order</li>
+              <li>Delivered monthly</li>
+              <li>Cancel anytime</li>
+            </ul>
+          </button>
+        </div>
         <div class="buy-row">
-          <div class="sub-toggle">
-            <button class="sub-btn active" data-mode="one-time">One-time</button>
-            <button class="sub-btn" data-mode="subscribe">Subscribe &amp; <span class="save-pct">Save 20%</span></button>
-          </div>
           <a href="#" class="btn btn-solid buy-btn" data-add-to-cart="lipBalm">Add to Cart — <span class="price-tag" data-one-time="£9.99" data-subscribe="£7.99">£9.99</span></a>
         </div>
         <div class="bundle-nudge-wrap">
@@ -263,9 +275,9 @@
 <script src="main.js"></script>
 <script>
 
-  document.querySelectorAll('.sub-toggle .sub-btn').forEach(btn => {
+  document.querySelectorAll('.purchase-option').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.sub-toggle .sub-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.purchase-option').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const isSubscription = btn.dataset.mode === 'subscribe';
       const buyBtn = document.querySelector('[data-add-to-cart-variant], [data-add-to-cart]');
