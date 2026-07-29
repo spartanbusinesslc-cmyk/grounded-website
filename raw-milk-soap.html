@@ -294,7 +294,10 @@
       const cartBtn = document.querySelector('[data-add-to-cart-variant]');
       if (cartBtn) cartBtn.dataset.addToCartVariant = pill.dataset.productId;
       const ingredientsEl = document.querySelector('.ingredients-body');
-      if (ingredientsEl && pill.dataset.ingredients) ingredientsEl.textContent = pill.dataset.ingredients;
+      if (ingredientsEl && pill.dataset.ingredients) {
+        const hasAllergens = /Limonene|Linalool|Citral/i.test(pill.dataset.ingredients);
+        ingredientsEl.innerHTML = pill.dataset.ingredients + (hasAllergens ? '<br><br><strong>Note: Limonene, Linalool, and Citral are naturally occurring compounds found in the essential oils we use. UK cosmetics law requires these to be listed separately — they are not added ingredients. Allergic reactions to these compounds are extremely rare, but we recommend a patch test if you have sensitive skin.</strong>' : '');
+      }
     });
   });
   document.querySelectorAll('.purchase-option').forEach(btn => {
