@@ -49,6 +49,10 @@
   .ingredients-arrow { font-size: 0.8rem; transition: transform 0.2s ease; display: inline-block; }
   .ingredients-toggle[aria-expanded="true"] .ingredients-arrow { transform: rotate(180deg); }
   .ingredients-body { font-size: 0.82rem; line-height: 1.75; opacity: 0.7; padding-bottom: 16px; font-family: var(--body); font-weight: 300; }
+  .product-gallery { display: flex; flex-direction: column; gap: 10px; }
+  .product-thumbs { display: flex; gap: 8px; }
+  .product-thumb { width: 72px; height: 72px; object-fit: cover; cursor: pointer; border-radius: 2px; border: 2px solid transparent; opacity: 0.7; transition: border-color 0.2s, opacity 0.2s; }
+  .product-thumb.active { border-color: var(--olive); opacity: 1; }
   .buy-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 8px; }
   .price-tag { font-size: 1.3rem; font-family: var(--body); font-weight: 300; color: var(--charcoal); }
   .sub-toggle { display: flex; gap: 6px; margin: 10px 0 8px; flex-wrap: wrap; }
@@ -100,8 +104,14 @@
 
   <div class="wrap product-page">
     <div class="product-layout">
-      <div class="product-image" style="background:#f5f3ef;overflow:hidden;">
-        <img src="assets/rms-unscented.png" id="product-img" alt="Raw Milk Soap" class="real">
+      <div class="product-gallery">
+        <div class="product-image" style="background:#f5f3ef;overflow:hidden;">
+          <img src="assets/rms-unscented.png" id="product-img" alt="Raw Milk Soap" class="real">
+        </div>
+        <div class="product-thumbs">
+          <img src="assets/rms-unscented.png" class="product-thumb active" id="variant-thumb" alt="Product">
+          <img src="assets/lavendar shot.png" class="product-thumb" alt="Lavender Shot">
+        </div>
       </div>
       <div class="product-info">
         <h1>Raw Milk Soap</h1>
@@ -294,7 +304,15 @@
       const cartBtn = document.querySelector('[data-add-to-cart-variant]');
       if (cartBtn) cartBtn.dataset.addToCartVariant = pill.dataset.productId;
       const productImg = document.getElementById('product-img');
-      if (productImg && pill.dataset.image) productImg.src = pill.dataset.image;
+      const variantThumb = document.getElementById('variant-thumb');
+      if (productImg && pill.dataset.image) {
+        productImg.src = pill.dataset.image;
+        if (variantThumb) {
+          variantThumb.src = pill.dataset.image;
+          document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+          variantThumb.classList.add('active');
+        }
+      }
       const ingredientsEl = document.querySelector('.ingredients-body');
       if (ingredientsEl && pill.dataset.ingredients) {
         const hasAllergens = /Limonene|Linalool|Citral/i.test(pill.dataset.ingredients);
@@ -302,6 +320,15 @@
       }
     });
   });
+  document.querySelectorAll('.product-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+      const productImg = document.getElementById('product-img');
+      if (productImg) productImg.src = thumb.src;
+    });
+  });
+
   document.querySelectorAll('.purchase-option').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.purchase-option').forEach(b => b.classList.remove('active'));
