@@ -101,16 +101,16 @@
   <div class="wrap product-page">
     <div class="product-layout">
       <div class="product-image" style="background:#f5f3ef;overflow:hidden;">
-        <img src="assets/rms-image.png" alt="Raw Milk Soap" class="real" onerror="this.src='assets/logo-icon.svg';this.className='placeholder';">
+        <img src="assets/rms-unscented.png" id="product-img" alt="Raw Milk Soap" class="real">
       </div>
       <div class="product-info">
         <h1>Raw Milk Soap</h1>
 
         <p class="variant-label">Choose Your Scent</p>
         <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.">Unscented</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
+          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-image="assets/rms-unscented.png" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.">Unscented</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-image="assets/rms-citrus-lavender.png" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-image="assets/rms-mint-teatree.png" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
         </div>
 
         <div class="ingredients-block">
@@ -293,6 +293,8 @@
       pill.setAttribute('aria-pressed', 'true');
       const cartBtn = document.querySelector('[data-add-to-cart-variant]');
       if (cartBtn) cartBtn.dataset.addToCartVariant = pill.dataset.productId;
+      const productImg = document.getElementById('product-img');
+      if (productImg && pill.dataset.image) productImg.src = pill.dataset.image;
       const ingredientsEl = document.querySelector('.ingredients-body');
       if (ingredientsEl && pill.dataset.ingredients) {
         const hasAllergens = /Limonene|Linalool|Citral/i.test(pill.dataset.ingredients);
