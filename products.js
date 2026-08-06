@@ -67,13 +67,13 @@ const PRODUCTS = {
     name: "Body Balm 3-Pack (3 Jars)",
     price: 49.98,
     swatch: "swatch-balm",
-    image: "assets/tallow balm.png"
+    image: "assets/Tallow Trio.png"
   },
   lipBundle: {
     name: "Lip Balm 3-Pack (3 Tins)",
     price: 19.99,
     swatch: "swatch-lip",
-    image: "assets/lip balm.png"
+    image: "assets/Lip balm trio.png"
   },
   essentialsBundle: {
     name: "The Essentials Set",
@@ -91,7 +91,7 @@ const PRODUCTS = {
   subBodyBalm:            { name: "Tallow Body Balm (Monthly)",                  price: 21.99, swatch: "swatch-balm",  image: "assets/tallow balm.png" },
   subLipBalm:             { name: "Lip Balm (Monthly)",                          price: 7.99,  swatch: "swatch-lip",   image: "assets/lip balm.png" },
   subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/rms-unscented.png" },
-  subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 41.99, swatch: "swatch-balm",  image: "assets/tallow balm.png" },
-  subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 16.99, swatch: "swatch-lip",   image: "assets/lip balm.png" },
+  subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 41.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.png" },
+  subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.png" },
   subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/tallow balm.png" }
 };
