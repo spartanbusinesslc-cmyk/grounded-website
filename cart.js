@@ -98,7 +98,9 @@ function renderCart() {
         if (!p) return "";
         return `
           <div class="cart-line" data-line="${id}">
-            <div class="cart-line-swatch ${p.swatch}"></div>
+            <div class="cart-line-swatch ${p.swatch}" style="${p.image ? `background:none;padding:0;overflow:hidden;` : ''}">
+              ${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">` : ''}
+            </div>
             <div class="cart-line-info">
               <span class="cart-line-name">${p.name}</span>
               <span class="cart-line-price">£${p.price.toFixed(2)}</span>
