@@ -109,6 +109,57 @@
   .essentials-img { aspect-ratio: 1/1; border-radius: 2px; display: flex; align-items: center; justify-content: center; }
   @media (min-width: 821px) { .essentials-imgs { gap: 12px; } .essentials-img { aspect-ratio: 3/4; } }
 
+  /* Hero collection */
+  .hero-collection { width: 100%; }
+  .hero-collection-bg {
+    width: 100%;
+    height: clamp(320px, 55vw, 620px);
+    background: linear-gradient(160deg, #D8D1C2, #B8B0A0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-collection-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-collection-overlay {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-collection-cta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(242,239,230,0.92);
+    border: 1px solid rgba(28,28,28,0.15);
+    padding: 18px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .hero-collection-cta:hover { background: var(--cream); border-color: var(--olive); }
+  .hero-cta-label {
+    font-family: var(--body);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .hero-cta-arrow {
+    font-size: 1rem;
+    color: var(--olive);
+  }
+
   .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -264,6 +315,18 @@
 </header>
 
 <main id="main">
+
+  <!-- HERO -->
+  <section class="hero-collection">
+    <div class="hero-collection-bg">
+      <div class="hero-collection-overlay">
+        <a href="shop.html" class="hero-collection-cta">
+          <span class="hero-cta-label">View the Collection</span>
+          <span class="hero-cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- PRODUCT TRIO -->
   <section class="products-section">
