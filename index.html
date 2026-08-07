@@ -137,14 +137,16 @@
     display: inline-flex;
     align-items: center;
     gap: 14px;
-    background: var(--olive);
-    border: 1px solid var(--olive);
+    background: rgba(89,98,75,0.55);
+    border: 1px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     padding: 16px 32px;
     border-radius: 2px;
     text-decoration: none;
     transition: background 0.2s, border-color 0.2s;
   }
-  .hero-collection-cta:hover { background: #47503c; border-color: #47503c; }
+  .hero-collection-cta:hover { background: rgba(89,98,75,0.75); }
   @media (max-width: 600px) {
     .hero-collection-cta { padding: 10px 16px; gap: 8px; }
     .hero-cta-label { font-size: 0.6rem; letter-spacing: 0; }
