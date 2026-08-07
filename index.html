@@ -115,9 +115,6 @@
     width: 100%;
     height: clamp(240px, 38vw, 420px);
     background: linear-gradient(160deg, #D8D1C2, #B8B0A0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     overflow: hidden;
   }
@@ -129,8 +126,12 @@
     object-fit: cover;
   }
   .hero-collection-overlay {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .hero-collection-cta {
     display: inline-flex;
