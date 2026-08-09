@@ -494,12 +494,18 @@ section { padding: var(--section-pad) 0; }
 }
 .po-perks li {
   font-family: var(--body);
-  font-size: 0.73rem;
-  color: rgba(28,28,28,0.55);
-  font-weight: 300;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  color: #fff;
+  background: rgba(28,28,28,0.18);
 }
-.purchase-option.active .po-perks li { color: rgba(242,239,230,0.85); }
-.po-perks li::before { content: "✓  "; font-weight: 600; }
+.po-perks li::before { content: none; }
+.po-perks li.perk-save { background: #B94040; }
+.po-perks li.perk-cancel { background: #4a7c59; }
 .po-popular {
   font-family: var(--body);
   font-size: 0.6rem;
