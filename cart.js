@@ -120,6 +120,13 @@ function renderCart() {
   const subtotal = cartSubtotal(cart);
   if (subtotalEl) subtotalEl.textContent = `£${subtotal.toFixed(2)}`;
 
+  // Subscription cancel note
+  const subNoteEl = document.getElementById("cart-sub-note");
+  if (subNoteEl) {
+    const hasSub = Object.keys(cart).some(id => id.startsWith("sub"));
+    subNoteEl.style.display = hasSub ? "block" : "none";
+  }
+
   // Free shipping nudge
   const nudgeEl = document.getElementById("cart-shipping-nudge");
   if (nudgeEl) {
