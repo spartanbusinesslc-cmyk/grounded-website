@@ -8,10 +8,10 @@
    ============================================ */
 
 const SCENT_OPTIONS = [
-  { id: "soapUnscented",       label: "Raw Milk — Unscented" },
+  { id: "soapUnscented",       label: "Raw Milk — Plain" },
   { id: "soapCitrusLavender",  label: "Raw Milk — Citrus & Lavender" },
   { id: "soapMintTeaTree",     label: "Raw Milk — Mint & Tea Tree" },
-  { id: "oliveUnscented",      label: "Olive Oil — Unscented" },
+  { id: "oliveUnscented",      label: "Olive Oil — Plain" },
   { id: "oliveCitrusLavender", label: "Olive Oil — Citrus & Lavender" },
   { id: "oliveMintTeaTree",    label: "Olive Oil — Mint & Tea Tree" },
 ];

@@ -10,7 +10,7 @@
 
 const PRODUCTS = {
   soapUnscented: {
-    name: "Raw Milk Soap — Unscented",
+    name: "Raw Milk Soap — Plain",
     price: 11.99,
     swatch: "swatch-soap",
     image: "assets/rms-unscented.png"
@@ -28,7 +28,7 @@ const PRODUCTS = {
     image: "assets/rms-mint-teatree.png"
   },
   oliveUnscented: {
-    name: "Olive Oil Soap — Unscented",
+    name: "Olive Oil Soap — Plain",
     price: 11.99,
     swatch: "swatch-soap",
     image: "assets/oos-unscented.png"
@@ -82,10 +82,10 @@ const PRODUCTS = {
     image: "assets/tallow balm.png"
   },
   // Subscription variants
-  subSoapUnscented:       { name: "Raw Milk Soap — Unscented (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-unscented.png" },
+  subSoapUnscented:       { name: "Raw Milk Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-unscented.png" },
   subSoapCitrusLavender:  { name: "Raw Milk Soap — Citrus & Lavender (Monthly)", price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-citrus-lavender.png" },
   subSoapMintTeaTree:     { name: "Raw Milk Soap — Mint & Tea Tree (Monthly)",   price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-mint-teatree.png" },
-  subOliveUnscented:      { name: "Olive Oil Soap — Unscented (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-unscented.png" },
+  subOliveUnscented:      { name: "Olive Oil Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-unscented.png" },
   subOliveCitrusLavender: { name: "Olive Oil Soap — Citrus & Lavender (Monthly)",price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-citrus-lavender.png" },
   subOliveMintTeaTree:    { name: "Olive Oil Soap — Mint & Tea Tree (Monthly)",  price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-mint-teatree.png" },
   subBodyBalm:            { name: "Tallow Body Balm (Monthly)",                  price: 21.99, swatch: "swatch-balm",  image: "assets/tallow balm.png" },
