@@ -490,7 +490,7 @@ section { padding: var(--section-pad) 0; }
 .po-perks {
   list-style: none;
   padding: 0;
-  margin: 6px 0 0;
+  margin: auto 0 0;
   display: flex;
   flex-direction: column;
   gap: 3px;
