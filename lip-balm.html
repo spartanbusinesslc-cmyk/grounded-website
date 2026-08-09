@@ -48,6 +48,7 @@
   .product-gallery { display: flex; flex-direction: column; gap: 10px; }
   .product-thumbs { display: flex; gap: 8px; }
   .product-thumb { width: 72px; height: 72px; object-fit: cover; cursor: pointer; border-radius: 2px; border: 2px solid transparent; opacity: 0.7; transition: border-color 0.2s, opacity 0.2s; }
+  .info-thumb { object-fit: contain; background: #f5f3ef; }
   .product-thumb.active { border-color: var(--olive); opacity: 1; }
   .buy-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 8px; }
   .price-tag { font-size: 1.3rem; font-family: var(--body); font-weight: 300; color: var(--charcoal); }
@@ -108,7 +109,7 @@
           <img src="assets/lip balm.png" class="product-thumb active" alt="Lip Balm">
           <img src="assets/lip balm open.png" class="product-thumb" alt="Lip Balm open">
           <img src="assets/lip balm open finger.png" class="product-thumb" alt="Lip Balm texture">
-          <img src="assets/lip balm info.png" class="product-thumb" alt="Lip Balm ingredients">
+          <img src="assets/lip balm info.png" class="product-thumb info-thumb" alt="Lip Balm ingredients">
         </div>
       </div>
       <div class="product-info">
@@ -292,7 +293,10 @@
       document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
       const productImg = document.getElementById('product-img');
-      if (productImg) productImg.src = thumb.src;
+      if (productImg) {
+        productImg.src = thumb.src;
+        productImg.style.objectFit = thumb.classList.contains('info-thumb') ? 'contain' : 'cover';
+      }
     });
   });
 
