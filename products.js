@@ -61,7 +61,7 @@ const PRODUCTS = {
     name: "Soap 3-Pack (3 Bars)",
     price: 24.99,
     swatch: "swatch-soap",
-    image: "assets/rms-unscented.png"
+    image: "assets/soap bundle.png"
   },
   balmBundle: {
     name: "Body Balm 3-Pack (3 Jars)",
@@ -79,7 +79,7 @@ const PRODUCTS = {
     name: "The Essentials Set",
     price: 39.99,
     swatch: "swatch-balm",
-    image: "assets/tallow balm.png"
+    image: "assets/essentials bundle.png"
   },
   // Subscription variants
   subSoapUnscented:       { name: "Raw Milk Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-unscented.png" },
@@ -90,8 +90,8 @@ const PRODUCTS = {
   subOliveMintTeaTree:    { name: "Olive Oil Soap — Mint & Tea Tree (Monthly)",  price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-mint-teatree.png" },
   subBodyBalm:            { name: "Tallow Body Balm (Monthly)",                  price: 21.99, swatch: "swatch-balm",  image: "assets/tallow balm.png" },
   subLipBalm:             { name: "Lip Balm (Monthly)",                          price: 7.99,  swatch: "swatch-lip",   image: "assets/lip balm.png" },
-  subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/rms-unscented.png" },
+  subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.png" },
   subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 41.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.png" },
   subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.png" },
-  subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/tallow balm.png" }
+  subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/essentials bundle.png" }
 };
