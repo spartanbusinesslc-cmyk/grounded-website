@@ -300,7 +300,10 @@
       document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
       const productImg = document.getElementById('product-img');
-      if (productImg) productImg.src = thumb.src;
+      if (productImg) {
+        productImg.src = thumb.src;
+        productImg.style.objectFit = thumb.classList.contains('info-thumb') ? 'contain' : 'cover';
+      }
     });
   });
 
