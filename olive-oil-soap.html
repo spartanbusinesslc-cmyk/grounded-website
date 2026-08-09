@@ -50,6 +50,11 @@
   .ingredients-toggle[aria-expanded="true"] .ingredients-arrow { transform: rotate(180deg); }
   .ingredients-body { font-size: 0.82rem; line-height: 1.75; opacity: 0.7; padding-bottom: 16px; font-family: var(--body); font-weight: 300; }
   .product-gallery { display: flex; flex-direction: column; gap: 10px; }
+  .product-image { position: relative; }
+  .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--charcoal); z-index: 2; transition: background 0.2s; }
+  .gallery-arrow:hover { background: #fff; }
+  .gallery-arrow.prev { left: 10px; }
+  .gallery-arrow.next { right: 10px; }
   .product-thumbs { display: flex; gap: 8px; }
   .product-thumb { width: 72px; height: 72px; object-fit: cover; cursor: pointer; border-radius: 2px; border: 2px solid transparent; opacity: 0.7; transition: border-color 0.2s, opacity 0.2s; }
   .info-thumb { object-fit: contain; background: #f5f3ef; }
@@ -107,7 +112,9 @@
     <div class="product-layout">
       <div class="product-gallery">
         <div class="product-image" style="background:#f5f3ef;overflow:hidden;">
+          <button class="gallery-arrow prev" id="gallery-prev">&#8592;</button>
           <img src="assets/oos-unscented.png" id="product-img" alt="Olive Oil Soap" class="real">
+          <button class="gallery-arrow next" id="gallery-next">&#8594;</button>
         </div>
         <div class="product-thumbs">
           <img src="assets/oos-unscented.png" class="product-thumb active" id="variant-thumb" alt="Product">
@@ -336,6 +343,23 @@
         productImg.style.objectFit = thumb.classList.contains('info-thumb') ? 'contain' : 'cover';
       }
     });
+  });
+
+  const thumbs = Array.from(document.querySelectorAll('.product-thumb'));
+  const productImg = document.getElementById('product-img');
+  function goToThumb(index) {
+    thumbs.forEach(t => t.classList.remove('active'));
+    thumbs[index].classList.add('active');
+    productImg.src = thumbs[index].src;
+    productImg.style.objectFit = thumbs[index].classList.contains('info-thumb') ? 'contain' : 'cover';
+  }
+  document.getElementById('gallery-prev').addEventListener('click', () => {
+    const current = thumbs.findIndex(t => t.classList.contains('active'));
+    goToThumb((current - 1 + thumbs.length) % thumbs.length);
+  });
+  document.getElementById('gallery-next').addEventListener('click', () => {
+    const current = thumbs.findIndex(t => t.classList.contains('active'));
+    goToThumb((current + 1) % thumbs.length);
   });
 
   document.querySelectorAll('.purchase-option').forEach(btn => {
