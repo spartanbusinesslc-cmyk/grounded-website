@@ -116,10 +116,29 @@
 
   .bundle-card {
     border: 1px solid rgba(242,239,230,0.25);
-    padding: 32px 28px;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    overflow: hidden;
+  }
+  .bundle-card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .bundle-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bundle-card-body {
+    padding: 24px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
   }
   .bundle-card-label {
     font-size: 0.68rem;
@@ -130,72 +149,40 @@
   }
   .bundle-card h3 {
     font-family: var(--display);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--cream);
   }
   .bundle-card p {
-    font-size: 0.85rem;
+    font-size: 0.83rem;
     color: rgba(242,239,230,0.7);
     line-height: 1.65;
-    flex: 1;
   }
-  .bundle-card-price {
-    font-family: var(--body);
-    font-weight: 300;
-    color: var(--cream);
-    font-size: 1.2rem;
-    margin-top: 4px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+  /* Purchase option overrides for olive background */
+  .bundle-card .purchase-options { margin: 10px 0 6px; }
+  .bundle-card .purchase-option {
+    border-color: rgba(242,239,230,0.25);
+    background: rgba(242,239,230,0.05);
   }
-  .bundle-card .was {
-    text-decoration: line-through;
-    opacity: 0.4;
-    font-size: 0.9rem;
+  .bundle-card .purchase-option.active {
+    border-color: rgba(242,239,230,0.85);
+    background: rgba(242,239,230,0.12);
   }
-  .bundle-save-badge {
-    background: #B94040;
-    color: #fff;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
+  .bundle-card .po-label { color: rgba(242,239,230,0.5); }
+  .bundle-card .purchase-option.active .po-label { color: rgba(242,239,230,0.75); }
+  .bundle-card .po-price { color: var(--cream); }
+  .bundle-card .purchase-option.active .po-price { color: var(--cream); }
+  .bundle-card .po-perks li { color: rgba(242,239,230,0.5); }
+  .bundle-card .purchase-option.active .po-perks li { color: rgba(242,239,230,0.85); }
+  .bundle-card .po-popular { background: rgba(242,239,230,0.2); color: var(--cream); }
+  .bundle-card .purchase-option.active .po-popular { background: rgba(242,239,230,0.3); }
   .bundle-card .btn {
     border-color: rgba(242,239,230,0.5);
     color: var(--cream);
-    margin-top: 8px;
+    margin-top: 4px;
     justify-content: center;
+    width: 100%;
   }
   .bundle-card .btn:hover { background: var(--cream); color: var(--olive); border-color: var(--cream); }
-
-  .bundle-sub-toggle {
-    display: flex;
-    gap: 6px;
-    margin: 8px 0 4px;
-  }
-  .bundle-sub-btn {
-    font-family: var(--body);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(242,239,230,0.35);
-    background: transparent;
-    color: rgba(242,239,230,0.55);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .bundle-sub-btn.active {
-    background: rgba(242,239,230,0.15);
-    border-color: rgba(242,239,230,0.7);
-    color: var(--cream);
-  }
 </style>
 </head>
 <body>
@@ -297,50 +284,103 @@
         <p>Save &amp; stay earthed.</p>
       </div>
       <div class="bundles-grid">
+
+        <!-- Soap 3-Pack -->
         <div class="bundle-card" id="soap-trio">
-          <span class="bundle-card-label">Best Value</span>
-          <h3>Soap 3-Pack</h3>
-          <p>Pick any 3 bars — mix or match any scent. Raw Milk or Olive Oil. Perfect for gifting or stocking up.</p>
-          <div class="bundle-sub-toggle">
-            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
-            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          <div class="bundle-card-img"><img src="assets/CL Soap flowers.png" alt="Soap 3-Pack"></div>
+          <div class="bundle-card-body">
+            <span class="bundle-card-label">Best Value</span>
+            <h3>Soap 3-Pack</h3>
+            <p>Pick any 3 bars — mix or match any scent. Raw Milk or Olive Oil. Perfect for gifting or stocking up.</p>
+            <div class="purchase-options">
+              <button class="purchase-option active" data-mode="one-time">
+                <span class="po-label">One-Time</span>
+                <span class="po-price">£24.99</span>
+                <ul class="po-perks"><li>Pay once</li></ul>
+              </button>
+              <button class="purchase-option" data-mode="subscribe">
+                <span class="po-popular">Popular</span>
+                <span class="po-label">Subscribe &amp; Save</span>
+                <span class="po-price">£19.99</span>
+                <ul class="po-perks"><li>Save 20%</li><li>Cancel anytime</li></ul>
+              </button>
+            </div>
+            <button class="btn bundle-modal-btn" data-one-time-id="soapBundle" data-sub-id="subSoapBundle">Add to Cart</button>
           </div>
-          <div class="bundle-card-price"><span class="bc-price">£24.99</span> <span class="was">£35.97</span><span class="bundle-save-badge">Save 30%</span></div>
-          <button class="btn bundle-modal-btn" data-one-time-id="soapBundle" data-sub-id="subSoapBundle">Add to Cart</button>
         </div>
+
+        <!-- Tallow 3-Pack -->
         <div class="bundle-card">
-          <span class="bundle-card-label">Body Balm</span>
-          <h3>Tallow 3-Pack</h3>
-          <p>Stock up and save — three jars of our organic grass fed tallow body balm.</p>
-          <div class="bundle-sub-toggle">
-            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
-            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          <div class="bundle-card-img"><img src="assets/Tallow Trio.png" alt="Tallow 3-Pack"></div>
+          <div class="bundle-card-body">
+            <span class="bundle-card-label">Body Balm</span>
+            <h3>Tallow 3-Pack</h3>
+            <p>Stock up and save — three jars of our organic grass fed tallow body balm.</p>
+            <div class="purchase-options">
+              <button class="purchase-option active" data-mode="one-time">
+                <span class="po-label">One-Time</span>
+                <span class="po-price">£49.98</span>
+                <ul class="po-perks"><li>Pay once</li></ul>
+              </button>
+              <button class="purchase-option" data-mode="subscribe">
+                <span class="po-popular">Popular</span>
+                <span class="po-label">Subscribe &amp; Save</span>
+                <span class="po-price">£41.99</span>
+                <ul class="po-perks"><li>Save 16%</li><li>Cancel anytime</li></ul>
+              </button>
+            </div>
+            <button class="btn bundle-add-btn" data-one-time-id="balmBundle" data-sub-id="subBalmBundle">Add to Cart</button>
           </div>
-          <div class="bundle-card-price"><span class="bc-price">£49.98</span> <span class="was">£74.97</span><span class="bundle-save-badge">Save 33%</span></div>
-          <a href="#" class="btn" data-add-to-cart="balmBundle">Add to Cart</a>
         </div>
+
+        <!-- Lip Balm 3-Pack -->
         <div class="bundle-card">
-          <span class="bundle-card-label">Lip Balm</span>
-          <h3>Lip Balm 3-Pack</h3>
-          <p>One for your pocket, one for your bag, one spare. Never be without it.</p>
-          <div class="bundle-sub-toggle">
-            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
-            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          <div class="bundle-card-img"><img src="assets/Lip balm trio.png" alt="Lip Balm 3-Pack"></div>
+          <div class="bundle-card-body">
+            <span class="bundle-card-label">Lip Balm</span>
+            <h3>Lip Balm 3-Pack</h3>
+            <p>One for your pocket, one for your bag, one spare. Never be without it.</p>
+            <div class="purchase-options">
+              <button class="purchase-option active" data-mode="one-time">
+                <span class="po-label">One-Time</span>
+                <span class="po-price">£19.99</span>
+                <ul class="po-perks"><li>Pay once</li></ul>
+              </button>
+              <button class="purchase-option" data-mode="subscribe">
+                <span class="po-popular">Popular</span>
+                <span class="po-label">Subscribe &amp; Save</span>
+                <span class="po-price">£16.99</span>
+                <ul class="po-perks"><li>Save 15%</li><li>Cancel anytime</li></ul>
+              </button>
+            </div>
+            <button class="btn bundle-add-btn" data-one-time-id="lipBundle" data-sub-id="subLipBundle">Add to Cart</button>
           </div>
-          <div class="bundle-card-price"><span class="bc-price">£19.99</span> <span class="was">£29.97</span><span class="bundle-save-badge">Save 33%</span></div>
-          <a href="#" class="btn" data-add-to-cart="lipBundle">Add to Cart</a>
         </div>
+
+        <!-- Essentials Set -->
         <div class="bundle-card">
-          <span class="bundle-card-label">The Full Set</span>
-          <h3 style="white-space: nowrap;">The Essentials Set</h3>
-          <p>One soap bar, one tallow balm, one lip balm. Everything you need, nothing you don't.</p>
-          <div class="bundle-sub-toggle">
-            <button class="bundle-sub-btn active" data-mode="one-time">One-Time</button>
-            <button class="bundle-sub-btn" data-mode="subscribe">Subscribe &amp; Save</button>
+          <div class="bundle-card-img"><img src="assets/Hero.png" alt="The Essentials Set"></div>
+          <div class="bundle-card-body">
+            <span class="bundle-card-label">The Full Set</span>
+            <h3>The Essentials Set</h3>
+            <p>One soap bar, one tallow balm, one lip balm. Everything you need, nothing you don't.</p>
+            <div class="purchase-options">
+              <button class="purchase-option active" data-mode="one-time">
+                <span class="po-label">One-Time</span>
+                <span class="po-price">£39.99</span>
+                <ul class="po-perks"><li>Pay once</li></ul>
+              </button>
+              <button class="purchase-option" data-mode="subscribe">
+                <span class="po-popular">Popular</span>
+                <span class="po-label">Subscribe &amp; Save</span>
+                <span class="po-price">£32.99</span>
+                <ul class="po-perks"><li>Save 18%</li><li>Cancel anytime</li></ul>
+              </button>
+            </div>
+            <button class="btn bundle-modal-btn" data-one-time-id="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</button>
           </div>
-          <div class="bundle-card-price"><span class="bc-price">£39.99</span> <span class="was">£46.97</span><span class="bundle-save-badge">Save 15%</span></div>
-          <button class="btn bundle-modal-btn" data-one-time-id="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</button>
         </div>
+
       </div>
     </div>
   </section>
@@ -432,35 +472,33 @@
   };
 
   document.querySelectorAll('.bundle-card').forEach(card => {
-    const btns = card.querySelectorAll('.bundle-sub-btn');
-    const priceEl = card.querySelector('.bc-price');
-    const cartBtn = card.querySelector('.bundle-modal-btn, [data-add-to-cart]');
-    const directBtn = card.querySelector('[data-add-to-cart]');
+    const options = card.querySelectorAll('.purchase-option');
     const modalBtn = card.querySelector('.bundle-modal-btn');
+    const addBtn = card.querySelector('.bundle-add-btn');
 
-    // Determine which price key to use
-    const baseId = modalBtn
-      ? modalBtn.dataset.oneTimeId
-      : directBtn?.dataset.addToCart;
-    const prices = SUB_PRICES[baseId];
-
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const isSub = btn.dataset.mode === 'subscribe';
-
-        if (prices && priceEl) priceEl.textContent = isSub ? prices.sub : prices.one;
-        if (directBtn) directBtn.dataset.subscribe = isSub ? 'true' : 'false';
+    // Purchase option toggle
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
       });
     });
 
-    // Wire modal buttons
+    // Wire modal buttons (soap 3-pack, essentials — need scent selection)
     if (modalBtn) {
       modalBtn.addEventListener('click', () => {
-        const isSub = card.querySelector('.bundle-sub-btn[data-mode="subscribe"]').classList.contains('active');
+        const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
         const id = isSub ? modalBtn.dataset.subId : modalBtn.dataset.oneTimeId;
         openBundleModal(id);
+      });
+    }
+
+    // Wire direct add-to-cart buttons (tallow & lip balm 3-packs)
+    if (addBtn) {
+      addBtn.addEventListener('click', () => {
+        const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
+        const id = isSub ? addBtn.dataset.subId : addBtn.dataset.oneTimeId;
+        addToCart(id);
       });
     }
   });
