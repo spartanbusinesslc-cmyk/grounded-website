@@ -243,6 +243,8 @@
     overflow: hidden;
   }
   .story-panel img { width: 100px; opacity: 0.9; }
+  .story-founders { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+  .story-founders img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 2px; }
 
   /* Bundle banner */
   /* Our Ingredients section */
@@ -384,7 +386,10 @@
         <a href="shop.html" class="btn btn-solid">Explore the Range</a>
       </div>
       <div class="story-panel">
-        <img src="assets/logo-icon.svg" alt="">
+        <div class="story-founders">
+          <img src="assets/our story louis.jpeg" alt="Louis">
+          <img src="assets/our story leon.jpeg" alt="Leon">
+        </div>
       </div>
     </div>
   </section>
