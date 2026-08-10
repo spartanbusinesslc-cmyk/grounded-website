@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — EARTHED</title>
+<meta name="description" content="Frequently asked questions about EARTHED natural skincare — ingredients, shelf life, shipping and more.">
+<link rel="icon" href="assets/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<style>
+  .faq-page { padding: clamp(56px, 8vw, 100px) 0; }
+  .faq-page h1 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--olive); text-transform: uppercase; margin-bottom: 12px; }
+  .faq-page .subtitle { font-size: 0.9rem; opacity: 0.5; margin-bottom: 56px; font-family: var(--body); }
+  .faq-list { max-width: 720px; }
+  .faq-item { border-top: 1px solid rgba(28,28,28,0.1); }
+  .faq-item:last-child { border-bottom: 1px solid rgba(28,28,28,0.1); }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--display);
+    font-size: 1.15rem;
+    color: var(--charcoal);
+  }
+  .faq-question:hover { color: var(--olive); }
+  .faq-icon { font-size: 1.2rem; color: var(--olive); flex-shrink: 0; transition: transform 0.25s ease; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    color: rgba(28,28,28,0.72);
+    line-height: 1.8;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.25s ease;
+    padding: 0;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 400px;
+    padding-bottom: 22px;
+  }
+  .faq-answer a { color: var(--olive); }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="free-shipping-bar">Free delivery on orders over £25</div>
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo-icon.svg" alt="EARTHED logo">
+      EARTHED
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html#story">Our Story</a></li>
+        <li><a href="index.html#ingredients">Our Ingredients</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <button id="cart-toggle" class="nav-cart-btn" aria-label="Open cart">Cart<span class="cart-badge" data-cart-count>0</span></button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="14" viewBox="0 0 22 14" fill="none"><path d="M0 1H22" stroke="#1C1C1C" stroke-width="1.5"/><path d="M0 13H22" stroke="#1C1C1C" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap faq-page">
+    <h1>Frequently Asked Questions</h1>
+    <p class="subtitle">Can't find your answer? Reach us on Instagram <a href="https://instagram.com/shopearthed" target="_blank" rel="noopener" style="color:var(--olive);">@shopearthed</a></p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What are your products made from?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Every EARTHED product is made from a small number of natural, ancestral ingredients — things like grass-fed tallow, raw cow's milk, beeswax, olive oil, coconut oil and shea butter. No synthetic fillers, no parabens, no seed oils. Just ingredients that have nourished skin for centuries.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Are your products suitable for sensitive skin?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Yes — all of our products are formulated with gentle, natural ingredients and are suitable for sensitive skin. Some of our scented soap varieties contain essential oils which can occasionally cause mild reactions in very sensitive individuals. If your skin is particularly reactive, we recommend opting for the Plain (unscented) version of our soaps.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How long does each product last?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Our soap bars have a shelf life of 12 months. The Tallow Body Balm and Lip Balm both last up to 6 months. With regular daily use, a soap bar typically lasts 4–6 weeks depending on usage.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Do you use any synthetic ingredients?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Never. Every ingredient in every EARTHED product is 100% natural. We believe what you put on your skin matters just as much as what you put in your body, and we formulate accordingly.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How should I store my products?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          All products are best stored in a cool, dry place away from direct sunlight. For the soap, keeping it dry between uses will extend its life — a draining soap dish is ideal. For the Tallow Balm, be aware that tallow is a natural fat and its consistency may soften on very hot days — this is completely normal and does not affect the product. Simply store it somewhere cool and it will return to its usual consistency.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Are your products vegan?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Most of our products contain animal-derived ingredients — our raw milk soap contains grass-fed cow's milk, our tallow balm is made from beef tallow, and our lip balm contains beeswax. These are ingredients we are proud to use, sourced from British farms. For customers who prefer a vegan option, our Olive Oil Soap is made entirely from plant-based ingredients.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How do I cancel my subscription?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          You can cancel your subscription at any time — no questions asked. Simply contact us before your next renewal date via Instagram <a href="https://instagram.com/shopearthed" target="_blank" rel="noopener">@shopearthed</a> or email <a href="mailto:le0nidasparta2408@gmail.com">le0nidasparta2408@gmail.com</a> and we will cancel it straight away.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Do you ship internationally?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          We currently ship within the UK only, via Royal Mail. We aim to dispatch every order the next working day, with standard delivery taking 2–3 working days. Free delivery is available on all orders over £25.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Can I use the soap on my face?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Yes — our soaps are gentle enough for use on the face. The raw milk soap in particular is popular as a facial cleanser thanks to its lactic acid content, which gently exfoliates and brightens. If you have very sensitive facial skin, start with the Plain (unscented) variety.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Why do you use raw milk?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Raw cow's milk is one of nature's most skin-compatible ingredients. It contains lactic acid — a natural AHA that gently exfoliates and promotes cell renewal — as well as vitamins A, D and E, and natural fats that deeply moisturise. Unlike processed alternatives, raw milk retains all of its natural enzymes and nutrients, making it far more effective for the skin. It's the kind of ingredient our ancestors used long before synthetic skincare existed.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/logo-full.svg" alt="EARTHED" class="footer-logo">
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="raw-milk-soap.html">Raw Milk Soap</a></li>
+          <li><a href="olive-oil-soap.html">Olive Oil Soap</a></li>
+          <li><a href="tallow-balm.html">Tallow Body Balm</a></li>
+          <li><a href="lip-balm.html">Lip Balm</a></li>
+          <li><a href="shop.html#bundles">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Brand</h4>
+        <ul>
+          <li><a href="index.html#story">Our Story</a></li>
+          <li><a href="index.html#ingredients">Our Ingredients</a></li>
+          <li><a href="https://instagram.com/shopearthed" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="returns-shipping.html">Returns &amp; Shipping</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EARTHED. All rights reserved.</span>
+      <span>shopearthed.co</span>
+    </div>
+  </div>
+</footer>
+
+<div id="cart-overlay" class="cart-overlay"></div>
+<aside id="cart-drawer" class="cart-drawer" aria-label="Shopping cart">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button id="cart-close" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-body">
+    <div id="cart-empty" style="display:none;" class="cart-empty">Your cart is empty.</div>
+    <div id="cart-items"></div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span id="cart-subtotal">£0.00</span>
+    </div>
+    <div id="cart-shipping-nudge" class="cart-shipping-nudge" style="display:none;"></div>
+    <button id="cart-checkout-btn" class="btn btn-solid">Checkout</button>
+    <p class="cart-note">Shipping &amp; taxes calculated at checkout</p>
+    <p id="cart-sub-note" class="cart-note" style="display:none;margin-top:4px;color:var(--olive);font-style:italic;">Subscriptions can be cancelled anytime.</p>
+  </div>
+</aside>
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="nav.js"></script>
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+</body>
+</html>
