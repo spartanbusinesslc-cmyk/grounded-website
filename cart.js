@@ -127,16 +127,18 @@ function renderCart() {
     subNoteEl.style.display = hasSub ? "block" : "none";
   }
 
-  // Free shipping nudge
+  // Free shipping nudge — threshold depends on selected region
   const nudgeEl = document.getElementById("cart-shipping-nudge");
   if (nudgeEl) {
+    const region = (document.getElementById("cart-region")?.value) || "uk";
+    const threshold = region === "europe" ? 75 : region === "row" ? 100 : 25;
     if (subtotal === 0) {
       nudgeEl.style.display = "none";
-    } else if (subtotal >= 25) {
+    } else if (subtotal >= threshold) {
       nudgeEl.textContent = "🎉 You qualify for free delivery!";
       nudgeEl.style.display = "block";
     } else {
-      const remaining = (25 - subtotal).toFixed(2);
+      const remaining = (threshold - subtotal).toFixed(2);
       nudgeEl.textContent = `Add £${remaining} more for free delivery`;
       nudgeEl.style.display = "block";
     }
@@ -184,11 +186,12 @@ async function checkout() {
     }
 
     const hasSubscription = items.some(item => item.id.startsWith("sub"));
+    const shippingRegion = document.getElementById("cart-region")?.value || "uk";
 
     const res = await fetch("/api/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, subscription: hasSubscription, subtotalPence: Math.round(cartSubtotal(cart) * 100), affiliateRef: getAffiliateRef(), metadata })
+      body: JSON.stringify({ items, subscription: hasSubscription, subtotalPence: Math.round(cartSubtotal(cart) * 100), affiliateRef: getAffiliateRef(), metadata, shippingRegion })
     });
 
     const data = await res.json();
@@ -258,6 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("cart-checkout-btn")?.addEventListener("click", checkout);
+
+  // Re-run nudge when region changes
+  document.getElementById("cart-region")?.addEventListener("change", () => renderCart());
 
   // Escape key closes cart
   document.addEventListener("keydown", (e) => {

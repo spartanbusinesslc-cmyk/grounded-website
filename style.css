@@ -379,6 +379,9 @@ section { padding: var(--section-pad) 0; }
 .cart-subtotal-row span:last-child { font-size: 1.4rem; font-family: var(--body); font-weight: 300; }
 .cart-footer .btn { width: 100%; justify-content: center; }
 .cart-note { font-size: 0.74rem; opacity: 0.55; margin-top: 12px; text-align: center; }
+.cart-region-wrap { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.cart-region-label { font-size: 0.78rem; font-family: var(--body); opacity: 0.6; letter-spacing: 0.06em; }
+.cart-region-select { font-family: var(--body); font-size: 0.78rem; border: 1px solid rgba(28,28,28,0.2); border-radius: 4px; padding: 5px 8px; background: var(--cream); color: var(--charcoal); cursor: pointer; }
 .cart-shipping-nudge {
   font-size: 0.76rem;
   text-align: center;

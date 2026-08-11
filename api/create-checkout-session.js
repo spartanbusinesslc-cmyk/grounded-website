@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items, subscription, metadata, subtotalPence, affiliateRef } = req.body || {};
+    const { items, subscription, metadata, subtotalPence, affiliateRef, shippingRegion } = req.body || {};
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Your cart is empty." });
@@ -101,13 +101,24 @@ module.exports = async (req, res) => {
 
     // Shipping only applies to one-time payments; subscriptions use billing address
     if (!subscription) {
-      const shippingOptions = [
-        { shipping_rate: process.env.SHIPPING_RATE_STANDARD },
-        { shipping_rate: process.env.SHIPPING_RATE_EXPRESS },
-      ];
-      // Free shipping on orders of £25 or more
-      if (subtotalPence >= 2500) {
-        shippingOptions.unshift({ shipping_rate: process.env.SHIPPING_RATE_FREE });
+      let shippingOptions;
+      if (shippingRegion === "europe") {
+        shippingOptions = subtotalPence >= 7500
+          ? [{ shipping_rate: process.env.SHIPPING_RATE_EUROPE_FREE }]
+          : [{ shipping_rate: process.env.SHIPPING_RATE_EUROPE }];
+      } else if (shippingRegion === "row") {
+        shippingOptions = subtotalPence >= 10000
+          ? [{ shipping_rate: process.env.SHIPPING_RATE_ROW_FREE }]
+          : [{ shipping_rate: process.env.SHIPPING_RATE_ROW }];
+      } else {
+        // UK default
+        shippingOptions = [
+          { shipping_rate: process.env.SHIPPING_RATE_STANDARD },
+          { shipping_rate: process.env.SHIPPING_RATE_EXPRESS },
+        ];
+        if (subtotalPence >= 2500) {
+          shippingOptions.unshift({ shipping_rate: process.env.SHIPPING_RATE_FREE });
+        }
       }
       sessionParams.shipping_options = shippingOptions;
     }
