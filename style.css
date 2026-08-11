@@ -506,12 +506,13 @@ section { padding: var(--section-pad) 0; }
   display: inline-block;
   padding: 2px 8px;
   border-radius: 20px;
-  color: #fff;
-  background: rgba(28,28,28,0.18);
+  color: var(--cream);
+  background: var(--olive);
 }
 .po-perks li::before { content: none; }
-.po-perks li.perk-save { background: #B94040 !important; color: #fff !important; }
-.po-perks li.perk-cancel { background: #4a7c59 !important; color: #fff !important; }
+.po-perks li.perk-save { background: var(--olive) !important; color: var(--cream) !important; }
+.po-perks li.perk-cancel { background: var(--olive) !important; color: var(--cream) !important; }
+.purchase-option.active .po-perks li { background: rgba(255,255,255,0.22) !important; color: #fff !important; }
 .po-popular {
   font-family: var(--body);
   font-size: 0.6rem;
