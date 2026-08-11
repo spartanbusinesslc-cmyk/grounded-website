@@ -480,7 +480,7 @@ section { padding: var(--section-pad) 0; }
 .po-price {
   font-family: var(--body);
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 600;
   color: var(--charcoal);
   margin-top: 2px;
 }
