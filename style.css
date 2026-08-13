@@ -510,7 +510,7 @@ section { padding: var(--section-pad) 0; }
   background: var(--olive);
 }
 .po-perks li::before { content: none; }
-.po-perks li.perk-save { background: var(--olive) !important; color: var(--cream) !important; }
+.po-perks li.perk-save { background: #B94040 !important; color: #fff !important; }
 .po-perks li.perk-cancel { background: var(--olive) !important; color: var(--cream) !important; }
 .purchase-option.active .po-perks li { background: rgba(255,255,255,0.22) !important; color: #fff !important; }
 .po-popular {
@@ -544,11 +544,11 @@ section { padding: var(--section-pad) 0; }
 .interval-option {
   flex: 1;
   padding: 5px 12px;
-  border: 1.5px solid var(--earth);
+  border: 1.5px solid #B94040;
   border-radius: 999px;
   font-size: 0.72rem;
   font-family: var(--body);
-  color: var(--earth);
+  color: #B94040;
   background: transparent;
   cursor: pointer;
   letter-spacing: 0.04em;
@@ -556,9 +556,9 @@ section { padding: var(--section-pad) 0; }
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .interval-option.active {
-  background: var(--earth);
-  color: var(--cream);
-  border-color: var(--earth);
+  background: #B94040;
+  color: #fff;
+  border-color: #B94040;
 }
 
 /* ---------- Scent pills mobile ---------- */
