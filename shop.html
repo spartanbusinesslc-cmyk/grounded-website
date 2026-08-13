@@ -304,18 +304,18 @@
             <h3>Soap Bundle</h3>
             <p class="bundle-contents">3× Soap of Choice</p>
             <div class="purchase-options">
-              <button class="purchase-option active" data-mode="one-time">
+              <button type="button" class="purchase-option active" data-mode="one-time">
                 <span class="po-label">One-Time</span>
                 <span class="po-price">£24.99</span>
                 <ul class="po-perks"><li class="perk-save">Save 30%</li></ul>
               </button>
-              <button class="purchase-option" data-mode="subscribe">
+              <button type="button" class="purchase-option" data-mode="subscribe">
                 <span class="po-label">Subscribe &amp; Save</span>
                 <span class="po-price">£19.99</span>
                 <ul class="po-perks"><li class="perk-save">Save 44%</li></ul>
               </button>
             </div>
-            <button class="btn bundle-modal-btn" data-one-time-id="soapBundle" data-sub-id="subSoapBundle">Add to Cart</button>
+            <button type="button" class="btn bundle-modal-btn" data-one-time-id="soapBundle" data-sub-id="subSoapBundle">Add to Cart</button>
           </div>
         </div>
 
@@ -327,18 +327,18 @@
             <h3>Tallow Bundle</h3>
             <p class="bundle-contents">3× Tallow Body Balm</p>
             <div class="purchase-options">
-              <button class="purchase-option active" data-mode="one-time">
+              <button type="button" class="purchase-option active" data-mode="one-time">
                 <span class="po-label">One-Time</span>
                 <span class="po-price">£49.98</span>
                 <ul class="po-perks"><li class="perk-save">Save 33%</li></ul>
               </button>
-              <button class="purchase-option" data-mode="subscribe">
+              <button type="button" class="purchase-option" data-mode="subscribe">
                 <span class="po-label">Subscribe &amp; Save</span>
                 <span class="po-price">£41.99</span>
                 <ul class="po-perks"><li class="perk-save">Save 44%</li></ul>
               </button>
             </div>
-            <button class="btn bundle-add-btn" data-one-time-id="balmBundle" data-sub-id="subBalmBundle">Add to Cart</button>
+            <button type="button" class="btn bundle-add-btn" data-one-time-id="balmBundle" data-sub-id="subBalmBundle">Add to Cart</button>
           </div>
         </div>
 
@@ -350,18 +350,18 @@
             <h3>Lip Balm Bundle</h3>
             <p class="bundle-contents">3× Lip Balm</p>
             <div class="purchase-options">
-              <button class="purchase-option active" data-mode="one-time">
+              <button type="button" class="purchase-option active" data-mode="one-time">
                 <span class="po-label">One-Time</span>
                 <span class="po-price">£19.99</span>
                 <ul class="po-perks"><li class="perk-save">Save 33%</li></ul>
               </button>
-              <button class="purchase-option" data-mode="subscribe">
+              <button type="button" class="purchase-option" data-mode="subscribe">
                 <span class="po-label">Subscribe &amp; Save</span>
                 <span class="po-price">£16.99</span>
                 <ul class="po-perks"><li class="perk-save">Save 43%</li></ul>
               </button>
             </div>
-            <button class="btn bundle-add-btn" data-one-time-id="lipBundle" data-sub-id="subLipBundle">Add to Cart</button>
+            <button type="button" class="btn bundle-add-btn" data-one-time-id="lipBundle" data-sub-id="subLipBundle">Add to Cart</button>
           </div>
         </div>
 
@@ -373,18 +373,18 @@
             <h3>The Essentials Set</h3>
             <p class="bundle-contents">1× Soap · 1× Tallow · 1× Lip Balm</p>
             <div class="purchase-options">
-              <button class="purchase-option active" data-mode="one-time">
+              <button type="button" class="purchase-option active" data-mode="one-time">
                 <span class="po-label">One-Time</span>
                 <span class="po-price">£39.99</span>
                 <ul class="po-perks"><li class="perk-save">Save 15%</li></ul>
               </button>
-              <button class="purchase-option" data-mode="subscribe">
+              <button type="button" class="purchase-option" data-mode="subscribe">
                 <span class="po-label">Subscribe &amp; Save</span>
                 <span class="po-price">£32.99</span>
                 <ul class="po-perks"><li class="perk-save">Save 30%</li></ul>
               </button>
             </div>
-            <button class="btn bundle-modal-btn" data-one-time-id="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</button>
+            <button type="button" class="btn bundle-modal-btn" data-one-time-id="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</button>
           </div>
         </div>
 
@@ -502,23 +502,29 @@
 
     // Wire modal buttons (soap 3-pack, essentials — need scent selection)
     if (modalBtn) {
-      modalBtn.addEventListener('click', () => {
+      modalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (modalBtn.disabled) return;
+        modalBtn.disabled = true;
         const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
         const id = isSub ? modalBtn.dataset.subId : modalBtn.dataset.oneTimeId;
         openBundleModal(id);
+        setTimeout(() => { modalBtn.disabled = false; }, 1000);
       });
     }
 
     // Wire direct add-to-cart buttons (tallow & lip balm 3-packs)
     if (addBtn) {
       addBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         if (addBtn.disabled) return;
         addBtn.disabled = true;
         const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
         const id = isSub ? addBtn.dataset.subId : addBtn.dataset.oneTimeId;
         addToCart(id);
-        setTimeout(() => { addBtn.disabled = false; }, 500);
+        setTimeout(() => { addBtn.disabled = false; }, 1000);
       });
     }
   });
