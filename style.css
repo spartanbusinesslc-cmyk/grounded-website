@@ -550,6 +550,7 @@ section { padding: var(--section-pad) 0; }
   background: transparent;
   cursor: pointer;
   letter-spacing: 0.04em;
+  font-weight: 700;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .interval-option.active {
