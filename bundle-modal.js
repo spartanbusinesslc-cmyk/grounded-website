@@ -109,11 +109,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeBundleModal();
   });
 
+  // Subscribe & Save toggle — reveals Monthly / Every 3 months sub-options
+  document.querySelectorAll(".bundle-sub-toggle").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const wrap = btn.nextElementSibling;
+      if (wrap && wrap.classList.contains("bundle-interval-wrap")) {
+        wrap.hidden = !wrap.hidden;
+      }
+    });
+  });
+
   // Wire bundle nudge dropdown buttons to open modal instead of direct addToCart
   document.querySelectorAll(".bundle-option[data-bundle-modal]").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.bundleModal;
-      closeBundleDropdown();
+      // Close whichever nudge dropdown this button lives in
+      const drop = btn.closest(".bundle-nudge-dropdown");
+      if (drop) {
+        drop.hidden = true;
+        const nudgeBtn = drop.closest(".bundle-nudge-wrap")?.querySelector(".bundle-nudge");
+        if (nudgeBtn) nudgeBtn.setAttribute("aria-expanded", "false");
+      }
       openBundleModal(id);
     });
   });

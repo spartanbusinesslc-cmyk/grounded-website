@@ -529,6 +529,9 @@ section { padding: var(--section-pad) 0; }
 .purchase-option.active .po-popular { background: rgba(255,255,255,0.2); }
 
 /* ---------- Subscription interval selector ---------- */
+.bundle-interval-wrap { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.bundle-interval-wrap[hidden] { display: none; }
+
 .interval-options {
   display: flex;
   width: 100%;
