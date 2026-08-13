@@ -529,7 +529,7 @@ section { padding: var(--section-pad) 0; }
 .purchase-option.active .po-popular { background: rgba(255,255,255,0.2); }
 
 /* ---------- Subscription interval selector ---------- */
-.bundle-interval-wrap { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.bundle-interval-wrap { display: flex; gap: 10px; }
 .bundle-interval-wrap[hidden] { display: none; }
 
 .interval-options {
@@ -630,10 +630,14 @@ section { padding: var(--section-pad) 0; }
   border: 1px solid rgba(89,98,75,0.25);
   border-top: none;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
   padding: 14px 16px;
   background: var(--cream);
-  flex-wrap: wrap;
+}
+.bundle-option-row {
+  display: flex;
+  gap: 10px;
 }
 .bundle-nudge-dropdown[hidden] { display: none; }
 .bundle-option {
