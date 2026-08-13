@@ -531,6 +531,8 @@ section { padding: var(--section-pad) 0; }
 /* ---------- Subscription interval selector ---------- */
 .bundle-interval-wrap { display: flex; gap: 10px; }
 .bundle-interval-wrap[hidden] { display: none; }
+.bundle-interval-wrap .bundle-option { background: var(--olive); padding: 6px 10px; }
+.bundle-interval-wrap .bundle-option-price { display: none; }
 
 .interval-options {
   display: flex;
