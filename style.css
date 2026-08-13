@@ -531,6 +531,7 @@ section { padding: var(--section-pad) 0; }
 /* ---------- Subscription interval selector ---------- */
 .interval-options {
   display: flex;
+  width: 100%;
   gap: 6px;
   margin-bottom: 10px;
 }
