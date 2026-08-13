@@ -113,10 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".bundle-sub-toggle").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const wrap = btn.nextElementSibling;
-      if (wrap && wrap.classList.contains("bundle-interval-wrap")) {
-        wrap.hidden = !wrap.hidden;
-      }
+      const dropdown = btn.closest(".bundle-nudge-dropdown");
+      const wrap = dropdown?.querySelector(".bundle-interval-wrap");
+      if (wrap) wrap.hidden = !wrap.hidden;
     });
   });
 
