@@ -182,11 +182,17 @@ async function checkout() {
     if (bundleNotes.subSoapBundle) {
       bundleNotes.subSoapBundle.forEach((scent, i) => { metadata[`soap_bundle_bar_${i + 1}`] = scent; });
     }
+    if (bundleNotes.subSoapBundle3m) {
+      bundleNotes.subSoapBundle3m.forEach((scent, i) => { metadata[`soap_bundle_bar_${i + 1}`] = scent; });
+    }
     if (bundleNotes.essentialsBundle) {
       metadata["essentials_soap"] = bundleNotes.essentialsBundle[0];
     }
     if (bundleNotes.subEssentialsBundle) {
       metadata["essentials_soap"] = bundleNotes.subEssentialsBundle[0];
+    }
+    if (bundleNotes.subEssentialsBundle3m) {
+      metadata["essentials_soap"] = bundleNotes.subEssentialsBundle3m[0];
     }
 
     const hasSubscription = items.some(item => item.id.startsWith("sub"));

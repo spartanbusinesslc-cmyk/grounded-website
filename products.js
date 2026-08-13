@@ -93,5 +93,9 @@ const PRODUCTS = {
   subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.png" },
   subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 41.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.png" },
   subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.png" },
-  subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/essentials bundle.png" }
+  subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/essentials bundle.png" },
+  subSoapBundle3m:        { name: "Soap 3-Pack (Every 3 months)",                price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.png" },
+  subBalmBundle3m:        { name: "Tallow 3-Pack (Every 3 months)",              price: 39.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.png" },
+  subLipBundle3m:         { name: "Lip Balm 3-Pack (Every 3 months)",            price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.png" },
+  subEssentialsBundle3m:  { name: "The Essentials Set (Every 3 months)",         price: 32.99, swatch: "swatch-balm",  image: "assets/essentials bundle.png" }
 };
