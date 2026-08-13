@@ -511,10 +511,14 @@
 
     // Wire direct add-to-cart buttons (tallow & lip balm 3-packs)
     if (addBtn) {
-      addBtn.addEventListener('click', () => {
+      addBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (addBtn.disabled) return;
+        addBtn.disabled = true;
         const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
         const id = isSub ? addBtn.dataset.subId : addBtn.dataset.oneTimeId;
         addToCart(id);
+        setTimeout(() => { addBtn.disabled = false; }, 500);
       });
     }
   });
