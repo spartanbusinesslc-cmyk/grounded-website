@@ -528,6 +528,31 @@ section { padding: var(--section-pad) 0; }
 }
 .purchase-option.active .po-popular { background: rgba(255,255,255,0.2); }
 
+/* ---------- Subscription interval selector ---------- */
+.interval-options {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.interval-option {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid rgba(89,98,75,0.35);
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-family: var(--body);
+  color: var(--charcoal);
+  background: transparent;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.interval-option.active {
+  background: var(--olive);
+  color: var(--cream);
+  border-color: var(--olive);
+}
+
 /* ---------- Scent pills mobile ---------- */
 @media (max-width: 600px) {
   .variant-pills { gap: 6px; }

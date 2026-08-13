@@ -315,7 +315,11 @@
                 <ul class="po-perks"><li class="perk-save">Save 44%</li></ul>
               </button>
             </div>
-            <button type="button" class="btn bundle-modal-btn" data-one-time-id="soapBundle" data-sub-id="subSoapBundle">Add to Cart</button>
+            <div class="interval-options" hidden>
+              <button type="button" class="interval-option active" data-interval="1m">Monthly</button>
+              <button type="button" class="interval-option" data-interval="3m">Every 3 months</button>
+            </div>
+            <button type="button" class="btn bundle-modal-btn" data-one-time-id="soapBundle" data-sub-id="subSoapBundle" data-sub-id-3m="subSoapBundle3m">Add to Cart</button>
           </div>
         </div>
 
@@ -338,7 +342,11 @@
                 <ul class="po-perks"><li class="perk-save">Save 44%</li></ul>
               </button>
             </div>
-            <button type="button" class="btn bundle-add-btn" data-one-time-id="balmBundle" data-sub-id="subBalmBundle">Add to Cart</button>
+            <div class="interval-options" hidden>
+              <button type="button" class="interval-option active" data-interval="1m">Monthly</button>
+              <button type="button" class="interval-option" data-interval="3m">Every 3 months</button>
+            </div>
+            <button type="button" class="btn bundle-add-btn" data-one-time-id="balmBundle" data-sub-id="subBalmBundle" data-sub-id-3m="subBalmBundle3m">Add to Cart</button>
           </div>
         </div>
 
@@ -361,7 +369,11 @@
                 <ul class="po-perks"><li class="perk-save">Save 43%</li></ul>
               </button>
             </div>
-            <button type="button" class="btn bundle-add-btn" data-one-time-id="lipBundle" data-sub-id="subLipBundle">Add to Cart</button>
+            <div class="interval-options" hidden>
+              <button type="button" class="interval-option active" data-interval="1m">Monthly</button>
+              <button type="button" class="interval-option" data-interval="3m">Every 3 months</button>
+            </div>
+            <button type="button" class="btn bundle-add-btn" data-one-time-id="lipBundle" data-sub-id="subLipBundle" data-sub-id-3m="subLipBundle3m">Add to Cart</button>
           </div>
         </div>
 
@@ -384,7 +396,11 @@
                 <ul class="po-perks"><li class="perk-save">Save 30%</li></ul>
               </button>
             </div>
-            <button type="button" class="btn bundle-modal-btn" data-one-time-id="essentialsBundle" data-sub-id="subEssentialsBundle">Add to Cart</button>
+            <div class="interval-options" hidden>
+              <button type="button" class="interval-option active" data-interval="1m">Monthly</button>
+              <button type="button" class="interval-option" data-interval="3m">Every 3 months</button>
+            </div>
+            <button type="button" class="btn bundle-modal-btn" data-one-time-id="essentialsBundle" data-sub-id="subEssentialsBundle" data-sub-id-3m="subEssentialsBundle3m">Add to Cart</button>
           </div>
         </div>
 
@@ -489,16 +505,35 @@
 
   document.querySelectorAll('.bundle-card').forEach(card => {
     const options = card.querySelectorAll('.purchase-option');
+    const intervalWrap = card.querySelector('.interval-options');
+    const intervalOpts = card.querySelectorAll('.interval-option');
     const modalBtn = card.querySelector('.bundle-modal-btn');
     const addBtn = card.querySelector('.bundle-add-btn');
 
-    // Purchase option toggle
+    // Purchase option toggle — show/hide interval selector for subscribe
     options.forEach(opt => {
       opt.addEventListener('click', () => {
         options.forEach(o => o.classList.remove('active'));
         opt.classList.add('active');
+        if (intervalWrap) intervalWrap.hidden = opt.dataset.mode !== 'subscribe';
       });
     });
+
+    // Interval toggle (monthly / every 3 months)
+    intervalOpts.forEach(opt => {
+      opt.addEventListener('click', () => {
+        intervalOpts.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      });
+    });
+
+    // Returns correct sub ID based on selected interval
+    function resolveId(btn) {
+      const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
+      if (!isSub) return btn.dataset.oneTimeId;
+      const is3m = card.querySelector('.interval-option[data-interval="3m"]')?.classList.contains('active');
+      return is3m ? btn.dataset.subId3m : btn.dataset.subId;
+    }
 
     // Wire modal buttons (soap 3-pack, essentials — need scent selection)
     if (modalBtn) {
@@ -507,9 +542,7 @@
         e.stopPropagation();
         if (modalBtn.disabled) return;
         modalBtn.disabled = true;
-        const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
-        const id = isSub ? modalBtn.dataset.subId : modalBtn.dataset.oneTimeId;
-        openBundleModal(id);
+        openBundleModal(resolveId(modalBtn));
         setTimeout(() => { modalBtn.disabled = false; }, 1000);
       });
     }
@@ -521,9 +554,7 @@
         e.stopPropagation();
         if (addBtn.disabled) return;
         addBtn.disabled = true;
-        const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
-        const id = isSub ? addBtn.dataset.subId : addBtn.dataset.oneTimeId;
-        addToCart(id);
+        addToCart(resolveId(addBtn));
         setTimeout(() => { addBtn.disabled = false; }, 1000);
       });
     }

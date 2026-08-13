@@ -35,18 +35,20 @@ function openBundleModal(bundleId) {
 
   modal.dataset.bundleId = bundleId;
   const isSub = bundleId.startsWith("sub");
+  const is3m = bundleId.endsWith("3m");
   const isEssentials = bundleId.includes("ssentials");
+  const billingLabel = is3m ? "/ 3 months" : "/mo";
   const body = modal.querySelector(".bm-body");
 
   if (isEssentials) {
-    const price = isSub ? "£33.99/mo" : "£39.99";
+    const price = isSub ? `£32.99 ${billingLabel}` : "£39.99";
     modal.querySelector(".bm-title").textContent = "EARTHED Essentials Set";
     modal.querySelector(".bm-subtitle").textContent =
       "Choose your soap scent — balm & lip balm are included.";
     modal.querySelector(".bm-confirm").textContent = `Add to Cart — ${price}`;
     body.innerHTML = buildScentSelect("Your Soap");
   } else {
-    const price = isSub ? "£19.99/mo" : "£24.99";
+    const price = isSub ? `£19.99 ${billingLabel}` : "£24.99";
     modal.querySelector(".bm-title").textContent = "Build Your Soap 3-Pack";
     modal.querySelector(".bm-subtitle").textContent =
       "Pick your 3 bars — mix & match any scent.";
