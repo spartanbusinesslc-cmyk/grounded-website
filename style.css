@@ -534,6 +534,7 @@ section { padding: var(--section-pad) 0; }
   gap: 6px;
   margin-bottom: 10px;
 }
+.interval-options[hidden] { display: none; }
 .interval-option {
   flex: 1;
   padding: 6px 8px;
