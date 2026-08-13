@@ -37,8 +37,12 @@ function saveCart(cart) {
   renderCart();
 }
 
+const _addCooldowns = new Set();
 function addToCart(id, qty = 1) {
   if (!PRODUCTS[id]) return;
+  if (_addCooldowns.has(id)) return;
+  _addCooldowns.add(id);
+  setTimeout(() => _addCooldowns.delete(id), 1000);
   const cart = getCart();
   cart[id] = (cart[id] || 0) + qty;
   saveCart(cart);
