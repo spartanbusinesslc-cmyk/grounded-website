@@ -532,7 +532,7 @@
       const isSub = card.querySelector('.purchase-option[data-mode="subscribe"]').classList.contains('active');
       if (!isSub) return btn.dataset.oneTimeId;
       const is3m = card.querySelector('.interval-option[data-interval="3m"]')?.classList.contains('active');
-      return is3m ? btn.dataset.subId3m : btn.dataset.subId;
+      return is3m ? btn.getAttribute('data-sub-id-3m') : btn.dataset.subId;
     }
 
     // Wire modal buttons (soap 3-pack, essentials — need scent selection)
