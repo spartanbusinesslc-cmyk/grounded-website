@@ -102,14 +102,24 @@ module.exports = async (req, res) => {
     // Shipping only applies to one-time payments; subscriptions use billing address
     if (!subscription) {
       let shippingOptions;
+      let allowedCountries;
+
       if (shippingRegion === "europe") {
         shippingOptions = subtotalPence >= 7500
           ? [{ shipping_rate: process.env.SHIPPING_RATE_EUROPE_FREE }]
           : [{ shipping_rate: process.env.SHIPPING_RATE_EUROPE }];
+        allowedCountries = [
+          "AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU",
+          "IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE",
+          "NO","IS","LI","CH"
+        ];
       } else if (shippingRegion === "row") {
         shippingOptions = subtotalPence >= 10000
           ? [{ shipping_rate: process.env.SHIPPING_RATE_ROW_FREE }]
           : [{ shipping_rate: process.env.SHIPPING_RATE_ROW }];
+        allowedCountries = [
+          "AU","CA","US","NZ","JP","SG","HK","AE","ZA","BR","MX","IN","KR","TW"
+        ];
       } else {
         // UK default
         shippingOptions = [
@@ -119,8 +129,11 @@ module.exports = async (req, res) => {
         if (subtotalPence >= 2500) {
           shippingOptions.unshift({ shipping_rate: process.env.SHIPPING_RATE_FREE });
         }
+        allowedCountries = ["GB"];
       }
+
       sessionParams.shipping_options = shippingOptions;
+      sessionParams.shipping_address_collection = { allowed_countries: allowedCountries };
     }
 
     const session = await stripe.checkout.sessions.create(sessionParams);
