@@ -104,6 +104,41 @@ module.exports = async (req, res) => {
       })
     };
 
+    // Subscription shipping — add as a recurring line item based on region
+    if (subscription) {
+      const is3m = items.some(item => item.id.endsWith("3m"));
+      let shippingPriceId = null;
+      let allowedCountries;
+
+      if (shippingRegion === "europe") {
+        allowedCountries = [
+          "AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU",
+          "IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE",
+          "NO","IS","LI","CH"
+        ];
+        if (subtotalPence < 7500) {
+          shippingPriceId = is3m ? process.env.SHIPPING_RATE_SUB_EUROPE_3M : process.env.SHIPPING_RATE_SUB_EUROPE;
+        }
+      } else if (shippingRegion === "row") {
+        allowedCountries = [
+          "AU","CA","US","NZ","JP","SG","HK","AE","ZA","BR","MX","IN","KR","TW"
+        ];
+        if (subtotalPence < 10000) {
+          shippingPriceId = is3m ? process.env.SHIPPING_RATE_SUB_ROW_3M : process.env.SHIPPING_RATE_SUB_ROW;
+        }
+      } else {
+        allowedCountries = ["GB"];
+        if (subtotalPence < 2500) {
+          shippingPriceId = is3m ? process.env.SHIPPING_RATE_SUB_UK_3M : process.env.SHIPPING_RATE_SUB_UK;
+        }
+      }
+
+      if (shippingPriceId) {
+        sessionParams.line_items.push({ price: shippingPriceId, quantity: 1 });
+      }
+      sessionParams.shipping_address_collection = { allowed_countries: allowedCountries };
+    }
+
     // Shipping only applies to one-time payments; subscriptions use billing address
     if (!subscription) {
       let shippingOptions;
