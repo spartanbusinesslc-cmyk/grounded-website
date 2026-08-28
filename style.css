@@ -736,7 +736,8 @@ section { padding: var(--section-pad) 0; }
 .bb-tabs { display: flex; background: var(--beige); border-radius: 10px; padding: 4px; gap: 4px; margin-bottom: 14px; }
 .bb-tab { flex: 1; padding: 10px 8px; border: none; border-radius: 7px; font-family: var(--body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; cursor: pointer; background: transparent; color: rgba(28,28,28,0.45); transition: background 0.2s, color 0.2s; }
 .bb-tab.active { background: var(--cream); color: var(--charcoal); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-.bb-option { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid rgba(89,98,75,0.2); border-radius: 10px; cursor: pointer; margin-bottom: 8px; background: transparent; transition: border-color 0.15s, background 0.15s; }
+.bb-option { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1.5px solid rgba(89,98,75,0.2); border-radius: 10px; cursor: pointer; margin-bottom: 8px; background: transparent; transition: border-color 0.15s, background 0.15s; }
+.bb-option-img { width: 52px; height: 52px; object-fit: contain; border-radius: 6px; flex-shrink: 0; background: var(--cream); }
 .bb-option input[type="radio"] { width: 17px; height: 17px; accent-color: var(--olive); flex-shrink: 0; cursor: pointer; }
 .bb-option.active { border-color: var(--olive); background: rgba(89,98,75,0.05); }
 .bb-option-info { flex: 1; }

@@ -162,6 +162,7 @@
           <div class="bb-panel" id="bb-panel-one-time">
             <label class="bb-option active" id="bb-ot-single">
               <input type="radio" name="bb-ot" value="soapUnscented" checked>
+              <img class="bb-option-img" id="bb-ot-img" src="assets/rms-unscented.png" alt="">
               <div class="bb-option-info">
                 <span class="bb-option-name">Single Bar</span>
                 <span class="bb-option-desc" id="bb-ot-single-desc">Plain</span>
@@ -172,6 +173,7 @@
             </label>
             <label class="bb-option" data-modal="soapBundle">
               <input type="radio" name="bb-ot" value="soapBundle">
+              <img class="bb-option-img" src="assets/soap bundle.png" alt="">
               <div class="bb-option-info">
                 <span class="bb-option-name">Soap 3-Pack</span>
                 <span class="bb-option-desc">Mix &amp; match any 3 bars</span>
@@ -183,6 +185,7 @@
             </label>
             <label class="bb-option" data-modal="essentialsBundle">
               <input type="radio" name="bb-ot" value="essentialsBundle">
+              <img class="bb-option-img" src="assets/essentials%20bundle.png" alt="">
               <div class="bb-option-info">
                 <span class="bb-option-name">Essentials Set</span>
                 <span class="bb-option-desc">Soap, Tallow &amp; Lip Balm</span>
@@ -204,6 +207,7 @@
             </div>
             <label class="bb-option active" id="bb-sub-single">
               <input type="radio" name="bb-sub" value="subSoapUnscented" checked>
+              <img class="bb-option-img" id="bb-sub-img" src="assets/rms-unscented.png" alt="">
               <div class="bb-option-info">
                 <span class="bb-option-name">Single Bar</span>
                 <span class="bb-option-desc" id="bb-sub-single-desc">Plain</span>
@@ -215,6 +219,7 @@
             </label>
             <label class="bb-option" data-modal1m="subSoapBundle" data-modal3m="subSoapBundle3m">
               <input type="radio" name="bb-sub" value="subSoapBundle">
+              <img class="bb-option-img" src="assets/soap bundle.png" alt="">
               <div class="bb-option-info">
                 <span class="bb-option-name">Soap 3-Pack</span>
                 <span class="bb-option-desc">Mix &amp; match any 3 bars</span>
@@ -226,6 +231,7 @@
             </label>
             <label class="bb-option" data-modal1m="subEssentialsBundle" data-modal3m="subEssentialsBundle3m">
               <input type="radio" name="bb-sub" value="subEssentialsBundle">
+              <img class="bb-option-img" src="assets/essentials%20bundle.png" alt="">
               <div class="bb-option-info">
                 <span class="bb-option-name">Essentials Set</span>
                 <span class="bb-option-desc">Soap, Tallow &amp; Lip Balm</span>
@@ -443,6 +449,10 @@
         currentSubId = pill.dataset.subId;
         document.getElementById('bb-ot-single-desc').textContent = pill.textContent.trim();
         document.getElementById('bb-sub-single-desc').textContent = pill.textContent.trim();
+        if (pill.dataset.image) {
+          document.getElementById('bb-ot-img').src  = pill.dataset.image;
+          document.getElementById('bb-sub-img').src = pill.dataset.image;
+        }
         updateBtn();
       });
     });
