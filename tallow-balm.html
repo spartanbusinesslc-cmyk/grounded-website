@@ -42,9 +42,9 @@
     .product-image { aspect-ratio: 4/3; }
     .wrap { padding-left: clamp(16px, 5vw, 48px); padding-right: clamp(16px, 5vw, 48px); }
   }
-  .product-info .product-label { display: block; font-family: var(--body); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); font-weight: 500; margin-bottom: 14px; }
-  .product-info h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 500; color: var(--charcoal); margin-bottom: 18px; }
-  .product-info .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 26px; line-height: 1.7; max-width: 440px; }
+  .product-info .product-label { display: block; font-family: var(--body); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); font-weight: 500; margin-bottom: 8px; }
+  .product-info h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 500; color: var(--charcoal); margin-bottom: 10px; }
+  .product-info .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 16px; line-height: 1.7; max-width: 440px; }
   .variant-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
   .variant-pill {
     border: 1px solid var(--olive); color: var(--olive); font-size: 0.74rem;
@@ -52,7 +52,7 @@
     border-radius: 20px; cursor: pointer; background: transparent; font-family: var(--body);
   }
   .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
-  .ingredients-block { margin: 0 0 24px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 14px; }
+  .ingredients-block { margin: 0 0 14px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 10px; }
   .ingredients-toggle { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 0; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
   .ingredients-arrow { font-size: 0.8rem; transition: transform 0.2s ease; display: inline-block; }
   .ingredients-toggle[aria-expanded="true"] .ingredients-arrow { transform: rotate(180deg); }
@@ -70,7 +70,7 @@
   .price-tag { font-size: 1.3rem; font-family: var(--body); font-weight: 300; color: var(--charcoal); }
   .sub-toggle { display: flex; gap: 6px; margin: 10px 0 8px; flex-wrap: wrap; }
   /* You may also like */
-  .also-like { padding: clamp(48px, 6vw, 80px) 0; border-top: 1px solid rgba(28,28,28,0.08); }
+  .also-like { padding: clamp(32px, 4vw, 56px) 0; border-top: 1px solid rgba(28,28,28,0.08); }
   .also-like h2 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--olive); margin-bottom: 32px; }
   .also-like-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   @media (max-width: 700px) { .also-like-grid { grid-template-columns: 1fr; } .also-like { padding-left: 24px; padding-right: 24px; } }

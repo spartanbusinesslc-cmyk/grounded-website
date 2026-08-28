@@ -732,7 +732,7 @@ section { padding: var(--section-pad) 0; }
 /* ============================================
    BUY BOX — new tabbed product purchase widget
    ============================================ */
-.bb-wrap { margin-top: 20px; }
+.bb-wrap { margin-top: 10px; }
 .bb-tabs { display: flex; background: var(--beige); border-radius: 10px; padding: 4px; gap: 4px; margin-bottom: 14px; }
 .bb-tab { flex: 1; padding: 10px 8px; border: none; border-radius: 7px; font-family: var(--body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; cursor: pointer; background: transparent; color: rgba(28,28,28,0.45); transition: background 0.2s, color 0.2s; }
 .bb-tab.active { background: var(--cream); color: var(--charcoal); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
