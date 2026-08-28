@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="style.css">
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
-  .product-page { padding: clamp(48px, 7vw, 80px) 0; }
+  .product-page { padding: clamp(32px, 5vw, 56px) 0 clamp(24px, 3vw, 40px); }
   .product-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -43,9 +43,9 @@
     .wrap { padding-left: clamp(16px, 5vw, 48px); padding-right: clamp(16px, 5vw, 48px); }
   }
   .product-info .product-label { display: block; font-family: var(--body); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); font-weight: 500; margin-bottom: 14px; }
-  .product-info h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 500; color: var(--charcoal); margin-bottom: 18px; }
-  .product-info .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 26px; line-height: 1.7; max-width: 440px; }
-  .variant-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+  .product-info h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 500; color: var(--charcoal); margin-bottom: 10px; }
+  .product-info .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 16px; line-height: 1.7; max-width: 440px; }
+  .variant-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
   .variant-pill {
     border: 1px solid var(--olive); color: var(--olive); font-size: 0.74rem;
     letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 16px;
@@ -56,7 +56,7 @@
     .variant-pills { gap: 7px; flex-wrap: nowrap; }
     .variant-pill { font-size: 0.65rem; padding: 7px 12px; letter-spacing: 0.05em; }
   }
-  .ingredients-block { margin: 0 0 24px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 14px; }
+  .ingredients-block { margin: 0 0 14px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 10px; }
   .ingredients-toggle { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 0; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
   .ingredients-arrow { font-size: 0.8rem; transition: transform 0.2s ease; display: inline-block; }
   .ingredients-toggle[aria-expanded="true"] .ingredients-arrow { transform: rotate(180deg); }
@@ -75,7 +75,7 @@
   .price-tag { font-size: 1.3rem; font-family: var(--body); font-weight: 300; color: var(--charcoal); }
   .sub-toggle { display: flex; gap: 6px; margin: 10px 0 8px; flex-wrap: wrap; }
   /* You may also like */
-  .also-like { padding: clamp(48px, 6vw, 80px) 0; border-top: 1px solid rgba(28,28,28,0.08); }
+  .also-like { padding: clamp(32px, 4vw, 56px) 0; border-top: 1px solid rgba(28,28,28,0.08); }
   .also-like h2 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--olive); margin-bottom: 32px; }
   .also-like-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   @media (max-width: 700px) { .also-like-grid { grid-template-columns: 1fr; } .also-like { padding-left: 24px; padding-right: 24px; } }
@@ -153,82 +153,91 @@
           <p class="ingredients-body" hidden>Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, Glycerin.</p>
         </div>
 
-        <div class="purchase-options">
-          <button class="purchase-option active" data-mode="one-time">
-            <span class="po-label">One-Time</span>
-            <span class="po-price">£11.99</span>
-          </button>
-          <button class="purchase-option" data-mode="subscribe">
-            <span class="po-popular">Popular</span>
-            <span class="po-label">Monthly</span>
-            <span class="po-price">£9.99<span class="po-freq">/mo</span></span>
-            <ul class="po-perks">
-              <li>Save 17% every order</li>
-              <li>Delivered monthly</li>
-              
-            </ul>
-          </button>
-        </div>
-        <div class="buy-row">
-          <a href="#" class="btn btn-solid buy-btn" data-add-to-cart-variant="oliveUnscented">Add to Cart — <span class="price-tag" data-one-time="£11.99" data-subscribe="£9.99">£11.99</span></a>
-        </div>
-        <div class="bundle-nudge-wrap">
-          <button class="bundle-nudge" id="bundle-nudge-btn" aria-expanded="false">
-            <span class="bundle-nudge-badge">Save 30%</span>
-            Any 3 bars <strong>£24.99</strong>
-            <span class="bundle-nudge-arrow">▾</span>
-          </button>
-          <div class="bundle-nudge-dropdown" id="bundle-nudge-dropdown" hidden>
-            <div class="bundle-option-row">
-              <button class="bundle-option" data-bundle-modal="soapBundle">
-                <span class="bundle-option-title">Add Once</span>
-                <span class="bundle-option-price">£24.99</span>
-              </button>
-              <button class="bundle-option bundle-option-sub bundle-sub-toggle">
-                <span class="bundle-option-title">Subscribe &amp; Save an extra 20%</span>
-                <span class="bundle-option-price">£19.99 /mo</span>
-              </button>
-            </div>
-            <div class="bundle-interval-wrap" hidden>
-              <button class="bundle-option bundle-option-sub" data-bundle-modal="subSoapBundle">
-                <span class="bundle-option-title">Monthly</span>
-                <span class="bundle-option-price">£19.99 / month</span>
-              </button>
-              <button class="bundle-option bundle-option-sub" data-bundle-modal="subSoapBundle3m">
-                <span class="bundle-option-title">Every 3 months</span>
-                <span class="bundle-option-price">£19.99 / 3 months</span>
-              </button>
-            </div>
+        <div class="bb-wrap">
+          <div class="bb-tabs">
+            <button type="button" class="bb-tab active" data-tab="one-time">One-time Purchase</button>
+            <button type="button" class="bb-tab" data-tab="subscribe">Subscribe &amp; Save</button>
           </div>
-        </div>
-        <div class="bundle-nudge-wrap">
-          <button class="bundle-nudge" id="essentials-nudge-btn" aria-expanded="false">
-            <span class="bundle-nudge-badge bundle-nudge-badge--green">Complete Set</span>
-            Soap, Tallow &amp; Lip Balm <strong>£39.99</strong>
-            <span class="bundle-nudge-arrow">▾</span>
-          </button>
-          <div class="bundle-nudge-dropdown" id="essentials-nudge-dropdown" hidden>
-            <div class="bundle-option-row">
-              <button class="bundle-option" data-bundle-modal="essentialsBundle">
-                <span class="bundle-option-title">Add Once</span>
-                <span class="bundle-option-price">£39.99</span>
-              </button>
-              <button class="bundle-option bundle-option-sub bundle-sub-toggle">
-                <span class="bundle-option-title">Subscribe &amp; Save an extra 17%</span>
-                <span class="bundle-option-price">£32.99 /mo</span>
-              </button>
-            </div>
-            <div class="bundle-interval-wrap" hidden>
-              <button class="bundle-option bundle-option-sub" data-bundle-modal="subEssentialsBundle">
-                <span class="bundle-option-title">Monthly</span>
-                <span class="bundle-option-price">£32.99 / month</span>
-              </button>
-              <button class="bundle-option bundle-option-sub" data-bundle-modal="subEssentialsBundle3m">
-                <span class="bundle-option-title">Every 3 months</span>
-                <span class="bundle-option-price">£32.99 / 3 months</span>
-              </button>
-            </div>
+
+          <div class="bb-panel" id="bb-panel-one-time">
+            <label class="bb-option active" id="bb-ot-single">
+              <input type="radio" name="bb-ot" value="oliveUnscented" checked>
+              <div class="bb-option-info">
+                <span class="bb-option-name">Single Bar</span>
+                <span class="bb-option-desc" id="bb-ot-single-desc">Plain</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£11.99</span>
+              </div>
+            </label>
+            <label class="bb-option" data-modal="soapBundle">
+              <input type="radio" name="bb-ot" value="soapBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Soap 3-Pack</span>
+                <span class="bb-option-desc">Mix &amp; match any 3 bars</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£24.99</span>
+                <span class="bb-badge">Save 30%</span>
+              </div>
+            </label>
+            <label class="bb-option" data-modal="essentialsBundle">
+              <input type="radio" name="bb-ot" value="essentialsBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Essentials Set</span>
+                <span class="bb-option-desc">Soap, Tallow &amp; Lip Balm</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£39.99</span>
+                <span class="bb-badge">Save 15%</span>
+              </div>
+            </label>
           </div>
+
+          <div class="bb-panel" id="bb-panel-subscribe" hidden>
+            <div class="bb-frequency">
+              <span class="bb-freq-label">Frequency</span>
+              <div class="bb-freq-pills">
+                <button type="button" class="bb-freq-pill active" data-freq="1m">Monthly</button>
+                <button type="button" class="bb-freq-pill" data-freq="3m">Every 3 months</button>
+              </div>
+            </div>
+            <label class="bb-option active" id="bb-sub-single">
+              <input type="radio" name="bb-sub" value="subOliveUnscented" checked>
+              <div class="bb-option-info">
+                <span class="bb-option-name">Single Bar</span>
+                <span class="bb-option-desc" id="bb-sub-single-desc">Plain</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£9.99<span class="bb-per">/mo</span></span>
+                <span class="bb-badge">Save 17%</span>
+              </div>
+            </label>
+            <label class="bb-option" data-modal1m="subSoapBundle" data-modal3m="subSoapBundle3m">
+              <input type="radio" name="bb-sub" value="subSoapBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Soap 3-Pack</span>
+                <span class="bb-option-desc">Mix &amp; match any 3 bars</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£19.99<span class="bb-per">/mo</span></span>
+                <span class="bb-badge">Save 44%</span>
+              </div>
+            </label>
+            <label class="bb-option" data-modal1m="subEssentialsBundle" data-modal3m="subEssentialsBundle3m">
+              <input type="radio" name="bb-sub" value="subEssentialsBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Essentials Set</span>
+                <span class="bb-option-desc">Soap, Tallow &amp; Lip Balm</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£32.99<span class="bb-per">/mo</span></span>
+                <span class="bb-badge">Save 17%</span>
+              </div>
+            </label>
+          </div>
+
+          <button type="button" class="btn btn-solid bb-add-btn" id="bb-add-btn">Add to Cart — £11.99</button>
         </div>
       </div>
     </div>
@@ -405,36 +414,6 @@
     goToThumb((current + 1) % thumbs.length);
   });
 
-  document.querySelectorAll('.purchase-option').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.purchase-option').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const isSubscription = btn.dataset.mode === 'subscribe';
-      const buyBtn = document.querySelector('[data-add-to-cart-variant], [data-add-to-cart]');
-      if (buyBtn) buyBtn.dataset.subscribe = isSubscription ? "true" : "false";
-      document.querySelectorAll('.price-tag').forEach(tag => {
-        tag.textContent = isSubscription ? tag.dataset.subscribe : tag.dataset.oneTime;
-      });
-    });
-  });
-
-  // Essentials nudge dropdown
-  const essentialsBtn  = document.getElementById('essentials-nudge-btn');
-  const essentialsDrop = document.getElementById('essentials-nudge-dropdown');
-  if (essentialsBtn && essentialsDrop) {
-    essentialsBtn.addEventListener('click', () => {
-      const open = essentialsBtn.getAttribute('aria-expanded') === 'true';
-      essentialsBtn.setAttribute('aria-expanded', !open);
-      essentialsDrop.hidden = open;
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('#essentials-nudge-btn') && !e.target.closest('#essentials-nudge-dropdown')) {
-        essentialsBtn.setAttribute('aria-expanded', 'false');
-        essentialsDrop.hidden = true;
-      }
-    });
-  }
-
   // Ingredients toggle
   const ingredientsToggle = document.querySelector('.ingredients-toggle');
   const ingredientsBody = document.querySelector('.ingredients-body');
@@ -446,31 +425,89 @@
     });
   }
 
-  // Bundle nudge dropdown
-  const nudgeBtn = document.getElementById('bundle-nudge-btn');
-  const nudgeDrop = document.getElementById('bundle-nudge-dropdown');
-  if (nudgeBtn && nudgeDrop) {
-    nudgeBtn.addEventListener('click', () => {
-      const open = nudgeBtn.getAttribute('aria-expanded') === 'true';
-      nudgeBtn.setAttribute('aria-expanded', !open);
-      nudgeDrop.hidden = open;
-    });
-    nudgeDrop.querySelectorAll('.bundle-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (btn.classList.contains('bundle-sub-toggle')) return;
-        if (!btn.dataset.addToCart) return;
-        addToCart(btn.dataset.addToCart, 1);
-        nudgeBtn.setAttribute('aria-expanded', 'false');
-        nudgeDrop.hidden = true;
+  // ── Buy Box ──────────────────────────────────────────────────────────
+  (function() {
+    const tabs     = document.querySelectorAll('.bb-tab');
+    const panelOT  = document.getElementById('bb-panel-one-time');
+    const panelSub = document.getElementById('bb-panel-subscribe');
+    const addBtn   = document.getElementById('bb-add-btn');
+    let activeTab  = 'one-time';
+    let activeFreq = '1m';
+    let currentOTId  = 'oliveUnscented';
+    let currentSubId = 'subOliveUnscented';
+
+    document.querySelectorAll('.variant-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        currentOTId  = pill.dataset.productId;
+        currentSubId = pill.dataset.subId;
+        document.getElementById('bb-ot-single-desc').textContent = pill.textContent.trim();
+        document.getElementById('bb-sub-single-desc').textContent = pill.textContent.trim();
+        updateBtn();
       });
     });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.bundle-nudge-wrap')) {
-        nudgeBtn.setAttribute('aria-expanded', 'false');
-        nudgeDrop.hidden = true;
+
+    function updateBtn() {
+      if (activeTab === 'one-time') {
+        const label = panelOT.querySelector('input[name="bb-ot"]:checked')?.closest('.bb-option');
+        const isBundle = label && label.dataset.modal;
+        const priceEl = label?.querySelector('.bb-option-price');
+        const price = priceEl ? priceEl.textContent.trim() : '£11.99';
+        addBtn.textContent = 'Add to Cart — ' + (isBundle ? price : '£11.99');
+      } else {
+        const r = panelSub.querySelector('input[name="bb-sub"]:checked');
+        const label = r?.closest('.bb-option');
+        const priceEl = label?.querySelector('.bb-option-price');
+        const price = priceEl ? priceEl.childNodes[0]?.textContent || '' : '£9.99';
+        addBtn.textContent = 'Subscribe — ' + price + '/mo';
+      }
+    }
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        activeTab = tab.dataset.tab;
+        panelOT.hidden  = activeTab !== 'one-time';
+        panelSub.hidden = activeTab !== 'subscribe';
+        updateBtn();
+      });
+    });
+    panelSub.querySelectorAll('.bb-freq-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        panelSub.querySelectorAll('.bb-freq-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeFreq = pill.dataset.freq;
+        updateBtn();
+      });
+    });
+    [panelOT, panelSub].forEach(panel => {
+      panel.querySelectorAll('.bb-option').forEach(label => {
+        label.addEventListener('click', () => {
+          panel.querySelectorAll('.bb-option').forEach(l => l.classList.remove('active'));
+          label.classList.add('active');
+          updateBtn();
+        });
+      });
+    });
+    addBtn.addEventListener('click', () => {
+      if (activeTab === 'one-time') {
+        const r = panelOT.querySelector('input[name="bb-ot"]:checked');
+        const label = r?.closest('.bb-option');
+        if (label && label.dataset.modal) openBundleModal(label.dataset.modal);
+        else addToCart(currentOTId, 1);
+      } else {
+        const r = panelSub.querySelector('input[name="bb-sub"]:checked');
+        const label = r?.closest('.bb-option');
+        const isSubSingle = label && label.id === 'bb-sub-single';
+        if (isSubSingle) {
+          addToCart(currentSubId, 1);
+        } else if (label && (label.dataset.modal1m || label.dataset.modal3m)) {
+          const modalId = activeFreq === '3m' ? label.dataset.modal3m : label.dataset.modal1m;
+          openBundleModal(modalId);
+        }
       }
     });
-  }
+    updateBtn();
+  })();
 
 </script>
 </body>
