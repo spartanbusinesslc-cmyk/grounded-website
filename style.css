@@ -728,3 +728,27 @@ section { padding: var(--section-pad) 0; }
   z-index: 100;
 }
 .skip-link:focus { left: 12px; top: 12px; }
+
+/* ============================================
+   BUY BOX — new tabbed product purchase widget
+   ============================================ */
+.bb-wrap { margin-top: 20px; }
+.bb-tabs { display: flex; background: var(--beige); border-radius: 10px; padding: 4px; gap: 4px; margin-bottom: 14px; }
+.bb-tab { flex: 1; padding: 10px 8px; border: none; border-radius: 7px; font-family: var(--body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; cursor: pointer; background: transparent; color: rgba(28,28,28,0.45); transition: background 0.2s, color 0.2s; }
+.bb-tab.active { background: var(--cream); color: var(--charcoal); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.bb-option { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid rgba(89,98,75,0.2); border-radius: 10px; cursor: pointer; margin-bottom: 8px; background: transparent; transition: border-color 0.15s, background 0.15s; }
+.bb-option input[type="radio"] { width: 17px; height: 17px; accent-color: var(--olive); flex-shrink: 0; cursor: pointer; }
+.bb-option.active { border-color: var(--olive); background: rgba(89,98,75,0.05); }
+.bb-option-info { flex: 1; }
+.bb-option-name { font-family: var(--body); font-size: 0.85rem; font-weight: 600; color: var(--charcoal); letter-spacing: 0.02em; display: block; }
+.bb-option-desc { font-family: var(--body); font-size: 0.75rem; color: rgba(28,28,28,0.5); margin-top: 2px; display: block; }
+.bb-option-right { text-align: right; flex-shrink: 0; }
+.bb-option-price { font-family: var(--body); font-size: 0.95rem; font-weight: 600; color: var(--charcoal); display: block; }
+.bb-per { font-size: 0.72rem; font-weight: 400; color: rgba(28,28,28,0.55); }
+.bb-badge { display: inline-block; background: #B94040; color: #fff; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 999px; margin-top: 4px; text-transform: uppercase; }
+.bb-frequency { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding: 0 2px; }
+.bb-freq-label { font-family: var(--body); font-size: 0.72rem; font-weight: 700; color: var(--charcoal); letter-spacing: 0.07em; text-transform: uppercase; }
+.bb-freq-pills { display: flex; gap: 6px; }
+.bb-freq-pill { padding: 5px 12px; border: 1.5px solid rgba(89,98,75,0.3); border-radius: 999px; font-family: var(--body); font-size: 0.7rem; font-weight: 700; color: var(--olive); background: transparent; cursor: pointer; letter-spacing: 0.04em; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+.bb-freq-pill.active { background: var(--olive); color: var(--cream); border-color: var(--olive); }
+.bb-add-btn { width: 100%; margin-top: 14px; }

@@ -140,82 +140,89 @@
           <p class="ingredients-body" hidden>Organic Grass Fed British Tallow, Shea Butter, Coconut Oil, Beeswax.</p>
         </div>
 
-        <div class="purchase-options">
-          <button class="purchase-option active" data-mode="one-time">
-            <span class="po-label">One-Time</span>
-            <span class="po-price">£24.99</span>
-          </button>
-          <button class="purchase-option" data-mode="subscribe">
-            <span class="po-popular">Popular</span>
-            <span class="po-label">Monthly</span>
-            <span class="po-price">£21.99<span class="po-freq">/mo</span></span>
-            <ul class="po-perks">
-              <li>Save 12% every order</li>
-              <li>Delivered monthly</li>
-              
-            </ul>
-          </button>
-        </div>
-        <div class="buy-row">
-          <a href="#" class="btn btn-solid buy-btn" data-add-to-cart="bodyBalm">Add to Cart — <span class="price-tag" data-one-time="£24.99" data-subscribe="£21.99">£24.99</span></a>
-        </div>
-        <div class="bundle-nudge-wrap">
-          <button class="bundle-nudge" id="bundle-nudge-btn" aria-expanded="false">
-            <span class="bundle-nudge-badge">Save 33%</span>
-            3 jars <strong>£49.98</strong>
-            <span class="bundle-nudge-arrow">▾</span>
-          </button>
-          <div class="bundle-nudge-dropdown" id="bundle-nudge-dropdown" hidden>
-            <div class="bundle-option-row">
-              <button class="bundle-option" data-add-to-cart="balmBundle">
-                <span class="bundle-option-title">Add Once</span>
-                <span class="bundle-option-price">£49.98</span>
-              </button>
-              <button class="bundle-option bundle-option-sub bundle-sub-toggle">
-                <span class="bundle-option-title">Subscribe &amp; Save an extra 20%</span>
-                <span class="bundle-option-price">£39.99 /mo</span>
-              </button>
-            </div>
-            <div class="bundle-interval-wrap" hidden>
-              <button class="bundle-option bundle-option-sub" data-add-to-cart="subBalmBundle">
-                <span class="bundle-option-title">Monthly</span>
-                <span class="bundle-option-price">£39.99 / month</span>
-              </button>
-              <button class="bundle-option bundle-option-sub" data-add-to-cart="subBalmBundle3m">
-                <span class="bundle-option-title">Every 3 months</span>
-                <span class="bundle-option-price">£39.99 / 3 months</span>
-              </button>
-            </div>
+        <div class="bb-wrap">
+          <div class="bb-tabs">
+            <button type="button" class="bb-tab active" data-tab="one-time">One-time Purchase</button>
+            <button type="button" class="bb-tab" data-tab="subscribe">Subscribe &amp; Save</button>
           </div>
-        </div>
-        <div class="bundle-nudge-wrap">
-          <button class="bundle-nudge" id="essentials-nudge-btn" aria-expanded="false">
-            <span class="bundle-nudge-badge bundle-nudge-badge--green">Complete Set</span>
-            Soap, Tallow &amp; Lip Balm <strong>£39.99</strong>
-            <span class="bundle-nudge-arrow">▾</span>
-          </button>
-          <div class="bundle-nudge-dropdown" id="essentials-nudge-dropdown" hidden>
-            <div class="bundle-option-row">
-              <button class="bundle-option" data-bundle-modal="essentialsBundle">
-                <span class="bundle-option-title">Add Once</span>
-                <span class="bundle-option-price">£39.99</span>
-              </button>
-              <button class="bundle-option bundle-option-sub bundle-sub-toggle">
-                <span class="bundle-option-title">Subscribe &amp; Save an extra 17%</span>
-                <span class="bundle-option-price">£32.99 /mo</span>
-              </button>
-            </div>
-            <div class="bundle-interval-wrap" hidden>
-              <button class="bundle-option bundle-option-sub" data-bundle-modal="subEssentialsBundle">
-                <span class="bundle-option-title">Monthly</span>
-                <span class="bundle-option-price">£32.99 / month</span>
-              </button>
-              <button class="bundle-option bundle-option-sub" data-bundle-modal="subEssentialsBundle3m">
-                <span class="bundle-option-title">Every 3 months</span>
-                <span class="bundle-option-price">£32.99 / 3 months</span>
-              </button>
-            </div>
+
+          <div class="bb-panel" id="bb-panel-one-time">
+            <label class="bb-option active">
+              <input type="radio" name="bb-ot" value="bodyBalm" checked>
+              <div class="bb-option-info">
+                <span class="bb-option-name">Single Jar</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£24.99</span>
+              </div>
+            </label>
+            <label class="bb-option">
+              <input type="radio" name="bb-ot" value="balmBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Tallow 3-Pack</span>
+                <span class="bb-option-desc">3× Tallow Body Balm</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£49.98</span>
+                <span class="bb-badge">Save 33%</span>
+              </div>
+            </label>
+            <label class="bb-option" data-modal="essentialsBundle">
+              <input type="radio" name="bb-ot" value="essentialsBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Essentials Set</span>
+                <span class="bb-option-desc">Soap, Tallow &amp; Lip Balm</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£39.99</span>
+                <span class="bb-badge">Save 15%</span>
+              </div>
+            </label>
           </div>
+
+          <div class="bb-panel" id="bb-panel-subscribe" hidden>
+            <div class="bb-frequency">
+              <span class="bb-freq-label">Frequency</span>
+              <div class="bb-freq-pills">
+                <button type="button" class="bb-freq-pill active" data-freq="1m">Monthly</button>
+                <button type="button" class="bb-freq-pill" data-freq="3m">Every 3 months</button>
+              </div>
+            </div>
+            <label class="bb-option active" id="bb-sub-single">
+              <input type="radio" name="bb-sub" value="subBodyBalm" checked>
+              <div class="bb-option-info">
+                <span class="bb-option-name">Single Jar</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£21.99<span class="bb-per">/mo</span></span>
+                <span class="bb-badge">Save 12%</span>
+              </div>
+            </label>
+            <label class="bb-option" data-sub1m="subBalmBundle" data-sub3m="subBalmBundle3m">
+              <input type="radio" name="bb-sub" value="subBalmBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Tallow 3-Pack</span>
+                <span class="bb-option-desc">3× Tallow Body Balm</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£39.99<span class="bb-per">/mo</span></span>
+                <span class="bb-badge">Save 44%</span>
+              </div>
+            </label>
+            <label class="bb-option" data-modal1m="subEssentialsBundle" data-modal3m="subEssentialsBundle3m">
+              <input type="radio" name="bb-sub" value="subEssentialsBundle">
+              <div class="bb-option-info">
+                <span class="bb-option-name">Essentials Set</span>
+                <span class="bb-option-desc">Soap, Tallow &amp; Lip Balm</span>
+              </div>
+              <div class="bb-option-right">
+                <span class="bb-option-price">£32.99<span class="bb-per">/mo</span></span>
+                <span class="bb-badge">Save 17%</span>
+              </div>
+            </label>
+          </div>
+
+          <button type="button" class="btn btn-solid bb-add-btn" id="bb-add-btn">Add to Cart — £24.99</button>
         </div>
       </div>
     </div>
@@ -369,36 +376,6 @@
     goToThumb((current + 1) % thumbs.length);
   });
 
-  document.querySelectorAll('.purchase-option').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.purchase-option').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const isSubscription = btn.dataset.mode === 'subscribe';
-      const buyBtn = document.querySelector('[data-add-to-cart-variant], [data-add-to-cart]');
-      if (buyBtn) buyBtn.dataset.subscribe = isSubscription ? "true" : "false";
-      document.querySelectorAll('.price-tag').forEach(tag => {
-        tag.textContent = isSubscription ? tag.dataset.subscribe : tag.dataset.oneTime;
-      });
-    });
-  });
-
-  // Essentials nudge dropdown
-  const essentialsBtn  = document.getElementById('essentials-nudge-btn');
-  const essentialsDrop = document.getElementById('essentials-nudge-dropdown');
-  if (essentialsBtn && essentialsDrop) {
-    essentialsBtn.addEventListener('click', () => {
-      const open = essentialsBtn.getAttribute('aria-expanded') === 'true';
-      essentialsBtn.setAttribute('aria-expanded', !open);
-      essentialsDrop.hidden = open;
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('#essentials-nudge-btn') && !e.target.closest('#essentials-nudge-dropdown')) {
-        essentialsBtn.setAttribute('aria-expanded', 'false');
-        essentialsDrop.hidden = true;
-      }
-    });
-  }
-
   // Ingredients toggle
   const ingredientsToggle = document.querySelector('.ingredients-toggle');
   const ingredientsBody = document.querySelector('.ingredients-body');
@@ -410,31 +387,108 @@
     });
   }
 
-  // Bundle nudge dropdown
-  const nudgeBtn = document.getElementById('bundle-nudge-btn');
-  const nudgeDrop = document.getElementById('bundle-nudge-dropdown');
-  if (nudgeBtn && nudgeDrop) {
-    nudgeBtn.addEventListener('click', () => {
-      const open = nudgeBtn.getAttribute('aria-expanded') === 'true';
-      nudgeBtn.setAttribute('aria-expanded', !open);
-      nudgeDrop.hidden = open;
-    });
-    nudgeDrop.querySelectorAll('.bundle-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (btn.classList.contains('bundle-sub-toggle')) return;
-        if (!btn.dataset.addToCart) return;
-        addToCart(btn.dataset.addToCart, 1);
-        nudgeBtn.setAttribute('aria-expanded', 'false');
-        nudgeDrop.hidden = true;
+  // ── Buy Box ──────────────────────────────────────────────────────────
+  (function() {
+    const tabs     = document.querySelectorAll('.bb-tab');
+    const panelOT  = document.getElementById('bb-panel-one-time');
+    const panelSub = document.getElementById('bb-panel-subscribe');
+    const addBtn   = document.getElementById('bb-add-btn');
+
+    let activeTab  = 'one-time';
+    let activeFreq = '1m';
+
+    // Prices for button label
+    const OT_PRICES  = { bodyBalm: '£24.99', balmBundle: '£49.98', essentialsBundle: '£39.99' };
+    const SUB_PRICES_1M = { subBodyBalm: '£21.99/mo', subBalmBundle: '£39.99/mo', subEssentialsBundle: '£32.99/mo' };
+    const SUB_PRICES_3M = { subBodyBalm: '£21.99/mo', subBalmBundle: '£39.99/mo', subEssentialsBundle: '£32.99/mo' };
+
+    function selectedOTValue() {
+      const r = panelOT.querySelector('input[name="bb-ot"]:checked');
+      return r ? r.value : 'bodyBalm';
+    }
+
+    function selectedSubValue() {
+      const r = panelSub.querySelector('input[name="bb-sub"]:checked');
+      if (!r) return 'subBodyBalm';
+      const label = r.closest('.bb-option');
+      if (activeFreq === '3m' && label && label.dataset.sub3m) return label.dataset.sub3m;
+      if (activeFreq === '3m' && label && label.dataset.modal3m) return label.dataset.modal3m;
+      if (activeFreq === '1m' && label && label.dataset.sub1m) return label.dataset.sub1m;
+      if (activeFreq === '1m' && label && label.dataset.modal1m) return label.dataset.modal1m;
+      return r.value;
+    }
+
+    function updateBtn() {
+      if (activeTab === 'one-time') {
+        const val = selectedOTValue();
+        addBtn.textContent = 'Add to Cart — ' + (OT_PRICES[val] || '');
+      } else {
+        const freq = activeFreq === '3m' ? SUB_PRICES_3M : SUB_PRICES_1M;
+        const baseVal = (panelSub.querySelector('input[name="bb-sub"]:checked') || {}).value || 'subBodyBalm';
+        addBtn.textContent = 'Subscribe — ' + (freq[baseVal] || freq['subBodyBalm']);
+      }
+    }
+
+    // Tab switch
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        activeTab = tab.dataset.tab;
+        panelOT.hidden  = activeTab !== 'one-time';
+        panelSub.hidden = activeTab !== 'subscribe';
+        updateBtn();
       });
     });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.bundle-nudge-wrap')) {
-        nudgeBtn.setAttribute('aria-expanded', 'false');
-        nudgeDrop.hidden = true;
+
+    // Frequency pills
+    panelSub.querySelectorAll('.bb-freq-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        panelSub.querySelectorAll('.bb-freq-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeFreq = pill.dataset.freq;
+        updateBtn();
+      });
+    });
+
+    // Option card selection
+    function wireOptions(panel, name) {
+      panel.querySelectorAll('.bb-option').forEach(label => {
+        label.addEventListener('click', () => {
+          panel.querySelectorAll('.bb-option').forEach(l => l.classList.remove('active'));
+          label.classList.add('active');
+          updateBtn();
+        });
+      });
+    }
+    wireOptions(panelOT,  'bb-ot');
+    wireOptions(panelSub, 'bb-sub');
+
+    // Add to cart
+    addBtn.addEventListener('click', () => {
+      if (activeTab === 'one-time') {
+        const val = selectedOTValue();
+        const label = panelOT.querySelector(`input[value="${val}"]`)?.closest('.bb-option');
+        if (label && label.dataset.modal) {
+          openBundleModal(label.dataset.modal);
+        } else {
+          addToCart(val, 1);
+        }
+      } else {
+        const subVal = selectedSubValue();
+        const r = panelSub.querySelector('input[name="bb-sub"]:checked');
+        const label = r ? r.closest('.bb-option') : null;
+        const isModal = label && (label.dataset.modal1m || label.dataset.modal3m);
+        if (isModal) {
+          openBundleModal(subVal);
+        } else {
+          addToCart(subVal, 1, true);
+        }
       }
     });
-  }
+
+    updateBtn();
+  })();
 
 </script>
 </body>
