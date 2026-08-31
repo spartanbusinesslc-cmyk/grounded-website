@@ -6,6 +6,13 @@
 <title>Order Confirmed — EARTHED</title>
 <link rel="icon" href="assets/logo-icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QZXPHKT2FH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-QZXPHKT2FH");
+</script>
 <style>
   .success-section {
     min-height: 70vh;
@@ -45,6 +52,24 @@
 <script>
   // Clear the cart now that checkout has completed
   localStorage.removeItem("earthed_cart");
+
+  // GA4 purchase event — fetch order total from Stripe session
+  (async function() {
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get("session_id");
+    if (!sessionId || typeof gtag !== 'function') return;
+    try {
+      const res = await fetch('/api/get-session?session_id=' + encodeURIComponent(sessionId));
+      if (!res.ok) return;
+      const data = await res.json();
+      gtag('event', 'purchase', {
+        transaction_id: data.id,
+        value: data.amount_total / 100,
+        currency: data.currency.toUpperCase(),
+        items: data.items || []
+      });
+    } catch (e) {}
+  })();
 </script>
 </body>
 </html>

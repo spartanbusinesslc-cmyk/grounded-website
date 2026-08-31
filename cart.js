@@ -46,6 +46,15 @@ function addToCart(id, qty = 1) {
   const cart = getCart();
   cart[id] = (cart[id] || 0) + qty;
   saveCart(cart);
+  // GA4 add_to_cart
+  if (typeof gtag === 'function') {
+    const p = PRODUCTS[id];
+    gtag('event', 'add_to_cart', {
+      currency: 'GBP',
+      value: p.price * qty,
+      items: [{ item_id: id, item_name: p.name, price: p.price, quantity: qty }]
+    });
+  }
   openCart();
 }
 
@@ -211,6 +220,18 @@ async function checkout() {
     }
 
     localStorage.removeItem("earthed_bundle_notes");
+    // GA4 begin_checkout
+    if (typeof gtag === 'function') {
+      const subtotal = cartSubtotal(cart);
+      gtag('event', 'begin_checkout', {
+        currency: 'GBP',
+        value: subtotal,
+        items: items.map(({ id, quantity }) => {
+          const p = PRODUCTS[id];
+          return { item_id: id, item_name: p ? p.name : id, price: p ? p.price : 0, quantity };
+        })
+      });
+    }
     window.location.href = data.url;
   } catch (err) {
     alert(
