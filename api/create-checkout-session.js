@@ -74,19 +74,21 @@ module.exports = async (req, res) => {
 
     const line_items = items.map((item) => {
       const priceId = PRICE_MAP[item.id];
-
       if (!priceId) {
         throw new Error(
           `No Stripe Price ID is configured for "${item.id}". Add it as an environment variable in Vercel.`
         );
       }
-
       const quantity = Math.min(20, Math.max(1, parseInt(item.quantity, 10) || 1));
       return { price: priceId, quantity };
     });
 
+    // Determine mode from actual item IDs, not the browser-sent flag.
+    // Sub IDs all start with "sub"; one-time items can coexist in subscription
+    // mode — Stripe adds them to the first invoice automatically.
+    const hasRecurring = items.some(item => item.id.startsWith("sub"));
     const origin = getOrigin(req);
-    const mode = subscription ? "subscription" : "payment";
+    const mode = hasRecurring ? "subscription" : "payment";
 
     const combinedMetadata = { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) };
 
@@ -97,7 +99,7 @@ module.exports = async (req, res) => {
       cancel_url: `${origin}/shop.html`,
       allow_promotion_codes: true,
       metadata: combinedMetadata,
-      ...(subscription ? {
+      ...(hasRecurring ? {
         subscription_data: { metadata: combinedMetadata }
       } : {
         payment_intent_data: { metadata: combinedMetadata }
