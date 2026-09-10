@@ -749,7 +749,7 @@ section { padding: var(--section-pad) 0; }
 .bb-badge { display: inline-block; background: #B94040; color: #fff; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 999px; margin-top: 4px; text-transform: uppercase; }
 .bb-per-unit { display: block; font-size: 0.68rem; color: rgba(28,28,28,0.5); margin-top: 3px; }
 .bb-rrp { display: block; font-size: 0.72rem; color: rgba(28,28,28,0.38); text-decoration: line-through; margin-bottom: 1px; }
-.bb-best-value { position: relative; }
+.bb-best-value { position: relative; background: rgba(89,98,75,0.07); border-left: 3px solid var(--olive) !important; }
 .bb-best-value::after { content: "Best Value"; position: absolute; top: -10px; right: 12px; background: var(--olive); color: #fff; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; }
 .bb-frequency { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding: 0 2px; }
 .bb-freq-label { font-family: var(--body); font-size: 0.72rem; font-weight: 700; color: var(--charcoal); letter-spacing: 0.07em; text-transform: uppercase; }
