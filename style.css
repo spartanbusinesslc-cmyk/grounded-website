@@ -766,3 +766,7 @@ section { padding: var(--section-pad) 0; }
 .review-stars { color: #B94040; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 10px; }
 .review-text { font-size: 0.92rem; line-height: 1.6; color: var(--charcoal); margin-bottom: 12px; }
 .review-author { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(28,28,28,0.45); }
+.product-rating-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; margin-bottom: 18px; }
+.product-rating-stars { color: #B94040; font-size: 0.95rem; letter-spacing: 1px; }
+.product-rating-count { font-size: 0.8rem; color: rgba(28,28,28,0.5); text-decoration: underline; text-underline-offset: 2px; }
+.product-rating-link:hover .product-rating-count { color: var(--charcoal); }
