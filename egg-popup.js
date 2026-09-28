@@ -4,7 +4,7 @@
   const KV_KEY  = 'UpP5xc';
   const KV_LIST = 'VGeaVS';
   const CODE     = 'EARTH10';
-  const DELAY    = 8000;
+  const DELAY    = 4000;
   const NEED     = 3;
 
   /* ── styles ── */
