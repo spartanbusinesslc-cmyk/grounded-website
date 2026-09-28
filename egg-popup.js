@@ -131,23 +131,42 @@
      <circle cx="474" cy="196" r="12" fill="#59624B"/>
      <text id="ep-bct" x="474" y="200.5" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" font-weight="500" fill="white">0/3</text>
     </g>
-    <!-- chicken -->
-    <g transform="translate(287,0)">
-     <ellipse cx="6" cy="222" rx="22" ry="4" fill="rgba(0,0,0,.16)"/>
-     <path d="M-18,190 Q-36,178 -34,164 Q-28,172 -20,185 Z" fill="#6B4228"/>
-     <path d="M-19,194 Q-38,185 -38,172 Q-31,178 -20,190 Z" fill="#7A5235"/>
-     <path d="M-18,199 Q-36,197 -36,184 Q-29,190 -19,197 Z" fill="#8B604C"/>
-     <ellipse cx="2" cy="198" rx="30" ry="21" fill="#7A5235" transform="rotate(-8 2 198)"/>
-     <ellipse cx="-2" cy="199" rx="22" ry="15" fill="#6B4228" transform="rotate(-8 -2 199)" opacity=".65"/>
-     <circle cx="30" cy="185" r="13" fill="#7A5235"/>
-     <path d="M23,174 Q26,166 29,174 Q32,166 35,174 Q38,166 40,172" fill="#C03838" stroke="none"/>
-     <path d="M29,194 Q24,200 26,205 Q29,201 29,194 Z" fill="#C03838"/>
-     <path d="M42,186 L50,183 L42,189 Z" fill="#D4A830"/>
-     <circle cx="35" cy="183" r="3" fill="#1C1C1C"/>
-     <circle cx="35.8" cy="182.2" r="1" fill="white"/>
-     <line x1="-3" y1="216" x2="-6" y2="230" stroke="#C8A030" stroke-width="2.5" stroke-linecap="round"/>
-     <line x1="12" y1="216" x2="15" y2="230" stroke="#C8A030" stroke-width="2.5" stroke-linecap="round"/>
-     <g stroke="#C8A030" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M-6,230 L-13,234 M-6,230 L-5,236 M-6,230 L1,234"/><path d="M15,230 L8,234 M15,230 L16,236 M15,230 L22,234"/></g>
+    <!-- chicken (front-facing, cute) -->
+    <g transform="translate(300,168)">
+     <ellipse cx="0" cy="52" rx="24" ry="5" fill="rgba(0,0,0,.15)"/>
+     <!-- wings -->
+     <path d="M-26,22 Q-42,12 -38,34 Q-32,42 -22,34 Z" fill="#6B4228"/>
+     <path d="M26,22 Q42,12 38,34 Q32,42 22,34 Z" fill="#6B4228"/>
+     <!-- body -->
+     <ellipse cx="0" cy="28" rx="27" ry="26" fill="#7A5235"/>
+     <!-- head -->
+     <circle cx="0" cy="-4" r="20" fill="#7A5235"/>
+     <!-- comb -->
+     <path d="M-9,-22 Q-6,-34 -2,-22 Q1,-34 5,-22 Q8,-34 11,-20" fill="#C03838"/>
+     <!-- rosy cheeks -->
+     <circle cx="-12" cy="0" r="6" fill="#C05050" opacity=".3"/>
+     <circle cx="12" cy="0" r="6" fill="#C05050" opacity=".3"/>
+     <!-- eyes whites -->
+     <circle cx="-8" cy="-8" r="7" fill="white"/>
+     <circle cx="8" cy="-8" r="7" fill="white"/>
+     <!-- pupils -->
+     <circle cx="-7" cy="-7" r="4.5" fill="#1C1C1C"/>
+     <circle cx="7" cy="-7" r="4.5" fill="#1C1C1C"/>
+     <!-- eye shine -->
+     <circle cx="-5.5" cy="-9" r="1.8" fill="white"/>
+     <circle cx="8.5" cy="-9" r="1.8" fill="white"/>
+     <!-- beak -->
+     <path d="M-5,0 L0,7 L5,0 Z" fill="#D4A830"/>
+     <line x1="-4" y1="2" x2="4" y2="2" stroke="#B8901A" stroke-width=".8"/>
+     <!-- wattle -->
+     <path d="M-3,8 Q-6,15 -3,19 Q0,15 3,19 Q6,15 3,8 Z" fill="#C03838"/>
+     <!-- legs -->
+     <line x1="-9" y1="52" x2="-11" y2="64" stroke="#C8A030" stroke-width="3" stroke-linecap="round"/>
+     <line x1="9" y1="52" x2="11" y2="64" stroke="#C8A030" stroke-width="3" stroke-linecap="round"/>
+     <g stroke="#C8A030" stroke-width="2" stroke-linecap="round" fill="none">
+      <path d="M-11,64 L-18,68 M-11,64 L-10,71 M-11,64 L-3,68"/>
+      <path d="M11,64 L4,68 M11,64 L12,71 M11,64 L19,68"/>
+     </g>
     </g>
     <!-- eggs -->
     <g class="ep-egg" id="ep-e1" transform="translate(76,114)"><g class="ep-es"><ellipse cx="0" cy="0" rx="10" ry="13" fill="#F0EDE5" stroke="#D8D4C4" stroke-width=".8"/><ellipse cx="-3" cy="-4" rx="4" ry="5.5" fill="rgba(255,255,255,.45)"/></g></g>
