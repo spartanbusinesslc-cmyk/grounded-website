@@ -35,7 +35,7 @@
 #ep-rw{background:#59624B;color:#fff;padding:20px 24px 24px;transform:translateY(100%);transition:transform .5s cubic-bezier(.22,1,.36,1);}
 #ep-rw.ep-open{transform:translateY(0);}
 .ep-re{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-bottom:3px;}
-#ep-rw h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:500;margin-bottom:3px;}
+#ep-rw h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:500;margin-bottom:3px;color:#fff!important;}
 .ep-rs{font-size:.78rem;font-weight:300;opacity:.72;margin-bottom:13px;}
 #ep-rf{display:flex;gap:8px;}
 #ep-em{flex:1;min-width:0;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:9px;padding:9px 13px;color:#fff;font-family:'Jost',sans-serif;font-size:.82rem;outline:none;}
@@ -116,6 +116,50 @@
     <ellipse cx="356" cy="208" rx="38" ry="9" fill="#C8A040"/>
     <ellipse cx="353" cy="203" rx="30" ry="8" fill="#D4B050"/>
     <path d="M312,211 Q344,203 388,209" fill="none" stroke="#E0C060" stroke-width=".9" opacity=".6"/>
+    <!-- extra straw scattered on floor -->
+    <g fill="none" stroke-linecap="round" pointer-events="none">
+     <path d="M120,185 Q135,180 152,184" stroke="#D4B050" stroke-width="1.4" opacity=".7"/>
+     <path d="M125,190 Q140,186 158,189" stroke="#C8A040" stroke-width="1.1" opacity=".6"/>
+     <path d="M170,195 Q185,190 198,194" stroke="#D4B050" stroke-width="1.2" opacity=".65"/>
+     <path d="M270,188 Q284,183 298,187" stroke="#C8A040" stroke-width="1.3" opacity=".6"/>
+     <path d="M275,193 Q292,188 308,192" stroke="#D4B050" stroke-width="1.1" opacity=".55"/>
+     <path d="M395,190 Q410,185 425,189" stroke="#D4B050" stroke-width="1.2" opacity=".65"/>
+     <path d="M390,197 Q408,192 424,196" stroke="#C8A040" stroke-width="1" opacity=".55"/>
+     <!-- wall straw wisps -->
+     <path d="M142,155 Q150,148 160,154" stroke="#C8A040" stroke-width="1.1" opacity=".5"/>
+     <path d="M330,158 Q340,151 350,157" stroke="#C8A040" stroke-width="1" opacity=".45"/>
+    </g>
+    <!-- small background chickens (against wall) -->
+    <!-- bg chicken left, peeking near left box -->
+    <g transform="translate(148,138)" opacity=".6">
+     <ellipse cx="0" cy="13" rx="13" ry="12" fill="#6B4228"/>
+     <circle cx="0" cy="-3" r="10" fill="#6B4228"/>
+     <path d="M-5,-11 Q-2,-19 0,-11 Q3,-19 6,-11" fill="#B02828"/>
+     <circle cx="-4" cy="-5" r="4" fill="white"/>
+     <circle cx="4" cy="-5" r="4" fill="white"/>
+     <circle cx="-3.5" cy="-4.5" r="2.5" fill="#1C1C1C"/>
+     <circle cx="3.5" cy="-4.5" r="2.5" fill="#1C1C1C"/>
+     <circle cx="-2.5" cy="-6" r="1" fill="white"/>
+     <circle cx="4.5" cy="-6" r="1" fill="white"/>
+     <path d="M-3,2 L0,6 L3,2 Z" fill="#D4A830"/>
+     <path d="M-3,18 Q-5,15 -4,12" stroke="#C8A030" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+     <path d="M3,18 Q5,15 4,12" stroke="#C8A030" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- bg chicken right, near right box -->
+    <g transform="translate(368,135)" opacity=".55">
+     <ellipse cx="0" cy="13" rx="12" ry="11" fill="#7A5235"/>
+     <circle cx="0" cy="-3" r="9" fill="#7A5235"/>
+     <path d="M-4,-10 Q-2,-18 0,-10 Q3,-18 5,-10" fill="#B02828"/>
+     <circle cx="-4" cy="-5" r="3.5" fill="white"/>
+     <circle cx="4" cy="-5" r="3.5" fill="white"/>
+     <circle cx="-3.5" cy="-4.5" r="2" fill="#1C1C1C"/>
+     <circle cx="3.5" cy="-4.5" r="2" fill="#1C1C1C"/>
+     <circle cx="-2.5" cy="-6" r=".9" fill="white"/>
+     <circle cx="4.2" cy="-6" r=".9" fill="white"/>
+     <path d="M-3,2 L0,6 L3,2 Z" fill="#D4A830"/>
+     <path d="M-3,17 Q-5,14 -4,11" stroke="#C8A030" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+     <path d="M3,17 Q5,14 4,11" stroke="#C8A030" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </g>
     <!-- basket -->
     <g id="ep-bk">
      <ellipse cx="452" cy="240" rx="28" ry="5" fill="rgba(0,0,0,.18)"/>
