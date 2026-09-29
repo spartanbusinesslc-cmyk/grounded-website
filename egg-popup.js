@@ -2,7 +2,7 @@
   try { if (localStorage.getItem('ep_seen')) return; } catch (e) {}
 
   const KV_KEY  = 'UpP5xc';
-  const KV_LIST = 'VGeaVS';
+  const KV_LIST = 'TKGvVv';
   const CODE     = 'EARTH10';
   const DELAY    = 4000;
   const NEED     = 3;
