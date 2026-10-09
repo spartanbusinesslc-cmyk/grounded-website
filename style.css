@@ -396,7 +396,7 @@ section { padding: var(--section-pad) 0; }
 
 /* ---------- Free shipping banner ---------- */
 .free-shipping-bar {
-  background: var(--olive);
+  background: #B94040;
   color: var(--cream);
   text-align: center;
   font-family: var(--body);
