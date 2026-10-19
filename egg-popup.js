@@ -71,11 +71,20 @@
 
       fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + KV_KEY, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'revision': '2023-12-15' },
+        headers: { 'Content-Type': 'application/json', 'revision': '2024-02-15' },
         body: JSON.stringify({
           data: {
             type: 'subscription',
-            attributes: { list_id: KV_LIST, email: email, custom_source: 'Popup' }
+            attributes: {
+              list_id: KV_LIST,
+              custom_source: 'Popup',
+              profile: {
+                data: {
+                  type: 'profile',
+                  attributes: { email: email }
+                }
+              }
+            }
           }
         })
       }).catch(() => {}).finally(() => {
