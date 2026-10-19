@@ -76,13 +76,17 @@
           data: {
             type: 'subscription',
             attributes: {
-              list_id: KV_LIST,
               custom_source: 'Popup',
               profile: {
                 data: {
                   type: 'profile',
                   attributes: { email: email }
                 }
+              }
+            },
+            relationships: {
+              list: {
+                data: { type: 'list', id: KV_LIST }
               }
             }
           }
