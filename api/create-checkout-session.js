@@ -130,7 +130,7 @@ module.exports = async (req, res) => {
         }
       } else {
         allowedCountries = ["GB"];
-        if (subtotalPence < 2500) {
+        if (subtotalPence < 2000) {
           shippingPriceId = is3m ? process.env.SHIPPING_RATE_SUB_UK_3M : process.env.SHIPPING_RATE_SUB_UK;
         }
       }
@@ -168,7 +168,7 @@ module.exports = async (req, res) => {
           { shipping_rate: process.env.SHIPPING_RATE_STANDARD },
           { shipping_rate: process.env.SHIPPING_RATE_EXPRESS },
         ];
-        if (subtotalPence >= 2500) {
+        if (subtotalPence >= 2000) {
           shippingOptions.unshift({ shipping_rate: process.env.SHIPPING_RATE_FREE });
         }
         allowedCountries = ["GB"];
