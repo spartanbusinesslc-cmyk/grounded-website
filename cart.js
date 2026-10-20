@@ -144,7 +144,7 @@ function renderCart() {
   const nudgeEl = document.getElementById("cart-shipping-nudge");
   if (nudgeEl) {
     const region = (document.getElementById("cart-region")?.value) || "uk";
-    const threshold = region === "europe" ? 75 : region === "row" ? 100 : 20;
+    const threshold = region === "europe" ? 75 : region === "row" ? 100 : 25;
     if (subtotal === 0) {
       nudgeEl.style.display = "none";
     } else if (subtotal >= threshold) {
