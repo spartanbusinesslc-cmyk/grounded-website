@@ -52,6 +52,11 @@
     border-radius: 20px; cursor: pointer; background: transparent; font-family: var(--body);
   }
   .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
+  .benefits-block { background: var(--olive); border-radius: 14px; padding: 20px 22px; margin: 0 0 18px; }
+  .benefits-block p { font-family: var(--body); font-size: 0.88rem; font-weight: 700; color: #fff; margin: 0 0 14px; line-height: 1.4; }
+  .benefits-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .benefits-list li { display: flex; align-items: center; gap: 12px; font-family: var(--body); font-size: 0.88rem; font-weight: 600; color: #fff; line-height: 1.3; }
+  .benefits-list li .b-icon { width: 32px; height: 32px; min-width: 32px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
   .ingredients-block { margin: 0 0 14px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 10px; }
   .ingredients-toggle { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 0; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
   .ingredients-arrow { font-size: 0.8rem; transition: transform 0.2s ease; display: inline-block; }
@@ -142,6 +147,19 @@
             Ingredients <span class="ingredients-arrow">▾</span>
           </button>
           <p class="ingredients-body" hidden>Organic Grass Fed British Tallow, Shea Butter, Coconut Oil, Beeswax.</p>
+        </div>
+
+        <div class="benefits-block">
+          <p>Say goodbye to greasy, synthetic skincare. This is how a body balm should feel 👀</p>
+          <ul class="benefits-list">
+            <li><span class="b-icon">🐄</span>Grass-fed British tallow, closely mimics your skin's natural oils</li>
+            <li><span class="b-icon">💆‍♀️</span>Nourishes &amp; maintains skin's natural barrier</li>
+            <li><span class="b-icon">🥥</span>Shea butter &amp; coconut oil for deep, lasting moisture</li>
+            <li><span class="b-icon">🐝</span>Beeswax to lock in moisture, no greasy film</li>
+            <li><span class="b-icon">✨</span>Melts in, absorbs fast, all-day soft</li>
+            <li><span class="b-icon">✅</span>Just 4 ingredients, no fillers, no parabens</li>
+            <li><span class="b-icon">🇬🇧</span>Small batch, handmade in the UK</li>
+          </ul>
         </div>
 
         <div class="bb-wrap">
