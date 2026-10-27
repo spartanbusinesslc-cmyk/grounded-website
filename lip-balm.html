@@ -331,7 +331,7 @@
       </div>
       <div class="footer-col">
         <h4>Stay in touch</h4>
-        <form class="newsletter-form" onsubmit="return false;">
+        <form class="newsletter-form" onsubmit="handleFooterSignup(event,this);">
           <input type="email" placeholder="Your email" aria-label="Email address" required>
           <button type="submit">Join</button>
         </form>
@@ -532,5 +532,23 @@
 </script>
 
 <script src="egg-popup.js" defer></script>
+<script>
+function handleFooterSignup(e, form) {
+  e.preventDefault();
+  var input = form.querySelector('input[type=email]');
+  var btn = form.querySelector('button');
+  var email = input.value.trim();
+  if (!email) return;
+  btn.textContent = 'Joining...';
+  btn.disabled = true;
+  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=UpP5xc', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'revision': '2024-02-15' },
+    body: JSON.stringify({ data: { type: 'subscription', attributes: { custom_source: 'Footer', profile: { data: { type: 'profile', attributes: { email: email } } } }, relationships: { list: { data: { type: 'list', id: 'TKGvVv' } } } } })
+  }).catch(function(){}).finally(function(){
+    form.innerHTML = '<p style="color:#59624B;font-size:0.9rem;">Thanks! You\'re on the list.</p>';
+  });
+}
+</script>
 </body>
 </html>
