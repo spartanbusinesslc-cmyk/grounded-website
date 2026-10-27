@@ -235,10 +235,7 @@ async function checkout() {
     window.location.href = data.url;
   } catch (err) {
     alert(
-      "Checkout isn't connected yet.\n\n" +
-      "This site needs Stripe Price IDs and a secret key set up in your Vercel project " +
-      "before checkout will work. See README.md for setup steps.\n\n" +
-      "(Technical detail: " + err.message + ")"
+      "Something went wrong on our side. Please try again. If the issue persists, message us on Instagram @shopearthed or email support@shopearthed.co."
     );
     btn.textContent = originalText;
     btn.disabled = false;
