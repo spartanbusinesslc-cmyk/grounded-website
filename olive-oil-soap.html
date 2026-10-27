@@ -56,6 +56,11 @@
     .variant-pills { gap: 7px; flex-wrap: nowrap; }
     .variant-pill { font-size: 0.65rem; padding: 7px 12px; letter-spacing: 0.05em; }
   }
+  .benefits-block { background: var(--olive); border-radius: 14px; padding: 20px 22px; margin: 0 0 18px; }
+  .benefits-block p { font-family: var(--body); font-size: 0.88rem; font-weight: 700; color: #fff; margin: 0 0 14px; line-height: 1.4; }
+  .benefits-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .benefits-list li { display: flex; align-items: center; gap: 12px; font-family: var(--body); font-size: 0.88rem; font-weight: 600; color: #fff; line-height: 1.3; }
+  .benefits-list li .b-icon { width: 32px; height: 32px; min-width: 32px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
   .ingredients-block { margin: 0 0 14px; border-top: 1px solid rgba(28,28,28,0.1); padding-top: 10px; }
   .ingredients-toggle { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 0; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
   .ingredients-arrow { font-size: 0.8rem; transition: transform 0.2s ease; display: inline-block; }
@@ -155,6 +160,19 @@
             Ingredients <span class="ingredients-arrow">▾</span>
           </button>
           <p class="ingredients-body" hidden>Spring Water, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Sea Salt, Glycerin.</p>
+        </div>
+
+        <div class="benefits-block">
+          <p>A pure plant-based bar made with extra virgin olive oil. Seven ingredients, every one on the box.</p>
+          <ul class="benefits-list">
+            <li><span class="b-icon">🫒</span>Extra virgin olive oil — deeply conditioning, suits all skin types</li>
+            <li><span class="b-icon">🥥</span>Coconut oil — rich lather without stripping the skin</li>
+            <li><span class="b-icon">🌿</span>Shea &amp; mango butter — soft, smooth feel after every wash</li>
+            <li><span class="b-icon">🧂</span>Sea salt — a firm, long-lasting bar that won't go soft</li>
+            <li><span class="b-icon">🌱</span>100% plant-based — no animal ingredients</li>
+            <li><span class="b-icon">✅</span>No SLS, no parabens, no synthetic fragrance</li>
+            <li><span class="b-icon">🇬🇧</span>Small batch, handmade in the UK</li>
+          </ul>
         </div>
 
         <div class="bb-wrap">
