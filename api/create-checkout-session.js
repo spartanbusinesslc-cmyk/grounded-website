@@ -164,12 +164,16 @@ module.exports = async (req, res) => {
         ];
       } else {
         // UK default
-        shippingOptions = [
-          { shipping_rate: process.env.SHIPPING_RATE_STANDARD },
-          { shipping_rate: process.env.SHIPPING_RATE_EXPRESS },
-        ];
         if (subtotalPence >= 2000) {
-          shippingOptions.unshift({ shipping_rate: process.env.SHIPPING_RATE_FREE });
+          shippingOptions = [
+            { shipping_rate: process.env.SHIPPING_RATE_FREE },
+            { shipping_rate: process.env.SHIPPING_RATE_EXPRESS },
+          ];
+        } else {
+          shippingOptions = [
+            { shipping_rate: process.env.SHIPPING_RATE_STANDARD },
+            { shipping_rate: process.env.SHIPPING_RATE_EXPRESS },
+          ];
         }
         allowedCountries = ["GB"];
       }
