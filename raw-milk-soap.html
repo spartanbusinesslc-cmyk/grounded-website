@@ -522,7 +522,8 @@
         const label = r?.closest('.bb-option');
         const priceEl = label?.querySelector('.bb-option-price');
         const price = priceEl ? priceEl.childNodes[0]?.textContent || '' : '£9.99';
-        addBtn.textContent = 'Subscribe — ' + price + '/mo';
+        var freqLabel = activeFreq === '3m' ? ' every 3 months' : ' per month';
+        addBtn.textContent = 'Subscribe — ' + price + freqLabel;
       }
     }
     tabs.forEach(tab => {
@@ -540,6 +541,8 @@
         panelSub.querySelectorAll('.bb-freq-pill').forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         activeFreq = pill.dataset.freq;
+        var perLabel = activeFreq === '3m' ? 'every 3 months' : '/mo';
+        panelSub.querySelectorAll('.bb-per').forEach(function(el){ el.textContent = perLabel; });
         updateBtn();
       });
     });
