@@ -13,89 +13,89 @@ const PRODUCTS = {
     name: "Raw Milk Soap — Plain",
     price: 11.99,
     swatch: "swatch-soap",
-    image: "assets/rms-unscented.png"
+    image: "assets/rms-unscented.webp"
   },
   soapCitrusLavender: {
     name: "Raw Milk Soap — Citrus & Lavender",
     price: 11.99,
     swatch: "swatch-soap",
-    image: "assets/rms-citrus-lavender.png"
+    image: "assets/rms-citrus-lavender.webp"
   },
   soapMintTeaTree: {
     name: "Raw Milk Soap — Mint & Tea Tree",
     price: 11.99,
     swatch: "swatch-soap",
-    image: "assets/rms-mint-teatree.png"
+    image: "assets/rms-mint-teatree.webp"
   },
   oliveUnscented: {
     name: "Olive Oil Soap — Plain",
     price: 11.99,
     swatch: "swatch-soap",
-    image: "assets/oos-unscented.png"
+    image: "assets/oos-unscented.webp"
   },
   oliveCitrusLavender: {
     name: "Olive Oil Soap — Citrus & Lavender",
     price: 11.99,
     swatch: "swatch-soap",
-    image: "assets/oos-citrus-lavender.png"
+    image: "assets/oos-citrus-lavender.webp"
   },
   oliveMintTeaTree: {
     name: "Olive Oil Soap — Mint & Tea Tree",
     price: 11.99,
     swatch: "swatch-soap",
-    image: "assets/oos-mint-teatree.png"
+    image: "assets/oos-mint-teatree.webp"
   },
   bodyBalm: {
     name: "Tallow Body Balm",
     price: 24.99,
     swatch: "swatch-balm",
-    image: "assets/tallow balm.png"
+    image: "assets/tallow balm.webp"
   },
   lipBalm: {
     name: "Lip Balm",
     price: 9.99,
     swatch: "swatch-lip",
-    image: "assets/lip balm.png"
+    image: "assets/lip balm.webp"
   },
   soapBundle: {
     name: "Soap 3-Pack (3 Bars)",
     price: 24.99,
     swatch: "swatch-soap",
-    image: "assets/soap bundle.png"
+    image: "assets/soap bundle.webp"
   },
   balmBundle: {
     name: "Body Balm 3-Pack (3 Jars)",
     price: 49.98,
     swatch: "swatch-balm",
-    image: "assets/Tallow Trio.png"
+    image: "assets/Tallow Trio.webp"
   },
   lipBundle: {
     name: "Lip Balm 3-Pack (3 Tins)",
     price: 19.99,
     swatch: "swatch-lip",
-    image: "assets/Lip balm trio.png"
+    image: "assets/Lip balm trio.webp"
   },
   essentialsBundle: {
     name: "The Essentials Set",
     price: 39.99,
     swatch: "swatch-balm",
-    image: "assets/essentials%20bundle.png"
+    image: "assets/essentials%20bundle.webp"
   },
   // Subscription variants
-  subSoapUnscented:       { name: "Raw Milk Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-unscented.png" },
-  subSoapCitrusLavender:  { name: "Raw Milk Soap — Citrus & Lavender (Monthly)", price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-citrus-lavender.png" },
-  subSoapMintTeaTree:     { name: "Raw Milk Soap — Mint & Tea Tree (Monthly)",   price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-mint-teatree.png" },
-  subOliveUnscented:      { name: "Olive Oil Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-unscented.png" },
-  subOliveCitrusLavender: { name: "Olive Oil Soap — Citrus & Lavender (Monthly)",price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-citrus-lavender.png" },
-  subOliveMintTeaTree:    { name: "Olive Oil Soap — Mint & Tea Tree (Monthly)",  price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-mint-teatree.png" },
-  subBodyBalm:            { name: "Tallow Body Balm (Monthly)",                  price: 21.99, swatch: "swatch-balm",  image: "assets/tallow balm.png" },
-  subLipBalm:             { name: "Lip Balm (Monthly)",                          price: 7.99,  swatch: "swatch-lip",   image: "assets/lip balm.png" },
-  subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.png" },
-  subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 41.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.png" },
-  subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.png" },
-  subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/essentials%20bundle.png" },
-  subSoapBundle3m:        { name: "Soap 3-Pack (Every 3 months)",                price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.png" },
-  subBalmBundle3m:        { name: "Tallow 3-Pack (Every 3 months)",              price: 39.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.png" },
-  subLipBundle3m:         { name: "Lip Balm 3-Pack (Every 3 months)",            price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.png" },
-  subEssentialsBundle3m:  { name: "The Essentials Set (Every 3 months)",         price: 32.99, swatch: "swatch-balm",  image: "assets/essentials%20bundle.png" }
+  subSoapUnscented:       { name: "Raw Milk Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-unscented.webp" },
+  subSoapCitrusLavender:  { name: "Raw Milk Soap — Citrus & Lavender (Monthly)", price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-citrus-lavender.webp" },
+  subSoapMintTeaTree:     { name: "Raw Milk Soap — Mint & Tea Tree (Monthly)",   price: 9.99,  swatch: "swatch-soap",  image: "assets/rms-mint-teatree.webp" },
+  subOliveUnscented:      { name: "Olive Oil Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-unscented.webp" },
+  subOliveCitrusLavender: { name: "Olive Oil Soap — Citrus & Lavender (Monthly)",price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-citrus-lavender.webp" },
+  subOliveMintTeaTree:    { name: "Olive Oil Soap — Mint & Tea Tree (Monthly)",  price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-mint-teatree.webp" },
+  subBodyBalm:            { name: "Tallow Body Balm (Monthly)",                  price: 21.99, swatch: "swatch-balm",  image: "assets/tallow balm.webp" },
+  subLipBalm:             { name: "Lip Balm (Monthly)",                          price: 7.99,  swatch: "swatch-lip",   image: "assets/lip balm.webp" },
+  subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.webp" },
+  subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 41.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.webp" },
+  subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.webp" },
+  subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/essentials%20bundle.webp" },
+  subSoapBundle3m:        { name: "Soap 3-Pack (Every 3 months)",                price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.webp" },
+  subBalmBundle3m:        { name: "Tallow 3-Pack (Every 3 months)",              price: 39.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.webp" },
+  subLipBundle3m:         { name: "Lip Balm 3-Pack (Every 3 months)",            price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.webp" },
+  subEssentialsBundle3m:  { name: "The Essentials Set (Every 3 months)",         price: 32.99, swatch: "swatch-balm",  image: "assets/essentials%20bundle.webp" }
 };
