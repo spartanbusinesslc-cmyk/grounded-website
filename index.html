@@ -133,7 +133,7 @@
   .hero-collection { width: 100%; margin: 0; padding: 0; }
   .hero-collection-bg {
     width: 100%;
-    height: clamp(240px, 38vw, 420px);
+    height: clamp(340px, 42vw, 520px);
     background: linear-gradient(160deg, #D8D1C2, #B8B0A0);
     position: relative;
     overflow: hidden;
@@ -150,28 +150,40 @@
     inset: 0;
     z-index: 2;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 28px;
+    padding: 0 20px;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42));
   }
+  .hero-headline {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.8vw, 3.8rem);
+    line-height: 1.12;
+    color: #fff;
+    max-width: 780px;
+    text-wrap: balance;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.35);
+  }
+  .hero-headline em { font-style: italic; }
   .hero-collection-cta {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
-    background: rgba(89,98,75,0.55);
-    border: 1px solid rgba(255,255,255,0.4);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    padding: 16px 32px;
+    background: var(--olive);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 16px 44px;
     border-radius: 2px;
     text-decoration: none;
     transition: background 0.2s, border-color 0.2s;
   }
-  .hero-collection-cta:hover { background: rgba(89,98,75,0.75); }
+  .hero-collection-cta:hover { background: #4a523e; border-color: rgba(255,255,255,0.7); }
   @media (max-width: 600px) {
-    .hero-collection-cta { padding: 10px 16px; gap: 8px; }
-    .hero-cta-label { font-size: 0.6rem; letter-spacing: 0; }
-    .hero-cta-arrow { font-size: 0.8rem; }
-    .hero-collection-bg { height: clamp(300px, 70vw, 420px); }
+    .hero-collection-overlay { gap: 22px; }
+    .hero-collection-cta { padding: 13px 34px; }
+    .hero-collection-bg { height: clamp(340px, 90vw, 460px); }
   }
   .hero-cta-label {
     font-family: var(--body);
@@ -179,10 +191,6 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 600;
-    color: #fff;
-  }
-  .hero-cta-arrow {
-    font-size: 1rem;
     color: #fff;
   }
 
@@ -342,9 +350,9 @@
     <div class="hero-collection-bg">
       <img src="assets/Hero.webp" alt="EARTHED product collection">
       <div class="hero-collection-overlay">
+        <h1 class="hero-headline">Make your daily <em>routine toxin-free today.</em></h1>
         <a href="shop.html" class="hero-collection-cta">
-          <span class="hero-cta-label">View the Collection</span>
-          <span class="hero-cta-arrow">→</span>
+          <span class="hero-cta-label">Shop Now</span>
         </a>
       </div>
     </div>
