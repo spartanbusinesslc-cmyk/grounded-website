@@ -3,6 +3,8 @@
    ---------------------------------------------
    Shows Stripe's Express Checkout Element (Apple Pay only)
    under "Add to Cart" for the selected one-time option.
+   One button is prepared per option on page load, so
+   switching options is instant (no waiting).
    Hidden for everyone until a device visits a product
    page once with ?applepay=1 (use ?applepay=0 to switch
    it off again). Never breaks the page if anything fails.
@@ -25,20 +27,24 @@
   var box = document.createElement("div");
   box.className = "express-checkout";
   box.hidden = true;
-  box.innerHTML = '<div id="express-checkout-element"></div><p class="express-error" id="express-error" hidden></p>';
+  box.innerHTML = '<div class="express-slots"></div><p class="express-error" id="express-error" hidden></p>';
   anchor.insertAdjacentElement("afterend", box);
+  var slotsEl = box.querySelector(".express-slots");
   var errEl = box.querySelector("#express-error");
 
-  var stripe = null, element = null, token = 0, timer = null;
+  var stripe = null, slots = {}, token = 0, timer = null;
 
   function showError(msg) {
     errEl.textContent = msg;
     errEl.hidden = !msg;
   }
 
-  function teardown() {
-    try { if (element) element.destroy(); } catch (e) {}
-    element = null;
+  function destroyAll() {
+    Object.keys(slots).forEach(function (id) {
+      try { if (slots[id].element) slots[id].element.destroy(); } catch (e) {}
+    });
+    slots = {};
+    slotsEl.innerHTML = "";
     box.hidden = true;
     showError("");
   }
@@ -61,13 +67,21 @@
     return r && ALLOWED.indexOf(r.value) !== -1 ? r.value : null;
   }
 
-  async function render() {
-    var mine = ++token;
-    teardown();
-    var id = selectedId();
-    if (!id || !PRODUCTS[id]) return;
+  function updateVisibility() {
+    var sel = selectedId();
+    Object.keys(slots).forEach(function (id) {
+      slots[id].node.classList.toggle("active", id === sel);
+    });
+    box.hidden = !(sel && slots[sel] && slots[sel].available);
+  }
+
+  async function build(id, region, mine) {
+    var node = document.createElement("div");
+    node.className = "express-slot";
+    slotsEl.appendChild(node);
+    var slot = { node: node, element: null, available: false };
+    slots[id] = slot;
     try {
-      var region = (document.getElementById("cart-region") || {}).value || "uk";
       var res = await fetch("/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -91,11 +105,13 @@
         buttonType: { applePay: "buy" },
         paymentMethods: { applePay: "auto", googlePay: "never", link: "never", paypal: "never", amazonPay: "never", klarna: "never" }
       });
-      element = el;
+      slot.element = el;
       el.on("availablepaymentmethodschange", function (e) {
-        if (mine === token) box.hidden = !e.paymentMethods;
+        if (mine !== token) return;
+        slot.available = !!e.paymentMethods;
+        updateVisibility();
       });
-      el.mount("#express-checkout-element");
+      el.mount(node);
 
       var loaded = await checkout.loadActions();
       if (loaded.type === "success") {
@@ -106,21 +122,30 @@
         });
       }
     } catch (err) {
-      teardown();
-      if (window.console) console.warn("Apple Pay button unavailable:", err);
+      if (window.console) console.warn("Apple Pay button unavailable for " + id + ":", err);
     }
   }
 
-  function refresh() {
-    clearTimeout(timer);
-    timer = setTimeout(render, 300);
+  function buildAll() {
+    var mine = ++token;
+    destroyAll();
+    var region = (document.getElementById("cart-region") || {}).value || "uk";
+    ALLOWED.forEach(function (id) {
+      var exists = document.querySelector('#bb-panel-one-time input[name="bb-ot"][value="' + id + '"]');
+      if (exists && PRODUCTS[id]) build(id, region, mine);
+    });
   }
 
   document.addEventListener("change", function (e) {
-    if (e.target.matches && e.target.matches('input[name="bb-ot"], #cart-region')) refresh();
+    if (!e.target.matches) return;
+    if (e.target.matches('input[name="bb-ot"]')) updateVisibility();
+    if (e.target.matches("#cart-region")) {
+      clearTimeout(timer);
+      timer = setTimeout(buildAll, 300);
+    }
   });
   document.addEventListener("click", function (e) {
-    if (e.target.closest && e.target.closest(".bb-tab")) setTimeout(refresh, 60);
+    if (e.target.closest && e.target.closest(".bb-tab")) setTimeout(updateVisibility, 60);
   });
-  render();
+  buildAll();
 })();

@@ -778,4 +778,6 @@ section { padding: var(--section-pad) 0; }
 
 /* Apple Pay express button */
 .express-checkout { margin-top: 10px; }
+.express-slot { height: 0; overflow: hidden; opacity: 0; pointer-events: none; }
+.express-slot.active { height: auto; overflow: visible; opacity: 1; pointer-events: auto; }
 .express-error { margin-top: 6px; font-family: var(--body); font-size: 0.78rem; color: #B94040; text-align: center; }
