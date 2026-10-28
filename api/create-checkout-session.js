@@ -66,7 +66,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items, subscription, metadata, subtotalPence, affiliateRef, shippingRegion } = req.body || {};
+    const { items, subscription, metadata, subtotalPence, affiliateRef, shippingRegion, express } = req.body || {};
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Your cart is empty." });
@@ -92,12 +92,17 @@ module.exports = async (req, res) => {
 
     const combinedMetadata = { ...(metadata || {}), ...(affiliateRef ? { affiliate_ref: affiliateRef } : {}) };
 
+    // Express (Apple Pay button on the product page) uses embedded Elements: no hosted redirect URLs
     const sessionParams = {
       mode,
       line_items,
-      success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/shop.html`,
-      allow_promotion_codes: true,
+      ...(express
+        ? { ui_mode: "elements", return_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}` }
+        : {
+            success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${origin}/shop.html`,
+            allow_promotion_codes: true,
+          }),
       metadata: combinedMetadata,
       ...(hasRecurring ? {
         subscription_data: { metadata: combinedMetadata }
@@ -184,7 +189,7 @@ module.exports = async (req, res) => {
 
     const session = await stripe.checkout.sessions.create(sessionParams);
 
-    return res.status(200).json({ url: session.url });
+    return res.status(200).json(express ? { client_secret: session.client_secret } : { url: session.url });
   } catch (err) {
     console.error("Checkout session error:", err.message);
     return res.status(500).json({ error: err.message || "Something went wrong creating checkout." });

@@ -775,3 +775,7 @@ section { padding: var(--section-pad) 0; }
 .product-rating-stars { color: #B94040; font-size: 0.95rem; letter-spacing: 1px; }
 .product-rating-count { font-size: 0.8rem; color: rgba(28,28,28,0.5); text-decoration: underline; text-underline-offset: 2px; }
 .product-rating-link:hover .product-rating-count { color: var(--charcoal); }
+
+/* Apple Pay express button */
+.express-checkout { margin-top: 10px; }
+.express-error { margin-top: 6px; font-family: var(--body); font-size: 0.78rem; color: #B94040; text-align: center; }
