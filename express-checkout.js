@@ -4,10 +4,13 @@
    Shows Stripe's Express Checkout Element (Apple Pay only)
    under "Add to Cart" for the selected one-time option.
    One button is prepared per option on page load, so
-   switching options is instant. Soap pages: single bars
-   follow the selected scent pill; the 3-Pack and Essentials
-   Set show scent dropdowns whose choices are saved on the
-   order (same metadata keys as the cart).
+   switching options is instant.
+   Soap pages: single bars follow the selected scent pill.
+   The 3-Pack and Essentials Set show our own "Pay with
+   Apple Pay" button that opens a scent popup; the real
+   Apple Pay button sits inside that popup, and the chosen
+   scents are saved on the order (same metadata keys as the
+   cart).
    Hidden for everyone until a device visits a product
    page once with ?applepay=1 (use ?applepay=0 to switch
    it off again). Never breaks the page if anything fails.
@@ -33,6 +36,8 @@
   var scentList = typeof SCENT_OPTIONS !== "undefined" ? SCENT_OPTIONS : null;
   if (soapMode && !scentList) return;
 
+  function isModalKey(key) { return key === "bundle" || key === "essentials"; }
+
   function scentSelect(group, index, label, defaultId) {
     var opts = scentList.map(function (s) {
       return '<option value="' + s.id + '"' + (s.id === defaultId ? " selected" : "") + ">" + s.label + "</option>";
@@ -40,32 +45,52 @@
     return '<label class="express-scent-row"><span>' + label + '</span><select class="express-scent-select" data-group="' + group + '" data-index="' + index + '">' + opts + "</select></label>";
   }
 
-  var scentsHtml = "";
-  if (soapMode) {
-    scentsHtml =
-      '<div class="express-scents" data-for="bundle" hidden><p>Apple Pay: choose your 3 bars</p>' +
-      scentSelect("bundle", 0, "Bar 1", familyIds[0]) +
-      scentSelect("bundle", 1, "Bar 2", familyIds[1] || familyIds[0]) +
-      scentSelect("bundle", 2, "Bar 3", familyIds[2] || familyIds[0]) +
-      "</div>" +
-      '<div class="express-scents" data-for="essentials" hidden><p>Apple Pay: choose your soap</p>' +
-      scentSelect("essentials", 0, "Soap", familyIds[0]) +
-      "</div>";
-  }
-
+  // ---- inline box (under Add to Cart) ----
   var box = document.createElement("div");
   box.className = "express-checkout";
   box.hidden = true;
-  box.innerHTML = scentsHtml + '<div class="express-slots"></div><p class="express-error" id="express-error" hidden></p>';
+  box.innerHTML =
+    (soapMode ? '<button type="button" class="express-fake" hidden>Pay with Apple Pay</button>' : "") +
+    '<div class="express-slots"></div><p class="express-error" hidden></p>';
   anchor.insertAdjacentElement("afterend", box);
   var slotsEl = box.querySelector(".express-slots");
-  var errEl = box.querySelector("#express-error");
+  var fakeBtn = box.querySelector(".express-fake");
+
+  // ---- scent popup (soap pages only) ----
+  var modal = null;
+  if (soapMode) {
+    modal = document.createElement("div");
+    modal.className = "express-modal-overlay";
+    modal.inert = true;
+    modal.innerHTML =
+      '<div class="express-modal" role="dialog" aria-modal="true" aria-label="Choose your scents">' +
+        '<button type="button" class="express-modal-close" aria-label="Close">&times;</button>' +
+        '<div class="express-panel" data-for="bundle">' +
+          '<h3 class="express-modal-title">Build Your Soap 3-Pack</h3>' +
+          '<p class="express-modal-sub">Pick your 3 bars, then pay with Apple Pay.</p>' +
+          scentSelect("bundle", 0, "Bar 1", familyIds[0]) +
+          scentSelect("bundle", 1, "Bar 2", familyIds[1] || familyIds[0]) +
+          scentSelect("bundle", 2, "Bar 3", familyIds[2] || familyIds[0]) +
+          '<div class="express-modal-pay" data-slot="bundle"></div>' +
+        "</div>" +
+        '<div class="express-panel" data-for="essentials">' +
+          '<h3 class="express-modal-title">EARTHED Essentials Set</h3>' +
+          '<p class="express-modal-sub">Choose your soap, then pay with Apple Pay. Balm &amp; lip balm are included.</p>' +
+          scentSelect("essentials", 0, "Soap", familyIds[0]) +
+          '<div class="express-modal-pay" data-slot="essentials"></div>' +
+        "</div>" +
+        '<p class="express-error" hidden></p>' +
+      "</div>";
+    document.body.appendChild(modal);
+  }
 
   var stripe = null, slots = {}, token = 0, timer = null, anyAvailable = false;
 
   function showError(msg) {
-    errEl.textContent = msg;
-    errEl.hidden = !msg;
+    Array.prototype.slice.call(document.querySelectorAll(".express-error")).forEach(function (el) {
+      el.textContent = msg;
+      el.hidden = !msg;
+    });
   }
 
   function loadStripeJs() {
@@ -94,7 +119,7 @@
   }
 
   function scentValues(group) {
-    return Array.prototype.slice.call(box.querySelectorAll('.express-scent-select[data-group="' + group + '"]'))
+    return Array.prototype.slice.call(modal.querySelectorAll('.express-scent-select[data-group="' + group + '"]'))
       .map(function (s) { return s.value; });
   }
 
@@ -114,11 +139,35 @@
 
   function updateVisibility() {
     var sel = selectedKey();
-    Object.keys(slots).forEach(function (k) { slots[k].node.classList.toggle("active", k === sel); });
-    box.hidden = !(anyAvailable && sel);
-    Array.prototype.slice.call(box.querySelectorAll(".express-scents")).forEach(function (g) {
-      g.hidden = g.dataset.for !== sel;
+    Object.keys(slots).forEach(function (k) {
+      if (!isModalKey(k)) slots[k].node.classList.toggle("active", k === sel);
     });
+    box.hidden = !(anyAvailable && sel);
+    if (fakeBtn) fakeBtn.hidden = !isModalKey(sel);
+    if (modal) {
+      Array.prototype.slice.call(modal.querySelectorAll(".express-panel")).forEach(function (p) {
+        p.classList.toggle("active", p.dataset.for === sel);
+      });
+    }
+  }
+
+  function openModal() {
+    if (!modal) return;
+    updateVisibility();
+    showError("");
+    modal.inert = false;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    var first = modal.querySelector(".express-panel.active .express-scent-select");
+    if (first) first.focus();
+  }
+
+  function closeModal() {
+    if (!modal || !modal.classList.contains("open")) return;
+    modal.classList.remove("open");
+    modal.inert = true;
+    document.body.style.overflow = "";
+    if (fakeBtn && !fakeBtn.hidden) fakeBtn.focus();
   }
 
   async function buildSlot(key) {
@@ -128,8 +177,9 @@
       old.node.remove();
     }
     var node = document.createElement("div");
-    node.className = "express-slot";
-    slotsEl.appendChild(node);
+    node.className = "express-slot" + (isModalKey(key) ? " loading" : "");
+    var parent = isModalKey(key) ? modal.querySelector('.express-modal-pay[data-slot="' + key + '"]') : slotsEl;
+    parent.appendChild(node);
     var slot = { node: node, element: null };
     slots[key] = slot;
     updateVisibility();
@@ -164,7 +214,7 @@
       slot.element = el;
       el.on("availablepaymentmethodschange", function (e) {
         if (slots[key] !== slot) return;
-        if (e.paymentMethods) anyAvailable = true;
+        if (e.paymentMethods) { anyAvailable = true; node.classList.remove("loading"); }
         updateVisibility();
       });
       el.mount(node);
@@ -178,6 +228,7 @@
         });
       }
     } catch (err) {
+      node.classList.remove("loading");
       if (window.console) console.warn("Apple Pay button unavailable for " + key + ":", err);
     }
   }
@@ -193,13 +244,23 @@
     token++;
     Object.keys(slots).forEach(function (k) {
       try { if (slots[k].element) slots[k].element.destroy(); } catch (e) {}
+      slots[k].node.remove();
     });
     slots = {};
-    slotsEl.innerHTML = "";
     anyAvailable = false;
     showError("");
     box.hidden = true;
     allKeys().forEach(buildSlot);
+  }
+
+  if (fakeBtn) fakeBtn.addEventListener("click", openModal);
+  if (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal || (e.target.closest && e.target.closest(".express-modal-close"))) closeModal();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeModal();
+    });
   }
 
   document.addEventListener("change", function (e) {

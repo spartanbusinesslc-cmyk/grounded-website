@@ -780,10 +780,23 @@ section { padding: var(--section-pad) 0; }
 .express-checkout { margin-top: 10px; }
 .express-slot { height: 0; overflow: hidden; opacity: 0; pointer-events: none; }
 .express-slot.active { height: auto; overflow: visible; opacity: 1; pointer-events: auto; }
-.express-scents { margin: 0 0 12px; padding: 12px 14px; border: 1px solid rgba(89,98,75,0.35); border-radius: 4px; display: flex; flex-direction: column; gap: 8px; }
-.express-scents p { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--olive); margin: 0 0 2px; }
-.express-scents[hidden] { display: none; }
-.express-scent-row { display: flex; align-items: center; gap: 10px; font-family: var(--body); font-size: 0.8rem; }
-.express-scent-row span { min-width: 44px; color: var(--charcoal); opacity: 0.7; }
-.express-scent-select { flex: 1; font-family: var(--body); font-size: 0.8rem; padding: 7px 8px; border: 1px solid rgba(28,28,28,0.2); border-radius: 2px; background: #fff; color: var(--charcoal); }
+.express-fake { width: 100%; height: 48px; border: 0; border-radius: 6px; background: #000; color: #fff; font-family: var(--body); font-size: 1rem; font-weight: 500; cursor: pointer; }
+.express-fake[hidden] { display: none; }
+.express-fake:hover { background: #222; }
+.express-modal-overlay { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(28,28,28,0.5); opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+.express-modal-overlay.open { opacity: 1; pointer-events: auto; }
+.express-modal { position: relative; width: 100%; max-width: 460px; max-height: calc(100vh - 40px); overflow-y: auto; background: var(--cream); padding: 36px 32px; }
+.express-modal-close { position: absolute; top: 12px; right: 18px; background: none; border: none; cursor: pointer; font-size: 1.6rem; line-height: 1; color: var(--charcoal); font-family: var(--body); font-weight: 300; }
+.express-panel { height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 14px; }
+.express-panel.active { height: auto; overflow: visible; }
+.express-modal-title { font-family: var(--display); font-size: 1.8rem; color: var(--charcoal); margin: 0; }
+.express-modal-sub { font-family: var(--body); font-size: 0.85rem; font-weight: 300; opacity: 0.65; margin: -8px 0 6px; }
+.express-scent-row { display: flex; flex-direction: column; gap: 6px; }
+.express-scent-row span { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--olive); font-weight: 500; }
+.express-scent-select { width: 100%; font-family: var(--body); font-size: 0.88rem; font-weight: 300; padding: 10px 12px; border: 1px solid rgba(28,28,28,0.2); border-radius: 2px; background: var(--cream); color: var(--charcoal); cursor: pointer; }
+.express-scent-select:focus { outline: none; border-color: var(--olive); }
+.express-modal-pay { margin-top: 10px; min-height: 48px; }
+.express-modal-pay .express-slot { height: auto; overflow: visible; opacity: 1; pointer-events: auto; }
+.express-slot.loading::before { content: "Preparing Apple Pay\2026"; display: block; text-align: center; font-family: var(--body); font-size: 0.8rem; opacity: 0.6; padding: 14px 0; }
+@media (max-width: 600px) { .express-modal { padding: 32px 20px 24px; } }
 .express-error { margin-top: 6px; font-family: var(--body); font-size: 0.78rem; color: #B94040; text-align: center; }
