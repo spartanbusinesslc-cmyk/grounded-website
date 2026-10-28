@@ -780,9 +780,13 @@ section { padding: var(--section-pad) 0; }
 .express-checkout { margin-top: 10px; }
 .express-slot { height: 0; overflow: hidden; opacity: 0; pointer-events: none; }
 .express-slot.active { height: auto; overflow: visible; opacity: 1; pointer-events: auto; }
-.express-fake { width: 100%; height: 48px; border: 0; border-radius: 6px; background: #000; color: #fff; font-family: var(--body); font-size: 1rem; font-weight: 500; cursor: pointer; }
+.express-fake { width: 100%; height: 48px; border: 0; border-radius: 4px; background: #000; color: #fff; font-family: var(--body); font-size: 1rem; font-weight: 500; cursor: pointer; }
+@supports (-webkit-appearance: -apple-pay-button) {
+  .express-fake { -webkit-appearance: -apple-pay-button; -apple-pay-button-type: buy; -apple-pay-button-style: black; color: transparent; font-size: 0; }
+}
+.express-modal:focus { outline: none; }
 .express-fake[hidden] { display: none; }
-.express-fake:hover { background: #222; }
+.express-fake:hover { filter: brightness(1.15); }
 .express-modal-overlay { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(28,28,28,0.5); opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
 .express-modal-overlay.open { opacity: 1; pointer-events: auto; }
 .express-modal { position: relative; width: 100%; max-width: 460px; max-height: calc(100vh - 40px); overflow-y: auto; background: var(--cream); padding: 36px 32px; }

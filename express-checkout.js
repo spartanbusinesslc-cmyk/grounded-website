@@ -158,8 +158,10 @@
     modal.inert = false;
     modal.classList.add("open");
     document.body.style.overflow = "hidden";
-    var first = modal.querySelector(".express-panel.active .express-scent-select");
-    if (first) first.focus();
+    // Focus the dialog itself, not a dropdown (focusing a select opens its picker on iPhone)
+    var dlg = modal.querySelector(".express-modal");
+    dlg.setAttribute("tabindex", "-1");
+    dlg.focus({ preventScroll: true });
   }
 
   function closeModal() {
