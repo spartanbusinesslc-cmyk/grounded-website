@@ -780,4 +780,10 @@ section { padding: var(--section-pad) 0; }
 .express-checkout { margin-top: 10px; }
 .express-slot { height: 0; overflow: hidden; opacity: 0; pointer-events: none; }
 .express-slot.active { height: auto; overflow: visible; opacity: 1; pointer-events: auto; }
+.express-scents { margin: 0 0 12px; padding: 12px 14px; border: 1px solid rgba(89,98,75,0.35); border-radius: 4px; display: flex; flex-direction: column; gap: 8px; }
+.express-scents p { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--olive); margin: 0 0 2px; }
+.express-scents[hidden] { display: none; }
+.express-scent-row { display: flex; align-items: center; gap: 10px; font-family: var(--body); font-size: 0.8rem; }
+.express-scent-row span { min-width: 44px; color: var(--charcoal); opacity: 0.7; }
+.express-scent-select { flex: 1; font-family: var(--body); font-size: 0.8rem; padding: 7px 8px; border: 1px solid rgba(28,28,28,0.2); border-radius: 2px; background: #fff; color: var(--charcoal); }
 .express-error { margin-top: 6px; font-family: var(--body); font-size: 0.78rem; color: #B94040; text-align: center; }
