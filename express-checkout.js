@@ -11,21 +11,25 @@
    Apple Pay button sits inside that popup, and the chosen
    scents are saved on the order (same metadata keys as the
    cart).
-   Hidden for everyone until a device visits a product
-   page once with ?applepay=1 (use ?applepay=0 to switch
-   it off again). Never breaks the page if anything fails.
+   Live for Apple devices. ?applepay=0 switches it off on
+   one device (?applepay=1 back on). Never breaks the page
+   if anything fails.
    ============================================ */
 (function () {
   var PUBLISHABLE_KEY = "pk_live_51Tl7IS5eqX21Gs5oOr5xkpZLrAjRoyyzsyMGRf5ENNEwD1ODofDy6bDBU1mhxaNb1ZIrzenYjtrWud69JXsfLi5i00PPP2g1I9";
   // Balm pages: options with no scent choice
   var PLAIN = ["bodyBalm", "balmBundle", "lipBalm", "lipBundle"];
 
+  // Apple Pay only works on Apple devices, so skip everyone else (no sessions created)
+  if (!/Mac|iPhone|iPad|iPod/.test(navigator.userAgent)) return;
+
+  // Kill switch for a single device: ?applepay=0 turns it off, ?applepay=1 turns it back on
   try {
     var flag = new URLSearchParams(location.search).get("applepay");
-    if (flag === "1") localStorage.setItem("ep_applepay", "1");
-    if (flag === "0") localStorage.removeItem("ep_applepay");
-    if (localStorage.getItem("ep_applepay") !== "1") return;
-  } catch (e) { return; }
+    if (flag === "0") localStorage.setItem("ep_applepay", "off");
+    if (flag === "1") localStorage.removeItem("ep_applepay");
+    if (localStorage.getItem("ep_applepay") === "off") return;
+  } catch (e) { /* storage blocked: stay on */ }
 
   var anchor = document.getElementById("bb-add-btn");
   if (!anchor) return;
