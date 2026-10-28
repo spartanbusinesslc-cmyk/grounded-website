@@ -187,7 +187,11 @@ module.exports = async (req, res) => {
       sessionParams.shipping_address_collection = { allowed_countries: allowedCountries };
     }
 
-    const session = await stripe.checkout.sessions.create(sessionParams);
+    // ui_mode "elements" needs a newer API version; only the express (Apple Pay) sessions use it
+    const session = await stripe.checkout.sessions.create(
+      sessionParams,
+      express ? { apiVersion: "2026-03-25.dahlia" } : undefined
+    );
 
     return res.status(200).json(express ? { client_secret: session.client_secret } : { url: session.url });
   } catch (err) {
