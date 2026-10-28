@@ -15,3 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Open at the purchase box when arriving via a #buy link (re-run after images settle the layout)
+if (location.hash === "#buy") {
+  const toBuy = () => document.getElementById("buy")?.scrollIntoView({ block: "start" });
+  window.addEventListener("load", () => { toBuy(); setTimeout(toBuy, 400); });
+}

@@ -771,3 +771,6 @@ section { padding: var(--section-pad) 0; }
 .product-rating-stars { color: #B94040; font-size: 0.95rem; letter-spacing: 1px; }
 .product-rating-count { font-size: 0.8rem; color: rgba(28,28,28,0.5); text-decoration: underline; text-underline-offset: 2px; }
 .product-rating-link:hover .product-rating-count { color: var(--charcoal); }
+
+/* Anchor target for homepage "Add to Cart" links: clear the sticky header */
+#buy { scroll-margin-top: 110px; }

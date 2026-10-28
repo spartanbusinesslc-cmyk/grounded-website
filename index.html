@@ -229,15 +229,12 @@
     .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .product-card { padding: 0; border-radius: 4px; overflow: hidden; }
     .product-swatch { width: 100%; height: auto; aspect-ratio: 1/1; flex-shrink: 0; margin-bottom: 0; border-radius: 0; }
-    .product-card-title { padding: 14px 14px 0; }
-    .product-card-text { padding: 0 14px 18px; }
+    .product-card-text { padding: 14px 14px 18px; }
     .product-card h3 { font-size: 1rem; margin-bottom: 10px; }
     .product-card .btn { font-size: 0.65rem; padding: 8px 12px; }
   }
 
-  .product-card-link { display: flex; flex-direction: column; flex-grow: 1; text-decoration: none; color: inherit; }
-  .product-card-title { flex-grow: 1; }
-  .product-card h3 { font-size: 1.6rem; margin-bottom: 14px; flex-grow: 1; }
+  .product-card h3 { font-size: 1.6rem; margin-bottom: 6px; flex-grow: 1; }
   .product-card .desc { font-size: 0.88rem; opacity: 0.7; margin-bottom: 18px; flex-grow: 1; }
   .product-price { font-family: var(--body); font-size: 1rem; margin-bottom: 22px; color: var(--olive); margin-top: 6px; }
   .product-card .btn { margin-top: auto; justify-content: center; width: 100%; }
@@ -370,38 +367,25 @@
       </div>
       <div class="product-grid">
 
-        <div class="product-card">
-          <a href="raw-milk-soap.html" class="product-card-link" aria-label="Raw Milk Soap">
-            <div class="product-swatch swatch-soap" style="background:#f5f3ef;padding:0;overflow:hidden;"><img src="assets/CL Soap flowers.webp" alt="Raw Milk Soap" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
-            <div class="product-card-title"><h3>Raw Milk Soap</h3></div>
-          </a>
-          <div class="product-card-text"><button type="button" class="btn" data-quick-soap="raw">Add to Cart</button></div>
-        </div>
+        <a href="raw-milk-soap.html#buy" class="product-card">
+          <div class="product-swatch swatch-soap" style="background:#f5f3ef;padding:0;overflow:hidden;"><img src="assets/CL Soap flowers.webp" alt="Raw Milk Soap" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
+          <div class="product-card-text"><h3>Raw Milk Soap</h3><span class="btn">Add to Cart</span></div>
+        </a>
 
-        <div class="product-card">
-          <a href="olive-oil-soap.html" class="product-card-link" aria-label="Olive Oil Soap">
-            <div class="product-swatch swatch-soap" style="background:#f5f3ef;padding:0;overflow:hidden;"><img src="assets/plain soap .webp" alt="Olive Oil Soap" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
-            <div class="product-card-title"><h3>Olive Oil Soap</h3></div>
-          </a>
-          <div class="product-card-text"><button type="button" class="btn" data-quick-soap="olive">Add to Cart</button></div>
-        </div>
+        <a href="olive-oil-soap.html#buy" class="product-card">
+          <div class="product-swatch swatch-soap" style="background:#f5f3ef;padding:0;overflow:hidden;"><img src="assets/plain soap .webp" alt="Olive Oil Soap" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
+          <div class="product-card-text"><h3>Olive Oil Soap</h3><span class="btn">Add to Cart</span></div>
+        </a>
 
-        <div class="product-card">
-          <a href="tallow-balm.html" class="product-card-link" aria-label="Tallow Body Balm">
-            <div class="product-swatch swatch-balm" style="background:#7A5F44;padding:0;overflow:hidden;"><img src="assets/Tallow open finger.webp" alt="Tallow Body Balm" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
-            <div class="product-card-title"><h3>Tallow Body Balm</h3></div>
-          </a>
-          <div class="product-card-text"><button type="button" class="btn" data-add-to-cart="balmBundle">Add to Cart</button></div>
-        </div>
+        <a href="tallow-balm.html#buy" class="product-card">
+          <div class="product-swatch swatch-balm" style="background:#7A5F44;padding:0;overflow:hidden;"><img src="assets/Tallow open finger.webp" alt="Tallow Body Balm" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
+          <div class="product-card-text"><h3>Tallow Body Balm</h3><span class="btn">Add to Cart</span></div>
+        </a>
 
-        <div class="product-card">
-          <a href="lip-balm.html" class="product-card-link" aria-label="Natural Lip Balm">
-            <div class="product-swatch swatch-lip" style="background:#1C1C1C;padding:0;overflow:hidden;"><img src="assets/lip balm open finger.webp" alt="Natural Lip Balm" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
-            <div class="product-card-title"><h3>Natural Lip Balm</h3></div>
-          </a>
-          <div class="product-card-text"><button type="button" class="btn" data-add-to-cart="lipBundle">Add to Cart</button></div>
-        </div>
-
+        <a href="lip-balm.html#buy" class="product-card">
+          <div class="product-swatch swatch-lip" style="background:#1C1C1C;padding:0;overflow:hidden;"><img src="assets/lip balm open finger.webp" alt="Natural Lip Balm" style="width:100%;height:100%;object-fit:cover;filter:none;opacity:1;"></div>
+          <div class="product-card-text"><h3>Natural Lip Balm</h3><span class="btn">Add to Cart</span></div>
+        </a>
 
       </div>
 
@@ -625,18 +609,6 @@
   });
 </script>
 
-<script>
-document.querySelectorAll('[data-quick-soap]').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    openBundleModal('soapBundle');
-    if (btn.dataset.quickSoap === 'olive') {
-      var sel = document.querySelectorAll('#bundle-modal .bm-select');
-      var ids = ['oliveUnscented', 'oliveCitrusLavender', 'oliveMintTeaTree'];
-      sel.forEach(function (el, i) { if (ids[i]) el.value = ids[i]; });
-    }
-  });
-});
-</script>
 <script src="egg-popup.js" defer></script>
 <script>
 function handleFooterSignup(e, form) {
