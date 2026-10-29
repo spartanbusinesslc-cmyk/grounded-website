@@ -100,6 +100,9 @@
         '<p class="express-error" hidden></p>' +
       "</div>";
     document.body.appendChild(modal);
+    if (window.enhanceScentSelect) {
+      Array.prototype.slice.call(modal.querySelectorAll(".express-scent-select")).forEach(window.enhanceScentSelect);
+    }
   }
 
   var stripe = null, slots = {}, token = 0, timer = null, anyAvailable = false;

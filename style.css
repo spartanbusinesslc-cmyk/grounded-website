@@ -812,3 +812,20 @@ section { padding: var(--section-pad) 0; }
 .express-slot.loading::before { content: "Preparing Apple Pay\2026"; display: block; text-align: center; font-family: var(--body); font-size: 0.8rem; opacity: 0.6; padding: 14px 0; }
 @media (max-width: 600px) { .express-modal { padding: 32px 20px 24px; } }
 .express-error { margin-top: 6px; font-family: var(--body); font-size: 0.78rem; color: #B94040; text-align: center; }
+
+/* ---------- Scent menus with colour dots ---------- */
+.pill-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.12); background: #E8DFC4; }
+.pill-dot.plain { background: #E8DFC4; }
+.pill-dot.citrus { background: linear-gradient(135deg, #E3A04F 50%, #B49AD6 50%); }
+.pill-dot.mint { background: linear-gradient(135deg, #2B2E2A 50%, #7FA08A 50%); }
+.scent-native { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden; }
+.scent-dd { width: 100%; }
+.scent-dd-btn { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; font-family: var(--body); font-size: 0.88rem; font-weight: 300; color: var(--charcoal); background: var(--cream); border: 1px solid rgba(28,28,28,0.2); padding: 10px 12px; border-radius: 2px; cursor: pointer; }
+.scent-dd-btn:focus-visible, .scent-dd-btn[aria-expanded="true"] { outline: none; border-color: var(--olive); }
+.scent-dd-label { flex: 1; }
+.scent-dd-chev { width: 12px; height: 8px; flex-shrink: 0; opacity: 0.7; }
+.scent-dd-list { list-style: none; margin: 4px 0 0; padding: 4px 0; border: 1px solid rgba(28,28,28,0.2); border-radius: 2px; background: var(--cream); }
+.scent-dd-list[hidden] { display: none; }
+.scent-dd-list li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-family: var(--body); font-size: 0.88rem; font-weight: 300; color: var(--charcoal); cursor: pointer; }
+.scent-dd-list li:hover { background: rgba(89,98,75,0.1); }
+.scent-dd-list li[aria-selected="true"] { background: rgba(89,98,75,0.16); font-weight: 400; }
