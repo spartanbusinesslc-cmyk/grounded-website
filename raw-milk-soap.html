@@ -54,9 +54,19 @@
     border-radius: 20px; cursor: pointer; background: transparent; font-family: var(--body);
   }
   .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
+  .variant-pill { display: inline-flex; align-items: center; gap: 8px; }
+  .pill-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.12); }
+  .pill-dot.plain { background: #E8DFC4; }
+  .pill-dot.citrus { background: linear-gradient(135deg, #E3A04F 50%, #B49AD6 50%); }
+  .pill-dot.mint { background: linear-gradient(135deg, #2B2E2A 50%, #7FA08A 50%); }
   @media (max-width: 600px) {
     .variant-pills { gap: 7px; flex-wrap: nowrap; }
     .variant-pill { font-size: 0.65rem; padding: 7px 12px; letter-spacing: 0.05em; }
+    .variant-pill { gap: 6px; white-space: nowrap; font-size: 0.58rem; padding: 7px 8px; letter-spacing: 0.02em; }
+    .pill-dot { width: 11px; height: 11px; }
+  }
+  @media (min-width: 380px) and (max-width: 600px) {
+    .variant-pill { font-size: 0.62rem; padding: 7px 10px; letter-spacing: 0.03em; }
   }
   .benefits-block { background: var(--olive); border-radius: 14px; padding: 20px 22px; margin: 0 0 18px; }
   .benefits-block p { font-family: var(--body); font-size: 0.88rem; font-weight: 700; color: #fff; margin: 0 0 14px; line-height: 1.4; }
@@ -152,9 +162,9 @@
 
         <p class="variant-label">Choose Your Scent</p>
         <div class="variant-pills" role="group" aria-label="Choose a scent">
-          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-image="assets/rms-unscented.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin.">Plain</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-image="assets/CL Soap flowers.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin.">Citrus &amp; Lavender</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-image="assets/Soap cut with knife.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin.">Mint &amp; Tea Tree</button>
+          <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-image="assets/rms-unscented.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin."><span class="pill-dot plain" aria-hidden="true"></span>Plain</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-image="assets/CL Soap flowers.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin."><span class="pill-dot citrus" aria-hidden="true"></span>Citrus &amp; Lavender</button>
+          <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-image="assets/Soap cut with knife.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin."><span class="pill-dot mint" aria-hidden="true"></span>Mint &amp; Tea Tree</button>
         </div>
 
         <div class="ingredients-block">
