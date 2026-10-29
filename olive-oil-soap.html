@@ -563,7 +563,7 @@
         panelSub.querySelectorAll('.bb-freq-pill').forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         activeFreq = pill.dataset.freq;
-        var perLabel = activeFreq === '3m' ? 'every 3 months' : '/mo';
+        var perLabel = activeFreq === '3m' ? '/3mo' : '/mo';
         panelSub.querySelectorAll('.bb-per').forEach(function(el){ el.textContent = perLabel; });
         updateBtn();
       });
