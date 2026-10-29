@@ -130,7 +130,7 @@
       var lab = rs.closest(".bb-option");
       if (soapMode && lab.id === "bb-sub-single") {
         var sp = document.querySelector('.variant-pill[aria-pressed="true"]');
-        return sp ? sp.dataset.subId : null;
+        return sp ? sp.dataset.subId + (activeFreq() === "3m" ? "3m" : "") : null;
       }
       if (!soapMode && (lab.dataset.modal1m || lab.dataset.modal3m)) return null;
       return lab.dataset["sub" + activeFreq()] || lab.dataset["modal" + activeFreq()] || rs.value;
@@ -170,7 +170,7 @@
     Array.prototype.slice.call(document.querySelectorAll('#bb-panel-subscribe input[name="bb-sub"]')).forEach(function (r) {
       var lab = r.closest(".bb-option");
       if (soapMode && lab.id === "bb-sub-single") {
-        pills.forEach(function (p) { if (p.dataset.subId) out.push(p.dataset.subId); });
+        pills.forEach(function (p) { if (p.dataset.subId) out.push(p.dataset.subId + (freq === "3m" ? "3m" : "")); });
       } else if (!soapMode && (lab.dataset.modal1m || lab.dataset.modal3m)) {
         return;
       } else {

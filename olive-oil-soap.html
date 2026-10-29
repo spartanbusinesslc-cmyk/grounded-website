@@ -588,7 +588,7 @@
         const label = r?.closest('.bb-option');
         const isSubSingle = label && label.id === 'bb-sub-single';
         if (isSubSingle) {
-          addToCart(currentSubId, 1);
+          addToCart(activeFreq === '3m' ? currentSubId + '3m' : currentSubId, 1);
         } else if (label && (label.dataset.modal1m || label.dataset.modal3m)) {
           const modalId = activeFreq === '3m' ? label.dataset.modal3m : label.dataset.modal1m;
           openBundleModal(modalId);
