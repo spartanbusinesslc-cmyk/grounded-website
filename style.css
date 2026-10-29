@@ -408,7 +408,7 @@ section { padding: var(--section-pad) 0; }
 }
 
 @media (max-width: 600px) {
-  .free-shipping-bar { font-size: 0.56rem; letter-spacing: 0.04em; padding: 9px 8px; white-space: nowrap; }
+  .free-shipping-bar { font-size: min(0.68rem, 3vw); letter-spacing: 0.04em; padding: 9px 8px; white-space: nowrap; }
   .free-shipping-bar .fsb-long { display: none; }
 }
 
