@@ -67,7 +67,7 @@
   box.hidden = true;
   box.innerHTML =
     (soapMode ? '<button type="button" class="express-fake" hidden>Pay with Apple Pay</button>' : "") +
-    '<div class="express-slots"></div><p class="express-error" hidden></p>';
+    '<div class="express-slots"></div><p class="express-sub-note" hidden></p><p class="express-error" hidden></p>';
   anchor.insertAdjacentElement("afterend", box);
   var slotsEl = box.querySelector(".express-slots");
   var fakeBtn = box.querySelector(".express-fake");
@@ -147,6 +147,18 @@
     return PLAIN.indexOf(r.value) !== -1 ? r.value : null;
   }
 
+  // Delivery on subscriptions is billed with each delivery, so say so next to the button
+  var DELIVERY = { uk: [3.99, 20], europe: [15, 75], row: [20, 100] };
+  function subNote(key) {
+    var pr = PRODUCTS[key];
+    if (!pr) return "";
+    var region = (document.getElementById("cart-region") || {}).value || "uk";
+    var d = DELIVERY[region] || DELIVERY.uk;
+    var every = /3m$/.test(key) ? "every 3 months" : "every month";
+    var price = "£" + pr.price.toFixed(2);
+    return (pr.price >= d[1] ? price + " " + every + ", free delivery" : price + " + £" + d[0].toFixed(2) + " delivery, " + every) + ". Cancel anytime.";
+  }
+
   function activeFreq() {
     var fp = document.querySelector("#bb-panel-subscribe .bb-freq-pill.active");
     return fp ? fp.dataset.freq : "1m";
@@ -201,6 +213,9 @@
       if (!isModalKey(k)) slots[k].node.classList.toggle("active", k === sel);
     });
     box.hidden = !(anyAvailable && sel && slots[sel]);
+    var inlineNote = box.querySelector(".express-sub-note");
+    inlineNote.hidden = !(sel && isSubKey(sel) && !isModalKey(sel));
+    if (!inlineNote.hidden) inlineNote.textContent = subNote(sel);
     if (fakeBtn) fakeBtn.hidden = !(sel && isModalKey(sel));
     if (modal) {
       var grp = sel && groupOf(sel);
@@ -211,9 +226,8 @@
         c.classList.toggle("active", c.dataset.slot === sel);
       });
       Array.prototype.slice.call(modal.querySelectorAll(".express-sub-note")).forEach(function (n) {
-        var pr = sel && PRODUCTS[sel];
-        n.hidden = !(sel && isSubKey(sel) && pr);
-        if (!n.hidden) n.textContent = "Subscription: £" + pr.price.toFixed(2) + (/3m$/.test(sel) ? " every 3 months" : " every month") + ". Cancel anytime.";
+        n.hidden = !(sel && isSubKey(sel) && PRODUCTS[sel]);
+        if (!n.hidden) n.textContent = subNote(sel);
       });
     }
   }
@@ -338,6 +352,7 @@
     if (!e.target.matches) return;
     if (e.target.matches('input[name="bb-ot"], input[name="bb-sub"]')) { ensureSubSlots(); updateVisibility(); }
     if (e.target.matches("#cart-region")) {
+      updateVisibility();
       clearTimeout(timer);
       timer = setTimeout(buildAll, 300);
     }

@@ -801,7 +801,7 @@ section { padding: var(--section-pad) 0; }
 .express-scent-select:focus { outline: none; border-color: var(--olive); }
 .express-modal-pay { height: 0; overflow: hidden; }
 .express-modal-pay.active { height: auto; overflow: visible; margin-top: 10px; min-height: 48px; }
-.express-sub-note { font-family: var(--body); font-size: 0.8rem; font-weight: 400; margin: 0; }
+.express-sub-note { font-family: var(--body); font-size: 0.8rem; font-weight: 400; margin: 8px 0 0; text-align: center; }
 .express-sub-note[hidden] { display: none; }
 .express-modal-pay .express-slot { height: auto; overflow: visible; opacity: 1; pointer-events: auto; }
 .express-slot.loading::before { content: "Preparing Apple Pay\2026"; display: block; text-align: center; font-family: var(--body); font-size: 0.8rem; opacity: 0.6; padding: 14px 0; }
