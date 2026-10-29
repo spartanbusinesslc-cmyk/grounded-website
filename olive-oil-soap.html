@@ -471,8 +471,11 @@
         productImg.src = pill.dataset.image;
         if (variantThumb) {
           variantThumb.src = pill.dataset.image;
+          // if the gallery already has this photo, show it once: hide the scent thumbnail and use the existing one
+          const dupe = Array.from(document.querySelectorAll('.product-thumb')).find(t => t !== variantThumb && t.getAttribute('src') === pill.dataset.image);
+          variantThumb.style.display = dupe ? 'none' : '';
           document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
-          variantThumb.classList.add('active');
+          (dupe || variantThumb).classList.add('active');
         }
       }
       const ingredientsEl = document.querySelector('.ingredients-body');
@@ -496,19 +499,23 @@
 
   const thumbs = Array.from(document.querySelectorAll('.product-thumb'));
   const productImg = document.getElementById('product-img');
+  const shownThumbs = () => thumbs.filter(t => t.style.display !== 'none');
   function goToThumb(index) {
+    const list = shownThumbs();
     thumbs.forEach(t => t.classList.remove('active'));
-    thumbs[index].classList.add('active');
-    productImg.src = thumbs[index].src;
-    productImg.style.objectFit = thumbs[index].classList.contains('info-thumb') ? 'contain' : 'cover';
+    list[index].classList.add('active');
+    productImg.src = list[index].src;
+    productImg.style.objectFit = list[index].classList.contains('info-thumb') ? 'contain' : 'cover';
   }
   document.getElementById('gallery-prev').addEventListener('click', () => {
-    const current = thumbs.findIndex(t => t.classList.contains('active'));
-    goToThumb((current - 1 + thumbs.length) % thumbs.length);
+    const list = shownThumbs();
+    const current = list.findIndex(t => t.classList.contains('active'));
+    goToThumb((current - 1 + list.length) % list.length);
   });
   document.getElementById('gallery-next').addEventListener('click', () => {
-    const current = thumbs.findIndex(t => t.classList.contains('active'));
-    goToThumb((current + 1) % thumbs.length);
+    const list = shownThumbs();
+    const current = list.findIndex(t => t.classList.contains('active'));
+    goToThumb((current + 1) % list.length);
   });
 
   // Ingredients toggle
