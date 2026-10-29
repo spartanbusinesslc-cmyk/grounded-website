@@ -58,7 +58,7 @@ const PRICE_MAP = {
   subOliveUnscented:      process.env.PRICE_SUB_OLIVE_UNSCENTED,
   subOliveCitrusLavender: process.env.PRICE_SUB_OLIVE_CITRUS_LAVENDER,
   subOliveMintTeaTree:    process.env.PRICE_SUB_OLIVE_MINT_TEA_TREE,
-  subBodyBalm:            process.env.PRICE_SUB_BODY_BALM,
+  subBodyBalm:            "price_1UVuqs5eqX21Gs5oy69HE3US",
   subLipBalm:             process.env.PRICE_SUB_LIP_BALM
 };
 
