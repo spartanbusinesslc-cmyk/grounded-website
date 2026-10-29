@@ -799,7 +799,10 @@ section { padding: var(--section-pad) 0; }
 .express-scent-row span { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--olive); font-weight: 500; }
 .express-scent-select { width: 100%; font-family: var(--body); font-size: 0.88rem; font-weight: 300; padding: 10px 12px; border: 1px solid rgba(28,28,28,0.2); border-radius: 2px; background: var(--cream); color: var(--charcoal); cursor: pointer; }
 .express-scent-select:focus { outline: none; border-color: var(--olive); }
-.express-modal-pay { margin-top: 10px; min-height: 48px; }
+.express-modal-pay { height: 0; overflow: hidden; }
+.express-modal-pay.active { height: auto; overflow: visible; margin-top: 10px; min-height: 48px; }
+.express-sub-note { font-family: var(--body); font-size: 0.8rem; font-weight: 400; margin: 0; }
+.express-sub-note[hidden] { display: none; }
 .express-modal-pay .express-slot { height: auto; overflow: visible; opacity: 1; pointer-events: auto; }
 .express-slot.loading::before { content: "Preparing Apple Pay\2026"; display: block; text-align: center; font-family: var(--body); font-size: 0.8rem; opacity: 0.6; padding: 14px 0; }
 @media (max-width: 600px) { .express-modal { padding: 32px 20px 24px; } }

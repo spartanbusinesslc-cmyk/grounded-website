@@ -5,6 +5,8 @@
    under "Add to Cart" for the selected one-time option.
    One button is prepared per option on page load, so
    switching options is instant.
+   The Subscribe tab works the same way (buttons are prepared
+   the first time it is opened, per frequency).
    Soap pages: single bars follow the selected scent pill.
    The 3-Pack and Essentials Set show our own "Pay with
    Apple Pay" button that opens a scent popup; the real
@@ -40,7 +42,17 @@
   var scentList = typeof SCENT_OPTIONS !== "undefined" ? SCENT_OPTIONS : null;
   if (soapMode && !scentList) return;
 
-  function isModalKey(key) { return key === "bundle" || key === "essentials"; }
+  // Subscription ids that need the scent popup (soap pages only), mapped to their popup panel
+  var SUB_GROUP = { subSoapBundle: "bundle", subSoapBundle3m: "bundle", subEssentialsBundle: "essentials", subEssentialsBundle3m: "essentials" };
+  function groupOf(key) {
+    if (key === "bundle" || key === "essentials") return key;
+    return (soapMode && SUB_GROUP[key]) || null;
+  }
+  function isModalKey(key) { return !!groupOf(key); }
+  function isSubKey(key) { return key.indexOf("sub") === 0; }
+  function paySlots(keys) {
+    return keys.map(function (k) { return '<div class="express-modal-pay" data-slot="' + k + '"></div>'; }).join("");
+  }
 
   function scentSelect(group, index, label, defaultId) {
     var opts = scentList.map(function (s) {
@@ -75,13 +87,15 @@
           scentSelect("bundle", 0, "Bar 1", familyIds[0]) +
           scentSelect("bundle", 1, "Bar 2", familyIds[1] || familyIds[0]) +
           scentSelect("bundle", 2, "Bar 3", familyIds[2] || familyIds[0]) +
-          '<div class="express-modal-pay" data-slot="bundle"></div>' +
+          '<p class="express-sub-note" hidden></p>' +
+          paySlots(["bundle", "subSoapBundle", "subSoapBundle3m"]) +
         "</div>" +
         '<div class="express-panel" data-for="essentials">' +
           '<h3 class="express-modal-title">EARTHED Essentials Set</h3>' +
           '<p class="express-modal-sub">Choose your soap, then pay with Apple Pay. Balm &amp; lip balm are included.</p>' +
           scentSelect("essentials", 0, "Soap", familyIds[0]) +
-          '<div class="express-modal-pay" data-slot="essentials"></div>' +
+          '<p class="express-sub-note" hidden></p>' +
+          paySlots(["essentials", "subEssentialsBundle", "subEssentialsBundle3m"]) +
         "</div>" +
         '<p class="express-error" hidden></p>' +
       "</div>";
@@ -110,6 +124,17 @@
 
   function selectedKey() {
     var tab = document.querySelector(".bb-tab.active");
+    if (tab && tab.dataset.tab === "subscribe") {
+      var rs = document.querySelector('#bb-panel-subscribe input[name="bb-sub"]:checked');
+      if (!rs) return null;
+      var lab = rs.closest(".bb-option");
+      if (soapMode && lab.id === "bb-sub-single") {
+        var sp = document.querySelector('.variant-pill[aria-pressed="true"]');
+        return sp ? sp.dataset.subId : null;
+      }
+      if (!soapMode && (lab.dataset.modal1m || lab.dataset.modal3m)) return null;
+      return lab.dataset["sub" + activeFreq()] || lab.dataset["modal" + activeFreq()] || rs.value;
+    }
     if (!tab || tab.dataset.tab !== "one-time") return null;
     var r = document.querySelector('#bb-panel-one-time input[name="bb-ot"]:checked');
     if (!r) return null;
@@ -122,6 +147,34 @@
     return PLAIN.indexOf(r.value) !== -1 ? r.value : null;
   }
 
+  function activeFreq() {
+    var fp = document.querySelector("#bb-panel-subscribe .bb-freq-pill.active");
+    return fp ? fp.dataset.freq : "1m";
+  }
+
+  // Every subscription option for a frequency that can have an Apple Pay button
+  function subKeys(freq) {
+    var out = [];
+    Array.prototype.slice.call(document.querySelectorAll('#bb-panel-subscribe input[name="bb-sub"]')).forEach(function (r) {
+      var lab = r.closest(".bb-option");
+      if (soapMode && lab.id === "bb-sub-single") {
+        pills.forEach(function (p) { if (p.dataset.subId) out.push(p.dataset.subId); });
+      } else if (!soapMode && (lab.dataset.modal1m || lab.dataset.modal3m)) {
+        return;
+      } else {
+        out.push(lab.dataset["sub" + freq] || lab.dataset["modal" + freq] || r.value);
+      }
+    });
+    return out;
+  }
+
+  // Subscription buttons are prepared the first time the Subscribe tab is used, and per frequency
+  function ensureSubSlots() {
+    var tab = document.querySelector(".bb-tab.active");
+    if (!tab || tab.dataset.tab !== "subscribe") return;
+    subKeys(activeFreq()).forEach(function (k) { if (!slots[k]) buildSlot(k); });
+  }
+
   function scentValues(group) {
     return Array.prototype.slice.call(modal.querySelectorAll('.express-scent-select[data-group="' + group + '"]'))
       .map(function (s) { return s.value; });
@@ -130,13 +183,14 @@
   function nameOf(id) { return (PRODUCTS[id] && PRODUCTS[id].name) || id; }
 
   function descriptor(key) {
-    if (key === "bundle") {
+    var g = groupOf(key);
+    if (g === "bundle") {
       var md = {};
       scentValues("bundle").forEach(function (id, i) { md["soap_bundle_bar_" + (i + 1)] = nameOf(id); });
-      return { id: "soapBundle", metadata: md };
+      return { id: key === "bundle" ? "soapBundle" : key, metadata: md };
     }
-    if (key === "essentials") {
-      return { id: "essentialsBundle", metadata: { essentials_soap: nameOf(scentValues("essentials")[0]) } };
+    if (g === "essentials") {
+      return { id: key === "essentials" ? "essentialsBundle" : key, metadata: { essentials_soap: nameOf(scentValues("essentials")[0]) } };
     }
     return { id: key, metadata: {} };
   }
@@ -146,11 +200,20 @@
     Object.keys(slots).forEach(function (k) {
       if (!isModalKey(k)) slots[k].node.classList.toggle("active", k === sel);
     });
-    box.hidden = !(anyAvailable && sel);
-    if (fakeBtn) fakeBtn.hidden = !isModalKey(sel);
+    box.hidden = !(anyAvailable && sel && slots[sel]);
+    if (fakeBtn) fakeBtn.hidden = !(sel && isModalKey(sel));
     if (modal) {
+      var grp = sel && groupOf(sel);
       Array.prototype.slice.call(modal.querySelectorAll(".express-panel")).forEach(function (p) {
-        p.classList.toggle("active", p.dataset.for === sel);
+        p.classList.toggle("active", p.dataset.for === grp);
+      });
+      Array.prototype.slice.call(modal.querySelectorAll(".express-modal-pay")).forEach(function (c) {
+        c.classList.toggle("active", c.dataset.slot === sel);
+      });
+      Array.prototype.slice.call(modal.querySelectorAll(".express-sub-note")).forEach(function (n) {
+        var pr = sel && PRODUCTS[sel];
+        n.hidden = !(sel && isSubKey(sel) && pr);
+        if (!n.hidden) n.textContent = "Subscription: £" + pr.price.toFixed(2) + (/3m$/.test(sel) ? " every 3 months" : " every month") + ". Cancel anytime.";
       });
     }
   }
@@ -183,7 +246,7 @@
       old.node.remove();
     }
     var node = document.createElement("div");
-    node.className = "express-slot" + (isModalKey(key) ? " loading" : "");
+    node.className = "express-slot" + (isModalKey(key) || isSubKey(key) ? " loading" : "");
     var parent = isModalKey(key) ? modal.querySelector('.express-modal-pay[data-slot="' + key + '"]') : slotsEl;
     parent.appendChild(node);
     var slot = { node: node, element: null };
@@ -199,6 +262,7 @@
         body: JSON.stringify({
           items: [{ id: d.id, quantity: 1 }],
           express: true,
+          subscription: isSubKey(d.id),
           metadata: d.metadata,
           subtotalPence: Math.round(PRODUCTS[d.id].price * 100),
           affiliateRef: typeof getAffiliateRef === "function" ? getAffiliateRef() : null,
@@ -257,6 +321,7 @@
     showError("");
     box.hidden = true;
     allKeys().forEach(buildSlot);
+    ensureSubSlots();
   }
 
   if (fakeBtn) fakeBtn.addEventListener("click", openModal);
@@ -271,7 +336,7 @@
 
   document.addEventListener("change", function (e) {
     if (!e.target.matches) return;
-    if (e.target.matches('input[name="bb-ot"]')) updateVisibility();
+    if (e.target.matches('input[name="bb-ot"], input[name="bb-sub"]')) { ensureSubSlots(); updateVisibility(); }
     if (e.target.matches("#cart-region")) {
       clearTimeout(timer);
       timer = setTimeout(buildAll, 300);
@@ -279,12 +344,16 @@
     if (e.target.matches(".express-scent-select")) {
       var group = e.target.dataset.group;
       clearTimeout(timer);
-      timer = setTimeout(function () { buildSlot(group); }, 250);
+      timer = setTimeout(function () {
+        Object.keys(slots).forEach(function (k) { if (groupOf(k) === group) buildSlot(k); });
+      }, 250);
     }
   });
   document.addEventListener("click", function (e) {
     if (!e.target.closest) return;
-    if (e.target.closest(".bb-tab") || e.target.closest(".variant-pill")) setTimeout(updateVisibility, 60);
+    if (e.target.closest(".bb-tab, .variant-pill, .bb-freq-pill, .bb-option")) {
+      setTimeout(function () { ensureSubSlots(); updateVisibility(); }, 60);
+    }
   });
   buildAll();
 })();
