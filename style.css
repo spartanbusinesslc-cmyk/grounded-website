@@ -407,6 +407,11 @@ section { padding: var(--section-pad) 0; }
   padding: 9px 20px;
 }
 
+@media (max-width: 600px) {
+  .free-shipping-bar { font-size: 0.56rem; letter-spacing: 0.04em; padding: 9px 8px; white-space: nowrap; }
+  .free-shipping-bar .fsb-long { display: none; }
+}
+
 .cart-badge {
   display: inline-flex;
   align-items: center;

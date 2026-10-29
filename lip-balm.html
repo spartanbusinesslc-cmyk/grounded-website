@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="style.css">
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
-  .product-page { padding: clamp(48px, 7vw, 80px) 0; }
+  .product-page { padding: clamp(32px, 5vw, 56px) 0 clamp(24px, 3vw, 40px); }
   .product-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -42,7 +42,6 @@
     .product-image { aspect-ratio: 4/3; }
     .wrap { padding-left: clamp(16px, 5vw, 48px); padding-right: clamp(16px, 5vw, 48px); }
   }
-  .product-page { padding: clamp(32px, 5vw, 56px) 0 clamp(24px, 3vw, 40px); }
   .product-info .product-label { display: block; font-family: var(--body); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); font-weight: 500; margin-bottom: 8px; }
   .product-info h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 500; color: var(--olive); margin-bottom: 10px; }
   .product-info .desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 16px; line-height: 1.7; max-width: 440px; }
@@ -96,7 +95,7 @@
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
-<div class="free-shipping-bar">Free UK delivery over £20 · Free worldwide shipping over £75</div>
+<div class="free-shipping-bar">Free UK delivery over £20 · Free worldwide<span class="fsb-long"> shipping</span> over £75</div>
 <header class="nav">
   <div class="wrap">
     <a href="index.html" class="nav-logo">
