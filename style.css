@@ -794,17 +794,17 @@ section { padding: var(--section-pad) 0; }
 .express-fake:hover { filter: brightness(1.15); }
 .express-modal-overlay { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(28,28,28,0.5); opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
 .express-modal-overlay.open { opacity: 1; pointer-events: auto; }
-.express-modal { position: relative; width: 100%; max-width: 460px; max-height: calc(100vh - 40px); overflow-y: auto; background: var(--cream); padding: 36px 32px; }
+.express-modal { position: relative; width: 100%; max-width: 460px; max-height: calc(100vh - 40px); max-height: calc(100dvh - 40px); overflow-y: auto; background: var(--cream); padding: 36px 32px; }
 .express-modal-close { position: absolute; top: 12px; right: 18px; background: none; border: none; cursor: pointer; font-size: 1.6rem; line-height: 1; color: var(--charcoal); font-family: var(--body); font-weight: 300; }
 .express-panel { height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 14px; }
 .express-panel.active { height: auto; overflow: visible; }
 .express-modal-title { font-family: var(--display); font-size: 1.8rem; color: var(--charcoal); margin: 0; }
 .express-modal-sub { font-family: var(--body); font-size: 0.85rem; font-weight: 300; opacity: 0.65; margin: -8px 0 6px; }
 .express-scent-row { display: flex; flex-direction: column; gap: 6px; }
-.express-scent-row span { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--olive); font-weight: 500; }
+.express-scent-row > span { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--olive); font-weight: 500; }
 .express-scent-select { width: 100%; font-family: var(--body); font-size: 0.88rem; font-weight: 300; padding: 10px 12px; border: 1px solid rgba(28,28,28,0.2); border-radius: 2px; background: var(--cream); color: var(--charcoal); cursor: pointer; }
 .express-scent-select:focus { outline: none; border-color: var(--olive); }
-.express-modal-pay { height: 0; overflow: hidden; }
+.express-modal-pay { height: 0; overflow: hidden; margin-top: -14px; }
 .express-modal-pay.active { height: auto; overflow: visible; margin-top: 10px; min-height: 48px; }
 .express-sub-note { font-family: var(--body); font-size: 0.8rem; font-weight: 400; margin: 8px 0 0; text-align: center; }
 .express-sub-note[hidden] { display: none; }

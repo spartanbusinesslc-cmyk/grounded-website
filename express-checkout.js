@@ -246,6 +246,7 @@
     var dlg = modal.querySelector(".express-modal");
     dlg.setAttribute("tabindex", "-1");
     dlg.focus({ preventScroll: true });
+    dlg.scrollTop = 0;
   }
 
   function closeModal() {
