@@ -139,7 +139,7 @@ module.exports = async (req, res) => {
         allowedCountries = [
           "AU","CA","US","NZ","JP","SG","HK","AE","ZA","BR","MX","IN","KR","TW"
         ];
-        if (subtotalPence < 10000) {
+        if (subtotalPence < 7500) {
           shippingPriceId = is3m ? process.env.SHIPPING_RATE_SUB_ROW_3M : process.env.SHIPPING_RATE_SUB_ROW;
         }
       } else {
@@ -170,7 +170,7 @@ module.exports = async (req, res) => {
           "NO","IS","LI","CH"
         ];
       } else if (shippingRegion === "row") {
-        shippingOptions = subtotalPence >= 10000
+        shippingOptions = subtotalPence >= 7500
           ? [{ shipping_rate: process.env.SHIPPING_RATE_ROW_FREE }]
           : [{ shipping_rate: process.env.SHIPPING_RATE_ROW }];
         allowedCountries = [

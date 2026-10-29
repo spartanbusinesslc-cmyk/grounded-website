@@ -148,7 +148,7 @@
   }
 
   // Delivery on subscriptions is billed with each delivery, so say so next to the button
-  var DELIVERY = { uk: [3.99, 20], europe: [15, 75], row: [20, 100] };
+  var DELIVERY = { uk: [3.99, 20], europe: [15, 75], row: [20, 75] };
   function subNote(key) {
     var pr = PRODUCTS[key];
     if (!pr) return "";
