@@ -92,7 +92,7 @@ const PRODUCTS = {
   subLipBalm:             { name: "Lip Balm (Monthly)",                          price: 7.99,  swatch: "swatch-lip",   image: "assets/lip balm.webp" },
   subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.webp" },
   subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 41.99, swatch: "swatch-balm",  image: "assets/Tallow Trio.webp" },
-  subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 16.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.webp" },
+  subLipBundle:           { name: "Lip Balm 3-Pack (Monthly)",                   price: 15.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.webp" },
   subEssentialsBundle:    { name: "The Essentials Set (Monthly)",                price: 32.99, swatch: "swatch-balm",  image: "assets/essentials%20bundle.webp" },
   subSoapUnscented3m: { name: "Raw Milk Soap — Plain (Every 3 months)", price: 9.99, swatch: "swatch-soap", image: "assets/rms-unscented.webp" },
   subSoapCitrusLavender3m: { name: "Raw Milk Soap — Citrus & Lavender (Every 3 months)", price: 9.99, swatch: "swatch-soap", image: "assets/rms-citrus-lavender.webp" },
