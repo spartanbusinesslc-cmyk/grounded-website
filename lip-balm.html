@@ -229,16 +229,16 @@
                 <span class="bb-option-price">£7.99<span class="bb-per">/mo</span></span>
               </div>
             </label>
-            <label class="bb-option bb-best-value active" data-sub1m="subLipBundle" data-sub3m="subLipBundle3m">
+            <label class="bb-option bb-best-value active" data-sub1m="subLipBundle" data-sub3m="subLipBundle3m" data-price3m="15.99" data-unit3m="£5.33 per balm" data-save3m="Save £14">
               <input type="radio" name="bb-sub" value="subLipBundle" checked>
               <img class="bb-option-img" src="assets/Lip balm trio.webp" alt="">
               <div class="bb-option-info">
                 <span class="bb-option-name">Lip Balm 3-Pack</span>
-                <span class="bb-badge" style="margin-top:5px;">Save £13</span>
+                <span class="bb-badge bb-save" style="margin-top:5px;">Save £13</span>
               </div>
               <div class="bb-option-right">
                 <span class="bb-rrp">£29.97</span>
-                <span class="bb-option-price">£16.99<span class="bb-per">/mo</span></span>
+                <span class="bb-option-price"><span class="bb-amt">£16.99</span><span class="bb-per">/mo</span></span>
                 <span class="bb-per-unit">£5.66 per balm</span>
               </div>
             </label>
@@ -495,6 +495,13 @@
         activeFreq = pill.dataset.freq;
         var perLabel = activeFreq === '3m' ? '/3mo' : '/mo';
         panelSub.querySelectorAll('.bb-per').forEach(function(el){ el.textContent = perLabel; });
+        panelSub.querySelectorAll('.bb-option[data-price3m]').forEach(function(l){
+          var d = l.dataset, three = activeFreq === '3m';
+          if (!d.price1m) { d.price1m = l.querySelector('.bb-amt').textContent; d.unit1m = l.querySelector('.bb-per-unit').textContent; d.save1m = l.querySelector('.bb-save').textContent; }
+          l.querySelector('.bb-amt').textContent = three ? '£' + d.price3m : d.price1m;
+          l.querySelector('.bb-per-unit').textContent = three ? d.unit3m : d.unit1m;
+          l.querySelector('.bb-save').textContent = three ? d.save3m : d.save1m;
+        });
         updateBtn();
       });
     });

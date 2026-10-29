@@ -49,7 +49,7 @@ const PRICE_MAP = {
   // 3-month subscription variants
   subSoapBundle3m:        process.env.PRICE_SUB_SOAP_BUNDLE_3M,
   subBalmBundle3m:        process.env.PRICE_SUB_BALM_BUNDLE_3M,
-  subLipBundle3m:         process.env.PRICE_SUB_LIP_BUNDLE_3M,
+  subLipBundle3m:         "price_1U3zkq5eqX21Gs5oSeFELSoW",
   subEssentialsBundle3m:  process.env.PRICE_SUB_ESSENTIALS_BUNDLE_3M,
   // Subscription prices — single items
   subSoapUnscented:       process.env.PRICE_SUB_SOAP_UNSCENTED,
