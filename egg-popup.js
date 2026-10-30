@@ -6,7 +6,7 @@
    to claim the prize. The email goes to Klaviyo
    (same list as the footer form).
    Every prize needs a matching code in Stripe:
-   EARTH10, EARTH15, FREESOAP, MYSTERY.
+   EARTH10, EARTH15, FREESOAP.
    Shown again only after 30 days.
    ============================================ */
 (function () {
@@ -20,16 +20,14 @@
 
   // Slices run clockwise from the top. w = how likely each prize is (they add up to 100).
   const PRIZES = [
-    { label: '10%', sub: 'OFF',   code: 'EARTH10', w: 45, win: 'You won 10% off!',               how: 'Enter this code at checkout.' },
-    { label: '?',   sub: 'MYSTERY', code: 'MYSTERY', w: 15, win: 'You unlocked a mystery discount!', how: 'Enter this code at checkout to reveal your discount.' },
-    { label: '15%', sub: 'OFF',   code: 'EARTH15', w: 30, win: 'You won 15% off!',               how: 'Enter this code at checkout.' },
-    { label: 'FREE', sub: 'SOAP', code: 'FREESOAP', w: 10, win: 'You won a free soap bar!',       how: 'Enter this code at checkout and we will pop a free soap bar into your parcel.' }
+    { label: '10%', sub: 'OFF',  code: 'EARTH10',  w: 55, win: 'You won 10% off!',         how: 'Enter this code at checkout.' },
+    { label: 'FREE', sub: 'SOAP', code: 'FREESOAP', w: 15, win: 'You won a free soap bar!', how: 'Enter this code at checkout and we will pop a free soap bar into your parcel.' },
+    { label: '15%', sub: 'OFF',  code: 'EARTH15',  w: 30, win: 'You won 15% off!',         how: 'Enter this code at checkout.' }
   ];
   const COLORS = [
     { bg: '#59624B', fg: '#F2EFE6' },
     { bg: '#D8D1C2', fg: '#59624B' },
-    { bg: '#7A5F44', fg: '#F2EFE6' },
-    { bg: '#A5AD9A', fg: '#1C1C1C' }
+    { bg: '#7A5F44', fg: '#F2EFE6' }
   ];
 
   let state = {};
