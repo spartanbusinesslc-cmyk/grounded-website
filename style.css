@@ -829,3 +829,6 @@ section { padding: var(--section-pad) 0; }
 .scent-dd-list li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-family: var(--body); font-size: 0.88rem; font-weight: 300; color: var(--charcoal); cursor: pointer; }
 .scent-dd-list li:hover { background: rgba(89,98,75,0.1); }
 .scent-dd-list li[aria-selected="true"] { background: rgba(89,98,75,0.16); font-weight: 400; }
+
+/* Pack size under the product title */
+.product-size { font-family: var(--body); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--olive); opacity: 0.85; margin: 8px 0 14px; }
