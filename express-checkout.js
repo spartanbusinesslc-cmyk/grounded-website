@@ -40,13 +40,19 @@
   var soapMode = pills.length > 0;
   var familyIds = pills.map(function (p) { return p.dataset.productId; });
   var scentList = typeof SCENT_OPTIONS !== "undefined" ? SCENT_OPTIONS : null;
+  // The scent popup is used on soap pages (3-Pack + Essentials Set) and balm pages (Essentials Set only)
+  var modalCapable = !!scentList;
   if (soapMode && !scentList) return;
+  var defaultScent = familyIds[0] || (scentList && scentList[0].id);
 
   // Subscription ids that need the scent popup (soap pages only), mapped to their popup panel
   var SUB_GROUP = { subSoapBundle: "bundle", subSoapBundle3m: "bundle", subEssentialsBundle: "essentials", subEssentialsBundle3m: "essentials" };
   function groupOf(key) {
-    if (key === "bundle" || key === "essentials") return key;
-    return (soapMode && SUB_GROUP[key]) || null;
+    if (key === "essentials") return modalCapable ? key : null;
+    if (key === "bundle") return soapMode ? key : null;
+    var g = SUB_GROUP[key];
+    if (g === "bundle" && !soapMode) return null;
+    return (modalCapable && g) || null;
   }
   function isModalKey(key) { return !!groupOf(key); }
   function isSubKey(key) { return key.indexOf("sub") === 0; }
@@ -66,21 +72,22 @@
   box.className = "express-checkout";
   box.hidden = true;
   box.innerHTML =
-    (soapMode ? '<button type="button" class="express-fake" hidden>Pay with Apple Pay</button>' : "") +
+    (modalCapable ? '<button type="button" class="express-fake" hidden>Pay with Apple Pay</button>' : "") +
     '<div class="express-slots"></div><p class="express-sub-note" hidden></p><p class="express-error" hidden></p>';
   anchor.insertAdjacentElement("afterend", box);
   var slotsEl = box.querySelector(".express-slots");
   var fakeBtn = box.querySelector(".express-fake");
 
-  // ---- scent popup (soap pages only) ----
+  // ---- scent popup ----
   var modal = null;
-  if (soapMode) {
+  if (modalCapable) {
     modal = document.createElement("div");
     modal.className = "express-modal-overlay";
     modal.inert = true;
     modal.innerHTML =
       '<div class="express-modal" role="dialog" aria-modal="true" aria-label="Choose your scents">' +
         '<button type="button" class="express-modal-close" aria-label="Close">&times;</button>' +
+        (soapMode ?
         '<div class="express-panel" data-for="bundle">' +
           '<h3 class="express-modal-title">Build Your Soap 3-Pack</h3>' +
           '<p class="express-modal-sub">Pick your 3 bars, then pay with Apple Pay.</p>' +
@@ -89,11 +96,11 @@
           scentSelect("bundle", 2, "Bar 3", familyIds[2] || familyIds[0]) +
           '<p class="express-sub-note" hidden></p>' +
           paySlots(["bundle", "subSoapBundle", "subSoapBundle3m"]) +
-        "</div>" +
+        "</div>" : "") +
         '<div class="express-panel" data-for="essentials">' +
           '<h3 class="express-modal-title">EARTHED Essentials Set</h3>' +
           '<p class="express-modal-sub">Choose your soap, then pay with Apple Pay. Balm &amp; lip balm are included.</p>' +
-          scentSelect("essentials", 0, "Soap", familyIds[0]) +
+          scentSelect("essentials", 0, "Soap", defaultScent) +
           '<p class="express-sub-note" hidden></p>' +
           paySlots(["essentials", "subEssentialsBundle", "subEssentialsBundle3m"]) +
         "</div>" +
@@ -135,7 +142,6 @@
         var sp = document.querySelector('.variant-pill[aria-pressed="true"]');
         return sp ? sp.dataset.subId + (activeFreq() === "3m" ? "3m" : "") : null;
       }
-      if (!soapMode && (lab.dataset.modal1m || lab.dataset.modal3m)) return null;
       return lab.dataset["sub" + activeFreq()] || lab.dataset["modal" + activeFreq()] || rs.value;
     }
     if (!tab || tab.dataset.tab !== "one-time") return null;
@@ -147,6 +153,7 @@
       var p = document.querySelector('.variant-pill[aria-pressed="true"]');
       return p ? p.dataset.productId : null;
     }
+    if (r.value === "essentialsBundle") return modalCapable ? "essentials" : null;
     return PLAIN.indexOf(r.value) !== -1 ? r.value : null;
   }
 
@@ -174,7 +181,7 @@
       var lab = r.closest(".bb-option");
       if (soapMode && lab.id === "bb-sub-single") {
         pills.forEach(function (p) { if (p.dataset.subId) out.push(p.dataset.subId + (freq === "3m" ? "3m" : "")); });
-      } else if (!soapMode && (lab.dataset.modal1m || lab.dataset.modal3m)) {
+      } else if (!modalCapable && (lab.dataset.modal1m || lab.dataset.modal3m)) {
         return;
       } else {
         out.push(lab.dataset["sub" + freq] || lab.dataset["modal" + freq] || r.value);
@@ -323,9 +330,11 @@
 
   function allKeys() {
     if (soapMode) return familyIds.concat(["bundle", "essentials"]);
-    return PLAIN.filter(function (id) {
+    var ids = PLAIN.filter(function (id) {
       return document.querySelector('#bb-panel-one-time input[name="bb-ot"][value="' + id + '"]');
     });
+    if (modalCapable && document.querySelector('#bb-panel-one-time input[name="bb-ot"][value="essentialsBundle"]')) ids.push("essentials");
+    return ids;
   }
 
   function buildAll() {
