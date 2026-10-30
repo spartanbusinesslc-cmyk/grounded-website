@@ -23,7 +23,7 @@
     { label: '10%', sub: 'OFF',   code: 'EARTH10', w: 45, win: 'You won 10% off!',               how: 'Enter this code at checkout.' },
     { label: '?',   sub: 'MYSTERY', code: 'MYSTERY', w: 15, win: 'You unlocked a mystery discount!', how: 'Enter this code at checkout to reveal your discount.' },
     { label: '15%', sub: 'OFF',   code: 'EARTH15', w: 30, win: 'You won 15% off!',               how: 'Enter this code at checkout.' },
-    { label: 'FREE', sub: 'SOAP', code: 'FREESOAP', w: 10, win: 'You won a free soap bar!',       how: 'Add a soap to your cart, then enter this code at checkout.' }
+    { label: 'FREE', sub: 'SOAP', code: 'FREESOAP', w: 10, win: 'You won a free soap bar!',       how: 'Enter this code at checkout and we will pop a free soap bar into your parcel.' }
   ];
   const COLORS = [
     { bg: '#59624B', fg: '#F2EFE6' },
