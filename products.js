@@ -46,7 +46,7 @@ const PRODUCTS = {
     image: "assets/oos-mint-teatree.webp"
   },
   bodyBalm: {
-    name: "Tallow Body Balm",
+    name: "Tallow Balm",
     price: 24.99,
     swatch: "swatch-balm",
     image: "assets/tallow balm.webp"
@@ -88,7 +88,7 @@ const PRODUCTS = {
   subOliveUnscented:      { name: "Olive Oil Soap — Plain (Monthly)",        price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-unscented.webp" },
   subOliveCitrusLavender: { name: "Olive Oil Soap — Citrus & Lavender (Monthly)",price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-citrus-lavender.webp" },
   subOliveMintTeaTree:    { name: "Olive Oil Soap — Mint & Tea Tree (Monthly)",  price: 9.99,  swatch: "swatch-soap",  image: "assets/oos-mint-teatree.webp" },
-  subBodyBalm:            { name: "Tallow Body Balm (Monthly)",                  price: 21.99, swatch: "swatch-balm",  image: "assets/tallow balm.webp" },
+  subBodyBalm:            { name: "Tallow Balm (Monthly)",                  price: 21.99, swatch: "swatch-balm",  image: "assets/tallow balm.webp" },
   subLipBalm:             { name: "Lip Balm (Monthly)",                          price: 7.99,  swatch: "swatch-lip",   image: "assets/lip balm.webp" },
   subSoapBundle:          { name: "Soap 3-Pack (Monthly)",                       price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.webp" },
   subBalmBundle:          { name: "Tallow 3-Pack (Monthly)",                     price: 39.98, swatch: "swatch-balm",  image: "assets/Tallow Trio.webp" },
@@ -100,7 +100,7 @@ const PRODUCTS = {
   subOliveUnscented3m: { name: "Olive Oil Soap — Plain (Every 3 months)", price: 9.99, swatch: "swatch-soap", image: "assets/oos-unscented.webp" },
   subOliveCitrusLavender3m: { name: "Olive Oil Soap — Citrus & Lavender (Every 3 months)", price: 9.99, swatch: "swatch-soap", image: "assets/oos-citrus-lavender.webp" },
   subOliveMintTeaTree3m: { name: "Olive Oil Soap — Mint & Tea Tree (Every 3 months)", price: 9.99, swatch: "swatch-soap", image: "assets/oos-mint-teatree.webp" },
-  subBodyBalm3m: { name: "Tallow Body Balm (Every 3 months)", price: 21.99, swatch: "swatch-balm", image: "assets/tallow balm.webp" },
+  subBodyBalm3m: { name: "Tallow Balm (Every 3 months)", price: 21.99, swatch: "swatch-balm", image: "assets/tallow balm.webp" },
   subLipBalm3m: { name: "Lip Balm (Every 3 months)", price: 7.99, swatch: "swatch-lip", image: "assets/lip balm.webp" },
   subSoapBundle3m:        { name: "Soap 3-Pack (Every 3 months)",                price: 19.99, swatch: "swatch-soap",  image: "assets/soap bundle.webp" },
   subBalmBundle3m:        { name: "Tallow 3-Pack (Every 3 months)",              price: 39.98, swatch: "swatch-balm",  image: "assets/Tallow Trio.webp" },
