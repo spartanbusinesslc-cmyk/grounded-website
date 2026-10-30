@@ -656,7 +656,7 @@ function handleFooterSignup(e, form) {
     headers: { 'Content-Type': 'application/json', 'revision': '2024-02-15' },
     body: JSON.stringify({ data: { type: 'subscription', attributes: { custom_source: 'Footer', profile: { data: { type: 'profile', attributes: { email: email } } } }, relationships: { list: { data: { type: 'list', id: 'TKGvVv' } } } } })
   }).catch(function(){}).finally(function(){
-    form.innerHTML = '<p style="color:#59624B;font-size:0.9rem;">Thanks! You\'re on the list.</p>';
+    form.innerHTML = '<p style="color:#fff;font-size:0.9rem;">Thanks! You\'re on the list.</p>';
   });
 }
 </script>
