@@ -200,7 +200,7 @@ h1, h2, h3 {
 /* ---------- Footer ---------- */
 
 .site-footer {
-  background: #454d39;
+  background: var(--olive);
   color: #fff;
   padding: 80px 0 40px;
 }

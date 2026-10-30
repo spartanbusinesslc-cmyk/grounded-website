@@ -280,7 +280,7 @@
   /* Our Ingredients section */
   .ingredients-section {
     padding: clamp(32px, 4vw, 56px) 0 clamp(56px, 8vw, 96px);
-    background: var(--olive);
+    background: var(--cream);
   }
   .ingredients-section .section-head { margin-bottom: 12px; }
   .ingredients-grid {
@@ -312,13 +312,13 @@
     font-family: var(--display);
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--cream);
+    color: var(--olive);
   }
   .ingredient-card p {
     font-family: var(--body);
     font-size: 0.88rem;
     font-weight: 300;
-    color: var(--cream);
+    color: var(--charcoal);
     opacity: 0.8;
     line-height: 1.7;
   }
@@ -428,46 +428,12 @@
     </div>
   </section>
 
-  <!-- ESSENTIALS SET -->
-  <section class="bundles-section">
-    <div class="wrap">
-      <div class="bundles-head">
-        <h2>THE EARTHED ESSENTIALS SET</h2>
-      </div>
-      <div class="essentials-feature">
-        <div class="essentials-feature-text">
-          <span class="essentials-label">EARTHED Essentials Set</span>
-          <p>Secure the full EARTHED routine &amp; save.</p>
-          <div class="essentials-includes">
-            <span>✓ Choice of any all natural soap bar</span>
-            <span>✓ A jar of our grass-fed tallow</span>
-            <span>✓ A tin of our all natural lip balm</span>
-          </div>
-          <div class="essentials-price">£39.99 <span class="essentials-was">£46.97</span></div>
-          <div class="essentials-btn-row">
-            <button class="btn btn-olive" id="essentials-home-once">Add Once</button>
-            <button class="btn btn-red" id="essentials-home-sub">Subscribe &amp; Save an extra 17%</button>
-          </div>
-          <div class="essentials-interval-wrap" id="essentials-home-interval" hidden>
-            <button class="essentials-interval-btn" data-interval="1m">Monthly<br>£32.99/mo</button>
-            <button class="essentials-interval-btn" data-interval="3m">Every 3 months<br>£32.99</button>
-          </div>
-        </div>
-        <div class="essentials-swatch">
-          <div class="essentials-imgs" style="grid-template-columns: 1fr;">
-            <div class="essentials-img" style="background:#f5f3ef;padding:0;overflow:hidden;aspect-ratio:3/4;"><img src="assets/essentials bundle.webp" alt="The Essentials Set" style="width:100%;height:100%;object-fit:cover;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- OUR INGREDIENTS -->
   <section class="ingredients-section" id="ingredients">
     <div class="wrap">
       <div class="section-head">
-        <h2 style="color: var(--cream);">OUR INGREDIENTS</h2>
-        <p class="section-subhead" style="color: var(--cream);">Provided by the earth & chosen with purpose.</p>
+        <h2 style="color: var(--olive);">OUR INGREDIENTS</h2>
+        <p class="section-subhead" style="color: var(--olive);">Provided by the earth & chosen with purpose.</p>
       </div>
       <div class="ingredients-grid">
         <div class="ingredient-card">
@@ -604,23 +570,6 @@
 <script src="cart.js"></script>
 <script src="bundle-modal.js"></script>
 <script src="main.js"></script>
-<script>
-  document.getElementById('essentials-home-once').addEventListener('click', () => {
-    openBundleModal('essentialsBundle');
-  });
-  const essSubBtn = document.getElementById('essentials-home-sub');
-  const essIntervalWrap = document.getElementById('essentials-home-interval');
-  essSubBtn.addEventListener('click', () => {
-    essIntervalWrap.hidden = !essIntervalWrap.hidden;
-  });
-  essIntervalWrap.querySelectorAll('.essentials-interval-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.interval === '3m' ? 'subEssentialsBundle3m' : 'subEssentialsBundle';
-      essIntervalWrap.hidden = true;
-      openBundleModal(id);
-    });
-  });
-</script>
 
 <script src="egg-popup.js" defer></script>
 <script>
