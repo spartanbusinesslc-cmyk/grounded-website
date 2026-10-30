@@ -14,16 +14,57 @@
   gtag("config", "G-QZXPHKT2FH");
 </script>
 <style>
-  .success-section {
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  .success-section img { width: 64px; margin: 0 auto 28px; }
-  .success-section h1 { font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 16px; }
-  .success-section p { max-width: 420px; margin: 0 auto 32px; opacity: 0.75; }
+  .ty { padding-block: clamp(28px, 5vw, 56px) clamp(48px, 7vw, 88px); }
+  .ty-hero { padding: 0; text-align: center; max-width: 620px; margin: 0 auto clamp(32px, 5vw, 48px); }
+  .ty-check { width: 64px; height: 64px; border-radius: 50%; background: var(--olive); display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; }
+  .ty-check svg { width: 30px; height: 30px; }
+  .ty-hero h1 { font-size: clamp(2.1rem, 5vw, 3rem); margin: 6px 0 14px; color: var(--olive); }
+  .ty-hero p { font-family: var(--body); font-weight: 300; opacity: 0.8; line-height: 1.7; }
+  .ty-hero p small { display: block; margin-top: 8px; font-size: 0.82rem; opacity: 0.85; }
+
+  .ty-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(20px, 3vw, 36px); align-items: start; }
+  @media (max-width: 860px) { .ty-grid { grid-template-columns: 1fr; } }
+  .ty-card { background: #fff; border: 1px solid rgba(28,28,28,0.1); border-radius: 6px; padding: clamp(20px, 3vw, 30px); }
+  .ty-card + .ty-card { margin-top: clamp(20px, 3vw, 36px); }
+  .ty-card h2 { font-size: 1.35rem; margin: 0 0 16px; }
+  .ty-label { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--olive); font-weight: 500; margin: 0 0 6px; }
+
+  .ty-item { display: flex; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid rgba(28,28,28,0.08); }
+  .ty-item:first-of-type { border-top: 0; padding-top: 0; }
+  .ty-item img { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #f5f3ef; }
+  .ty-item-info { flex: 1; min-width: 0; }
+  .ty-item-name { font-family: var(--body); font-weight: 500; font-size: 0.95rem; }
+  .ty-item-note { font-family: var(--body); font-weight: 300; font-size: 0.8rem; opacity: 0.7; margin-top: 2px; line-height: 1.45; }
+  .ty-item-price { font-family: var(--body); font-weight: 500; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+  .ty-totals { border-top: 1px solid rgba(28,28,28,0.12); margin-top: 6px; padding-top: 14px; display: grid; gap: 8px; font-family: var(--body); font-size: 0.9rem; }
+  .ty-totals div { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; }
+  .ty-totals .ty-total { font-weight: 600; font-size: 1.05rem; padding-top: 8px; border-top: 1px solid rgba(28,28,28,0.12); }
+  .ty-disc { color: var(--olive); }
+  .ty-addr { font-family: var(--body); font-weight: 300; line-height: 1.6; font-size: 0.92rem; }
+
+  .ty-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+  .ty-steps li { display: flex; gap: 14px; }
+  .ty-num { width: 30px; height: 30px; border-radius: 50%; background: var(--olive); color: var(--cream); font-family: var(--body); font-weight: 500; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .ty-steps strong { display: block; font-family: var(--body); font-weight: 500; font-size: 0.95rem; }
+  .ty-steps span { font-family: var(--body); font-weight: 300; font-size: 0.85rem; opacity: 0.8; line-height: 1.55; }
+
+  .ty-sub { background: var(--olive); color: var(--cream); border-color: var(--olive); }
+  .ty-sub h2 { color: #fff; }
+  .ty-sub .ty-label { color: rgba(255,255,255,0.7); }
+  .ty-sub p { font-family: var(--body); font-weight: 300; font-size: 0.9rem; line-height: 1.6; margin: 0 0 10px; }
+  .ty-sub a { color: #fff; }
+
+  .ty-assure { display: flex; gap: 14px; align-items: flex-start; }
+  .ty-assure svg { width: 32px; height: 32px; flex-shrink: 0; color: var(--olive); }
+  .ty-assure p { font-family: var(--body); font-weight: 300; font-size: 0.88rem; line-height: 1.6; margin: 0; }
+  .ty-assure strong { font-weight: 500; }
+
+  .ty-ig { text-align: center; margin-top: clamp(28px, 4vw, 44px); padding: clamp(26px, 4vw, 40px) 20px; background: var(--beige); border-radius: 6px; }
+  .ty-ig h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin: 0 0 8px; color: var(--olive); }
+  .ty-ig p { font-family: var(--body); font-weight: 300; max-width: 460px; margin: 0 auto 18px; line-height: 1.6; }
+  .ty-more { text-align: center; margin-top: 26px; }
+  .ty-more a { font-family: var(--body); font-size: 0.85rem; color: var(--olive); text-decoration: underline; text-underline-offset: 3px; }
+  [hidden] { display: none !important; }
 </style>
 </head>
 <body>
@@ -34,40 +75,222 @@
       <img src="assets/logo-icon.svg" alt="EARTHED logo">
       EARTHED
     </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html#story">Our Story</a></li>
+        <li><a href="index.html#ingredients">Our Ingredients</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-<main>
-  <section class="success-section">
-    <div class="wrap">
-      <img src="assets/logo-icon.svg" alt="">
+<main id="main">
+  <div class="wrap ty">
+
+    <section class="ty-hero">
+      <div class="ty-check"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M7 15.5l5.5 5.5L23 9.5" fill="none" stroke="#F2EFE6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <span class="eyebrow">order confirmed</span>
-      <h1>Thank you — it's on its way.</h1>
-      <p>You'll receive an email confirmation shortly with your order details and shipping updates. For any questions, contact us at <a href="mailto:support@shopearthed.co" style="color:var(--olive);">support@shopearthed.co</a></p>
-      <a href="shop.html" class="btn btn-solid">Continue Shopping</a>
+      <h1 id="ty-h1">Thank you.</h1>
+      <p id="ty-lead">Your order is confirmed and we're getting it ready. Keep an eye out for a tracking email from Royal Mail<span id="ty-to"></span>.
+        <small id="ty-spam">Can't see it? Check your spam or promotions folder, or message us and we'll sort it.</small></p>
+    </section>
+
+    <div class="ty-grid" id="ty-grid" hidden>
+
+      <div>
+        <section class="ty-card" aria-labelledby="ty-order-h">
+          <p class="ty-label" id="ty-ref">Order summary</p>
+          <h2 id="ty-order-h">Your order</h2>
+          <div id="ty-items"></div>
+          <div class="ty-totals" id="ty-totals"></div>
+        </section>
+
+        <section class="ty-card" id="ty-addrcard">
+          <p class="ty-label">Delivering to</p>
+          <p class="ty-addr" id="ty-addr"></p>
+        </section>
+      </div>
+
+      <div>
+        <section class="ty-card" aria-labelledby="ty-next-h">
+          <p class="ty-label">What happens next</p>
+          <h2 id="ty-next-h">From our hands to yours</h2>
+          <ol class="ty-steps">
+            <li><span class="ty-num">1</span><div><strong>We dispatch your order</strong><span>Next-day dispatch guaranteed: your order leaves us by the next working day.</span></div></li>
+            <li><span class="ty-num">2</span><div><strong>You get a tracking email from Royal Mail</strong><span>As soon as your parcel is on its way, so you can follow it to your door.</span></div></li>
+            <li><span class="ty-num">3</span><div><strong>It arrives</strong><span id="ty-arrive">UK orders usually arrive in 2–3 working days.</span></div></li>
+          </ol>
+        </section>
+
+        <section class="ty-card ty-sub" id="ty-subcard" hidden>
+          <p class="ty-label">Your subscription</p>
+          <h2 id="ty-subh">Next delivery in 1 month</h2>
+          <p id="ty-subtext"></p>
+          <p>To pause, change or cancel, message <a href="https://instagram.com/shopearthed" target="_blank" rel="noopener">@shopearthed</a> or email <a href="mailto:support@shopearthed.co">support@shopearthed.co</a> before your next renewal date.</p>
+        </section>
+
+        <section class="ty-card">
+          <div class="ty-assure">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.500 27 5 22 5 15V7l11-4z"/><path d="M11 16l4 4 7-8"/></svg>
+            <p><strong>Covered by our 60-day satisfaction guarantee.</strong> Not happy for any reason? Message us on Instagram or at <a href="mailto:support@shopearthed.co" style="color:var(--olive);">support@shopearthed.co</a> with a photo and we'll replace or refund it.</p>
+          </div>
+        </section>
+      </div>
+
     </div>
-  </section>
+
+    <section class="ty-ig">
+      <h2>Come and say hello</h2>
+      <p>Follow <strong>@shopearthed</strong> for behind-the-scenes, tips and new batches. Tag us when your order arrives. We love seeing it.</p>
+      <a href="https://instagram.com/shopearthed" target="_blank" rel="noopener" class="btn btn-solid">Follow us on Instagram</a>
+    </section>
+
+    <p class="ty-more"><a href="shop.html">Continue shopping</a></p>
+  </div>
 </main>
 
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/logo-full.svg" alt="EARTHED" class="footer-logo">
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="raw-milk-soap.html">Raw Milk Soap</a></li>
+          <li><a href="olive-oil-soap.html">Olive Oil Soap</a></li>
+          <li><a href="tallow-balm.html">Tallow Balm</a></li>
+          <li><a href="lip-balm.html">Lip Balm</a></li>
+          <li><a href="shop.html#bundles">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Brand</h4>
+        <ul>
+          <li><a href="index.html#story">Our Story</a></li>
+          <li><a href="index.html#ingredients">Our Ingredients</a></li>
+          <li><a href="https://instagram.com/shopearthed" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="returns-shipping.html">Returns &amp; Shipping</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EARTHED. All rights reserved.</span>
+      <span>shopearthed.co</span>
+    </div>
+  </div>
+</footer>
+
+<script src="products.js"></script>
 <script>
   // Clear the cart now that checkout has completed
-  localStorage.removeItem("earthed_cart");
+  try { localStorage.removeItem("earthed_cart"); } catch (e) {}
 
-  // GA4 purchase event — fetch order total from Stripe session
-  (async function() {
-    const params = new URLSearchParams(window.location.search);
-    const sessionId = params.get("session_id");
-    if (!sessionId || typeof gtag !== 'function') return;
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (ch) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]; }); }
+  var EU = ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","NO","IS","LI","CH"];
+
+  function money(pence, cur) {
+    try { return new Intl.NumberFormat("en-GB", { style: "currency", currency: (cur || "gbp").toUpperCase() }).format(pence / 100); }
+    catch (e) { return "£" + (pence / 100).toFixed(2); }
+  }
+
+  // Scents are saved on the order as metadata; show them next to the right item
+  function scentNote(productId, md) {
+    function short(n) { return String(n || "").replace(" Soap", ""); }
+    if (productId === "soapBundle" || productId === "subSoapBundle" || productId === "subSoapBundle3m") {
+      var bars = [md.soap_bundle_bar_1, md.soap_bundle_bar_2, md.soap_bundle_bar_3].filter(Boolean).map(short);
+      return bars.join(" · ");
+    }
+    if (/essentialsBundle/i.test(productId || "") && md.essentials_soap) return "Soap: " + short(md.essentials_soap);
+    return "";
+  }
+
+  function render(data) {
+    var d = data.details;
+    var first = d.name ? String(d.name).trim().split(/\s+/)[0] : "";
+    if (first) document.getElementById("ty-h1").textContent = "Thank you, " + first + ".";
+    if (d.email) document.getElementById("ty-to").innerHTML = ", sent to <strong>" + esc(d.email) + "</strong>";
+
+    var cur = data.currency;
+    var isSub = d.mode === "subscription";
+    var shown = d.lines.filter(function (l) { return !l.isShipping; });
+    document.getElementById("ty-items").innerHTML = shown.map(function (l) {
+      var p = l.productId && typeof PRODUCTS !== "undefined" ? PRODUCTS[l.productId] : null;
+      var name = (p && p.name) || l.name || "Item";
+      var noteParts = [];
+      var sc = scentNote(l.productId, d.metadata || {});
+      if (sc) noteParts.push(esc(sc));
+      if (l.recurring) {
+        var per = l.recurring.count === 3 && l.recurring.interval === "month" ? "every 3 months" : (l.recurring.count > 1 ? "every " + l.recurring.count + " " + l.recurring.interval + "s" : "every " + l.recurring.interval);
+        noteParts.push("Subscription \u00b7 billed " + per);
+      }
+      var note = noteParts.join("<br>");
+      return '<div class="ty-item">' + (p && p.image ? '<img src="' + esc(p.image) + '" alt="">' : "") +
+        '<div class="ty-item-info"><div class="ty-item-name">' + esc(name) + (l.quantity > 1 ? " × " + l.quantity : "") + "</div>" +
+        (note ? '<div class="ty-item-note">' + note + "</div>" : "") + "</div>" +
+        '<div class="ty-item-price">' + money(l.amount, cur) + "</div></div>";
+    }).join("");
+
+    var rows = [["Subtotal", money(d.subtotal, cur)], ["Delivery", d.delivery > 0 ? money(d.delivery, cur) : "Free"]];
+    if (d.discount > 0) rows.push(["Discount", "\u2212" + money(d.discount, cur), "ty-disc"]);
+    rows.push([isSub ? "Total today" : "Total", money(data.amount_total, cur), "ty-total"]);
+    document.getElementById("ty-totals").innerHTML = rows.map(function (r) {
+      return '<div class="' + (r[2] || "") + '"><span>' + r[0] + "</span><span>" + r[1] + "</span></div>";
+    }).join("");
+
+    var a = d.address;
+    if (a) {
+      var country = a.country;
+      try { country = new Intl.DisplayNames(["en-GB"], { type: "region" }).of(a.country) || a.country; } catch (e) {}
+      var lines = [d.name, a.line1, a.line2, a.city, a.state, a.postal_code, country].filter(Boolean);
+      document.getElementById("ty-addr").innerHTML = lines.map(esc).join("<br>");
+      var arrive = "Most orders arrive in 2\u20133 working days within the UK.";
+      if (a.country === "GB") arrive = "UK orders usually arrive in 2\u20133 working days.";
+      else if (EU.indexOf(a.country) !== -1) arrive = "Orders to Europe usually arrive in 5\u201310 working days.";
+      else arrive = "International orders usually arrive in 7\u201315 working days.";
+      document.getElementById("ty-arrive").textContent = arrive;
+    } else {
+      document.getElementById("ty-addrcard").hidden = true;
+    }
+
+    var rec = shown.filter(function (l) { return l.recurring; });
+    if (isSub && rec.length) {
+      var r0 = rec[0].recurring;
+      var every = r0.interval === "month" && r0.count === 3 ? "3 months" : (r0.count > 1 ? r0.count + " " + r0.interval + "s" : "1 " + r0.interval);
+      var amt = d.lines.filter(function (l) { return l.recurring; }).reduce(function (s, l) { return s + l.amount; }, 0);
+      document.getElementById("ty-subh").textContent = "Next delivery in " + every;
+      document.getElementById("ty-subtext").textContent = "You'll be charged " + money(amt, cur) + " every " + (r0.count > 1 ? every : r0.interval) + " until you cancel.";
+      document.getElementById("ty-subcard").hidden = false;
+    }
+    document.getElementById("ty-grid").hidden = false;
+  }
+
+  (async function () {
+    var params = new URLSearchParams(window.location.search);
+    var sessionId = params.get("session_id");
+    if (!sessionId) return;
     try {
-      const res = await fetch('/api/get-session?session_id=' + encodeURIComponent(sessionId));
+      var res = await fetch("/api/get-session?session_id=" + encodeURIComponent(sessionId));
       if (!res.ok) return;
-      const data = await res.json();
-      gtag('event', 'purchase', {
-        transaction_id: data.id,
-        value: data.amount_total / 100,
-        currency: data.currency.toUpperCase(),
-        items: data.items || []
-      });
+      var data = await res.json();
+      if (typeof gtag === "function") {
+        gtag("event", "purchase", {
+          transaction_id: data.id,
+          value: data.amount_total / 100,
+          currency: data.currency.toUpperCase(),
+          items: data.items || []
+        });
+      }
+      if (data.details) render(data);
     } catch (e) {}
   })();
 </script>
