@@ -62,7 +62,7 @@
 #ep-btn{background:#fff;color:#59624B;border:none;border-radius:9px;padding:11px 18px;font-family:'Jost',sans-serif;font-weight:600;font-size:.84rem;cursor:pointer;white-space:nowrap;}
 #ep-btn:hover{opacity:.88;}
 #ep-consent{font-size:.64rem;color:rgba(255,255,255,.6);line-height:1.45;margin:10px 0 0;}
-#ep-consent a,#ep-terms a{color:rgba(255,255,255,.8);}
+#ep-consent a{color:rgba(255,255,255,.8);}
 #ep-code{display:none;margin-top:6px;}
 #ep-code.show{display:block;}
 #ep-cl{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 6px;}
@@ -70,7 +70,6 @@
 #ep-cn{font-size:.74rem;color:rgba(255,255,255,.7);margin:6px 0 0;line-height:1.45;}
 #ep-cp{margin-top:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:7px;color:#fff;font-family:'Jost',sans-serif;font-size:.74rem;padding:8px 16px;cursor:pointer;}
 #ep-cp:hover{background:rgba(255,255,255,.24);}
-#ep-terms{font-size:.62rem;color:rgba(255,255,255,.5);line-height:1.45;margin:14px 0 0;}
 #ep-skip{margin-top:10px;font-size:.7rem;color:rgba(255,255,255,.55);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;text-decoration:underline;text-underline-offset:2px;}
 #ep-skip:hover{color:rgba(255,255,255,.8);}
 @media (max-width:600px){
@@ -106,7 +105,7 @@
     <button id="ep-x" aria-label="Close">&#x2715;</button>
     <p id="ep-ey">EARTHED</p>
     <h2 id="ep-hd">Spin to win a discount</h2>
-    <p id="ep-sub">Everyone wins something. Give the wheel a spin.</p>
+    <p id="ep-sub">Give the wheel a spin 👀</p>
     <div id="ep-wheel-wrap"><div id="ep-ptr"></div>${wheelSvg()}</div>
     <button id="ep-spin" type="button">Spin the wheel</button>
     <div id="ep-result">
@@ -122,7 +121,6 @@
       <p id="ep-cn"></p>
       <button id="ep-cp" type="button">Copy code</button>
     </div>
-    <p id="ep-terms">One spin per person. Prizes are not equally likely. Codes cannot be combined and can't be used with the Apple Pay shortcut button.</p>
     <button id="ep-skip" type="button">No thanks</button>
   </div>
 </div>`;
