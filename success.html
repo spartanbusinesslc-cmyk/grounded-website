@@ -155,7 +155,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <img src="assets/logo-full.svg" alt="EARTHED" class="footer-logo">
+        <img loading="lazy" decoding="async" src="assets/logo-full.svg" alt="EARTHED" class="footer-logo">
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
@@ -234,7 +234,7 @@
         noteParts.push("Subscription \u00b7 billed " + per);
       }
       var note = noteParts.join("<br>");
-      return '<div class="ty-item">' + (p && p.image ? '<img src="' + esc(p.image) + '" alt="">' : "") +
+      return '<div class="ty-item">' + (p && p.image ? '<img loading="lazy" decoding="async" src="' + esc(p.image) + '" alt="">' : "") +
         '<div class="ty-item-info"><div class="ty-item-name">' + esc(name) + (l.quantity > 1 ? " × " + l.quantity : "") + "</div>" +
         (note ? '<div class="ty-item-note">' + note + "</div>" : "") + "</div>" +
         '<div class="ty-item-price">' + money(l.amount, cur) + "</div></div>";
