@@ -50,7 +50,7 @@
 #ep-wheel-wrap{position:relative;width:240px;height:240px;margin:0 auto 16px;}
 #ep-ptr{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-top:20px solid #fff;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));z-index:2;}
 #ep-wheel{width:100%;height:100%;display:block;transition:transform 5s cubic-bezier(.12,.6,.1,1);}
-#ep-spin{background:#fff;color:#59624B;border:none;border-radius:9px;padding:12px 28px;font-family:'Jost',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;cursor:pointer;}
+#ep-spin{display:block;margin:0 auto;background:#fff;color:#59624B;border:none;border-radius:9px;padding:12px 28px;font-family:'Jost',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;cursor:pointer;}
 #ep-spin:hover{opacity:.9;}
 #ep-spin:disabled{opacity:.5;cursor:default;}
 #ep-result{display:none;}
@@ -70,11 +70,10 @@
 #ep-cn{font-size:.74rem;color:rgba(255,255,255,.7);margin:6px 0 0;line-height:1.45;}
 #ep-cp{margin-top:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:7px;color:#fff;font-family:'Jost',sans-serif;font-size:.74rem;padding:8px 16px;cursor:pointer;}
 #ep-cp:hover{background:rgba(255,255,255,.24);}
-#ep-skip{margin-top:10px;font-size:.7rem;color:rgba(255,255,255,.55);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;text-decoration:underline;text-underline-offset:2px;}
+#ep-skip{display:block;margin:14px auto 0;font-size:.7rem;color:rgba(255,255,255,.55);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;text-decoration:underline;text-underline-offset:2px;}
 #ep-skip:hover{color:rgba(255,255,255,.8);}
 @media (max-width:600px){
-  #ep-ov{align-items:flex-end;padding:0;}
-  #ep-box{max-width:none;border-radius:18px 18px 0 0;padding:26px 22px calc(20px + env(safe-area-inset-bottom,0px));max-height:92vh;max-height:92dvh;}
+  #ep-box{padding:26px 22px 20px;}
   #ep-wheel-wrap{width:210px;height:210px;}
 }
 @media (prefers-reduced-motion:reduce){#ep-wheel{transition-duration:.6s;}}
