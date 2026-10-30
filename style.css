@@ -832,3 +832,14 @@ section { padding: var(--section-pad) 0; }
 
 /* Pack size under the product title */
 .product-size { font-family: var(--body); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--olive); opacity: 0.85; margin: 8px 0 14px; }
+
+/* Discount code under the Apple Pay button */
+.express-code { margin-top: 8px; text-align: center; font-family: var(--body); font-size: 0.8rem; }
+.express-code:empty { display: none; }
+.express-code-link, .express-code-remove { background: none; border: none; padding: 0; cursor: pointer; font-family: var(--body); font-size: 0.8rem; color: var(--olive); text-decoration: underline; text-underline-offset: 2px; }
+.express-code-ok { color: var(--olive); font-weight: 500; margin-right: 6px; }
+.express-code-form { display: flex; gap: 8px; }
+.express-code-input { flex: 1; min-width: 0; font-family: var(--body); font-size: 0.85rem; padding: 9px 12px; border: 1px solid rgba(28,28,28,0.2); border-radius: 2px; background: var(--cream); color: var(--charcoal); text-transform: uppercase; }
+.express-code-input:focus { outline: none; border-color: var(--olive); }
+.express-code-apply { font-family: var(--body); font-size: 0.8rem; font-weight: 500; padding: 9px 16px; border: 1px solid var(--olive); border-radius: 2px; background: var(--olive); color: var(--cream); cursor: pointer; }
+.express-code-msg { display: block; margin-top: 6px; color: #B94040; }

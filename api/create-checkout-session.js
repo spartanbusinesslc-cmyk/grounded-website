@@ -106,7 +106,7 @@ module.exports = async (req, res) => {
       mode,
       line_items,
       ...(express
-        ? { ui_mode: "elements", return_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}` }
+        ? { ui_mode: "elements", allow_promotion_codes: true, return_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}` }
         : {
             success_url: `${origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${origin}/shop.html`,

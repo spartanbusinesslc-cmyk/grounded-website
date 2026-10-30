@@ -73,7 +73,7 @@
   box.hidden = true;
   box.innerHTML =
     (modalCapable ? '<button type="button" class="express-fake" hidden>Pay with Apple Pay</button>' : "") +
-    '<div class="express-slots"></div><p class="express-sub-note" hidden></p><p class="express-error" hidden></p>';
+    '<div class="express-slots"></div><p class="express-sub-note" hidden></p><div class="express-code"></div><p class="express-error" hidden></p>';
   anchor.insertAdjacentElement("afterend", box);
   var slotsEl = box.querySelector(".express-slots");
   var fakeBtn = box.querySelector(".express-fake");
@@ -95,6 +95,7 @@
           scentSelect("bundle", 1, "Bar 2", familyIds[1] || familyIds[0]) +
           scentSelect("bundle", 2, "Bar 3", familyIds[2] || familyIds[0]) +
           '<p class="express-sub-note" hidden></p>' +
+          '<div class="express-code"></div>' +
           paySlots(["bundle", "subSoapBundle", "subSoapBundle3m"]) +
         "</div>" : "") +
         '<div class="express-panel" data-for="essentials">' +
@@ -102,6 +103,7 @@
           '<p class="express-modal-sub">Choose your soap, then pay with Apple Pay. Balm &amp; lip balm are included.</p>' +
           scentSelect("essentials", 0, "Soap", defaultScent) +
           '<p class="express-sub-note" hidden></p>' +
+          '<div class="express-code"></div>' +
           paySlots(["essentials", "subEssentialsBundle", "subEssentialsBundle3m"]) +
         "</div>" +
         '<p class="express-error" hidden></p>' +
@@ -113,6 +115,59 @@
   }
 
   var stripe = null, slots = {}, token = 0, timer = null, anyAvailable = false;
+
+  // ---- discount code (applied to every prepared session, so the Apple Pay sheet shows the reduced total) ----
+  var appliedCode = "", codeOpen = false, codeMsg = "";
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function savedWheelCode() {
+    try { var w = JSON.parse(localStorage.getItem("ep_wheel") || "{}"); return w.claimed && w.prize ? w.prize : ""; } catch (e) { return ""; }
+  }
+  function renderCodes() {
+    var html;
+    if (appliedCode) {
+      html = '<span class="express-code-ok">&#10003; Code ' + esc(appliedCode) + ' applied</span> <button type="button" class="express-code-remove">Remove</button>';
+    } else if (!codeOpen) {
+      html = '<button type="button" class="express-code-link">Have a discount code?</button>';
+    } else {
+      html = '<form class="express-code-form" novalidate><input type="text" class="express-code-input" placeholder="Discount code" autocomplete="off" autocapitalize="characters" aria-label="Discount code" value="' + esc(savedWheelCode()) + '"><button type="submit" class="express-code-apply">Apply</button></form>';
+    }
+    if (codeMsg) html += '<span class="express-code-msg">' + esc(codeMsg) + "</span>";
+    Array.prototype.slice.call(document.querySelectorAll(".express-code")).forEach(function (el) { el.innerHTML = html; });
+  }
+
+  function applyToSlot(slot, code) {
+    if (!slot || !slot.actions || !slot.actions.applyPromotionCode) return Promise.resolve(null);
+    return slot.actions.applyPromotionCode(code).then(function (r) { return r; }, function (err) { return { error: { message: (err && err.message) || "Could not apply code" } }; });
+  }
+
+  function applyCode(code) {
+    code = (code || "").trim();
+    if (!code) return;
+    var sel = selectedKey();
+    var main = sel && slots[sel];
+    if (!main || !main.actions) { codeMsg = "Still preparing Apple Pay, please try again in a moment."; renderCodes(); return; }
+    applyToSlot(main, code).then(function (r) {
+      if (r && r.error) {
+        codeMsg = r.error.message || "That code isn't valid for this order.";
+        renderCodes();
+        return;
+      }
+      appliedCode = code.toUpperCase();
+      codeMsg = "";
+      codeOpen = false;
+      Object.keys(slots).forEach(function (k) { if (slots[k] !== main) applyToSlot(slots[k], code); });
+      renderCodes();
+    });
+  }
+
+  function removeCode() {
+    Object.keys(slots).forEach(function (k) {
+      var a = slots[k].actions;
+      if (a && a.removePromotionCode) { try { a.removePromotionCode(); } catch (e) {} }
+    });
+    appliedCode = ""; codeMsg = ""; codeOpen = false;
+    renderCodes();
+  }
 
   function showError(msg) {
     Array.prototype.slice.call(document.querySelectorAll(".express-error")).forEach(function (el) {
@@ -316,6 +371,8 @@
 
       var loaded = await checkout.loadActions();
       if (loaded.type === "success") {
+        slot.actions = loaded.actions;
+        if (appliedCode) applyToSlot(slot, appliedCode);
         el.on("confirm", function (event) {
           loaded.actions.confirm({ expressCheckoutConfirmEvent: event }).then(function (r) {
             if (r && r.type === "error") showError("Apple Pay could not complete. Please try again or use Add to Cart.");
@@ -351,6 +408,12 @@
     ensureSubSlots();
   }
 
+  document.addEventListener("submit", function (e) {
+    if (!e.target.matches || !e.target.matches(".express-code-form")) return;
+    e.preventDefault();
+    applyCode(e.target.querySelector(".express-code-input").value);
+  });
+  renderCodes();
   if (fakeBtn) fakeBtn.addEventListener("click", openModal);
   if (modal) {
     modal.addEventListener("click", function (e) {
@@ -379,6 +442,8 @@
   });
   document.addEventListener("click", function (e) {
     if (!e.target.closest) return;
+    if (e.target.closest(".express-code-link")) { codeOpen = true; codeMsg = ""; renderCodes(); var inp = document.querySelector(".express-code-input"); if (inp) inp.focus(); return; }
+    if (e.target.closest(".express-code-remove")) { removeCode(); return; }
     if (e.target.closest(".bb-tab, .variant-pill, .bb-freq-pill, .bb-option")) {
       setTimeout(function () { ensureSubSlots(); updateVisibility(); }, 60);
     }
