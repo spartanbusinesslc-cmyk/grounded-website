@@ -3,5 +3,6 @@
 window.EARTHED_REELS = [
   { video: 'assets/reels/raw-milk.mp4', poster: 'assets/reels/raw-milk.jpg' },
   { video: 'assets/reels/toxins.mp4', poster: 'assets/reels/toxins.jpg' },
-  { video: 'assets/reels/swaps.mp4', poster: 'assets/reels/swaps.jpg' }
+  { video: 'assets/reels/swaps.mp4', poster: 'assets/reels/swaps.jpg' },
+  { video: 'assets/reels/soap-made.mp4', poster: 'assets/reels/soap-made.jpg' }
 ];
