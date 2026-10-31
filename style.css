@@ -842,3 +842,79 @@ section { padding: var(--section-pad) 0; }
 .express-code-input:focus { outline: none; border-color: var(--olive); }
 .express-code-apply { font-family: var(--body); font-size: 0.8rem; font-weight: 500; padding: 9px 16px; border: 1px solid var(--olive); border-radius: 2px; background: var(--olive); color: var(--cream); cursor: pointer; }
 .express-code-msg { display: block; margin-top: 6px; color: #B94040; }
+
+/* ============================================
+   EARTHED — Instagram reels
+   Homepage: fanned arc of video cards (#reels-fan)
+   Product pages: row of circular thumbnails (#reels-circles)
+   Tapping either opens the reel in a pop-up player.
+   ============================================ */
+
+/* ---------- Homepage fan ---------- */
+.reels-section { background: var(--beige); padding: clamp(40px, 6vw, 72px) 0 clamp(56px, 8vw, 96px); overflow: hidden; }
+.reels-head { text-align: center; margin-bottom: clamp(28px, 4vw, 44px); padding: 0 16px; }
+.reels-head h2 { font-size: clamp(1.9rem, 4.4vw, 3rem); color: var(--olive); margin: 6px 0 0; line-height: 1.1; }
+.reels-head p { font-family: var(--body); font-weight: 300; margin: 10px 0 0; opacity: 0.8; }
+.reels-fan { position: relative; height: clamp(340px, 34vw, 450px); }
+.reel-card {
+  --w: min(200px, 15.5vw); --step: min(216px, 16.9vw);
+  position: absolute; left: 50%; top: 24px; width: var(--w); aspect-ratio: 9 / 16;
+  margin-left: calc(var(--w) / -2);
+  border: 0; padding: 0; border-radius: 18px; overflow: hidden; cursor: pointer; background: #d8d1c2;
+  box-shadow: 0 10px 28px rgba(28,28,28,0.22);
+  transform: translateX(calc(var(--o) * var(--step))) translateY(calc(var(--o) * var(--o) * 11px)) rotate(calc(var(--o) * 6deg));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reel-card:hover, .reel-card:focus-visible {
+  transform: translateX(calc(var(--o) * var(--step))) translateY(calc(var(--o) * var(--o) * 11px - 12px)) rotate(0deg) scale(1.05);
+  z-index: 5; box-shadow: 0 16px 36px rgba(28,28,28,0.3); outline: none;
+}
+.reel-card img, .reel-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.reel-play {
+  position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(28,28,28,0.45); display: flex; align-items: center; justify-content: center; z-index: 2;
+}
+.reel-play::before { content: ""; border-left: 8px solid #fff; border-top: 5px solid transparent; border-bottom: 5px solid transparent; margin-left: 2px; }
+
+/* On phones the fan becomes a swipeable row */
+@media (max-width: 800px) {
+  .reels-fan { height: auto; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 16px 16px; scrollbar-width: none; }
+  .reels-fan::-webkit-scrollbar { display: none; }
+  .reel-card { --w: 62vw; position: relative; left: auto; top: auto; margin: 0; flex: 0 0 var(--w); max-width: 240px; transform: none; scroll-snap-align: center; }
+  .reel-card:hover, .reel-card:focus-visible { transform: none; }
+  .reel-card:first-child { margin-left: auto; }
+  .reel-card:last-child { margin-right: auto; }
+}
+
+/* ---------- Product page circles ---------- */
+.reels-circles-wrap { margin: 22px 0 6px; }
+.reels-circles-title { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--olive); font-weight: 500; margin: 0 0 12px; }
+.reels-circles { position: relative; }
+.reels-circles-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding: 4px 2px; }
+.reels-circles-track::-webkit-scrollbar { display: none; }
+.reel-circle:first-child { margin-left: auto; }
+.reel-circle:last-child { margin-right: auto; }
+.reel-circle { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 50%; padding: 3px; border: 2px solid var(--olive); background: transparent; cursor: pointer; position: relative; scroll-snap-align: start; }
+.reel-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+.reel-circle::after { content: ""; position: absolute; right: -2px; bottom: -2px; width: 20px; height: 20px; border-radius: 50%; background: var(--olive) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l6 4-6 4z' fill='%23fff'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.reel-circle:hover { transform: scale(1.05); }
+.reel-circle:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+.reels-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; border: 0; background: rgba(28,28,28,0.85); color: #fff; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 0.9rem; z-index: 2; }
+.reels-arrow.prev { left: -38px; } .reels-arrow.next { right: -38px; }
+@media (max-width: 700px) { .reels-circles.has-overflow .reels-arrow { display: none; } }
+.reels-circles.has-overflow .reels-arrow { display: flex; }
+
+/* ---------- Pop-up player ---------- */
+.reel-modal { position: fixed; inset: 0; z-index: 200; background: rgba(20,16,8,0.82); display: none; align-items: center; justify-content: center; padding: 16px; }
+.reel-modal.open { display: flex; }
+.reel-modal-box { position: relative; width: min(380px, 100%); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.reel-stage { position: relative; width: 100%; aspect-ratio: 9 / 16; max-height: calc(100dvh - 130px); border-radius: 16px; overflow: hidden; background: #111; }
+.reel-stage video, .reel-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.reel-modal-close { position: absolute; top: -6px; right: -6px; z-index: 3; width: 34px; height: 34px; border-radius: 50%; border: 0; background: #fff; color: #1C1C1C; font-size: 1.2rem; cursor: pointer; line-height: 1; }
+.reel-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.9); color: #1C1C1C; cursor: pointer; font-size: 1rem; z-index: 3; }
+.reel-nav.prev { left: -52px; } .reel-nav.next { right: -52px; }
+@media (max-width: 520px) { .reel-nav.prev { left: 6px; } .reel-nav.next { right: 6px; } .reel-modal-close { top: 6px; right: 6px; } }
+.reel-meta { display: flex; gap: 12px; align-items: center; justify-content: space-between; width: 100%; color: #fff; font-family: var(--body); font-size: 0.85rem; }
+.reel-meta a { color: #fff; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.reel-caption { opacity: 0.9; line-height: 1.4; }
+.reel-demo-note { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px; background: rgba(28,28,28,0.7); color: #fff; font-family: var(--body); font-size: 0.75rem; text-align: center; }
