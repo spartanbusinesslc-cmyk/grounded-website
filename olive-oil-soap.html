@@ -91,7 +91,8 @@
   .gallery-arrow:hover { background: #fff; }
   .gallery-arrow.prev { left: 10px; }
   .gallery-arrow.next { right: 10px; }
-  .product-thumbs { display: flex; gap: 8px; }
+  .product-thumbs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin; padding-bottom: 4px; }
+  .product-thumbs .product-thumb { flex: 0 0 72px; }
   .product-thumb { width: 72px; height: 72px; object-fit: cover; cursor: pointer; border-radius: 2px; border: 2px solid transparent; opacity: 0.7; transition: border-color 0.2s, opacity 0.2s; }
   .info-thumb { object-fit: contain; background: #f5f3ef; }
   .product-thumb.active { border-color: var(--olive); opacity: 1; }
@@ -149,11 +150,15 @@
       <div class="product-gallery">
         <div class="product-image" style="background:#f5f3ef;overflow:hidden;">
           <button class="gallery-arrow prev" id="gallery-prev">&#8592;</button>
-          <img src="assets/CL Soap flowers.webp" id="product-img" alt="Olive Oil Soap" class="real">
+          <img src="assets/ingredients-info-soap.webp" id="product-img" alt="Olive oil soap ingredients" class="real" style="object-fit:contain;">
           <button class="gallery-arrow next" id="gallery-next">&#8594;</button>
         </div>
         <div class="product-thumbs">
-          <img src="assets/CL Soap flowers.webp" class="product-thumb active" alt="Olive oil soap with flowers">
+          <img src="assets/ingredients-info-soap.webp" class="product-thumb info-thumb active" alt="Olive oil soap ingredients">
+          <img src="assets/CL Soap flowers.webp" class="product-thumb" alt="Olive oil soap with flowers">
+          <img loading="lazy" decoding="async" src="assets/why-switch-soap.webp" class="product-thumb info-thumb" alt="Why switch to natural soap">
+          <img loading="lazy" decoding="async" src="assets/side-by-side-oos.webp" class="product-thumb info-thumb" alt="Olive oil soap side by side">
+          <img loading="lazy" decoding="async" src="assets/gel-soap-problems.webp" class="product-thumb info-thumb" alt="Problems with gel soap">
           <img src="assets/olive oil info.webp" class="product-thumb info-thumb" alt="Olive Oil Soap ingredients">
           <img src="assets/SOAP COMPARISON.webp" class="product-thumb info-thumb" alt="Soap comparison">
           <img src="assets/Soap cut with knife.webp" class="product-thumb" alt="Soap cut">

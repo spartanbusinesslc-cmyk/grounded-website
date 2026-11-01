@@ -75,7 +75,8 @@
   .gallery-arrow:hover { background: #fff; }
   .gallery-arrow.prev { left: 10px; }
   .gallery-arrow.next { right: 10px; }
-  .product-thumbs { display: flex; gap: 8px; }
+  .product-thumbs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin; padding-bottom: 4px; }
+  .product-thumbs .product-thumb { flex: 0 0 72px; }
   .product-thumb { width: 72px; height: 72px; object-fit: cover; cursor: pointer; border-radius: 2px; border: 2px solid transparent; opacity: 0.7; transition: border-color 0.2s, opacity 0.2s; }
   .info-thumb { object-fit: contain; background: #f5f3ef; }
   .product-thumb.active { border-color: var(--olive); opacity: 1; }
@@ -133,11 +134,15 @@
       <div class="product-gallery">
         <div class="product-image" style="background:#f5f3ef;overflow:hidden;">
           <button class="gallery-arrow prev" id="gallery-prev">&#8592;</button>
-          <img src="assets/lip balm open finger.webp" id="product-img" alt="Natural Lip Balm" class="real">
+          <img src="assets/ingredient-info-lip-balm.webp" id="product-img" alt="Lip balm ingredients" class="real" style="object-fit:contain;">
           <button class="gallery-arrow next" id="gallery-next">&#8594;</button>
         </div>
         <div class="product-thumbs">
-          <img src="assets/lip balm open finger.webp" class="product-thumb active" alt="Lip Balm open tin">
+          <img src="assets/ingredient-info-lip-balm.webp" class="product-thumb info-thumb active" alt="Lip balm ingredients">
+          <img src="assets/lip balm open finger.webp" class="product-thumb" alt="Lip Balm open tin">
+          <img loading="lazy" decoding="async" src="assets/why-switch-lip-balm.webp" class="product-thumb info-thumb" alt="Why switch to natural lip balm">
+          <img loading="lazy" decoding="async" src="assets/side-by-side-lip-balm.webp" class="product-thumb info-thumb" alt="Lip balm side by side">
+          <img loading="lazy" decoding="async" src="assets/lip-balm-problems.webp" class="product-thumb info-thumb" alt="Problems with lip balm">
           <img src="assets/lip balm info main.webp" class="product-thumb info-thumb" alt="Lip Balm ingredients">
           <img src="assets/Lip balm comparison.webp" class="product-thumb info-thumb" alt="Lip Balm comparison">
           <img src="assets/lip balm.webp" class="product-thumb" alt="Lip Balm">
