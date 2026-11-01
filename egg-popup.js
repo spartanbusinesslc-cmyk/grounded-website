@@ -112,7 +112,7 @@
         <input id="ep-em" type="email" placeholder="your@email.com" autocomplete="email" aria-label="Your email address" required/>
         <button id="ep-btn" type="submit">Claim my prize</button>
       </form>
-      <p id="ep-consent">By claiming, you agree to receive marketing emails from EARTHED. Unsubscribe any time. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      <p id="ep-consent">By claiming, you agree to receive marketing emails from EARTHED. Unsubscribe any time. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
     </div>
     <div id="ep-code">
       <p id="ep-cl">Your discount code</p>
