@@ -932,3 +932,4 @@ section { padding: var(--section-pad) 0; }
 .rv-photo { display: block; width: 100%; max-width: 220px; border-radius: 6px; margin: 0 0 12px; }
 .rv-badge { display: block; margin-top: 6px; font-size: 0.7rem; color: var(--olive); font-weight: 500; letter-spacing: 0.03em; }
 .rv-more { margin: 24px auto 0; display: flex; }
+.product-rating-link[hidden], .reviews-section[hidden] { display: none; }

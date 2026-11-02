@@ -18,6 +18,7 @@
     if (!s || !s.count) return;
 
     if (link) {
+      link.hidden = false;
       link.querySelector(".product-rating-stars").textContent = stars(Math.round(s.average));
       link.querySelector(".product-rating-count").textContent = s.average.toFixed(1) + " (" + s.count + " review" + (s.count > 1 ? "s" : "") + ")";
     }
@@ -43,6 +44,7 @@
       "<div class='reviews-grid'>" + cards + "</div>" +
       (d.reviews.length > 6 ? "<button class='btn rv-more' type='button'>Show more reviews</button>" : "") + "</div>";
 
+    section.hidden = false;
     var more = section.querySelector(".rv-more");
     if (more) more.onclick = function () {
       [].forEach.call(section.querySelectorAll(".rv-extra"), function (c) { c.hidden = false; });
