@@ -34,6 +34,11 @@ module.exports = async (req, res) => {
       const badge = b.badge === "free" ? "free" : b.badge === "verified" ? "verified" : "";
       const name = String(b.name || "").replace(/[<>]/g, "").trim().slice(0, 40);
       const tokens = [];
+      if (b.shared) {
+        const token = crypto.randomBytes(9).toString("base64url");
+        await store.hset("rv:links", token, { product, badge, name: "", used: false, shared: true, uses: 0, created: Date.now() });
+        return res.status(200).json({ tokens: [token] });
+      }
       for (let i = 0; i < count; i++) {
         const token = crypto.randomBytes(9).toString("base64url");
         await store.hset("rv:links", token, { product, badge, name: count === 1 ? name : "", used: false, created: Date.now() });

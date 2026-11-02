@@ -42,4 +42,4 @@ const hget = async (key, f) => { const v = await cmd("HGET", key, f); return v ?
 const hset = (key, f, obj) => cmd("HSET", key, f, JSON.stringify(obj));
 const hdel = (key, f) => cmd("HDEL", key, f);
 
-module.exports = { PRODUCTS, configured, hgetall, hget, hset, hdel };
+module.exports = { PRODUCTS, configured, cmd, hgetall, hget, hset, hdel };

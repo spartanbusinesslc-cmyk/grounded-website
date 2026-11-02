@@ -26,6 +26,14 @@ module.exports = async (req, res) => {
     if (!link) return res.status(404).json({ error: "This review link isn't valid." });
     if (link.used) return res.status(410).json({ error: "This link has already been used. Thank you!" });
 
+    if (link.shared) {
+      // One shared link: allow one review per device/network per day.
+      const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
+      const key = "rv:ip:" + token + ":" + require("crypto").createHash("sha256").update(ip).digest("hex").slice(0, 24);
+      const fresh = await store.cmd("SET", key, "1", "EX", "86400", "NX");
+      if (!fresh) return res.status(429).json({ error: "Looks like a review was already sent from this device today. Thank you!" });
+    }
+
     const product = link.product || b.product;
     const rating = parseInt(b.rating, 10);
     const text = clean(b.text, 1500);
@@ -48,7 +56,9 @@ module.exports = async (req, res) => {
       badge,
       status: "pending", created: Date.now(), token
     });
-    await store.hset("rv:links", token, { ...link, used: true, usedAt: Date.now(), reviewId: id });
+    await store.hset("rv:links", token, link.shared
+      ? { ...link, uses: (link.uses || 0) + 1 }
+      : { ...link, used: true, usedAt: Date.now(), reviewId: id });
     return res.status(200).json({ ok: true });
   } catch (e) {
     return res.status(500).json({ error: "Something went wrong. Please try again." });

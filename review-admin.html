@@ -41,6 +41,7 @@
         <select id="l-badge"><option value="">Customer chooses (bought / free)</option><option value="verified">Verified purchase</option><option value="free">Received free product</option></select>
         <input type="text" id="l-name" placeholder="First name (optional)" maxlength="40" style="width:170px">
         <input type="number" id="l-count" value="1" min="1" max="50" style="width:70px" aria-label="How many links">
+        <label style="display:flex;gap:6px;align-items:center;font-size:.9rem"><input type="checkbox" id="l-shared"> One link for everyone</label>
         <button class="btn btn-solid" id="l-make">Create</button>
       </div>
       <div class="ad-links" id="l-out" hidden></div>
@@ -79,10 +80,10 @@
         $(s).innerHTML = rs.length ? rs.map(card).join("") : "<p class='ad-meta'>None.</p>";
         if (s === "pending") $("n-pending").textContent = rs.length ? "(" + rs.length + ")" : "";
       });
-      var used = d.links.filter(function (l) { return l.used; }).length;
+      var used = d.links.filter(function (l) { return l.used || l.shared; }).length;
       $("n-links").textContent = "(" + used + " of " + d.links.length + " used)";
       $("links").innerHTML = d.links.slice(0, 40).map(function (l) {
-        return "<div class='ad-card ad-meta' style='margin-bottom:6px'>" + new Date(l.created).toLocaleDateString() + " · " + esc(l.name || "no name") + " · " + esc(products[l.product] || "any product") + " · " + (l.used ? "<b>used</b>" : "not used yet") + (l.used ? "" : " · <code>" + location.origin + "/review?t=" + esc(l.token) + "</code>") + "</div>";
+        return "<div class='ad-card ad-meta' style='margin-bottom:6px'>" + new Date(l.created).toLocaleDateString() + " · " + esc(l.name || "no name") + " · " + esc(products[l.product] || "any product") + " · " + (l.shared ? "<b>shared link</b> (" + (l.uses || 0) + " reviews)" : l.used ? "<b>used</b>" : "not used yet") + ((l.used && !l.shared) ? "" : " · <code>" + location.origin + "/review?t=" + esc(l.token) + "</code>") + "</div>";
       }).join("");
     });
   }
@@ -92,7 +93,7 @@
   };
   $("pw").onkeydown = function (e) { if (e.key === "Enter") $("go").click(); };
   $("l-make").onclick = function () {
-    api({ action: "create-link", product: $("l-prod").value, badge: $("l-badge").value, name: $("l-name").value, count: $("l-count").value }).then(function (d) {
+    api({ action: "create-link", product: $("l-prod").value, badge: $("l-badge").value, name: $("l-name").value, count: $("l-count").value, shared: $("l-shared").checked }).then(function (d) {
       var out = $("l-out"); out.hidden = false;
       out.textContent = d.tokens.map(function (t) { return location.origin + "/review?t=" + t; }).join("\n");
       $("l-name").value = ""; load();
