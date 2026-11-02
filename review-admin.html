@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+<title>Review Admin | EARTHED</title>
+<style>
+  .ad { max-width: 860px; margin: 0 auto; padding-block: 32px 80px; }
+  .ad h1 { font-size: 2rem; color: var(--olive); margin-bottom: 18px; }
+  .ad h2 { font-size: 1.35rem; margin: 30px 0 12px; }
+  .ad-card { background: #fff; border: 1px solid rgba(28,28,28,.1); border-radius: 6px; padding: 18px 20px; margin-bottom: 12px; }
+  .ad input, .ad select { font: inherit; padding: 10px 12px; border: 1.5px solid rgba(28,28,28,.18); border-radius: 6px; background: #fff; max-width: 100%; }
+  .ad-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .ad .btn { padding: 10px 18px; font-size: .8rem; }
+  .ad-stars { color: #B94040; letter-spacing: 2px; }
+  .ad-meta { font-size: .78rem; opacity: .6; margin: 4px 0 8px; }
+  .ad-photo { max-width: 120px; border-radius: 6px; margin-top: 8px; display: block; }
+  .ad-links { width: 100%; font: .85rem/1.6 ui-monospace, monospace; word-break: break-all; background: var(--cream); padding: 12px; border-radius: 6px; margin-top: 12px; white-space: pre-wrap; }
+  .ad-err { color: #B94040; margin-top: 10px; }
+  .pill { display: inline-block; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: var(--beige); margin-left: 6px; }
+</style>
+</head>
+<body>
+<main class="wrap ad">
+  <h1>Review admin</h1>
+  <div id="login" class="ad-card">
+    <div class="ad-row"><input type="password" id="pw" placeholder="Admin password" autocomplete="current-password"><button class="btn btn-solid" id="go">Sign in</button></div>
+    <p class="ad-err" id="lerr"></p>
+  </div>
+  <div id="app" hidden>
+    <h2>Make review links</h2>
+    <div class="ad-card">
+      <div class="ad-row">
+        <select id="l-prod"></select>
+        <select id="l-badge"><option value="verified">Verified purchase</option><option value="free">Received free product</option></select>
+        <input type="text" id="l-name" placeholder="First name (optional)" maxlength="40" style="width:170px">
+        <input type="number" id="l-count" value="1" min="1" max="50" style="width:70px" aria-label="How many links">
+        <button class="btn btn-solid" id="l-make">Create</button>
+      </div>
+      <div class="ad-links" id="l-out" hidden></div>
+    </div>
+    <h2>Waiting for approval <span id="n-pending"></span></h2><div id="pending"></div>
+    <h2>Live on the site</h2><div id="approved"></div>
+    <h2>Rejected</h2><div id="rejected"></div>
+    <h2>Links sent <span id="n-links"></span></h2><div id="links"></div>
+  </div>
+</main>
+<script>
+(function () {
+  var pw = ""; var $ = function (i) { return document.getElementById(i); };
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function api(body) {
+    return fetch("/api/review-admin", { method: "POST", headers: { "Content-Type": "application/json", "x-admin-password": pw }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || "Error"); return j; }); });
+  }
+  var products = {};
+  function card(r) {
+    var tag = r.badge === "free" ? "Received free product" : "Verified purchase";
+    var btns = (r.status !== "approved" ? "<button class='btn btn-solid' data-a='approve' data-id='" + r.id + "'>Approve</button> " : "") +
+      (r.status === "pending" ? "<button class='btn' data-a='reject' data-id='" + r.id + "'>Reject</button> " : "") +
+      (r.status === "approved" ? "<button class='btn' data-a='reject' data-id='" + r.id + "'>Take down</button> " : "") +
+      "<button class='btn' data-a='delete' data-id='" + r.id + "'>Delete</button>";
+    return "<div class='ad-card'><div><span class='ad-stars'>" + "★".repeat(r.rating) + "☆".repeat(5 - r.rating) + "</span> <b>" + esc(r.name) + "</b> on " + esc(products[r.product] || r.product) + "<span class='pill'>" + tag + "</span></div>" +
+      "<p class='ad-meta'>" + new Date(r.created).toLocaleString() + "</p><p>" + esc(r.text) + "</p>" + (r.photo ? "<img class='ad-photo' src='" + r.photo + "' alt=''>" : "") +
+      "<div class='ad-row' style='margin-top:12px'>" + btns + "</div></div>";
+  }
+  function load() {
+    return api({ action: "list" }).then(function (d) {
+      products = d.products;
+      $("l-prod").innerHTML = "<option value=''>Customer chooses product</option>" + Object.keys(d.products).map(function (k) { return "<option value='" + k + "'>" + d.products[k] + "</option>"; }).join("");
+      ["pending", "approved", "rejected"].forEach(function (s) {
+        var rs = d.reviews.filter(function (r) { return r.status === s; });
+        $(s).innerHTML = rs.length ? rs.map(card).join("") : "<p class='ad-meta'>None.</p>";
+        if (s === "pending") $("n-pending").textContent = rs.length ? "(" + rs.length + ")" : "";
+      });
+      var used = d.links.filter(function (l) { return l.used; }).length;
+      $("n-links").textContent = "(" + used + " of " + d.links.length + " used)";
+      $("links").innerHTML = d.links.slice(0, 40).map(function (l) {
+        return "<div class='ad-card ad-meta' style='margin-bottom:6px'>" + new Date(l.created).toLocaleDateString() + " · " + esc(l.name || "no name") + " · " + esc(products[l.product] || "any product") + " · " + (l.used ? "<b>used</b>" : "not used yet") + (l.used ? "" : " · <code>" + location.origin + "/review?t=" + esc(l.token) + "</code>") + "</div>";
+      }).join("");
+    });
+  }
+  $("go").onclick = function () {
+    pw = $("pw").value; $("lerr").textContent = "";
+    load().then(function () { $("login").hidden = true; $("app").hidden = false; }).catch(function (e) { $("lerr").textContent = e.message; });
+  };
+  $("pw").onkeydown = function (e) { if (e.key === "Enter") $("go").click(); };
+  $("l-make").onclick = function () {
+    api({ action: "create-link", product: $("l-prod").value, badge: $("l-badge").value, name: $("l-name").value, count: $("l-count").value }).then(function (d) {
+      var out = $("l-out"); out.hidden = false;
+      out.textContent = d.tokens.map(function (t) { return location.origin + "/review?t=" + t; }).join("\n");
+      $("l-name").value = ""; load();
+    }).catch(function (e) { alert(e.message); });
+  };
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-a]"); if (!b) return;
+    if (b.dataset.a === "delete" && !window.confirm("Delete this review for good?")) return;
+    api({ action: b.dataset.a, id: b.dataset.id }).then(load).catch(function (e2) { alert(e2.message); });
+  });
+})();
+</script>
+</body>
+</html>
