@@ -23,6 +23,7 @@
   .rv-stars { display: flex; gap: 4px; }
   .rv-stars button { background: none; border: 0; cursor: pointer; font-size: 2.2rem; line-height: 1; color: rgba(28,28,28,.2); padding: 2px 4px; }
   .rv-stars button.on { color: #B94040; }
+  .rv label.rv-opt { text-transform: none; letter-spacing: 0; font-size: .95rem; color: var(--charcoal); font-weight: 400; display: flex; gap: 10px; align-items: center; margin: 0 0 8px; cursor: pointer; }
   .rv-photo-note { font-size: .8rem; opacity: .6; margin-top: 6px; }
   .rv-photo-prev { margin-top: 10px; max-width: 140px; border-radius: 6px; display: none; }
   .rv-err { color: #B94040; font-size: .9rem; margin-top: 14px; min-height: 1.2em; }
@@ -44,6 +45,9 @@
       <div id="rv-prod-wrap"><label for="rv-prod">Which product?</label><select id="rv-prod"></select></div>
       <span class="rv-lab" style="margin-top:20px">Your rating</span>
       <div class="rv-stars" id="rv-stars" role="radiogroup" aria-label="Star rating"></div>
+      <div id="rv-how-wrap" hidden><span class="rv-lab">How did you get it?</span>
+        <label class="rv-opt"><input type="radio" name="rv-how" value="verified"> I bought it</label>
+        <label class="rv-opt"><input type="radio" name="rv-how" value="free"> I was given it free (gift or sample)</label></div>
       <label for="rv-text">Your review</label>
       <textarea id="rv-text" maxlength="1500" placeholder="What did you like? How did it feel on your skin?"></textarea>
       <label for="rv-name">Your first name</label>
@@ -70,6 +74,7 @@
     var sel = document.getElementById("rv-prod");
     if (x.j.product) { document.getElementById("rv-prod-wrap").innerHTML = "<span class='rv-lab'>Reviewing</span><p style='font-weight:500'>" + x.j.products[x.j.product] + "</p>"; sel = null; window._rvProduct = x.j.product; }
     else { sel.innerHTML = "<option value=''>Choose a product</option>" + Object.keys(x.j.products).map(function (k) { return "<option value='" + k + "'>" + x.j.products[k] + "</option>"; }).join(""); }
+    window._rvAsk = !!x.j.askBadge; document.getElementById("rv-how-wrap").hidden = !x.j.askBadge;
     document.getElementById("rv-name").value = x.j.name || "";
     wrap.hidden = false;
   }).catch(function () { show("<h1>Oh.</h1><p>Something went wrong loading this page. Please try again.</p>"); });
@@ -101,13 +106,15 @@
     var product = window._rvProduct || document.getElementById("rv-prod").value;
     err.textContent = "";
     if (!product) return err.textContent = "Please choose a product.";
+    var how = document.querySelector("input[name=rv-how]:checked");
+    if (window._rvAsk && !how) return err.textContent = "Please tell us how you got the product.";
     if (!rating) return err.textContent = "Please choose a star rating.";
     if (document.getElementById("rv-text").value.trim().length < 5) return err.textContent = "Please write a few words about it.";
     if (!document.getElementById("rv-name").value.trim()) return err.textContent = "Please add your first name.";
     btn.disabled = true; btn.textContent = "Sending…";
     fetch("/api/review-submit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
       token: token, product: product, rating: rating, text: document.getElementById("rv-text").value,
-      name: document.getElementById("rv-name").value, photo: photo }) })
+      name: document.getElementById("rv-name").value, photo: photo, badge: how ? how.value : "" }) })
     .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
     .then(function (x) {
       if (!x.ok) { err.textContent = x.j.error || "Something went wrong."; btn.disabled = false; btn.textContent = "Submit review"; return; }

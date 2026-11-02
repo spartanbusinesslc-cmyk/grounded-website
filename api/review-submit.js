@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       const link = await store.hget("rv:links", clean(req.query.t, 40));
       if (!link) return res.status(404).json({ error: "This review link isn't valid." });
       if (link.used) return res.status(410).json({ error: "This link has already been used. Thank you!" });
-      return res.status(200).json({ product: link.product || null, products: store.PRODUCTS, name: link.name || "" });
+      return res.status(200).json({ product: link.product || null, products: store.PRODUCTS, name: link.name || "", askBadge: !link.badge });
     }
     if (req.method !== "POST") { res.setHeader("Allow", "GET, POST"); return res.status(405).end(); }
 
@@ -30,6 +30,8 @@ module.exports = async (req, res) => {
     const rating = parseInt(b.rating, 10);
     const text = clean(b.text, 1500);
     const name = clean(b.name, 40);
+    const badge = link.badge || b.badge;
+    if (badge !== "verified" && badge !== "free") return res.status(400).json({ error: "Please tell us how you got the product." });
     if (!store.PRODUCTS[product]) return res.status(400).json({ error: "Please choose a product." });
     if (!(rating >= 1 && rating <= 5)) return res.status(400).json({ error: "Please choose a star rating." });
     if (text.length < 5) return res.status(400).json({ error: "Please write a few words about it." });
@@ -43,7 +45,7 @@ module.exports = async (req, res) => {
     const id = "r" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     await store.hset("rv:reviews", id, {
       id, product, rating, text, name, photo,
-      badge: link.badge === "free" ? "free" : "verified",
+      badge,
       status: "pending", created: Date.now(), token
     });
     await store.hset("rv:links", token, { ...link, used: true, usedAt: Date.now(), reviewId: id });

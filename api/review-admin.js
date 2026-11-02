@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
     if (b.action === "create-link") {
       const count = Math.min(50, Math.max(1, parseInt(b.count, 10) || 1));
       const product = store.PRODUCTS[b.product] ? b.product : "";
-      const badge = b.badge === "free" ? "free" : "verified";
+      const badge = b.badge === "free" ? "free" : b.badge === "verified" ? "verified" : "";
       const name = String(b.name || "").replace(/[<>]/g, "").trim().slice(0, 40);
       const tokens = [];
       for (let i = 0; i < count; i++) {
@@ -40,6 +40,12 @@ module.exports = async (req, res) => {
         tokens.push(token);
       }
       return res.status(200).json({ tokens });
+    }
+    if (b.action === "set-badge") {
+      const r = await store.hget("rv:reviews", String(b.id));
+      if (!r) return res.status(404).json({ error: "Review not found." });
+      await store.hset("rv:reviews", r.id, { ...r, badge: r.badge === "free" ? "verified" : "free" });
+      return res.status(200).json({ ok: true });
     }
     if (["approve", "reject", "delete"].includes(b.action)) {
       const r = await store.hget("rv:reviews", String(b.id));

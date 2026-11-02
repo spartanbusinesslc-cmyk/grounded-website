@@ -38,7 +38,7 @@
     <div class="ad-card">
       <div class="ad-row">
         <select id="l-prod"></select>
-        <select id="l-badge"><option value="verified">Verified purchase</option><option value="free">Received free product</option></select>
+        <select id="l-badge"><option value="">Customer chooses (bought / free)</option><option value="verified">Verified purchase</option><option value="free">Received free product</option></select>
         <input type="text" id="l-name" placeholder="First name (optional)" maxlength="40" style="width:170px">
         <input type="number" id="l-count" value="1" min="1" max="50" style="width:70px" aria-label="How many links">
         <button class="btn btn-solid" id="l-make">Create</button>
@@ -65,7 +65,7 @@
     var btns = (r.status !== "approved" ? "<button class='btn btn-solid' data-a='approve' data-id='" + r.id + "'>Approve</button> " : "") +
       (r.status === "pending" ? "<button class='btn' data-a='reject' data-id='" + r.id + "'>Reject</button> " : "") +
       (r.status === "approved" ? "<button class='btn' data-a='reject' data-id='" + r.id + "'>Take down</button> " : "") +
-      "<button class='btn' data-a='delete' data-id='" + r.id + "'>Delete</button>";
+      "<button class='btn' data-a='set-badge' data-id='" + r.id + "'>Switch label</button> <button class='btn' data-a='delete' data-id='" + r.id + "'>Delete</button>";
     return "<div class='ad-card'><div><span class='ad-stars'>" + "★".repeat(r.rating) + "☆".repeat(5 - r.rating) + "</span> <b>" + esc(r.name) + "</b> on " + esc(products[r.product] || r.product) + "<span class='pill'>" + tag + "</span></div>" +
       "<p class='ad-meta'>" + new Date(r.created).toLocaleString() + "</p><p>" + esc(r.text) + "</p>" + (r.photo ? "<img class='ad-photo' src='" + r.photo + "' alt=''>" : "") +
       "<div class='ad-row' style='margin-top:12px'>" + btns + "</div></div>";
