@@ -187,6 +187,10 @@
     text-align: center;
     background: linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42));
   }
+  .hero-title { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .hero-rating { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-family: var(--body); font-weight: 500; font-size: clamp(0.85rem, 2.4vw, 1.05rem); text-shadow: 0 1px 10px rgba(0,0,0,0.45); }
+  .hero-rating[hidden] { display: none; }
+  .hero-rating-stars { --fill: 100%; font-size: 1.35em; letter-spacing: 2px; line-height: 1; background: linear-gradient(90deg, #E8B04B var(--fill), rgba(255,255,255,0.4) var(--fill)); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
   .hero-headline {
     font-family: var(--display);
     font-weight: 700;
@@ -392,7 +396,10 @@
     <div class="hero-collection-bg">
       <img fetchpriority="high" src="assets/Hero.webp" srcset="assets/Hero-640.webp 640w, assets/Hero-800.webp 800w, assets/Hero.webp 1535w" sizes="100vw" alt="EARTHED product collection">
       <div class="hero-collection-overlay">
-        <h1 class="hero-headline">Make your daily <em>routine toxin-free today.</em></h1>
+        <div class="hero-title">
+          <a href="#products" class="hero-rating" id="hero-rating" hidden aria-label="Customer rating"><span class="hero-rating-stars" id="hero-rating-stars" aria-hidden="true">★★★★★</span><span id="hero-rating-text"></span></a>
+          <h1 class="hero-headline">Make your daily <em>routine toxin-free today.</em></h1>
+        </div>
         <a href="/shop" class="hero-collection-cta">
           <span class="hero-cta-label">Shop Now</span>
         </a>
@@ -406,7 +413,7 @@
   </div>
 
   <!-- PRODUCT TRIO -->
-  <section class="products-section">
+  <section class="products-section" id="products">
     <div class="wrap">
       <div class="section-head">
         <h2 style="color: var(--olive);">SHOP EARTHED</h2>
@@ -612,6 +619,19 @@
 <script src="bundle-modal.js"></script>
 <script src="main.js"></script>
 
+<script>
+(function () {
+  fetch('/api/reviews').then(function (r) { return r.json(); }).then(function (d) {
+    var sum = d.summary || {}, n = 0, total = 0;
+    Object.keys(sum).forEach(function (k) { n += sum[k].count; total += sum[k].count * sum[k].average; });
+    if (!n) return;
+    var avg = total / n;
+    document.getElementById('hero-rating-stars').style.setProperty('--fill', (avg / 5 * 100).toFixed(0) + '%');
+    document.getElementById('hero-rating-text').textContent = 'Rated ' + avg.toFixed(1) + '/5 from ' + n + ' review' + (n > 1 ? 's' : '');
+    document.getElementById('hero-rating').hidden = false;
+  }).catch(function () {});
+})();
+</script>
 <script src="reels-data.js"></script>
 <script src="reels.js" defer></script>
 <script src="egg-popup.js" defer></script>
