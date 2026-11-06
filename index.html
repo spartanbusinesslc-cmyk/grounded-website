@@ -627,7 +627,7 @@
     if (!n) return;
     var avg = total / n;
     document.getElementById('hero-rating-stars').style.setProperty('--fill', (avg / 5 * 100).toFixed(0) + '%');
-    document.getElementById('hero-rating-text').textContent = 'Rated ' + avg.toFixed(1) + '/5 from ' + n + ' review' + (n > 1 ? 's' : '');
+    document.getElementById('hero-rating-text').textContent = 'Rated ' + avg.toFixed(1) + '/5.0';
     document.getElementById('hero-rating').hidden = false;
   }).catch(function () {});
 })();
