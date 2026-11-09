@@ -197,7 +197,7 @@
 <script src="products.js"></script>
 <script>
   // Clear the cart now that checkout has completed
-  try { localStorage.removeItem("earthed_cart"); } catch (e) {}
+  try { localStorage.removeItem("earthed_cart"); localStorage.removeItem("earthed_bundle_notes"); } catch (e) {}
 
   function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (ch) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]; }); }
   var EU = ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","NO","IS","LI","CH"];

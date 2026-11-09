@@ -62,6 +62,7 @@ function setQty(id, qty) {
   const cart = getCart();
   if (qty <= 0) {
     delete cart[id];
+    forgetBundleNotes(id);
   } else {
     cart[id] = qty;
   }
@@ -71,7 +72,18 @@ function setQty(id, qty) {
 function removeFromCart(id) {
   const cart = getCart();
   delete cart[id];
+  forgetBundleNotes(id);
   saveCart(cart);
+}
+
+function forgetBundleNotes(id) {
+  try {
+    const notes = JSON.parse(localStorage.getItem("earthed_bundle_notes") || "{}");
+    if (notes[id]) {
+      delete notes[id];
+      localStorage.setItem("earthed_bundle_notes", JSON.stringify(notes));
+    }
+  } catch (e) {}
 }
 
 function cartCount(cart) {
@@ -219,7 +231,8 @@ async function checkout() {
       throw new Error(data.error || "Checkout could not be started.");
     }
 
-    localStorage.removeItem("earthed_bundle_notes");
+    // Scent choices are kept until the order is paid (cleared on the success page), so going back from
+    // Stripe and checking out again still sends them.
     // GA4 begin_checkout
     if (typeof gtag === 'function') {
       const subtotal = cartSubtotal(cart);
