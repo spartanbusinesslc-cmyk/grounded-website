@@ -60,8 +60,16 @@
     return keys.map(function (k) { return '<div class="express-modal-pay" data-slot="' + k + '"></div>'; }).join("");
   }
 
+  // Scents listed in SOLD_OUT_SCENTS (bundle-modal.js) can't be chosen
+  function isSoldOut(id) { return typeof SOLD_OUT_SCENTS !== "undefined" && SOLD_OUT_SCENTS.indexOf(id) !== -1; }
+  function firstInStock() {
+    for (var i = 0; i < scentList.length; i++) if (!isSoldOut(scentList[i].id)) return scentList[i].id;
+    return scentList[0].id;
+  }
   function scentSelect(group, index, label, defaultId) {
+    if (isSoldOut(defaultId)) defaultId = firstInStock();
     var opts = scentList.map(function (s) {
+      if (isSoldOut(s.id)) return '<option value="' + s.id + '" disabled>' + s.label + " (sold out)</option>";
       return '<option value="' + s.id + '"' + (s.id === defaultId ? " selected" : "") + ">" + s.label + "</option>";
     }).join("");
     return '<label class="express-scent-row"><span>' + label + '</span><select class="express-scent-select" data-group="' + group + '" data-index="' + index + '">' + opts + "</select></label>";
