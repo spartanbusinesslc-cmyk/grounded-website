@@ -23,7 +23,7 @@ function buildScentSelect(label) {
   const id = "scent-" + Math.random().toString(36).slice(2);
   const opts = SCENT_OPTIONS.map(s =>
     SOLD_OUT_SCENTS.includes(s.id)
-      ? `<option value="${s.id}" disabled>${s.label} (sold out)</option>`
+      ? `<option value="${s.id}" disabled style="color:#C0392B">${s.label} (sold out)</option>`
       : `<option value="${s.id}">${s.label}</option>`
   ).join("");
   return `

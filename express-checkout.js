@@ -69,7 +69,7 @@
   function scentSelect(group, index, label, defaultId) {
     if (isSoldOut(defaultId)) defaultId = firstInStock();
     var opts = scentList.map(function (s) {
-      if (isSoldOut(s.id)) return '<option value="' + s.id + '" disabled>' + s.label + " (sold out)</option>";
+      if (isSoldOut(s.id)) return '<option value="' + s.id + '" disabled style="color:#C0392B">' + s.label + " (sold out)</option>";
       return '<option value="' + s.id + '"' + (s.id === defaultId ? " selected" : "") + ">" + s.label + "</option>";
     }).join("");
     return '<label class="express-scent-row"><span>' + label + '</span><select class="express-scent-select" data-group="' + group + '" data-index="' + index + '">' + opts + "</select></label>";
