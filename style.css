@@ -935,3 +935,6 @@ section { padding: var(--section-pad) 0; }
 .product-rating-link[hidden], .reviews-section[hidden] { display: none; }
 
 .handmade-note { margin: 14px 0 0; font-family: var(--body); font-size: 0.78rem; line-height: 1.5; text-align: center; color: var(--charcoal); opacity: 0.7; }
+
+.scent-dd-list li.is-sold-out { opacity: 0.45; cursor: not-allowed; text-decoration: line-through; }
+.scent-dd-list li.is-sold-out:hover { background: transparent; }

@@ -16,10 +16,15 @@ const SCENT_OPTIONS = [
   { id: "oliveMintTeaTree",    label: "Olive Oil — Mint & Tea Tree" },
 ];
 
+// Scents that are currently sold out. Remove an id from this list when it is back in stock.
+const SOLD_OUT_SCENTS = ["soapCitrusLavender"];
+
 function buildScentSelect(label) {
   const id = "scent-" + Math.random().toString(36).slice(2);
   const opts = SCENT_OPTIONS.map(s =>
-    `<option value="${s.id}">${s.label}</option>`
+    SOLD_OUT_SCENTS.includes(s.id)
+      ? `<option value="${s.id}" disabled>${s.label} (sold out)</option>`
+      : `<option value="${s.id}">${s.label}</option>`
   ).join("");
   return `
     <div class="bm-row">
@@ -50,7 +55,7 @@ function enhanceScentSelect(select) {
     '</button>' +
     '<ul class="scent-dd-list" role="listbox" hidden>' +
       Array.from(select.options).map(o =>
-        '<li role="option" data-value="' + o.value + '"><span class="pill-dot ' + scentDotClass(o.value) + '" aria-hidden="true"></span>' + o.text + "</li>"
+        '<li role="option" data-value="' + o.value + '"' + (o.disabled ? ' aria-disabled="true" class="is-sold-out"' : '') + '><span class="pill-dot ' + scentDotClass(o.value) + '" aria-hidden="true"></span>' + o.text + "</li>"
       ).join("") +
     "</ul>";
   select.insertAdjacentElement("afterend", wrap);
@@ -78,7 +83,7 @@ function enhanceScentSelect(select) {
   });
   list.addEventListener("click", e => {
     const li = e.target.closest("li");
-    if (!li) return;
+    if (!li || li.getAttribute("aria-disabled") === "true") return;
     select.value = li.dataset.value;
     sync();
     setOpen(false);
@@ -121,8 +126,8 @@ function openBundleModal(bundleId) {
       buildScentSelect("Bar 2") +
       buildScentSelect("Bar 3");
     const selects = body.querySelectorAll(".bm-select");
-    if (selects[1]) selects[1].value = "soapCitrusLavender";
-    if (selects[2]) selects[2].value = "soapMintTeaTree";
+    if (selects[1]) selects[1].value = "soapMintTeaTree";
+    if (selects[2]) selects[2].value = "oliveCitrusLavender";
   }
 
   body.querySelectorAll(".bm-select").forEach(enhanceScentSelect);

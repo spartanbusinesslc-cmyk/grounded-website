@@ -62,6 +62,8 @@
     border-radius: 20px; cursor: pointer; background: transparent; font-family: var(--body);
   }
   .variant-pill[aria-pressed="true"] { background: var(--olive); color: var(--cream); }
+  .variant-pill.sold-out { opacity: 0.45; cursor: not-allowed; text-decoration: line-through; }
+  .sold-out-note { margin: -6px 0 16px; font-family: var(--body); font-size: 0.8rem; color: var(--charcoal); opacity: 0.75; }
   .variant-pill { display: inline-flex; align-items: center; gap: 8px; }
   .pill-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.12); }
   .pill-dot.plain { background: #E8DFC4; }
@@ -177,9 +179,10 @@
         <p class="variant-label">Choose Your Scent</p>
         <div class="variant-pills" role="group" aria-label="Choose a scent">
           <button class="variant-pill" aria-pressed="true" data-product-id="soapUnscented" data-sub-id="subSoapUnscented" data-image="assets/rms-unscented.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, Glycerin."><span class="pill-dot plain" aria-hidden="true"></span>Plain</button>
-          <button class="variant-pill" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-image="assets/rms-citrus-lavender.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin."><span class="pill-dot citrus" aria-hidden="true"></span>Citrus &amp; Lavender</button>
+          <button class="variant-pill sold-out" disabled aria-disabled="true" title="Sold out — back early next week" aria-pressed="false" data-product-id="soapCitrusLavender" data-sub-id="subSoapCitrusLavender" data-image="assets/rms-citrus-lavender.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Beeswax, Honey, Sea Salt, White Clay, Turmeric, Lavender Essential Oil, Bergamot Essential Oil, Sweet Orange Essential Oil, Limonene, Linalool, Citral, Glycerin."><span class="pill-dot citrus" aria-hidden="true"></span>Citrus &amp; Lavender</button>
           <button class="variant-pill" aria-pressed="false" data-product-id="soapMintTeaTree" data-sub-id="subSoapMintTeaTree" data-image="assets/rms-mint-teatree.webp" data-ingredients="Cow's Milk, Olive Oil, Coconut Oil, Shea Butter, Mango Seed Butter, Green Clay, Activated Charcoal, Lemon Essential Oil, Spearmint Essential Oil, Tea Tree Essential Oil, Citral, Limonene, Linalool, Glycerin."><span class="pill-dot mint" aria-hidden="true"></span>Mint &amp; Tea Tree</button>
         </div>
+        <p class="sold-out-note" id="sold-out-note">Citrus &amp; Lavender is sold out. Back early next week.</p>
 
 
         <div class="benefits-block">
