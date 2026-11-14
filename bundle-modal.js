@@ -100,6 +100,7 @@ function openBundleModal(bundleId) {
   const overlay = document.getElementById("bundle-modal-overlay");
   const modal   = document.getElementById("bundle-modal");
   if (!overlay || !modal) return;
+  if (typeof SOLD_OUT_PRODUCTS !== "undefined" && SOLD_OUT_PRODUCTS.includes(bundleId)) return;
 
   modal.dataset.bundleId = bundleId;
   const isSub = bundleId.startsWith("sub");

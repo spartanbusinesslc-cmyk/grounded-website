@@ -944,3 +944,13 @@ section { padding: var(--section-pad) 0; }
 .low-stock::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #D98A00; }
 .low-stock-line { margin: 6px 0 10px; }
 .product-card-text > .low-stock, .product-card-body > .low-stock { margin: 2px 0 8px; align-self: flex-start; }
+
+/* Sold-out styling */
+.sold-out-tag { font-family: var(--body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C0392B; }
+.bb-option-info .sold-out-tag { display: block; margin-top: 5px; }
+.product-card-text > .sold-out-tag, .product-card-body > .sold-out-tag { display: block; margin: 2px 0 8px; align-self: flex-start; }
+.bb-option.bb-sold-out { opacity: 0.6; cursor: not-allowed; }
+.bb-option.bb-sold-out .bb-option-name { text-decoration: line-through; text-decoration-color: #C0392B; }
+.bb-option.bb-sold-out input { cursor: not-allowed; }
+.btn.is-sold-out, .bb-add-btn.is-sold-out { font-size: 0; background: #8a8a82; border-color: #8a8a82; color: #fff; cursor: not-allowed; pointer-events: none; }
+.btn.is-sold-out::after, .bb-add-btn.is-sold-out::after { content: "Sold out"; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }

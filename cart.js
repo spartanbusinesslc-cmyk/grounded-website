@@ -40,6 +40,7 @@ function saveCart(cart) {
 const _addCooldowns = new Set();
 function addToCart(id, qty = 1) {
   if (!PRODUCTS[id]) return;
+  if (typeof SOLD_OUT_PRODUCTS !== "undefined" && SOLD_OUT_PRODUCTS.includes(id)) return;
   if (_addCooldowns.has(id)) return;
   _addCooldowns.add(id);
   setTimeout(() => _addCooldowns.delete(id), 1000);
@@ -311,3 +312,68 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeCart();
   });
 });
+
+// ---- Sold-out handling (list lives in products.js) ----
+function applySoldOutUI() {
+  const sold = (id) => typeof SOLD_OUT_PRODUCTS !== "undefined" && !!id && SOLD_OUT_PRODUCTS.includes(id);
+
+  // Take sold-out items out of any cart saved earlier
+  try {
+    const cart = JSON.parse(localStorage.getItem(CART_KEY) || "{}");
+    let changed = false;
+    Object.keys(cart).forEach((k) => { if (sold(k)) { delete cart[k]; changed = true; } });
+    if (changed) localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  } catch (e) {}
+
+  // Product page buy box
+  let allSold = true, anyPanel = false;
+  ["bb-panel-one-time", "bb-panel-subscribe"].forEach((pid) => {
+    const panel = document.getElementById(pid);
+    if (!panel) return;
+    anyPanel = true;
+    if (!panel.dataset.soldGuard) {
+      panel.dataset.soldGuard = "1";
+      panel.addEventListener("click", (e) => {
+        if (e.target.closest(".bb-sold-out")) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
+    }
+    const labels = Array.from(panel.querySelectorAll(".bb-option"));
+    labels.forEach((l) => {
+      const inp = l.querySelector('input[type="radio"]');
+      const ids = [inp && inp.value, l.dataset.modal, l.dataset.modal1m, l.dataset.modal3m, l.dataset.sub1m, l.dataset.sub3m];
+      if (!ids.some(sold) || l.classList.contains("bb-sold-out")) return;
+      l.classList.add("bb-sold-out");
+      l.classList.remove("active");
+      if (inp) { inp.checked = false; inp.disabled = true; }
+      const info = l.querySelector(".bb-option-info");
+      if (info) info.insertAdjacentHTML("beforeend", '<span class="sold-out-tag">Sold out</span>');
+    });
+    const free = labels.filter((l) => !l.classList.contains("bb-sold-out"));
+    if (free.length) {
+      if (pid === "bb-panel-one-time" || true) {
+        allSold = false;
+        if (!free.some((l) => l.querySelector("input").checked)) {
+          const first = free[0];
+          first.querySelector("input").checked = true;
+          labels.forEach((l) => l.classList.toggle("active", l === first));
+        }
+      }
+    }
+  });
+  const addBtn = document.getElementById("bb-add-btn");
+  if (anyPanel && allSold && addBtn) {
+    addBtn.disabled = true;
+    addBtn.classList.add("is-sold-out");
+    addBtn.setAttribute("aria-label", "Sold out");
+  }
+
+  // Shop page bundle cards
+  document.querySelectorAll(".bundle-add-btn, .bundle-modal-btn").forEach((btn) => {
+    if (sold(btn.dataset.oneTimeId)) {
+      btn.disabled = true;
+      btn.classList.add("is-sold-out");
+      btn.setAttribute("aria-label", "Sold out");
+    }
+  });
+}
+applySoldOutUI();

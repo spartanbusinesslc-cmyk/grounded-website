@@ -107,3 +107,10 @@ const PRODUCTS = {
   subLipBundle3m:         { name: "Lip Balm 3-Pack (Every 3 months)",            price: 15.99, swatch: "swatch-lip",   image: "assets/Lip balm trio.webp" },
   subEssentialsBundle3m:  { name: "The Essentials Set (Every 3 months)",         price: 32.99, swatch: "swatch-balm",  image: "assets/essentials%20bundle.webp" }
 };
+
+// Products that are currently sold out. Remove an id from this list when it is back in stock.
+const SOLD_OUT_PRODUCTS = [
+  "lipBalm", "subLipBalm", "subLipBalm3m",
+  "lipBundle", "subLipBundle", "subLipBundle3m",
+  "essentialsBundle", "subEssentialsBundle", "subEssentialsBundle3m"
+];

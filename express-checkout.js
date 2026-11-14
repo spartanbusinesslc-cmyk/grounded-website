@@ -285,7 +285,8 @@
     Object.keys(slots).forEach(function (k) {
       if (!isModalKey(k)) slots[k].node.classList.toggle("active", k === sel);
     });
-    box.hidden = !(anyAvailable && sel && slots[sel]);
+    var soldOut = typeof SOLD_OUT_PRODUCTS !== "undefined" && sel && SOLD_OUT_PRODUCTS.indexOf(sel === "essentials" ? "essentialsBundle" : sel) !== -1;
+    box.hidden = !(anyAvailable && sel && slots[sel]) || soldOut;
     var inlineNote = box.querySelector(".express-sub-note");
     inlineNote.hidden = !(sel && isSubKey(sel) && !isModalKey(sel));
     if (!inlineNote.hidden) inlineNote.textContent = subNote(sel);
