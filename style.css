@@ -938,3 +938,9 @@ section { padding: var(--section-pad) 0; }
 
 .scent-dd-list li.is-sold-out { opacity: 0.85; cursor: not-allowed; color: #C0392B; text-decoration: line-through; text-decoration-color: #C0392B; }
 .scent-dd-list li.is-sold-out:hover { background: transparent; }
+
+/* Low-stock tag: remove the markup when stock is back */
+.low-stock { display: inline-flex; align-items: center; gap: 6px; font-family: var(--body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #A35F00; }
+.low-stock::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #D98A00; }
+.low-stock-line { margin: 6px 0 10px; }
+.product-card-text > .low-stock, .product-card-body > .low-stock { margin: 2px 0 8px; align-self: flex-start; }
