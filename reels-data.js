@@ -5,6 +5,6 @@ window.EARTHED_REELS = [
   { video: 'assets/reels/toxins.mp4', poster: 'assets/reels/toxins.jpg', url: 'https://www.instagram.com/reel/DdTcigRoTKd/' },
   { video: 'assets/reels/swaps.mp4', poster: 'assets/reels/swaps.jpg', url: 'https://www.instagram.com/reel/DemdVtCsD7c/' },
   { video: 'assets/reels/soap-made.mp4', poster: 'assets/reels/soap-made.jpg', url: 'https://www.instagram.com/reel/DdgueLiok2-/' },
-  { video: 'assets/reels/george.mp4', poster: 'assets/reels/george.jpg' },
-  { video: 'assets/reels/kerry.mp4', poster: 'assets/reels/kerry.jpg' }
+  { video: 'assets/reels/george.mp4', poster: 'assets/reels/george.jpg', url: 'https://www.instagram.com/reel/DfSilwjRcYw/' },
+  { video: 'assets/reels/kerry.mp4', poster: 'assets/reels/kerry.jpg', url: 'https://www.instagram.com/reel/DcBh_iDIOk6/' }
 ];
