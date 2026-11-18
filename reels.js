@@ -28,7 +28,7 @@
       '<div class="reel-modal-box">' +
         '<button type="button" class="reel-modal-close" aria-label="Close">&times;</button>' +
         '<div class="reel-stage"></div>' +
-        '<div class="reel-meta"><span class="reel-caption"></span><a class="reel-link" target="_blank" rel="noopener">View on Instagram</a></div>' +
+        '<div class="reel-meta"><span class="reel-caption"></span><a class="reel-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg><span>View on Instagram</span></a></div>' +
         '<button type="button" class="reel-nav prev" aria-label="Previous reel">&#8592;</button>' +
         '<button type="button" class="reel-nav next" aria-label="Next reel">&#8594;</button>' +
       '</div>';
