@@ -970,3 +970,8 @@ section { padding: var(--section-pad) 0; }
 .reels-ig-link svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; flex-shrink: 0; }
 
 .also-like-card .btn { margin-top: auto; }
+
+/* Whole "More from EARTHED" card is clickable (the Shop Now link covers the card) */
+.also-like-card { position: relative; transition: box-shadow 0.2s, transform 0.2s; }
+.also-like-card .btn::after { content: ""; position: absolute; inset: 0; }
+.also-like-card:hover { box-shadow: 0 6px 20px rgba(28,28,28,0.10); transform: translateY(-2px); }
