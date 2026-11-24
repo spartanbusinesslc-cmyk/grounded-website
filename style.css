@@ -958,3 +958,8 @@ section { padding: var(--section-pad) 0; }
 .bb-option.bb-sold-out input { cursor: not-allowed; }
 .btn.is-sold-out, .bb-add-btn.is-sold-out { font-size: 0; background: #8a8a82; border-color: #8a8a82; color: #fff; cursor: not-allowed; pointer-events: none; }
 .btn.is-sold-out::after, .bb-add-btn.is-sold-out::after { content: "Sold out"; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Stop wide scrolling rows (e.g. the reel circles) from stretching the product page past the screen on phones */
+.product-layout > * { min-width: 0; }
+.reels-circles-wrap, .reels-circles { min-width: 0; max-width: 100%; }
+@media (max-width: 700px) { .reels-circles.has-overflow .reels-arrow { display: none; } }
