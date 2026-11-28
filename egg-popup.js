@@ -1,7 +1,7 @@
 /* ============================================
    EARTHED — Spin-the-wheel pop-up
    ---------------------------------------------
-   Appears 15 seconds after arriving on the site.
+   Appears 7 seconds after arriving on the site.
    Visitor spins the wheel, then enters their email
    to claim the prize. The email goes to Klaviyo
    (same list as the footer form).
@@ -14,7 +14,7 @@
 
   const KV_KEY  = 'UpP5xc';
   const KV_LIST = 'TKGvVv';
-  const DELAY   = 15000;
+  const DELAY   = 7000;
   const STORE   = 'ep_wheel_bf26'; // new key so earlier visitors see the Black Friday wheel once
   const DAYS_30 = 30 * 24 * 60 * 60 * 1000;
 
