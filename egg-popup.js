@@ -15,20 +15,15 @@
   const KV_KEY  = 'UpP5xc';
   const KV_LIST = 'TKGvVv';
   const DELAY   = 15000;
-  const STORE   = 'ep_wheel';
+  const STORE   = 'ep_wheel_bf26'; // new key so earlier visitors see the Black Friday wheel once
   const DAYS_30 = 30 * 24 * 60 * 60 * 1000;
 
-  // Slices run clockwise from the top. w = how likely each prize is (they add up to 100).
-  const PRIZES = [
-    { label: '10%', sub: 'OFF',  code: 'EARTH10',  w: 55, win: 'You won 10% off!',         how: 'Enter this code at checkout.' },
-    { label: 'FREE', sub: 'SOAP', code: 'FREESOAP', w: 15, win: 'You won a free soap bar!', how: 'Enter this code at checkout and we will pop a free soap bar into your parcel.' },
-    { label: '15%', sub: 'OFF',  code: 'EARTH15',  w: 30, win: 'You won 15% off!',         how: 'Enter this code at checkout.' }
-  ];
-  const COLORS = [
-    { bg: '#59624B', fg: '#F2EFE6' },
-    { bg: '#D8D1C2', fg: '#59624B' },
-    { bg: '#7A5F44', fg: '#F2EFE6' }
-  ];
+  // Slices run clockwise from the top. All slices are the same size and equally likely,
+  // so the wheel shows the real odds: free soap 3 in 6, 15% off 2 in 6, 10% off 1 in 6.
+  const SOAP = { label: 'FREE', sub: 'SOAP', code: 'FREESOAP', win: 'You won a free soap bar!', how: 'Enter this code at checkout and we will pop a free soap bar into your parcel.', bg: '#59624B', fg: '#F2EFE6' };
+  const P15  = { label: '15%',  sub: 'OFF',  code: 'EARTH15',  win: 'You won 15% off!',         how: 'Enter this code at checkout.', bg: '#D8D1C2', fg: '#59624B' };
+  const P10  = { label: '10%',  sub: 'OFF',  code: 'EARTH10',  win: 'You won 10% off!',         how: 'Enter this code at checkout.', bg: '#7A5F44', fg: '#F2EFE6' };
+  const PRIZES = [SOAP, P15, SOAP, P10, SOAP, P15];
 
   let state = {};
   try { state = JSON.parse(localStorage.getItem(STORE) || '{}'); } catch (e) {}
@@ -44,7 +39,7 @@
 #ep-box{background:#59624B;border-radius:16px;width:100%;max-width:420px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto;padding:30px 28px 24px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.45);text-align:center;outline:none;}
 #ep-x{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;color:rgba(255,255,255,.85);font-size:1.1rem;display:flex;align-items:center;justify-content:center;}
 #ep-x:hover{background:rgba(255,255,255,.28);}
-#ep-ey{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 8px;}
+#ep-ey{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#E8B04B;margin:0 0 8px;}
 #ep-hd{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,4vw,1.9rem);font-weight:600;color:#fff;line-height:1.15;margin:0 0 8px;}
 #ep-sub{font-size:.82rem;color:rgba(255,255,255,.78);margin:0 0 16px;line-height:1.5;}
 #ep-wheel-wrap{position:relative;width:240px;height:240px;margin:0 auto 16px;}
@@ -89,8 +84,8 @@
     PRIZES.forEach((p, i) => {
       const a0 = i * step, a1 = (i + 1) * step, mid = a0 + step / 2;
       const s = pt(a0, r), e = pt(a1, r);
-      out += '<path d="M150 150 L' + s[0] + ' ' + s[1] + ' A' + r + ' ' + r + ' 0 0 1 ' + e[0] + ' ' + e[1] + ' Z" fill="' + COLORS[i].bg + '" stroke="#fff" stroke-width="2"/>';
-      out += '<g transform="rotate(' + mid + ' 150 150)" fill="' + COLORS[i].fg + '" font-family="Jost,sans-serif" text-anchor="middle">' +
+      out += '<path d="M150 150 L' + s[0] + ' ' + s[1] + ' A' + r + ' ' + r + ' 0 0 1 ' + e[0] + ' ' + e[1] + ' Z" fill="' + p.bg + '" stroke="#fff" stroke-width="2"/>';
+      out += '<g transform="rotate(' + mid + ' 150 150)" fill="' + p.fg + '" font-family="Jost,sans-serif" text-anchor="middle">' +
         '<text x="150" y="68" font-size="' + (p.label.length > 3 ? 26 : 34) + '" font-weight="600">' + p.label + '</text>' +
         '<text x="150" y="88" font-size="13" letter-spacing="2" font-weight="500">' + p.sub + '</text></g>';
     });
@@ -102,9 +97,9 @@
 <div id="ep-ov">
   <div id="ep-box" role="dialog" aria-modal="true" aria-labelledby="ep-hd" tabindex="-1">
     <button id="ep-x" aria-label="Close">&#x2715;</button>
-    <p id="ep-ey">EARTHED</p>
-    <h2 id="ep-hd">Spin to win a discount</h2>
-    <p id="ep-sub">Give the wheel a spin 👀</p>
+    <p id="ep-ey">Black Friday Weekend</p>
+    <h2 id="ep-hd">Spin the Black Friday wheel</h2>
+    <p id="ep-sub">Every spin wins. Free soap is on the wheel 👀</p>
     <div id="ep-wheel-wrap"><div id="ep-ptr"></div>${wheelSvg()}</div>
     <button id="ep-spin" type="button">Spin the wheel</button>
     <div id="ep-result">
@@ -125,9 +120,7 @@
 </div>`;
 
   function pick() {
-    let r = Math.random() * PRIZES.reduce((a, p) => a + p.w, 0);
-    for (let i = 0; i < PRIZES.length; i++) { r -= PRIZES[i].w; if (r < 0) return i; }
-    return 0;
+    return Math.floor(Math.random() * PRIZES.length);
   }
 
   function inject() {
