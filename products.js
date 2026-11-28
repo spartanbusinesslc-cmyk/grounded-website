@@ -109,8 +109,4 @@ const PRODUCTS = {
 };
 
 // Products that are currently sold out. Remove an id from this list when it is back in stock.
-const SOLD_OUT_PRODUCTS = [
-  "lipBalm", "subLipBalm", "subLipBalm3m",
-  "lipBundle", "subLipBundle", "subLipBundle3m",
-  "essentialsBundle", "subEssentialsBundle", "subEssentialsBundle3m"
-];
+const SOLD_OUT_PRODUCTS = [];

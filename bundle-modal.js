@@ -17,7 +17,7 @@ const SCENT_OPTIONS = [
 ];
 
 // Scents that are currently sold out. Remove an id from this list when it is back in stock.
-const SOLD_OUT_SCENTS = ["soapCitrusLavender"];
+const SOLD_OUT_SCENTS = [];
 
 function buildScentSelect(label) {
   const id = "scent-" + Math.random().toString(36).slice(2);
@@ -127,8 +127,8 @@ function openBundleModal(bundleId) {
       buildScentSelect("Bar 2") +
       buildScentSelect("Bar 3");
     const selects = body.querySelectorAll(".bm-select");
-    if (selects[1]) selects[1].value = "soapMintTeaTree";
-    if (selects[2]) selects[2].value = "oliveCitrusLavender";
+    if (selects[1]) selects[1].value = "soapCitrusLavender";
+    if (selects[2]) selects[2].value = "soapMintTeaTree";
   }
 
   body.querySelectorAll(".bm-select").forEach(enhanceScentSelect);
